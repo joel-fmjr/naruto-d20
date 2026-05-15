@@ -74,7 +74,7 @@ export function registerChakraTab() {
         $html.find('.shinobi-roll').off('click').on('click', async (ev) => {
             ev.preventDefault();
             const dataset = ev.currentTarget.dataset;
-            const bonus = dataset.roll;
+            const bonus = dataset.bonus;
             const label = dataset.label;
             
             const roll = new Roll(`1d20 + ${bonus}`);

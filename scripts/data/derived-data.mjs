@@ -59,7 +59,9 @@ export function registerDerivedDataWrapper() {
             learnData.buffBonus = buffBonus;
 
             // Compute total (Base + Ability Mod + Misc + Buffs)
-            learnData.total = learnData.base + learnData.abilityMod + (learnData.miscBonus || 0) + buffBonus;
+            const miscBonus = Number(learnData.miscBonus) || 0;
+            const buffBonusNum = Number(buffBonus) || 0;
+            learnData.total = learnData.base + learnData.abilityMod + miscBonus + buffBonusNum;
         }
 
         // 3.5 Dynamic Chakra Pool and Reserve Maximums
