@@ -63,21 +63,15 @@ export function prepareDerivedActorData(actor) {
     const charLevel = actor.system.details?.level?.value || actor.system.details?.cr?.total || 0;
     const conMod = actor.system.abilities?.con?.mod || 0;
 
-    // Taijutsu governing ability comes from the skill-tab selector (actor.system.skills.tai.ability)
-    const taiAbility = actor.system.skills.tai?.ability || "str";
-    nData.learn.tai.ability = taiAbility;  // mirror for template label
+    // All governing abilities come from the skills-tab selector for each discipline
+    const abilityDefaults = { ckc: "wis", gnj: "cha", nin: "int", tai: "str", fui: "int" };
+    const ABILITY_LABELS = { str: "Str", dex: "Dex", con: "Con", int: "Int", wis: "Wis", cha: "Cha" };
 
-    const abilityMap = {
-        ckc: "wis",
-        gnj: "cha",
-        nin: "int",
-        tai: taiAbility,
-        fui: "int"
-    };
-
-    for (const [key, abilityKey] of Object.entries(abilityMap)) {
-        const s = nData.learn[key];
+    for (const [key, s] of Object.entries(nData.learn)) {
         if (!s) continue;
+        const abilityKey = actor.system.skills[key]?.ability || abilityDefaults[key] || "int";
+        s.ability = abilityKey;
+        s.abilityLabel = ABILITY_LABELS[abilityKey] ?? abilityKey;
         s.base = charLevel;
         s.abilityMod = actor.system.abilities?.[abilityKey]?.mod || 0;
         // buffBonus was written by the changes engine between the two hooks
