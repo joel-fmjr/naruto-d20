@@ -26,6 +26,10 @@ export function registerNarutoSkills() {
 export function ensureActorSkillEntries(actor) {
     if (!["character", "npc"].includes(actor.type)) return;
     for (const [key, data] of Object.entries(NARUTO_SKILLS)) {
-        actor.system.skills[key] ??= { ability: data.ability, rank: 0 };
+        if (key in actor.system.skills) {
+            actor.system.skills[key].ability ??= data.ability;
+        } else {
+            actor.system.skills[key] = { ability: data.ability, rank: 0 };
+        }
     }
 }
