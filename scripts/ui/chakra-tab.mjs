@@ -1,3 +1,5 @@
+const chakraActiveApps = new WeakSet();
+
 export function registerChakraTab() {
     Hooks.on("renderActorSheetPF", async (app, html, data) => {
         if (!["character", "npc"].includes(app.actor.type)) return;
@@ -11,21 +13,36 @@ export function registerChakraTab() {
             nav.append('<a class="item" data-tab="chakra" data-group="primary" data-action="tab">Chakra</a>');
         }
 
+        // Track chakra activation across re-renders. WeakSet survives because the same `app`
+        // instance persists for the lifetime of the open sheet.
+        nav.find('[data-tab="chakra"]').on("click", () => chakraActiveApps.add(app));
+        nav.find('.item:not([data-tab="chakra"])').on("click", () => chakraActiveApps.delete(app));
+
         const body = $html.find("section.primary-body");
         if (!body.length) return;
 
-        // The chakra content div is not in the pf1e template, so we must inject it after each render.
-        // Its active state must mirror app.tabGroups.primary, since Foundry's render only applies
-        // "active" to content divs it actually rendered.
+        // Inject the chakra content div (template hard-codes content divs).
         if (!body.find('[data-tab="chakra"]').length) {
             data.flags = app.actor.flags || {};
             const templateHtml = await foundry.applications.handlebars.renderTemplate(
                 "modules/naruto-d20/templates/actor/chakra-tab.hbs",
                 data
             );
-            const $tab = $(templateHtml);
-            if (app.tabGroups?.primary === "chakra") $tab.addClass("active");
-            body.append($tab);
+            body.append($(templateHtml));
+        }
+
+        // Restore chakra as the active tab. We use changeTab() to keep app.tabGroups in sync —
+        // skipping that step makes Foundry's no-op guard (foundry.mjs:27853) silently swallow
+        // future clicks on whichever tab tabGroups still thinks is active.
+        const shouldBeChakra = chakraActiveApps.has(app) || app.tabGroups?.primary === "chakra";
+        if (shouldBeChakra) {
+            if (app.tabGroups?.primary !== "chakra" && typeof app.changeTab === "function") {
+                app.changeTab("chakra", "primary", { force: true });
+            } else {
+                body.find('[data-tab="chakra"]').addClass("active");
+                nav.find('[data-tab="chakra"]').addClass("active");
+            }
+            chakraActiveApps.add(app);
         }
 
         // Roll listeners for Learn checks
