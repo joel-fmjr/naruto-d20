@@ -5,6 +5,13 @@
     }
   },
   "NarutoD20": {
+    "Skills": {
+      "ckc": "Chakra Control",
+      "fui": "Fuinjutsu",
+      "gnj": "Genjutsu",
+      "tai": "Taijutsu",
+      "nin": "Ninjutsu"
+    },
     "Item": {
       "TypeTechnique": "Technique"
     },

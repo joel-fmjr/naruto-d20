@@ -15,6 +15,7 @@
 
 import { TechniqueDataModel } from "./data/technique-model.mjs";
 import { prepareBaseActorData, prepareDerivedActorData } from "./data/derived-data.mjs";
+import { registerNarutoSkills, ensureActorSkillEntries } from "./data/skills.mjs";
 import { TechniqueItemSheet } from "./ui/technique-sheet.mjs";
 import { registerChakraTab } from "./ui/chakra-tab.mjs";
 import { registerSummaryStats } from "./ui/summary-stats.mjs";
@@ -44,11 +45,13 @@ Hooks.once("init", () => {
 // ── [2] pf1PostInit ───────────────────────────────────────────────────────
 Hooks.once("pf1PostInit", () => {
     _registerBuffTargets();
+    registerNarutoSkills();
 });
 
 // ── [3] pf1PrepareBaseActorData ───────────────────────────────────────────
 Hooks.on("pf1PrepareBaseActorData", (actor) => {
     prepareBaseActorData(actor);
+    ensureActorSkillEntries(actor);
 });
 
 // ── [4] pf1GetChangeFlat ──────────────────────────────────────────────────
