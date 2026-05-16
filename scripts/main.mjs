@@ -73,10 +73,10 @@ Hooks.on("pf1PrepareDerivedActorData", (actor) => {
 // ── [6] pf1RegisterDamageTypes ────────────────────────────────────────────
 Hooks.once("pf1RegisterDamageTypes", (registry) => {
     const damageTypes = [
-        { id: "earth", name: "Earth", category: "energy", resist: true, color: "brown", icon: "pf-icon pf-stone-block" },
-        { id: "water", name: "Water", category: "energy", resist: true, color: "blue",  icon: "pf-icon pf-water-drop" },
-        { id: "wind",  name: "Wind",  category: "energy", resist: true, color: "gray",  icon: "pf-icon pf-wind-hole"  },
-        { id: "holy",  name: "Holy",  category: "energy", resist: true, color: "gold",  icon: "pf-icon pf-sunbeams"   }
+        { id: "earth", name: "Earth", category: "energy", resist: true, color: "brown", icon: "pf-icon pf-gavel"      },
+        { id: "water", name: "Water", category: "energy", resist: true, color: "blue",  icon: "pf-icon pf-sea-dragon" },
+        { id: "wind",  name: "Wind",  category: "energy", resist: true, color: "gray",  icon: "pf-icon pf-punch-blast"},
+        { id: "holy",  name: "Holy",  category: "energy", resist: true, color: "gold",  icon: "pf-icon pf-sunbeams"  }
     ];
     for (const dt of damageTypes) {
         try {
