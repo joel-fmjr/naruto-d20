@@ -17,9 +17,15 @@ export function registerChakraTab() {
 
     // The hook only handles things that depend on the live, in-DOM sheet —
     // roll listeners. DOM injection now happens in _renderInner.
+    const LEARN_LABELS = {
+        ckc: "Chakra Control", gnj: "Genjutsu", nin: "Ninjutsu",
+        tai: "Taijutsu", fui: "Fuinjutsu",
+    };
+
     Hooks.on("renderActorSheetPF", (app, html, _data) => {
         if (!["character", "npc"].includes(app.actor.type)) return;
         const $html = html instanceof HTMLElement ? $(html) : html;
+
         $html.find(".shinobi-roll").off("click").on("click", async (ev) => {
             ev.preventDefault();
             const { bonus, label } = ev.currentTarget.dataset;
@@ -30,6 +36,34 @@ export function registerChakraTab() {
                 flavor: `<h3 style="margin-bottom: 0;">${label} Learn Check</h3>`
             });
         });
+
+        $html.find("[data-naruto-tooltip^='learn.']")
+            .on("pointerenter", async function () {
+                const key = this.dataset.narutoTooltip.split(".")[1];
+                const learnData = app.actor.flags?.["naruto-d20"]?.learn?.[key];
+                if (!learnData) return;
+
+                const sources = [
+                    { name: "Character Level", value: learnData.base, builtIn: true },
+                    { name: learnData.abilityLabel, value: learnData.abilityMod, builtIn: true },
+                ];
+                if (learnData.buffBonus) sources.push({ name: "Buff Bonus", value: learnData.buffBonus, builtIn: false });
+                if (learnData.miscBonus) sources.push({ name: "Misc Bonus", value: learnData.miscBonus, builtIn: false });
+
+                const context = {
+                    header: LEARN_LABELS[key] ?? key,
+                    sources: [{ untyped: true, sources }],
+                };
+
+                const content = await foundry.applications.handlebars.renderTemplate(
+                    "systems/pf1/templates/extended-tooltip.hbs",
+                    context
+                );
+                game.tooltip.activate(this, { content, cssClass: "pf1 extended" });
+            })
+            .on("pointerleave", function () {
+                game.tooltip.deactivate();
+            });
     });
 }
 
