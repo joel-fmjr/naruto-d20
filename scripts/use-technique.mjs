@@ -43,14 +43,10 @@ export async function performTechnique(item, actionId) {
             ? `Ranks ${skillRanks} ≥ threshold ${threshold} — auto-perform.`
             : `No perform check required.`;
     } else {
-        const roll = await pf1.dice.d20Roll({
-            flavor:   `${sys.discipline} Perform Check`,
-            parts:    _buildPerformParts(actor, skillKey, sys),
-            rollData: actor.getRollData?.() ?? {},
-            speaker:  ChatMessage.implementation?.getSpeaker({ actor }) ?? ChatMessage.getSpeaker({ actor }),
-        });
-        if (!roll) return;  // user cancelled dialog
-        succeeded = roll.rolls[0].total >= performDC;
+        const result = await actor.rollSkill(skillKey);
+        if (!result) return;                               // user cancelled dialog
+        const lastMsg = game.messages.contents.at(-1);
+        succeeded = (lastMsg?.rolls?.[0]?.total ?? 0) >= performDC;
     }
 
     if (!succeeded) {
@@ -97,32 +93,4 @@ export async function performTechnique(item, actionId) {
     }
 
     await action.use();
-}
-
-const ABILITY_LABELS = { str: "Str", dex: "Dex", con: "Con", int: "Int", wis: "Wis", cha: "Cha" };
-
-function _buildPerformParts(actor, skillKey, sys) {
-    const parts = [];
-    const skill = actor.system.skills?.[skillKey] ?? {};
-    const rank = skill.rank ?? 0;
-    const abilityKey = skill.ability ?? "str";
-    const abilityMod = actor.system.abilities?.[abilityKey]?.mod ?? 0;
-    const abilityLabel = ABILITY_LABELS[abilityKey] ?? abilityKey;
-
-    if (rank)                 parts.push(`${rank}[Ranks]`);
-    if (abilityMod)           parts.push(`${abilityMod}[${abilityLabel}]`);
-    if (skill.cs && rank > 0) parts.push(`3[Class Skill]`);
-
-    const changeBonus = skill.changeBonus ?? 0;
-    if (changeBonus) {
-        const buffSources = actor.sourceInfo?.[`system.skills.${skillKey}.changeBonus`]?.positive ?? [];
-        if (buffSources.length > 0) {
-            for (const src of buffSources) parts.push(`${src.value}[${src.name}]`);
-        } else {
-            parts.push(`${changeBonus}[Skill Bonus]`);
-        }
-    }
-
-    if (sys.performMiscBonus) parts.push(`${sys.performMiscBonus}[Perform Misc]`);
-    return parts;
 }
