@@ -142,8 +142,8 @@ const MODULE_ID = "naruto-d20";
 
 export function canAffordTechnique(actor, item) {
     if (!actor) return false;
-    const flags = actor.flags?.[MODULE_ID]?.chakra ?? {};
-    const available = (flags.pool?.value ?? 0) + (flags.reserve?.value ?? 0);
+    const chakra    = actor.flags?.[MODULE_ID]?.chakra ?? {};
+    const available = (chakra.pool?.value ?? 0) + (chakra.reserve?.value ?? 0);
     return available >= (item.system.chakraCost ?? 0);
 }
 
@@ -175,41 +175,38 @@ export async function performTechnique(item, actionId) {
     const performDC  = sys.derived.performDC;
 
     let succeeded;
-    let rollMessageHtml;
+    let bypassNote = null;
 
     if (!skillKey || skillRanks >= threshold) {
-        succeeded = true;
-        rollMessageHtml = skillKey
-            ? `<p class="naruto-perform-bypass">
-                 Ranks ${skillRanks} ≥ threshold ${threshold} — auto-perform.
-               </p>`
-            : `<p class="naruto-perform-bypass">No perform check required.</p>`;
+        succeeded  = true;
+        bypassNote = skillKey
+            ? `Ranks ${skillRanks} ≥ threshold ${threshold} — auto-perform.`
+            : `No perform check required.`;
     } else {
-        // 3. Roll perform check vs performDC
+        // 3. Roll perform check vs performDC.
+        // pf1.dice.d20Roll posts its own chat card and returns a ChatMessage
+        // (NOT a Roll). Access the total via roll.rolls[0].total.
+        // The `skill:` option tells PF1e to apply the standard skill formula
+        // (ranks + ability + class-skill bonus). `parts` adds only extras.
         const roll = await pf1.dice.d20Roll({
-            actor,
-            skill: skillKey,
-            parts: _buildPerformParts(actor, sys, skillKey),
-            dialogOptions: { skipDialog: false },
-            chatMessage: false,
-            target: performDC,
-            speaker: ChatMessage.getSpeaker({ actor }),
-            flavor: `${item.name} — perform check (DC ${performDC})`,
+            flavor:   `${item.name} — Perform Check (DC ${performDC})`,
+            skill:    skillKey,
+            parts:    _buildPerformParts(sys),
+            rollData: actor.getRollData?.() ?? {},
+            speaker:  ChatMessage.implementation?.getSpeaker({ actor }) ?? ChatMessage.getSpeaker({ actor }),
         });
-        if (!roll) return;                                  // user cancelled dialog
-        succeeded       = roll.total >= performDC;
-        rollMessageHtml = await roll.render();
+        if (!roll) return;                    // user cancelled dialog
+        succeeded = roll.rolls[0].total >= performDC;
     }
 
     // 4. Failure path → chat card, no chakra spent
     if (!succeeded) {
         await ChatMessage.create({
             speaker: ChatMessage.getSpeaker({ actor }),
-            content: `
-                <div class="naruto-technique-card failed">
-                    <header><h3>${item.name}</h3><p>Performance failed.</p></header>
-                    ${rollMessageHtml}
-                </div>`,
+            content: `<div class="naruto-technique-card failed">
+                        <header><h3>${item.name}</h3></header>
+                        <p>Perform check failed (DC ${performDC}). No chakra spent.</p>
+                      </div>`,
         });
         return;
     }
@@ -225,16 +222,26 @@ export async function performTechnique(item, actionId) {
         [`flags.${MODULE_ID}.chakra.reserve.value`]: reserveValue - fromReserve,
     });
 
-    // 6. Post the perform-success card (if a roll happened) then fire the Action
-    if (skillKey && skillRanks < threshold) {
+    // 6. Post outcome card then fire the Action.
+    // Bypass path → post a card with the bypass note and chakra deduction.
+    // Roll path → d20Roll already posted its own card; post only the
+    // chakra-deduction footer so the chat isn't duplicated.
+    if (bypassNote) {
         await ChatMessage.create({
             speaker: ChatMessage.getSpeaker({ actor }),
-            content: `
-                <div class="naruto-technique-card success">
-                    <header><h3>${item.name}</h3><p>Performance succeeded.</p></header>
-                    ${rollMessageHtml}
-                    <footer>Spent ${cost} chakra (${fromPool} pool, ${fromReserve} reserve).</footer>
-                </div>`,
+            content: `<div class="naruto-technique-card success">
+                        <header><h3>${item.name}</h3></header>
+                        <p class="naruto-perform-bypass">${bypassNote}</p>
+                        <footer>Spent ${cost} chakra (${fromPool} pool, ${fromReserve} reserve).</footer>
+                      </div>`,
+        });
+    } else {
+        await ChatMessage.create({
+            speaker: ChatMessage.getSpeaker({ actor }),
+            content: `<div class="naruto-technique-card success">
+                        <header><h3>${item.name}</h3></header>
+                        <footer>Spent ${cost} chakra (${fromPool} pool, ${fromReserve} reserve).</footer>
+                      </div>`,
         });
     }
 
@@ -242,24 +249,24 @@ export async function performTechnique(item, actionId) {
     await action.use();
 }
 
-function _buildPerformParts(actor, sys, skillKey) {
-    const skill = actor.system.skills?.[skillKey] ?? {};
+// Only technique-specific extras — PF1e's d20Roll handles the base skill
+// formula (ranks + ability + class-skill bonus) via the `skill:` option.
+function _buildPerformParts(sys) {
     const parts = [];
-    if (skill.rank)           parts.push(`${skill.rank}[Ranks]`);
-    if (skill.abilityMod)     parts.push(`${skill.abilityMod}[Ability]`);
     if (sys.performMiscBonus) parts.push(`${sys.performMiscBonus}[Perform Misc]`);
-    const buffBonus = foundry.utils.getProperty(
-        actor, `flags.naruto-d20.learn.${skillKey}.buffBonus`
-    );
-    if (buffBonus) parts.push(`${buffBonus}[Buff]`);
     return parts;
 }
 ```
 
 Notes:
-- `pf1.dice.d20Roll` is the same call the chakra tab's `.shinobi-roll`
-  handlers use today — keep parts as labeled strings for the PF1e-style
-  chat-card breakdown.
+- **`pf1.dice.d20Roll` returns a `ChatMessage`, not a `Roll`.** It posts its
+  own chat card automatically. Read the result total via `roll.rolls[0].total`.
+  Do **not** pass `chatMessage: false` — it is not supported and would suppress
+  the roll card entirely.
+- The `skill:` option delegates the full base skill formula (ranks + ability +
+  class-skill bonus) to PF1e. `_buildPerformParts` only needs to add
+  technique-specific extras (e.g. `performMiscBonus`). Do not manually push
+  ranks/ability/buff parts that PF1e already handles.
 - `action.use()` is PF1e's built-in handler. It posts the standard
   attack-roll / damage-roll / save-prompt card based on the Action's
   configuration. We do **not** reimplement any of that. This call now
@@ -468,14 +475,17 @@ step is verified in-browser.
   Action). On a technique with `Ninjutsu` + ranks at/above threshold,
   same behaviour — no dialog.
 
-### Step 4 — Perform check (must-roll path)
-- Implement `_buildPerformParts` and the `pf1.dice.d20Roll` invocation
-  in `performTechnique`.
+### Step 4 — Perform check (must-roll path) ✅ DONE
+- Implement `_buildPerformParts(sys)` (technique extras only) and the
+  `pf1.dice.d20Roll` invocation with `skill:` option in
+  `performTechnique`.
+- Read success/failure from `roll.rolls[0].total` — `pf1.dice.d20Roll`
+  returns a `ChatMessage`, not a `Roll`.
 - **Acceptance:** On a technique with discipline = "Ninjutsu" where the
   actor has fewer ranks than the threshold, clicking Use opens the
-  PF1e d20 dialog. On success, chakra is deducted, the success card
-  posts, and the Action fires. On failure, the failure card posts and
-  no chakra is deducted.
+  PF1e d20 dialog. d20Roll posts its own roll card. On success, chakra
+  is deducted, a chakra-deduction card posts, and the Action fires. On
+  failure, the failure card posts and no chakra is deducted.
 
 ### Step 5 — Disabled Use state on insufficient chakra
 - Acceptance covered by Step 2 + Step 3 (the `.disabled` class is
@@ -523,9 +533,12 @@ step is verified in-browser.
    `.rank` and `.abilityMod` from this path; `ensureActorSkillEntries`
    seeds them — should be safe.
 
-3. **PF1e `d20Roll` signature drift.** PF1e occasionally renames
-   options between minor versions. The chakra tab uses this call
-   today, so any breakage will surface there first.
+3. **`pf1.dice.d20Roll` returns a `ChatMessage`, not a `Roll`.**
+   Confirmed in v11.11. Access the total via `roll.rolls[0].total`.
+   Using `roll.total` returns `undefined`, treating every check as a
+   failure. PF1e may rename this structure between minor versions;
+   the chakra tab uses the same call, so breakage will surface there
+   first.
 
 4. **`action.use()` on an action whose parent item has no `uses`
    field.** PF1e Actions assume the parent item has `system.uses` for
