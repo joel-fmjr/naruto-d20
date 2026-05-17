@@ -145,4 +145,54 @@
 
         </div>
     </div>
+
+    <hr>
+
+    <!-- Techniques -->
+    <div class="naruto-techniques">
+        <div class="techniques-header flexrow">
+            <h3>Techniques</h3>
+        </div>
+
+        <div class="technique-disc-tabs flexrow">
+            <a class="technique-filter active" data-disc="all">All</a>
+            {{#each techniques.tabs}}
+            <a class="technique-filter" data-disc="{{key}}">{{label}}</a>
+            {{/each}}
+        </div>
+
+        <div class="techniques-body">
+            {{#if techniques.count}}
+            {{#each techniques.tabs}}
+            <div class="technique-disc-group" data-disc="{{key}}">
+                {{#each groups}}
+                <div class="rank-header">Rank {{rank}}</div>
+                <ol class="item-list technique-list">
+                    {{#each rows}}
+                    <li class="item technique-row flexrow" data-item-id="{{id}}">
+                        <div class="item-image" style='background-image: url("{{img}}")'></div>
+                        <div class="item-name flexcol">
+                            <h4>{{name}}</h4>
+                            <span class="technique-meta">{{complexity}} · {{chakraCost}} chakra · Perform DC {{performDC}}</span>
+                        </div>
+                        <div class="item-controls">
+                            {{#if hasActions}}
+                            <a class="shinobi-technique-use"    data-tooltip="Use Technique"><i class="fa-solid fa-dice-d20"></i></a>
+                            {{/if}}
+                            <a class="shinobi-technique-open"   data-tooltip="Open Sheet"><i class="fa-solid fa-edit"></i></a>
+                            <a class="shinobi-technique-delete" data-tooltip="Remove"><i class="fa-solid fa-trash"></i></a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ol>
+                {{/each}}
+            </div>
+            {{/each}}
+            {{else}}
+            <div class="techniques-empty">
+                <p>Drag &amp; drop Technique items here to add them.</p>
+            </div>
+            {{/if}}
+        </div>
+    </div>
 </div>
