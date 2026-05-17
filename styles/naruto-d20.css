@@ -271,14 +271,6 @@ div.naruto-tai-setting .form-group {
     border-bottom: none;
 }
 
-.chakra .technique-row .item-name {
-    flex: 1;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
 .chakra .technique-row .item-image {
     flex: 0 0 28px;
     height: 28px;
@@ -297,10 +289,10 @@ div.naruto-tai-setting .form-group {
 }
 
 .chakra .technique-row .item-controls {
-    flex: 0 0 auto;
     display: flex;
     gap: 4px;
     align-items: center;
+    justify-content: center;
 }
 
 .chakra .technique-row .item-controls a {
