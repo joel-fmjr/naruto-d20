@@ -92,5 +92,5 @@ export async function performTechnique(item, actionId) {
         });
     }
 
-    await action.use();
+    await action.use({ skipDialog: true });
 }
