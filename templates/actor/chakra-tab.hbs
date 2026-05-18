@@ -40,11 +40,11 @@
                     <div class="value">
                         <select name="flags.naruto-d20.chakra.nature.primary" class="live chakra-nature-select">
                             <option value="">None</option>
-                            <option value="Fire"      {{#if (eq flags.naruto-d20.chakra.nature.primary "Fire")}}selected{{/if}}>Fire</option>
-                            <option value="Wind"      {{#if (eq flags.naruto-d20.chakra.nature.primary "Wind")}}selected{{/if}}>Wind</option>
-                            <option value="Lightning" {{#if (eq flags.naruto-d20.chakra.nature.primary "Lightning")}}selected{{/if}}>Lightning</option>
-                            <option value="Earth"     {{#if (eq flags.naruto-d20.chakra.nature.primary "Earth")}}selected{{/if}}>Earth</option>
-                            <option value="Water"     {{#if (eq flags.naruto-d20.chakra.nature.primary "Water")}}selected{{/if}}>Water</option>
+                            <option value="Fire"      {{#if (nd20-eq flags.naruto-d20.chakra.nature.primary "Fire")}}selected{{/if}}>Fire</option>
+                            <option value="Wind"      {{#if (nd20-eq flags.naruto-d20.chakra.nature.primary "Wind")}}selected{{/if}}>Wind</option>
+                            <option value="Lightning" {{#if (nd20-eq flags.naruto-d20.chakra.nature.primary "Lightning")}}selected{{/if}}>Lightning</option>
+                            <option value="Earth"     {{#if (nd20-eq flags.naruto-d20.chakra.nature.primary "Earth")}}selected{{/if}}>Earth</option>
+                            <option value="Water"     {{#if (nd20-eq flags.naruto-d20.chakra.nature.primary "Water")}}selected{{/if}}>Water</option>
                         </select>
                     </div>
                 </div>
@@ -55,11 +55,11 @@
                     <div class="value">
                         <select name="flags.naruto-d20.chakra.nature.secondary.0" class="live chakra-nature-select">
                             <option value="">None</option>
-                            <option value="Fire"      {{#if (eq flags.naruto-d20.chakra.nature.secondary.[0] "Fire")}}selected{{/if}}>Fire</option>
-                            <option value="Wind"      {{#if (eq flags.naruto-d20.chakra.nature.secondary.[0] "Wind")}}selected{{/if}}>Wind</option>
-                            <option value="Lightning" {{#if (eq flags.naruto-d20.chakra.nature.secondary.[0] "Lightning")}}selected{{/if}}>Lightning</option>
-                            <option value="Earth"     {{#if (eq flags.naruto-d20.chakra.nature.secondary.[0] "Earth")}}selected{{/if}}>Earth</option>
-                            <option value="Water"     {{#if (eq flags.naruto-d20.chakra.nature.secondary.[0] "Water")}}selected{{/if}}>Water</option>
+                            <option value="Fire"      {{#if (nd20-eq flags.naruto-d20.chakra.nature.secondary.[0] "Fire")}}selected{{/if}}>Fire</option>
+                            <option value="Wind"      {{#if (nd20-eq flags.naruto-d20.chakra.nature.secondary.[0] "Wind")}}selected{{/if}}>Wind</option>
+                            <option value="Lightning" {{#if (nd20-eq flags.naruto-d20.chakra.nature.secondary.[0] "Lightning")}}selected{{/if}}>Lightning</option>
+                            <option value="Earth"     {{#if (nd20-eq flags.naruto-d20.chakra.nature.secondary.[0] "Earth")}}selected{{/if}}>Earth</option>
+                            <option value="Water"     {{#if (nd20-eq flags.naruto-d20.chakra.nature.secondary.[0] "Water")}}selected{{/if}}>Water</option>
                         </select>
                     </div>
                 </div>
