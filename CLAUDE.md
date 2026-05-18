@@ -21,15 +21,37 @@ Foundry runs in Docker (`/home/ezioaalves/Documents/foundry/docker-compose.yml`)
 1. Edit source files.
 2. Reload in the browser: `F5` for a full page reload, or `Ctrl+R` in-world for a lighter module-only reload that re-fires all module hooks without reloading the whole page.
 
-## PF1e type autocomplete
+## PF1e version pinning — IMPORTANT
 
-`pf1/` is a symlink to `../pf1-source`. `jsconfig.json` references it so your editor resolves `pf1.*` APIs. The symlink must exist for this to work.
+The installed system is **PF1e v11.11** at `/systems/pf1/`. There is also a
+**`pf1-source/` filesystem mirror** symlinked as `pf1/` — that mirror is the
+**dev branch** and uses API paths that don't exist in v11.11. Mixing them
+ships broken code.
+
+| Source | What it is | Trust for v11.11 |
+|---|---|---|
+| `/systems/pf1/pf1.js` + `lang/en.json` (installed system) | The bundle Foundry actually loads. | ✅ Ground truth. |
+| context7 `/websites/foundryvtt_pathfinder1e_gitlab_io_foundryvtt-pathfinder1` | TypeDoc-generated API reference from the published docs site. Matches v11.11 class names (`pf1.components.ItemChange`, etc.). | ✅ Primary API reference. |
+| context7 `/gitlab_foundryvtt_pathfinder1e/foundryvtt-pathfinder1` | Help pages + curated llms.txt from the master (stable) branch. | ✅ Complementary — usage patterns / cookbook. |
+| `pf1/` → `../pf1-source/` (filesystem symlink) | **Dev branch source.** Used for editor autocomplete only. | ❌ Do NOT treat as API spec. Paths like `pf1.models.components.Change` only exist here. |
+
+**Before referencing any `pf1.*` global, `CONFIG.PF1.*` key, `system.*` field,
+or `"PF1.*"` i18n key, invoke the `pf1e-api-check` skill (`.claude/skills/`)
+to verify it exists in v11.11.** Or delegate to the `pf1e-api-verifier`
+subagent (`.claude/agents/`) for batch verification.
+
+Known divergences are documented in the skill file. A few to keep in mind:
+- `pf1.components.ItemChange` (NOT `pf1.models.components.Change` — that's the dev-only path)
+- `system.changes` is an `ArrayField` in v11.11, not a `TypedObjectField` record
+- i18n keys are mostly flat in v11.11 (e.g. `PF1.Changes`, not `PF1.Changes.many`)
+- Actor sheet classes are `pf1.applications.ActorSheetPFCharacter` etc., not `pf1.applications.actor.CharacterSheetPF`
 
 ## Context7 docs
 
-Always use context7 when looking up Foundry or PF1e APIs — training data is stale. Library IDs:
+Library IDs (all v11.11-aligned unless noted):
 - `foundryvtt_api_v13` — Foundry core API
-- `foundryvtt_pathfinder1e_gitlab_io_foundryvtt-pathfinder1` — PF1e system API
+- `foundryvtt_pathfinder1e_gitlab_io_foundryvtt-pathfinder1` — PF1e API class reference (primary)
+- `gitlab_foundryvtt_pathfinder1e/foundryvtt-pathfinder1` — PF1e help guides & cookbook
 
 ## Hook lifecycle (execution order)
 

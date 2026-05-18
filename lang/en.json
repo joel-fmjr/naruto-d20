@@ -121,6 +121,31 @@
       },
       "Chakra": {
         "Insufficient": "Insufficient chakra to perform this technique."
+      },
+      "Active": "Active",
+      "ActiveHint": "Changes below apply to the bearer only while this technique is Active.",
+      "AddChange": "Add Change",
+      "AddTagPlaceholder": "add tag, press enter",
+      "AddFlagPlaceholder": "add flag, press enter",
+      "AddDictFlag": "Add Dictionary Flag",
+      "IdentifierPlaceholder": "auto-derived from name",
+      "DuplicateDictKey": "A dictionary flag with that key already exists.",
+      "SummaryPlaceholder": "Brief one-line description…"
+    },
+    "Links": {
+      "DropHint": "Drop an item document here.",
+      "OnlyItems": "Only items can be linked.",
+      "Prerequisites": {
+        "Label": "Prerequisites",
+        "Hint": "Other techniques or feats that must be learned first."
+      },
+      "Supplements": {
+        "Label": "Supplements",
+        "Hint": "Related items that travel alongside this technique."
+      },
+      "Children": {
+        "Label": "Children",
+        "Hint": "Items granted by this technique when learned."
       }
     }
   }
