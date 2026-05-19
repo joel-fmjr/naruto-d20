@@ -61,6 +61,10 @@ export function createTechniqueItemSheet() {
             context.derived  = system.derived;
             context.isGM     = game.user.isGM;
 
+            const rollData = item.getRollData?.() ?? {};
+            context.descriptionHTML  = await TextEditor.enrichHTML(system.description?.value        ?? "", { async: true, rollData });
+            context.instructionsHTML = await TextEditor.enrichHTML(system.description?.instructions ?? "", { async: true, rollData });
+
             // Actions — use PF1e's ItemAction collection when available
             context.actions  = Array.from(item.actions ?? []);
 
@@ -104,15 +108,6 @@ export function createTechniqueItemSheet() {
             context.complexityChoices = Object.fromEntries(
                 Object.keys(COMPLEXITY_TABLE).map((k) => [k, k])
             );
-
-            context.activationChoices = {
-                "standard":  loc("NarutoD20.Technique.Activation.standard"),
-                "full":      loc("NarutoD20.Technique.Activation.full"),
-                "swift":     loc("NarutoD20.Technique.Activation.swift"),
-                "immediate": loc("NarutoD20.Technique.Activation.immediate"),
-                "free":      loc("NarutoD20.Technique.Activation.free"),
-                "ritual":    loc("NarutoD20.Technique.Activation.ritual"),
-            };
 
             // ── Links tab — structured for PF1e's table/sub-nav layout ──
             const linkCat = (id, labelKey, helpKey) => ({

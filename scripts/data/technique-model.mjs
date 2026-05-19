@@ -137,6 +137,11 @@ export function createTechniqueDataModel() {
                     new fields.ObjectField(),
                     { ...opt, initial: [] }
                 ),
+
+                // ── Buff Automation ────────────────────────────────────
+                automation: new fields.SchemaField({
+                    enabled: new fields.BooleanField({ ...opt, initial: true }),
+                }, opt),
             };
         }
 
@@ -182,6 +187,9 @@ export function createTechniqueDataModel() {
 
             this.tags ??= new Set();
             this.changes ??= [];
+
+            this.automation ??= {};
+            this.automation.enabled ??= true;
 
             if (!this.tag && this.parent?.name) {
                 try { this.tag = pf1.utils.createTag(this.parent.name); }

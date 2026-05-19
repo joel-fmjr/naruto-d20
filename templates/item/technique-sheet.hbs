@@ -85,6 +85,7 @@
     <a class="item"        data-tab="details"     data-group="primary">{{localize "PF1.Details"}}</a>
     <a class="item"        data-tab="links"       data-group="primary">{{localize "PF1.Links"}}</a>
     <a class="item"        data-tab="advanced"    data-group="primary">{{localize "PF1.Advanced"}}</a>
+    <a class="item"        data-tab="automation"  data-group="primary">{{localize "NarutoD20.Automation.Tab"}}</a>
   </nav>
 
   {{!-- ── Body ───────────────────────────────────────────────────────── --}}
@@ -102,14 +103,14 @@
       </div>
 
       <h2>{{localize "PF1.Description"}}</h2>
-      <div class="editor">
-        {{editor system.description.value target="system.description.value" button=false engine="prosemirror" editable=editable}}
+      <div class="description-content">
+        {{editor descriptionHTML target="system.description.value" button=editable engine="prosemirror" editable=editable}}
       </div>
 
       <fieldset class="instructions{{#unless system.description.instructions}} placeholder{{/unless}}">
         <legend><i class="icon fa-solid fa-circle-info fa-fw"></i> {{localize "PF1.Instructions"}}</legend>
         <div class="instruction-content">
-          {{editor system.description.instructions target="system.description.instructions" button=false engine="prosemirror" editable=editable}}
+          {{editor instructionsHTML target="system.description.instructions" button=editable engine="prosemirror" editable=editable}}
         </div>
       </fieldset>
     </div>
@@ -151,82 +152,6 @@
             {{/each}}
           </ol>
         </ol>
-      </div>
-
-      <hr>
-
-      {{!-- Configuration --}}
-      <h3 class="form-header">Configuration</h3>
-
-      <div class="form-group select">
-        <label>Activation</label>
-        <div class="form-fields">
-          <select name="system.activation">
-            {{selectOptions activationChoices selected=system.activation}}
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>{{localize "NarutoD20.Technique.Subtype.Label"}}</label>
-        <div class="form-fields">
-          <input type="text" name="system.subtype" value="{{system.subtype}}" placeholder="e.g. Katon, Strike">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Perform Misc Bonus</label>
-        <div class="form-fields">
-          <input type="number" name="system.performMiscBonus" value="{{system.performMiscBonus}}" placeholder="0">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Range</label>
-        <div class="form-fields">
-          <input type="text" name="system.range" value="{{system.range}}" placeholder="Touch / Close / Medium…">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Target</label>
-        <div class="form-fields">
-          <input type="text" name="system.target" value="{{system.target}}" placeholder="One creature…">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Area</label>
-        <div class="form-fields">
-          <input type="text" name="system.area" value="{{system.area}}" placeholder="10 ft. burst…">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Duration</label>
-        <div class="form-fields">
-          <input type="text" name="system.duration" value="{{system.duration}}" placeholder="Instant / Concentration…">
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Save</label>
-        <div class="form-fields">
-          <input type="text" name="system.save" value="{{system.save}}" placeholder="Reflex halves…">
-        </div>
-      </div>
-
-      <div class="form-group stacked">
-        <label>Special</label>
-        <label class="checkbox">
-          <input type="checkbox" name="system.isHijutsu"     {{checked system.isHijutsu}}>     Hijutsu
-        </label>
-        <label class="checkbox">
-          <input type="checkbox" name="system.isKinjutsu"    {{checked system.isKinjutsu}}>    Kinjutsu
-        </label>
-        <label class="checkbox">
-          <input type="checkbox" name="system.isCombination" {{checked system.isCombination}}> Combination
-        </label>
       </div>
 
       {{!-- Components --}}
@@ -478,6 +403,20 @@
           </div>
         </div>
       </div>
+    </div>
+
+    {{!-- ══════════════════════════ Automation ══════════════════════════ --}}
+    <div class="tab automation" data-tab="automation" data-group="primary">
+
+      <h3 class="form-header">{{localize "NarutoD20.Automation.Header"}}</h3>
+
+      <div class="form-group">
+        <label class="checkbox">
+          <input type="checkbox" name="system.automation.enabled" {{checked system.automation.enabled}}>
+          {{localize "NarutoD20.Automation.Enabled.Label"}}
+        </label>
+      </div>
+
     </div>
 
   </section>

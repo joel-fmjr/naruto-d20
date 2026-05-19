@@ -269,6 +269,11 @@ div.naruto-tai-setting .form-group {
     min-width: 0;
 }
 
+/* Item summary spans all grid columns when expanded */
+.chakra .technique-list .item-summary {
+    grid-column: 1 / -1;
+}
+
 /* Individual technique row */
 .chakra .technique-row {
     align-items: center;

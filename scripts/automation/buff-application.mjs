@@ -1,0 +1,133 @@
+import { MODULE_ID } from "../constants.mjs";
+
+const SOURCE_FLAG = MODULE_ID;
+
+/**
+ * Entry point: orchestrate buff lookup → target resolution → application.
+ * Called from performTechnique after a successful perform check.
+ * `action` is the ItemAction that was used — its duration is copied onto the buff.
+ */
+export async function applyTechniqueBuff(item, actor, action) {
+    const auto = item.system.automation;
+    if (!auto?.enabled) return;
+
+    if (game.settings.get(MODULE_ID, "buffTargetFiltering") === "off") return;
+
+    const { exact, variants } = await findBuffByName(item.name);
+
+    if (!exact.length && !variants.length) {
+        console.warn(`naruto-d20 | No buff found named "${item.name}" in technique-buffs compendia.`);
+        return;
+    }
+
+    const selectedEntry = exact[0] ?? variants[0];
+
+    const pack = game.packs.get(selectedEntry.packId);
+    if (!pack) return;
+    const buffDoc = await pack.getDocument(selectedEntry._id);
+    if (!buffDoc) return;
+
+    // Apply to user's selected targets; fall back to the caster if none
+    const targets = [...(game.user.targets ?? [])].map(t => t.actor).filter(Boolean);
+    const applyTargets = targets.length ? targets : [actor];
+
+    const duration = _durationFromAction(action);
+
+    for (const targetActor of applyTargets) {
+        await applyBuffToTarget(buffDoc, targetActor, duration);
+    }
+}
+
+/**
+ * Extract duration from the ItemAction that triggered this buff.
+ * Returns null to leave the buff's own duration untouched (inst / perm / seeText / missing).
+ */
+function _durationFromAction(action) {
+    // ItemAction exposes duration as a direct property; raw data is the fallback
+    const dur = action?.duration ?? action?.data?.duration;
+    if (!dur?.units || dur.units === "inst" || dur.units === "perm" || dur.units === "seeText") {
+        return null;
+    }
+    return {
+        units: String(dur.units),
+        value: String(dur.value ?? ""),
+    };
+}
+
+/**
+ * Search naruto-d20.technique-buffs (and custom compendia) for a buff by name.
+ * Returns { exact: [...], variants: [...] } where variants match "Name (X)" pattern.
+ */
+export async function findBuffByName(name) {
+    const packIds = ["naruto-d20.technique-buffs"];
+    const custom = game.settings.get(MODULE_ID, "customBuffCompendia");
+    if (custom) {
+        for (const id of custom.split(",").map(s => s.trim()).filter(Boolean)) {
+            packIds.push(id);
+        }
+    }
+
+    const exact = [];
+    const variants = [];
+    const variantPrefix = `${name} (`;
+
+    for (const packId of packIds) {
+        const pack = game.packs.get(packId);
+        if (!pack) continue;
+        const index = await pack.getIndex();
+        for (const entry of index) {
+            if (entry.name === name) {
+                exact.push({ ...entry, packId });
+            } else if (entry.name.startsWith(variantPrefix)) {
+                variants.push({ ...entry, packId });
+            }
+        }
+    }
+
+    return { exact, variants };
+}
+
+/**
+ * Apply buff to a single target actor: refresh existing or create from compendium.
+ * Tracks origin via flags["naruto-d20"].sourceId so update-vs-create works correctly.
+ * If duration is provided it overrides whatever the compendium buff had stored.
+ */
+export async function applyBuffToTarget(buffDoc, targetActor, duration = null) {
+    if (!targetActor.isOwner) {
+        ui.notifications.warn(
+            game.i18n.format("NarutoD20.Automation.NoPermission", { name: targetActor.name })
+        );
+        return;
+    }
+
+    const sourceId = buffDoc.uuid;
+    const existing = targetActor.items.find(
+        i => i.flags?.[SOURCE_FLAG]?.sourceId === sourceId
+    );
+
+    if (existing) {
+        const updates = { "system.active": true };
+        if (duration) {
+            updates["system.duration.units"] = duration.units;
+            updates["system.duration.value"] = duration.value;
+        }
+        await existing.update(updates);
+    } else {
+        const itemData = buffDoc.toObject();
+        delete itemData._id;
+
+        itemData.flags ??= {};
+        itemData.flags[SOURCE_FLAG] ??= {};
+        itemData.flags[SOURCE_FLAG].sourceId = sourceId;
+
+        itemData.system ??= {};
+        if (duration) {
+            itemData.system.duration ??= {};
+            itemData.system.duration.units = duration.units;
+            itemData.system.duration.value = duration.value;
+        }
+        itemData.system.active = true;
+
+        await targetActor.createEmbeddedDocuments("Item", [itemData]);
+    }
+}
