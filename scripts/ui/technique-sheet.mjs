@@ -109,15 +109,6 @@ export function createTechniqueItemSheet() {
                 Object.keys(COMPLEXITY_TABLE).map((k) => [k, k])
             );
 
-            context.activationChoices = {
-                "standard":  loc("NarutoD20.Technique.Activation.standard"),
-                "full":      loc("NarutoD20.Technique.Activation.full"),
-                "swift":     loc("NarutoD20.Technique.Activation.swift"),
-                "immediate": loc("NarutoD20.Technique.Activation.immediate"),
-                "free":      loc("NarutoD20.Technique.Activation.free"),
-                "ritual":    loc("NarutoD20.Technique.Activation.ritual"),
-            };
-
             // ── Links tab — structured for PF1e's table/sub-nav layout ──
             const linkCat = (id, labelKey, helpKey) => ({
                 id,
@@ -138,25 +129,6 @@ export function createTechniqueItemSheet() {
                     linkCat("supplements",   "NarutoD20.Links.Supplements.Label",   "NarutoD20.Links.Supplements.Hint"),
                     linkCat("children",      "NarutoD20.Links.Children.Label",      "NarutoD20.Links.Children.Hint"),
                 ],
-            };
-
-            // ── Automation tab ─────────────────────────────────────────
-            context.targetModeChoices = {
-                selected: loc("NarutoD20.Automation.TargetMode.Selected"),
-                self:     loc("NarutoD20.Automation.TargetMode.Self"),
-                allies:   loc("NarutoD20.Automation.TargetMode.Allies"),
-                enemies:  loc("NarutoD20.Automation.TargetMode.Enemies"),
-                manual:   loc("NarutoD20.Automation.TargetMode.Manual"),
-            };
-            context.durationUnitsChoices = {
-                "":      loc("NarutoD20.Automation.Duration.Units.BuffDefault"),
-                inst:    loc("NarutoD20.Automation.Duration.Units.Inst"),
-                round:   loc("NarutoD20.Automation.Duration.Units.Round"),
-                minute:  loc("NarutoD20.Automation.Duration.Units.Minute"),
-                hour:    loc("NarutoD20.Automation.Duration.Units.Hour"),
-                day:     loc("NarutoD20.Automation.Duration.Units.Day"),
-                perm:    loc("NarutoD20.Automation.Duration.Units.Perm"),
-                seeText: loc("NarutoD20.Automation.Duration.Units.SeeText"),
             };
 
             // ── Advanced tab ───────────────────────────────────────────

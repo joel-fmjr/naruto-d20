@@ -5,53 +5,53 @@ const SOURCE_FLAG = MODULE_ID;
 /**
  * Entry point: orchestrate buff lookup → target resolution → application.
  * Called from performTechnique after a successful perform check.
+ * `action` is the ItemAction that was used — its duration is copied onto the buff.
  */
-export async function applyTechniqueBuff(item, actor) {
+export async function applyTechniqueBuff(item, actor, action) {
     const auto = item.system.automation;
     if (!auto?.enabled) return;
 
-    const targetFilterSetting = game.settings.get(MODULE_ID, "buffTargetFiltering");
-    if (targetFilterSetting === "off") return;
+    if (game.settings.get(MODULE_ID, "buffTargetFiltering") === "off") return;
 
-    const buffName = auto.buffName?.trim() || item.name;
-    const { exact, variants } = await findBuffByName(buffName);
+    const { exact, variants } = await findBuffByName(item.name);
 
     if (!exact.length && !variants.length) {
-        console.warn(`naruto-d20 | No buff found named "${buffName}" in technique-buffs compendia.`);
+        console.warn(`naruto-d20 | No buff found named "${item.name}" in technique-buffs compendia.`);
         return;
     }
 
-    let selectedEntry;
-    if (exact.length) {
-        selectedEntry = exact[0];
-    } else if (auto.promptVariant && variants.length > 1) {
-        selectedEntry = await promptVariantSelection(variants);
-        if (!selectedEntry) return;
-    } else {
-        selectedEntry = variants[0];
-    }
+    const selectedEntry = exact[0] ?? variants[0];
 
     const pack = game.packs.get(selectedEntry.packId);
     if (!pack) return;
     const buffDoc = await pack.getDocument(selectedEntry._id);
     if (!buffDoc) return;
 
-    const effectiveMode = targetFilterSetting === "manualAlways"
-        ? "manual"
-        : (auto.targetMode ?? "self");
+    // Apply to user's selected targets; fall back to the caster if none
+    const targets = [...(game.user.targets ?? [])].map(t => t.actor).filter(Boolean);
+    const applyTargets = targets.length ? targets : [actor];
 
-    const targets = await gatherTargets(actor, effectiveMode);
-    if (!targets.length) {
-        ui.notifications.warn(game.i18n.localize("NarutoD20.Automation.NoTargets"));
-        return;
-    }
+    const duration = _durationFromAction(action);
 
-    const casterToken = actor.getActiveTokens()[0] ?? null;
-    const duration = resolveDuration(item, casterToken);
-
-    for (const targetActor of targets) {
+    for (const targetActor of applyTargets) {
         await applyBuffToTarget(buffDoc, targetActor, duration);
     }
+}
+
+/**
+ * Extract duration from the ItemAction that triggered this buff.
+ * Returns null to leave the buff's own duration untouched (inst / perm / seeText / missing).
+ */
+function _durationFromAction(action) {
+    // ItemAction exposes duration as a direct property; raw data is the fallback
+    const dur = action?.duration ?? action?.data?.duration;
+    if (!dur?.units || dur.units === "inst" || dur.units === "perm" || dur.units === "seeText") {
+        return null;
+    }
+    return {
+        units: String(dur.units),
+        value: String(dur.value ?? ""),
+    };
 }
 
 /**
@@ -88,113 +88,11 @@ export async function findBuffByName(name) {
 }
 
 /**
- * Dialog for choosing among variant buffs (e.g. "Katon (Fire)", "Katon (Water)").
- */
-export async function promptVariantSelection(variants) {
-    return new Promise((resolve) => {
-        const buttons = {};
-        for (const v of variants) {
-            const match = v.name.match(/\(([^)]+)\)$/);
-            const label = match ? match[1] : v.name;
-            buttons[v._id] = { label, callback: () => resolve(v) };
-        }
-        buttons._cancel = {
-            label: game.i18n.localize("Cancel"),
-            callback: () => resolve(null),
-        };
-        new Dialog({
-            title: game.i18n.localize("NarutoD20.Automation.VariantDialog.Title"),
-            content: `<p>${game.i18n.localize("NarutoD20.Automation.VariantDialog.Hint")}</p>`,
-            buttons,
-            default: "_cancel",
-        }).render(true);
-    });
-}
-
-/**
- * Resolve which actors to apply the buff to based on targetMode.
- */
-export async function gatherTargets(actor, mode) {
-    if (mode === "self") return [actor];
-
-    if (mode === "selected") {
-        return [...(game.user.targets ?? [])].map(t => t.actor).filter(Boolean);
-    }
-
-    if (mode === "allies" || mode === "enemies") {
-        if (!canvas?.tokens?.placeables) return [actor];
-        const casterToken = actor.getActiveTokens()[0];
-        if (!casterToken) return [actor];
-        const casterDisp = casterToken.document.disposition;
-        return canvas.tokens.placeables
-            .filter(t => {
-                if (!t.actor) return false;
-                const d = t.document.disposition;
-                return mode === "allies" ? d === casterDisp : d !== casterDisp;
-            })
-            .map(t => t.actor);
-    }
-
-    if (mode === "manual") return _promptManualTargets();
-
-    return [actor];
-}
-
-async function _promptManualTargets() {
-    if (!canvas?.tokens?.placeables) return [];
-    const tokens = canvas.tokens.placeables.filter(t => t.actor);
-    if (!tokens.length) return [];
-
-    return new Promise((resolve) => {
-        const rows = tokens.map(t =>
-            `<label style="display:flex;align-items:center;gap:6px;padding:2px 0;cursor:pointer">
-               <input type="checkbox" value="${t.id}" checked>
-               <img src="${t.actor.img}" width="24" height="24" style="border:none;object-fit:cover">
-               <span>${t.name}</span>
-             </label>`
-        ).join("");
-        new Dialog({
-            title: game.i18n.localize("NarutoD20.Automation.ManualTargetDialog.Title"),
-            content: `<form style="padding:8px;max-height:320px;overflow-y:auto">${rows}</form>`,
-            buttons: {
-                ok: {
-                    icon: '<i class="fas fa-check"></i>',
-                    label: game.i18n.localize("Confirm"),
-                    callback: (html) => {
-                        const ids = [...html.find("input:checked")].map(el => el.value);
-                        resolve(tokens.filter(t => ids.includes(t.id)).map(t => t.actor).filter(Boolean));
-                    },
-                },
-                cancel: {
-                    icon: '<i class="fas fa-times"></i>',
-                    label: game.i18n.localize("Cancel"),
-                    callback: () => resolve([]),
-                },
-            },
-            default: "ok",
-        }).render(true);
-    });
-}
-
-/**
- * Compute duration override. Returns null to keep the buff item's own duration.
- */
-export function resolveDuration(item, _casterToken) {
-    const da = item.system.durationAutomation;
-    if (!da?.units) return null;
-    let value = da.value || "1";
-    if (da.perRank) {
-        const rank = item.system.rank ?? 1;
-        value = `(${value}) * ${rank}`;
-    }
-    return { units: da.units, value };
-}
-
-/**
  * Apply buff to a single target actor: refresh existing or create from compendium.
- * Tracks origin via flags["naruto-d20"].sourceId so update-vs-create logic works.
+ * Tracks origin via flags["naruto-d20"].sourceId so update-vs-create works correctly.
+ * If duration is provided it overrides whatever the compendium buff had stored.
  */
-export async function applyBuffToTarget(buffDoc, targetActor, duration) {
+export async function applyBuffToTarget(buffDoc, targetActor, duration = null) {
     if (!targetActor.isOwner) {
         ui.notifications.warn(
             game.i18n.format("NarutoD20.Automation.NoPermission", { name: targetActor.name })
