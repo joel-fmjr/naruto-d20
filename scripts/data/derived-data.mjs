@@ -1,5 +1,5 @@
 import { MODULE_ID } from "../constants.mjs";
-import { LEARN_KEYS, NARUTO_SKILLS } from "./skills.mjs";
+import { LEARN_KEYS, resolveSkillAbility } from "./skills.mjs";
 
 /**
  * Naruto D20 — Derived Data Calculations
@@ -53,6 +53,14 @@ export function prepareBaseActorData(actor) {
         s.total = 0;
         s.conditional = 0;
     }
+
+    // Technique DC bonuses — reset so the changes engine writes onto a clean slate.
+    // "all" = global, discipline keys = per-type (read on demand in ItemAction#getDC).
+    nData.techniqueDC ??= {};
+    for (const k of ["all", ...LEARN_KEYS]) {
+        nData.techniqueDC[k] ??= {};
+        nData.techniqueDC[k].buffBonus = 0;
+    }
 }
 
 /**
@@ -76,7 +84,7 @@ export function prepareDerivedActorData(actor) {
 
     for (const [key, s] of Object.entries(nData.learn)) {
         if (!s) continue;
-        const abilityKey = actor.system.skills[key]?.ability || NARUTO_SKILLS[key]?.ability || "int";
+        const abilityKey = resolveSkillAbility(actor, key);
         s.ability = abilityKey;
         s.abilityLabel = abilityLabels[abilityKey] ?? abilityKey;
         s.base = charLevel;

@@ -15,6 +15,17 @@
     "Item": {
       "TypeTechnique": "Technique"
     },
+    "BuffTargets": {
+      "Category": "Technique",
+      "TechDc": {
+        "All": "Technique DC (All)",
+        "ckc": "Technique DC: Chakra Control",
+        "fui": "Technique DC: Fuinjutsu",
+        "gnj": "Technique DC: Genjutsu",
+        "nin": "Technique DC: Ninjutsu",
+        "tai": "Technique DC: Taijutsu"
+      }
+    },
     "Technique": {
       "Type": {
         "Label": "Discipline"

@@ -172,8 +172,9 @@ function _registerBuffTargets() {
     if (!CONFIG.PF1) return;
 
     CONFIG.PF1.buffTargetCategories.chakra = { label: "Chakra" };
-    for (const [key, { label, sort }] of Object.entries(BUFF_TARGETS)) {
-        CONFIG.PF1.buffTargets[key] = { label, category: "chakra", sort };
+    CONFIG.PF1.buffTargetCategories.technique = { label: game.i18n.localize("NarutoD20.BuffTargets.Category") };
+    for (const [key, { label, sort, category = "chakra" }] of Object.entries(BUFF_TARGETS)) {
+        CONFIG.PF1.buffTargets[key] = { label: game.i18n.localize(label), category, sort };
     }
 }
 
