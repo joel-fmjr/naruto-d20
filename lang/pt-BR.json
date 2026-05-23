@@ -15,6 +15,17 @@
     "Item": {
       "TypeTechnique": "Técnica"
     },
+    "BuffTargets": {
+      "Category": "Técnica",
+      "TechDc": {
+        "All": "CD de Técnica (Global)",
+        "ckc": "CD de Técnica: Controle de Chakra",
+        "fui": "CD de Técnica: Fuinjutsu",
+        "gnj": "CD de Técnica: Genjutsu",
+        "nin": "CD de Técnica: Ninjutsu",
+        "tai": "CD de Técnica: Taijutsu"
+      }
+    },
     "Technique": {
       "Type": {
         "Label": "Disciplina"

@@ -21,6 +21,16 @@ export const NARUTO_SKILLS = Object.freeze({
 export const LEARN_KEYS = Object.freeze(Object.keys(NARUTO_SKILLS));
 
 /**
+ * Resolve the governing ability for a discipline skill: prefer the actor's
+ * Skills-tab selector, fall back to the canonical NARUTO_SKILLS mapping, then int.
+ */
+export function resolveSkillAbility(actor, skillKey) {
+    return actor?.system?.skills?.[skillKey]?.ability
+        || NARUTO_SKILLS[skillKey]?.ability
+        || "int";
+}
+
+/**
  * Register the 5 Naruto disciplines as PF1e-native skills.
  * Call during pf1PostInit — pf1.config and game.i18n are both ready.
  */
