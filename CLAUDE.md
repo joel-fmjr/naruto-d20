@@ -47,6 +47,21 @@ Known divergences are documented in the skill file. A few to keep in mind:
 - i18n keys are mostly flat in v11.11 (e.g. `PF1.Changes`, not `PF1.Changes.many`)
 - Actor sheet classes are `pf1.applications.ActorSheetPFCharacter` etc., not `pf1.applications.actor.CharacterSheetPF`
 
+## Application class — V1 vs V2
+
+**Default to `Application` (V1)** for any new Foundry application class.
+PF1e's own apps (`CompendiumBrowser`, actor sheets, item sheets) all extend `Application` (V1).
+Using `ApplicationV2` when the parent system uses V1 causes visual mismatches: different window
+chrome HTML (title bar colour/font, close button, resize handle), Foundry v13's V2 base CSS
+overrides checkbox `appearance` producing solid black checkboxes instead of OS-default white,
+and V2 button colour resets produce unreadable white text on dark backgrounds.
+
+**Before reaching for `HandlebarsApplicationMixin(ApplicationV2)`**, grep `pf1.js` for the
+equivalent native PF1e class and confirm it uses V2. Only use V2 if:
+- The equivalent pf1 class explicitly extends V2 (confirmed by grepping
+  `/Users/joelfmjr/foundrydata/Data/modules/pf1/pf1.js`), **or**
+- There is a concrete requirement (e.g. named PARTS partial re-rendering) that V1 cannot meet.
+
 ## Context7 docs
 
 Library IDs (all v11.11-aligned unless noted):
@@ -168,6 +183,20 @@ And on the technique itself: `item.system.automation.enabled` (default `true`), 
 ### Skills
 
 `registerNarutoSkills()` writes labels into `pf1.config.skills` during `pf1PostInit`. `ensureActorSkillEntries()` seeds `actor.system.skills[key]` with `{ ability, rank: 0 }` during `pf1PrepareBaseActorData` using `??=` so existing ranks are never overwritten. The governing ability per discipline can be changed on the PF1e Skills tab and is read back via `actor.system.skills[key].ability`.
+
+## Feature docs (`docs/`)
+
+Per-feature implementation notes live in `docs/` (English, kebab-case filenames). Each documents
+the goal, how it mirrors PF1e where relevant, the files touched, and manual verification steps.
+Read the matching doc before changing a feature.
+
+| Doc | Feature |
+|---|---|
+| [`docs/technique-header-buttons.md`](docs/technique-header-buttons.md) | Create / Browse buttons on each Rank header of the Chakra tab |
+| [`docs/technique-compendium-browser.md`](docs/technique-compendium-browser.md) | Custom AppV2 Compendium Browser for techniques (replaces the native pack window) |
+| [`docs/technique-dc-buffs.md`](docs/technique-dc-buffs.md) | Technique save-DC buff targets (global + per-discipline), mirroring spell DC |
+| [`docs/technique-mastery.md`](docs/technique-mastery.md) | `mastery` field — caster-level offset (`@cl`) + perform bonus |
+| [`docs/technique-implementation-plan.md`](docs/technique-implementation-plan.md) | Technique actions & perform-flow implementation plan (`ItemPF` routing, perform pipeline) |
 
 ## Key references
 
