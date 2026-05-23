@@ -21,6 +21,7 @@ import { registerDamageTypes } from "./data/damage-types.mjs";
 import { prepareBaseActorData, prepareDerivedActorData } from "./data/derived-data.mjs";
 import { registerNarutoSkills, ensureActorSkillEntries } from "./data/skills.mjs";
 import { installChakraTabPatch } from "./ui/render-patch.mjs";
+import { installTechniqueSaveDCPatch } from "./data/technique-save-dc.mjs";
 import { registerLearnCheckListeners } from "./ui/learn-checks.mjs";
 import { registerTechniqueListListeners } from "./ui/technique-list.mjs";
 import { registerSummaryStats } from "./ui/summary-stats.mjs";
@@ -101,6 +102,7 @@ Hooks.once("pf1PostInit", () => {
     _registerBuffTargets();
     registerNarutoSkills();
     _registerScriptCallCategories();
+    installTechniqueSaveDCPatch();
 });
 
 // ── [3] pf1PrepareBaseActorData ───────────────────────────────────────────
