@@ -106,5 +106,16 @@ export function registerTechniqueListListeners() {
             });
             if (ok) await item.delete();
         });
+
+        // Duplicate technique on the actor
+        chakraTab.find(".shinobi-technique-duplicate").off("click").on("click", async (ev) => {
+            ev.preventDefault();
+            const id = ev.currentTarget.closest(".technique-row")?.dataset.itemId;
+            const item = app.actor.items.get(id);
+            if (!item) return;
+            const itemData = item.toObject();
+            itemData.name = `${itemData.name} (Copy)`;
+            await app.actor.createEmbeddedDocuments("Item", [itemData]);
+        });
     });
 }

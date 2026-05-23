@@ -245,16 +245,7 @@ div.naruto-tai-setting .form-group {
     font-weight: 600;
 }
 
-/* Rank sub-header — <li class="item-list-header rank-header"> */
-.chakra .rank-header {
-    font-size: 0.8em;
-    font-weight: 600;
-    color: #6b6050;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    padding: 2px 4px;
-    border-bottom: 1px solid #c0b89a;
-}
+
 
 /* Grid layout — overrides flexrow's display:flex to guarantee column alignment
    between rank header rows and technique data rows.
@@ -307,7 +298,7 @@ div.naruto-tai-setting .form-group {
     font-size: 0.9em;
 }
 
-.chakra .technique-row .item-controls {
+.chakra .technique-list .item-controls {
     display: flex;
     gap: 4px;
     align-items: center;
