@@ -1,3 +1,6 @@
+import { MODULE_ID } from "../constants.mjs";
+import { LEARN_KEYS, resolveSkillAbility } from "./skills.mjs";
+
 /**
  * Naruto D20 — Derived Data Calculations
  *
@@ -21,10 +24,12 @@
 export function prepareBaseActorData(actor) {
     if (!["character", "npc"].includes(actor.type)) return;
 
-    actor.flags["naruto-d20"] ??= {};
-    const nData = actor.flags["naruto-d20"];
+    actor.flags[MODULE_ID] ??= {};
+    const nData = actor.flags[MODULE_ID];
 
     // Chakra resources — keep stored values, reset computed bonus (changes engine will write it)
+    nData.eps ??= 0;
+
     nData.chakra ??= {};
     nData.chakra.pool ??= {};
     nData.chakra.reserve ??= {};
@@ -36,17 +41,25 @@ export function prepareBaseActorData(actor) {
 
     // Learn skills
     nData.learn ??= {};
-    for (const key of ["ckc", "gnj", "nin", "tai", "fui"]) {
+    for (const key of LEARN_KEYS) {
         nData.learn[key] ??= {};
         const s = nData.learn[key];
         s.miscBonus ??= 0;  // user-entered, preserve
-        if (key === "tai") s.ability ??= "str";  // configurable per-actor
         // Reset computed fields — will be filled in prepareDerivedActorData
         s.base = 0;
         s.abilityMod = 0;
         s.buffBonus = 0;    // changes engine overwrites this in step [2]
+        s.synergyBonus = 0;
         s.total = 0;
         s.conditional = 0;
+    }
+
+    // Technique DC bonuses — reset so the changes engine writes onto a clean slate.
+    // "all" = global, discipline keys = per-type (read on demand in ItemAction#getDC).
+    nData.techniqueDC ??= {};
+    for (const k of ["all", ...LEARN_KEYS]) {
+        nData.techniqueDC[k] ??= {};
+        nData.techniqueDC[k].buffBonus = 0;
     }
 }
 
@@ -58,28 +71,27 @@ export function prepareBaseActorData(actor) {
 export function prepareDerivedActorData(actor) {
     if (!["character", "npc"].includes(actor.type)) return;
 
-    const nData = actor.flags["naruto-d20"];
+    const nData = actor.flags[MODULE_ID];
     if (!nData) return;
 
     const charLevel = actor.system.details?.level?.value || actor.system.details?.cr?.total || 0;
     const conMod = actor.system.abilities?.con?.mod || 0;
 
-    // Taijutsu governing ability is configurable; all others are fixed
-    const abilityMap = {
-        ckc: "wis",
-        gnj: "cha",
-        nin: "int",
-        tai: nData.learn.tai?.ability || "str",
-        fui: "int"
-    };
+    // Governing ability per discipline: read from the Skills-tab selector,
+    // fall back to the canonical mapping in NARUTO_SKILLS. abilitiesShort
+    // gives us localized 3-letter labels (Str/Des/Con/...) for the chat card.
+    const abilityLabels = pf1.config?.abilitiesShort ?? {};
 
-    for (const [key, abilityKey] of Object.entries(abilityMap)) {
-        const s = nData.learn[key];
+    for (const [key, s] of Object.entries(nData.learn)) {
         if (!s) continue;
+        const abilityKey = resolveSkillAbility(actor, key);
+        s.ability = abilityKey;
+        s.abilityLabel = abilityLabels[abilityKey] ?? abilityKey;
         s.base = charLevel;
         s.abilityMod = actor.system.abilities?.[abilityKey]?.mod || 0;
+        s.synergyBonus = (actor.system.skills[key]?.rank ?? 0) >= 2 ? 2 : 0;
         // buffBonus was written by the changes engine between the two hooks
-        s.total = s.base + s.abilityMod + (Number(s.miscBonus) || 0) + (Number(s.buffBonus) || 0);
+        s.total = s.base + s.abilityMod + (Number(s.miscBonus) || 0) + (Number(s.buffBonus) || 0) + s.synergyBonus;
     }
 
     // Chakra maximums — conMod allowed to go negative (reduces pool)

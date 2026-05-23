@@ -13,26 +13,52 @@
  *  [9] Foundry "ready"             → One-time flag migration for existing actors (GM only)
  */
 
-import { TechniqueDataModel } from "./data/technique-model.mjs";
+import { MODULE_ID, TECHNIQUE_ITEM_TYPE } from "./constants.mjs";
+import { BUFF_TARGETS } from "./flag-paths.mjs";
+import { createTechniqueDataModel } from "./data/technique-model.mjs";
+import { createTechniqueItemSheet } from "./ui/technique-sheet.mjs";
+import { registerDamageTypes } from "./data/damage-types.mjs";
 import { prepareBaseActorData, prepareDerivedActorData } from "./data/derived-data.mjs";
 import { registerNarutoSkills, ensureActorSkillEntries } from "./data/skills.mjs";
-import { TechniqueItemSheet } from "./ui/technique-sheet.mjs";
-import { registerChakraTab } from "./ui/chakra-tab.mjs";
+import { installChakraTabPatch } from "./ui/render-patch.mjs";
+import { installTechniqueSaveDCPatch } from "./data/technique-save-dc.mjs";
+import { installTechniqueRollDataPatch } from "./data/technique-rolldata.mjs";
+import { registerLearnCheckListeners } from "./ui/learn-checks.mjs";
+import { registerTechniqueListListeners } from "./ui/technique-list.mjs";
 import { registerSummaryStats } from "./ui/summary-stats.mjs";
 
-const MODULE_ID = "naruto-d20";
-const FLAG_MIGRATION_VERSION = 1;
+const FLAG_MIGRATION_VERSION = 3;
 
 // ── [1] init ──────────────────────────────────────────────────────────────
 Hooks.once("init", () => {
-    CONFIG.Item.dataModels["naruto-d20.technique"] = TechniqueDataModel;
+    const TechniqueDataModel  = createTechniqueDataModel();
+    const TechniqueItemSheet  = createTechniqueItemSheet();
 
-    Items.registerSheet("naruto-d20", TechniqueItemSheet, {
-        types: ["naruto-d20.technique"],
+    CONFIG.Item.dataModels[TECHNIQUE_ITEM_TYPE] = TechniqueDataModel;
+
+    // Route technique items through ItemPF (not the ItemBasePF fallback) so
+    // they get item.actions, item.scriptCalls, _prepareActions(), etc.
+    if (pf1?.documents?.item?.ItemPF) {
+        CONFIG.Item.documentClasses ??= {};
+        CONFIG.Item.documentClasses[TECHNIQUE_ITEM_TYPE] = pf1.documents.item.ItemPF;
+    }
+
+    Items.registerSheet(MODULE_ID, TechniqueItemSheet, {
+        types: [TECHNIQUE_ITEM_TYPE],
         makeDefault: true,
-        canConfigure: false,
-        label: "Naruto D20 Technique Sheet"
+        label: "Naruto D20 Technique Sheet",
     });
+
+    foundry.applications.handlebars.loadTemplates([
+        `modules/${MODULE_ID}/templates/actor/chakra-tab.hbs`,
+        `modules/${MODULE_ID}/templates/actor/summary-stats.hbs`,
+        `modules/${MODULE_ID}/templates/item/technique-sheet.hbs`,
+        `modules/${MODULE_ID}/templates/apps/technique-browser.hbs`,
+    ]);
+
+    // Namespaced equality helper for this module's templates — avoids colliding
+    // with a generic `eq` another module might register with different semantics.
+    Handlebars.registerHelper("nd20-eq", (a, b) => a === b);
 
     game.settings.register(MODULE_ID, "flagMigrationVersion", {
         scope: "world",
@@ -40,12 +66,46 @@ Hooks.once("init", () => {
         type: Number,
         default: 0
     });
+
+    game.settings.register(MODULE_ID, "automaticBuffs", {
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: true,
+        name: "NarutoD20.Settings.AutomaticBuffs.Name",
+        hint: "NarutoD20.Settings.AutomaticBuffs.Hint",
+    });
+
+    game.settings.register(MODULE_ID, "buffTargetFiltering", {
+        scope: "world",
+        config: true,
+        type: String,
+        default: "respectTechnique",
+        choices: {
+            respectTechnique: "Respect technique setting",
+            manualAlways:     "Always prompt manually",
+            off:              "Off",
+        },
+        name: "NarutoD20.Settings.BuffTargetFiltering.Name",
+    });
+
+    game.settings.register(MODULE_ID, "customBuffCompendia", {
+        scope: "world",
+        config: true,
+        type: String,
+        default: "",
+        name: "NarutoD20.Settings.CustomBuffCompendia.Name",
+        hint: "NarutoD20.Settings.CustomBuffCompendia.Hint",
+    });
 });
 
 // ── [2] pf1PostInit ───────────────────────────────────────────────────────
 Hooks.once("pf1PostInit", () => {
     _registerBuffTargets();
     registerNarutoSkills();
+    _registerScriptCallCategories();
+    installTechniqueSaveDCPatch();
+    installTechniqueRollDataPatch();
 });
 
 // ── [3] pf1PrepareBaseActorData ───────────────────────────────────────────
@@ -56,13 +116,8 @@ Hooks.on("pf1PrepareBaseActorData", (actor) => {
 
 // ── [4] pf1GetChangeFlat ──────────────────────────────────────────────────
 Hooks.on("pf1GetChangeFlat", (result, target) => {
-    if (target === "chakraPool")    result.push("flags.naruto-d20.chakra.pool.maxBonus");
-    if (target === "chakraReserve") result.push("flags.naruto-d20.chakra.reserve.maxBonus");
-    if (target === "learnCkc")      result.push("flags.naruto-d20.learn.ckc.buffBonus");
-    if (target === "learnGnj")      result.push("flags.naruto-d20.learn.gnj.buffBonus");
-    if (target === "learnNin")      result.push("flags.naruto-d20.learn.nin.buffBonus");
-    if (target === "learnTai")      result.push("flags.naruto-d20.learn.tai.buffBonus");
-    if (target === "learnFui")      result.push("flags.naruto-d20.learn.fui.buffBonus");
+    const entry = BUFF_TARGETS[target];
+    if (entry) result.push(entry.path);
 });
 
 // ── [5] pf1PrepareDerivedActorData ────────────────────────────────────────
@@ -71,46 +126,14 @@ Hooks.on("pf1PrepareDerivedActorData", (actor) => {
 });
 
 // ── [6] pf1RegisterDamageTypes ────────────────────────────────────────────
-Hooks.once("pf1RegisterDamageTypes", (registry) => {
-    const damageTypes = [
-        { id: "earth", name: "Earth", category: "energy", resist: true, color: "brown", icon: "pf-icon pf-stone-block" },
-        { id: "water", name: "Water", category: "energy", resist: true, color: "blue",  icon: "pf-icon pf-water-drop" },
-        { id: "wind",  name: "Wind",  category: "energy", resist: true, color: "gray",  icon: "pf-icon pf-wind-hole"  },
-        { id: "holy",  name: "Holy",  category: "energy", resist: true, color: "gold",  icon: "pf-icon pf-sunbeams"   }
-    ];
-    for (const dt of damageTypes) {
-        try {
-            registry.register("naruto-d20", dt.id, {
-                name: dt.name, category: dt.category,
-                resist: dt.resist, color: dt.color, icon: dt.icon
-            });
-        } catch (err) {
-            console.error(`Naruto D20 | Failed to register damage type "${dt.id}":`, err);
-        }
-    }
-});
+Hooks.once("pf1RegisterDamageTypes", registerDamageTypes);
 
 // ── [7] setup ─────────────────────────────────────────────────────────────
 Hooks.once("setup", () => {
-    try {
-        const sheetClasses = [
-            pf1.applications.actor.abstract?.BaseCharacterSheetPF,
-            pf1.applications.actor.CharacterSheetPF,
-            pf1.applications.actor.NPCSheetPF,
-            pf1.applications.actor.NPCSheetLitePF
-        ].filter(Boolean);
-
-        for (const cls of sheetClasses) {
-            if (cls.TABS?.primary?.tabs && !cls.TABS.primary.tabs.find(t => t.id === "chakra")) {
-                cls.TABS.primary.tabs.push({ id: "chakra", label: "Chakra" });
-            }
-        }
-    } catch (err) {
-        console.error("Naruto D20 | Error during Chakra tab registration:", err);
-    }
-
-    registerChakraTab();
-    registerSummaryStats();
+    installChakraTabPatch();           // _renderInner wrap — must run before first render
+    registerLearnCheckListeners();     // .shinobi-roll + learn-check tooltips
+    registerTechniqueListListeners();  // chakra tab: filter, drop zone, CRUD
+    registerSummaryStats();            // Hero Statistics block on the Summary tab
 });
 
 // ── [8] preCreateActor ────────────────────────────────────────────────────
@@ -118,7 +141,7 @@ Hooks.on("preCreateActor", (doc, data) => {
     if (!["character", "npc"].includes(data.type)) return;
     const existing = data.flags?.[MODULE_ID] ?? {};
     const patch = {};
-    for (const key of ["actionPoints", "reputation", "wealth"]) {
+    for (const key of ["actionPoints", "reputation", "wealth", "eps"]) {
         if (existing[key] === undefined) patch[key] = 0;
     }
     if (!foundry.utils.isEmpty(patch)) {
@@ -138,26 +161,31 @@ Hooks.once("ready", async () => {
 // Private helpers
 // ─────────────────────────────────────────────────────────────────────────
 
+function _registerScriptCallCategories() {
+    if (!pf1.registry?.scriptCalls) return;
+    for (const catId of ["use", "postUse"]) {
+        const cat = pf1.registry.scriptCalls.get(catId);
+        if (cat && !cat.itemTypes.includes(TECHNIQUE_ITEM_TYPE)) {
+            cat.itemTypes.push(TECHNIQUE_ITEM_TYPE);
+        }
+    }
+}
+
 function _registerBuffTargets() {
     if (!CONFIG.PF1) return;
 
     CONFIG.PF1.buffTargetCategories.chakra = { label: "Chakra" };
-    Object.assign(CONFIG.PF1.buffTargets, {
-        chakraPool:    { label: "Chakra Pool Max",       category: "chakra", sort: 90000 },
-        chakraReserve: { label: "Chakra Reserve Max",    category: "chakra", sort: 90001 },
-        learnCkc:      { label: "Learn: Chakra Control", category: "chakra", sort: 90002 },
-        learnGnj:      { label: "Learn: Genjutsu",       category: "chakra", sort: 90003 },
-        learnNin:      { label: "Learn: Ninjutsu",       category: "chakra", sort: 90004 },
-        learnTai:      { label: "Learn: Taijutsu",       category: "chakra", sort: 90005 },
-        learnFui:      { label: "Learn: Fuinjutsu",      category: "chakra", sort: 90006 }
-    });
+    CONFIG.PF1.buffTargetCategories.technique = { label: game.i18n.localize("NarutoD20.BuffTargets.Category") };
+    for (const [key, { label, sort, category = "chakra" }] of Object.entries(BUFF_TARGETS)) {
+        CONFIG.PF1.buffTargets[key] = { label: game.i18n.localize(label), category, sort };
+    }
 }
 
 async function _migrateActorFlags() {
     const migrate = async (actor) => {
         if (!["character", "npc"].includes(actor.type)) return;
         const updates = {};
-        for (const key of ["actionPoints", "reputation", "wealth"]) {
+        for (const key of ["actionPoints", "reputation", "wealth", "eps"]) {
             if (foundry.utils.getProperty(actor, `flags.${MODULE_ID}.${key}`) === undefined) {
                 updates[`flags.${MODULE_ID}.${key}`] = 0;
             }
@@ -172,3 +200,4 @@ async function _migrateActorFlags() {
         }
     }
 }
+

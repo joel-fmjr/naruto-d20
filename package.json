@@ -1,0 +1,13 @@
+{
+  "name": "naruto-d20",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "convert": "node tools/convert-jutsus.mjs",
+    "pack":    "node tools/pack-techniques.mjs",
+    "unpack":  "fvtt package unpack --id naruto-d20 --type Module --compendiumName techniques --in packs/techniques --out packs/_source"
+  },
+  "devDependencies": {
+    "@foundryvtt/foundryvtt-cli": "^1.0.0"
+  }
+}
