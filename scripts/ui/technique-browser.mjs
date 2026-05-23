@@ -48,7 +48,9 @@ export class TechniqueCompendiumBrowser extends Application {
             template: `modules/${MODULE_ID}/templates/apps/technique-browser.hbs`,
             classes:  ["pf1", "app", "compendium-browser", "naruto-technique-browser"],
             width:    800,
-            height:   600,
+            height:   window.innerHeight - 60,
+            top:      30,
+            left:     40,
             resizable: true,
             title:    "Browse Techniques",
         });
