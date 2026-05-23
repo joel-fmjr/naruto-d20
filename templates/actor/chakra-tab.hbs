@@ -177,7 +177,7 @@
             <div class="technique-disc-group" data-disc="all">
                 {{#each techniques.allGroups}}
                 <ol class="item-list technique-list">
-                    <li class="flexrow item-list-header rank-header">
+                    <li class="flexrow item-list-header spellbook-header" data-level="{{rank}}">
                         <div class="item-name"><h3>Rank {{rank}}</h3></div>
                         <div class="item-detail technique-cost"><i class="fa-solid fa-fire" data-tooltip="Chakra Cost"></i></div>
                         <div class="item-detail item-actions"><i class="icon-pf icon-gears" data-tooltip="Actions"></i></div>
@@ -210,6 +210,7 @@
                         <div class="item-detail spell-school"><span>{{discipline}}</span></div>
                         <div class="item-controls">
                             <a class="shinobi-technique-open item-control" data-tooltip="Open Sheet"><i class="fa-solid fa-edit" inert></i></a>
+                            <a class="shinobi-technique-duplicate item-control" data-tooltip="Duplicate Technique"><i class="fa-solid fa-copy" inert></i></a>
                             <a class="shinobi-technique-delete item-control" data-tooltip="Remove"><i class="fa-solid fa-trash" inert></i></a>
                         </div>
                     </li>
@@ -221,7 +222,7 @@
             <div class="technique-disc-group" data-disc="{{key}}">
                 {{#each groups}}
                 <ol class="item-list technique-list">
-                    <li class="flexrow item-list-header rank-header">
+                    <li class="flexrow item-list-header spellbook-header" data-level="{{rank}}">
                         <div class="item-name"><h3>Rank {{rank}}</h3></div>
                         <div class="item-detail technique-cost"><i class="fa-solid fa-fire" data-tooltip="Chakra Cost"></i></div>
                         <div class="item-detail item-actions"><i class="icon-pf icon-gears" data-tooltip="Actions"></i></div>
@@ -254,6 +255,7 @@
                         <div class="item-detail spell-school"><span>{{discipline}}</span></div>
                         <div class="item-controls">
                             <a class="shinobi-technique-open item-control" data-tooltip="Open Sheet"><i class="fa-solid fa-edit" inert></i></a>
+                            <a class="shinobi-technique-duplicate item-control" data-tooltip="Duplicate Technique"><i class="fa-solid fa-copy" inert></i></a>
                             <a class="shinobi-technique-delete item-control" data-tooltip="Remove"><i class="fa-solid fa-trash" inert></i></a>
                         </div>
                     </li>
