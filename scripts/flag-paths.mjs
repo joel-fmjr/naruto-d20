@@ -13,6 +13,7 @@ export const techniqueDCBuffPath = (k) => `flags.${MODULE_ID}.techniqueDC.${k}.b
 export const chakraPoolMaxBonusPath    = `flags.${MODULE_ID}.chakra.pool.maxBonus`;
 export const chakraReserveMaxBonusPath = `flags.${MODULE_ID}.chakra.reserve.maxBonus`;
 export const chakraPoolValuePath       = `flags.${MODULE_ID}.chakra.pool.value`;
+export const chakraPoolTempPath        = `flags.${MODULE_ID}.chakra.pool.temp`;
 export const chakraReserveValuePath    = `flags.${MODULE_ID}.chakra.reserve.value`;
 
 /**
