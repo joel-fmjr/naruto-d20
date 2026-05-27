@@ -3,7 +3,7 @@
  *
  * Hook lifecycle ordering:
  *  [1] Foundry "init"              → Register DataModel, item sheet, world settings
- *  [2] "pf1PostInit"               → Register buffTargets (CONFIG.PF1 is now set)
+ *  [2] "pf1PostInit"               → Register buffTargets (CONFIG.PF1 is now set); register chakra conditions
  *  [3] "pf1PrepareBaseActorData"   → Init flag schema + reset computed fields
  *  [4] "pf1GetChangeFlat"          → Map buff targets to flag paths (changes engine)
  *  [5] "pf1PrepareDerivedActorData"→ Compute all Shinobi statistics
@@ -31,6 +31,7 @@ import { registerFeatListListeners } from "./ui/feat-list.mjs";
 import { registerFeatGrantDeletion } from "./automation/feat-grants.mjs";
 import { registerTapReservesListener } from "./ui/tap-reserves.mjs";
 import { onActorRest } from "./data/rest-recovery.mjs";
+import { registerChakraConditions } from "./data/chakra-conditions.mjs";
 
 const FLAG_MIGRATION_VERSION = 3;
 
@@ -113,6 +114,7 @@ Hooks.once("pf1PostInit", () => {
     _registerScriptCallCategories();
     installTechniqueSaveDCPatch();
     installTechniqueRollDataPatch();
+    registerChakraConditions();
 });
 
 // ── [3] pf1PrepareBaseActorData ───────────────────────────────────────────

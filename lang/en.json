@@ -173,6 +173,16 @@
         "Hint": "Comma-separated compendium pack IDs to search in addition to naruto-d20.technique-buffs (e.g. my-module.extra-buffs)."
       }
     },
+    "Conditions": {
+      "LowReserves": {
+        "Name": "Low Reserves",
+        "Hint": "Your chakra reserve is running low. You are fatigued."
+      },
+      "ChakraDepletion": {
+        "Name": "Chakra Depletion",
+        "Hint": "Your chakra is critically depleted. You are exhausted and recover only a fraction of your pool on rest."
+      }
+    },
     "Automation": {
       "Tab": "Automation",
       "Header": "Buff Automation",

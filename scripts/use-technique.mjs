@@ -1,6 +1,7 @@
 import { MODULE_ID } from "./constants.mjs";
 import { chakraPoolValuePath, chakraPoolTempPath, chakraReserveValuePath } from "./flag-paths.mjs";
 import { DISCIPLINE_SKILL_MAP } from "./data/skills.mjs";
+import { checkAndUpdateConditions } from "./data/chakra-conditions.mjs";
 
 export function canAffordTechnique(actor, item) {
     if (!actor) return false;
@@ -71,17 +72,33 @@ export async function performTechnique(item, actionId) {
     const remaining    = cost - fromTemp;
     const fromPool     = Math.min(remaining, poolValue);
     const fromReserve  = remaining - fromPool;
+
+    let newPool    = poolValue    - fromPool;
+    let newReserve = reserveValue - fromReserve;
+
+    // Emergency Transfer: if pool hits 0 but reserve still has chakra, the body
+    // automatically burns the entire reserve to return 1 chakra to the pool.
+    // This guarantees pool == 0 only when reserve == 0 (which triggers Chakra Depletion).
+    if (newPool <= 0 && newReserve > 0) {
+        newPool    = 1;
+        newReserve = 0;
+    }
+
     await actor.update({
-        [chakraPoolTempPath]:     tempValue    - fromTemp,
-        [chakraPoolValuePath]:    poolValue    - fromPool,
-        [chakraReserveValuePath]: reserveValue - fromReserve,
+        [chakraPoolTempPath]:     tempValue - fromTemp,
+        [chakraPoolValuePath]:    newPool,
+        [chakraReserveValuePath]: newReserve,
     });
 
-    // Build a readable spend summary (omit zero-value sources)
+    await checkAndUpdateConditions(actor);
+
+    // Build a readable spend summary (omit zero-value sources).
+    // If the Emergency Transfer fired, the actual reserve spent is the full original reserve.
+    const actualFromReserve = reserveValue - newReserve;
     const spendParts = [];
-    if (fromTemp    > 0) spendParts.push(`${fromTemp} temp`);
-    if (fromPool    > 0) spendParts.push(`${fromPool} pool`);
-    if (fromReserve > 0) spendParts.push(`${fromReserve} reserve`);
+    if (fromTemp          > 0) spendParts.push(`${fromTemp} temp`);
+    if (fromPool          > 0) spendParts.push(`${fromPool} pool`);
+    if (actualFromReserve > 0) spendParts.push(`${actualFromReserve} reserve`);
     const spendSummary = spendParts.join(", ") || "0";
 
     // Post outcome card when there was an auto-bypass (roll card covers the roll path)

@@ -1,18 +1,27 @@
-import { MODULE_ID } from "../constants.mjs";
+import { MODULE_ID, CHAKRA_DEPLETION_CONDITION_ID } from "../constants.mjs";
 import {
     chakraPoolValuePath,
     chakraPoolTempPath,
     chakraReserveValuePath,
 } from "../flag-paths.mjs";
+import { checkAndUpdateConditions } from "./chakra-conditions.mjs";
 
 /**
  * Naruto D20 — Chakra recovery on rest.
  *
  * Rules (mirrors how PF1e treats analogous resources):
- *  - Pool     → restored to max  (like spell points / daily uses, gated on restoreDailyUses)
- *  - Temp     → always cleared   (temporary by nature)
+ *  - Pool     → restored based on Chakra Depletion state (see below)
+ *  - Temp     → always cleared (temporary by nature)
  *  - Reserve  → recovers actor.system.attributes.hd.total points, capped at max
  *               (like HP, gated on restoreHealth; same hd.total metric PF1e uses for HP)
+ *
+ * Chakra Pool recovery (gated on restoreDailyUses):
+ *  - Normal rest:             pool restored to full max
+ *  - Chakra Depletion active: pool restored to floor(max / 4) only
+ *  - Chakra Depletion + longTermCare (absolute rest): floor(max / 2)
+ *
+ * After the update, checkAndUpdateConditions re-evaluates whether the conditions
+ * should be removed (e.g., if reserve was fully restored).
  *
  * @param {ActorPF} actor
  * @param {ActorRestOptions} options  — { restoreHealth, restoreDailyUses, hours, longTermCare }
@@ -28,9 +37,22 @@ export function onActorRest(actor, options) {
     // Temp chakra — always cleared on any rest (it is inherently temporary)
     updates[chakraPoolTempPath] = 0;
 
-    // Chakra Pool — restored to max (treated like spell points / daily uses)
+    // Chakra Pool — recovery amount depends on whether Chakra Depletion is active
     if (options.restoreDailyUses !== false) {
-        updates[chakraPoolValuePath] = chakra.pool.max ?? 0;
+        const poolMax     = chakra.pool.max ?? 0;
+        const hasDepletion = actor.statuses?.has(CHAKRA_DEPLETION_CONDITION_ID) ?? false;
+
+        let poolRecovery;
+        if (hasDepletion) {
+            // Depleted: partial recovery — doubled if the actor is under long-term care
+            poolRecovery = options.longTermCare
+                ? Math.floor(poolMax / 2)
+                : Math.floor(poolMax / 4);
+        } else {
+            poolRecovery = poolMax;
+        }
+
+        updates[chakraPoolValuePath] = poolRecovery;
     }
 
     // Chakra Reserve — recovers 1 point per HD (same metric PF1e uses for HP recovery)
@@ -41,5 +63,6 @@ export function onActorRest(actor, options) {
         updates[chakraReserveValuePath] = Math.min(current + hdTotal, max);
     }
 
-    actor.update(updates);
+    // fire-and-forget — matching the existing pattern (no top-level await in this module)
+    actor.update(updates).then(() => checkAndUpdateConditions(actor));
 }
