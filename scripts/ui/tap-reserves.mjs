@@ -1,5 +1,6 @@
 import { MODULE_ID } from "../constants.mjs";
 import { buildLearnCheckBreakdown } from "../data/bonus-sources.mjs";
+import { checkAndUpdateConditions } from "../data/chakra-conditions.mjs";
 
 const SEAL_BONUS = { none: 0, half: 2, hand: 5 };
 const SEAL_LABEL = { none: "no seal", half: "half-seal", hand: "hand seal" };
@@ -155,6 +156,10 @@ export class TapReservesDialog extends Application {
                 [`flags.${MODULE_ID}.chakra.reserve.value`]: newReserve,
                 [`flags.${MODULE_ID}.chakra.pool.temp`]:     newTemp,
             });
+
+            // Re-evaluate chakra conditions — draining the reserve may trigger
+            // Low Reserves or Chakra Depletion (if reserve reaches 0).
+            await checkAndUpdateConditions(this.actor);
         }
 
         this.close();

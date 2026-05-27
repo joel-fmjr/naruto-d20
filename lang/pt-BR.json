@@ -173,6 +173,16 @@
         "Hint": "IDs de compêndio separados por vírgula para pesquisar além de naruto-d20.technique-buffs (ex: meu-modulo.buffs-extras)."
       }
     },
+    "Conditions": {
+      "LowReserves": {
+        "Name": "Reservas Baixas",
+        "Hint": "Sua reserva de chakra está baixa. Você está fatigado."
+      },
+      "ChakraDepletion": {
+        "Name": "Depleção de Chakra",
+        "Hint": "Seu chakra está criticamente esgotado. Você está exausto e recupera apenas uma fração de sua pool ao descansar."
+      }
+    },
     "Automation": {
       "Tab": "Automação",
       "Header": "Automação de Buff",

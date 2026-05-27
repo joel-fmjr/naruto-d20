@@ -3,7 +3,7 @@
  *
  * Hook lifecycle ordering:
  *  [1] Foundry "init"              → Register DataModel, item sheet, world settings
- *  [2] "pf1PostInit"               → Register buffTargets (CONFIG.PF1 is now set)
+ *  [2] "pf1PostInit"               → Register buffTargets (CONFIG.PF1 is now set); register chakra conditions
  *  [3] "pf1PrepareBaseActorData"   → Init flag schema + reset computed fields
  *  [4] "pf1GetChangeFlat"          → Map buff targets to flag paths (changes engine)
  *  [5] "pf1PrepareDerivedActorData"→ Compute all Shinobi statistics
@@ -11,6 +11,7 @@
  *  [7] Foundry "setup"             → Push Chakra tab, register UI hooks
  *  [8] "preCreateActor"            → Seed default flags on new actors
  *  [9] Foundry "ready"             → One-time flag migration for existing actors (GM only)
+ * [10] "pf1ActorRest"              → Restore chakra pool, clear temp, recover reserve
  */
 
 import { MODULE_ID, TECHNIQUE_ITEM_TYPE } from "./constants.mjs";
@@ -29,6 +30,8 @@ import { registerSummaryStats } from "./ui/summary-stats.mjs";
 import { registerFeatListListeners } from "./ui/feat-list.mjs";
 import { registerFeatGrantDeletion } from "./automation/feat-grants.mjs";
 import { registerTapReservesListener } from "./ui/tap-reserves.mjs";
+import { onActorRest } from "./data/rest-recovery.mjs";
+import { registerChakraConditions } from "./data/chakra-conditions.mjs";
 
 const FLAG_MIGRATION_VERSION = 3;
 
@@ -111,6 +114,7 @@ Hooks.once("pf1PostInit", () => {
     _registerScriptCallCategories();
     installTechniqueSaveDCPatch();
     installTechniqueRollDataPatch();
+    registerChakraConditions();
 });
 
 // ── [3] pf1PrepareBaseActorData ───────────────────────────────────────────
@@ -163,6 +167,11 @@ Hooks.once("ready", async () => {
     if (game.settings.get(MODULE_ID, "flagMigrationVersion") >= FLAG_MIGRATION_VERSION) return;
     await _migrateActorFlags();
     await game.settings.set(MODULE_ID, "flagMigrationVersion", FLAG_MIGRATION_VERSION);
+});
+
+// ── [10] pf1ActorRest — chakra recovery on rest ──────────────────────────
+Hooks.on("pf1ActorRest", (actor, options) => {
+    onActorRest(actor, options);
 });
 
 // ─────────────────────────────────────────────────────────────────────────
