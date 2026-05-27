@@ -1,11 +1,11 @@
 import { MODULE_ID } from "./constants.mjs";
-import { chakraPoolValuePath, chakraReserveValuePath } from "./flag-paths.mjs";
+import { chakraPoolValuePath, chakraPoolTempPath, chakraReserveValuePath } from "./flag-paths.mjs";
 import { DISCIPLINE_SKILL_MAP } from "./data/skills.mjs";
 
 export function canAffordTechnique(actor, item) {
     if (!actor) return false;
     const chakra    = actor.flags?.[MODULE_ID]?.chakra ?? {};
-    const available = (chakra.pool?.value ?? 0) + (chakra.reserve?.value ?? 0);
+    const available = (chakra.pool?.temp ?? 0) + (chakra.pool?.value ?? 0) + (chakra.reserve?.value ?? 0);
     return available >= (item.system.chakraCost ?? 0);
 }
 
@@ -62,16 +62,27 @@ export async function performTechnique(item, actionId) {
         return;
     }
 
-    // Deduct chakra: pool first, reserve as overflow
+    // Deduct chakra: temp first, then pool, then reserve as overflow
     const chakra       = actor.flags[MODULE_ID]?.chakra ?? {};
+    const tempValue    = chakra.pool?.temp     ?? 0;
     const poolValue    = chakra.pool?.value    ?? 0;
     const reserveValue = chakra.reserve?.value ?? 0;
-    const fromPool     = Math.min(cost, poolValue);
-    const fromReserve  = cost - fromPool;
+    const fromTemp     = Math.min(cost, tempValue);
+    const remaining    = cost - fromTemp;
+    const fromPool     = Math.min(remaining, poolValue);
+    const fromReserve  = remaining - fromPool;
     await actor.update({
+        [chakraPoolTempPath]:     tempValue    - fromTemp,
         [chakraPoolValuePath]:    poolValue    - fromPool,
         [chakraReserveValuePath]: reserveValue - fromReserve,
     });
+
+    // Build a readable spend summary (omit zero-value sources)
+    const spendParts = [];
+    if (fromTemp    > 0) spendParts.push(`${fromTemp} temp`);
+    if (fromPool    > 0) spendParts.push(`${fromPool} pool`);
+    if (fromReserve > 0) spendParts.push(`${fromReserve} reserve`);
+    const spendSummary = spendParts.join(", ") || "0";
 
     // Post outcome card when there was an auto-bypass (roll card covers the roll path)
     if (bypassNote) {
@@ -80,7 +91,7 @@ export async function performTechnique(item, actionId) {
             content: `<div class="naruto-technique-card success">
                         <header><h3>${item.name}</h3></header>
                         <p class="naruto-perform-bypass">${bypassNote}</p>
-                        <footer>Spent ${cost} chakra (${fromPool} pool, ${fromReserve} reserve).</footer>
+                        <footer>Spent ${cost} chakra (${spendSummary}).</footer>
                       </div>`,
         });
     } else {
@@ -89,7 +100,7 @@ export async function performTechnique(item, actionId) {
             speaker: ChatMessage.getSpeaker({ actor }),
             content: `<div class="naruto-technique-card success">
                         <header><h3>${item.name}</h3></header>
-                        <footer>Spent ${cost} chakra (${fromPool} pool, ${fromReserve} reserve).</footer>
+                        <footer>Spent ${cost} chakra (${spendSummary}).</footer>
                       </div>`,
         });
     }
