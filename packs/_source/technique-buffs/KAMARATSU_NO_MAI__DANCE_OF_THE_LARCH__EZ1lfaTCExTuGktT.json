@@ -1,0 +1,85 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "untyped",
+        "_id": "XSLfV05A",
+        "operator": "add",
+        "priority": 0,
+        "formula": "3",
+        "target": "nac"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 8,
+    "duration": {
+      "value": "",
+      "units": "round",
+      "end": "turnStart",
+      "start": 0
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "KAMARATSU NO MAI (DANCE OF THE LARCH)",
+  "img": "systems/pf1/icons/feats/improved-grapple.jpg",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1780120000006,
+    "modifiedTime": 1780120000006,
+    "lastModifiedBy": null
+  },
+  "_id": "EZ1lfaTCExTuGktT",
+  "sort": 0,
+  "_key": "!items!EZ1lfaTCExTuGktT"
+}
