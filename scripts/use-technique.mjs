@@ -16,11 +16,12 @@ export async function performTechnique(item, actionId) {
         ui.notifications.warn("Equip this technique on an actor to use it.");
         return;
     }
-    const action = item.actions?.get(actionId);
+    let action = item.actions?.get(actionId);
     if (!action) {
         ui.notifications.warn(`${item.name}: action not found.`);
         return;
     }
+    const actionIndex = Array.from(item.actions ?? []).findIndex((a) => a.id === action.id);
 
     const sys  = item.system;
     const cost = sys.chakraCost ?? 0;
@@ -122,15 +123,22 @@ export async function performTechnique(item, actionId) {
         });
     }
 
-    await action.use({ skipDialog: true });
+    const currentItem = actor.items.get(item.id) ?? item;
+    action = currentItem.actions?.get(actionId) ?? Array.from(currentItem.actions ?? [])[actionIndex];
+    if (!action) {
+        ui.notifications.warn(`${item.name}: action not found after chakra update.`);
+        return;
+    }
 
-    if (game.settings.get(MODULE_ID, "automaticBuffs") && item.system.automation?.enabled) {
+    await currentItem.use({ actionId: action.id, skipDialog: true });
+
+    if (game.settings.get(MODULE_ID, "automaticBuffs") && currentItem.system.automation?.enabled) {
         const { applyTechniqueBuff } = await import("./automation/buff-application.mjs");
         try {
-            await applyTechniqueBuff(item, actor, action);
+            await applyTechniqueBuff(currentItem, actor, action);
         } catch (err) {
-            console.error(`naruto-d20 | buff automation failed for "${item.name}":`, err);
-            ui.notifications.warn(`Buff automation failed for ${item.name}. See console.`);
+            console.error(`naruto-d20 | buff automation failed for "${currentItem.name}":`, err);
+            ui.notifications.warn(`Buff automation failed for ${currentItem.name}. See console.`);
         }
     }
 }

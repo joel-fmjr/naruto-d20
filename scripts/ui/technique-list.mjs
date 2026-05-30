@@ -1,4 +1,5 @@
 import { MAIN_DISCIPLINES, TECHNIQUE_ITEM_TYPE } from "../constants.mjs";
+import { normalizeActionIds } from "../data/action-ids.mjs";
 import { performTechnique } from "../use-technique.mjs";
 import { resolveDroppedItem } from "../utils/drag-drop.mjs";
 import { TechniqueCompendiumBrowser } from "./technique-browser.mjs";
@@ -48,7 +49,10 @@ export function registerTechniqueListListeners() {
                     return;
                 }
                 if (srcItem.parent === app.actor) return; // already owned
-                await app.actor.createEmbeddedDocuments("Item", [srcItem.toObject()]);
+                const itemData = srcItem.toObject();
+                const { actions, changed } = normalizeActionIds(itemData.system?.actions);
+                if (changed) itemData.system.actions = actions;
+                await app.actor.createEmbeddedDocuments("Item", [itemData]);
             });
 
         // Create a technique directly on the actor and open its sheet
@@ -115,6 +119,8 @@ export function registerTechniqueListListeners() {
             if (!item) return;
             const itemData = item.toObject();
             itemData.name = `${itemData.name} (Copy)`;
+            const { actions, changed } = normalizeActionIds(itemData.system?.actions);
+            if (changed) itemData.system.actions = actions;
             await app.actor.createEmbeddedDocuments("Item", [itemData]);
         });
     });

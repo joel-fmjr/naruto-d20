@@ -27,7 +27,7 @@ const DRY_RUN = process.argv.includes("--dry-run");
 const FORCE   = process.argv.includes("--force");
 
 function randomId(len = 16) {
-    return randomBytes(len).toString("base64url").slice(0, len);
+    return randomBytes(Math.ceil(len / 2)).toString("hex").slice(0, len);
 }
 
 // ─── Activation ─────────────────────────────────────────────────────────────

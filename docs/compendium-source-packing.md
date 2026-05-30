@@ -73,6 +73,7 @@ techniques don't have. Non-attack actions use `spellsave`/`save`/`heal`/`other`.
 | Script | npm alias | Purpose |
 |---|---|---|
 | `add-actions.mjs` | `npm run add-actions` | Generates `system.actions[0]` for techniques from their flat fields (range, save, damage in description, …). **Skips** any technique that already has actions (use `--force` to override, `--dry-run` to preview). |
+| `fix-action-ids.mjs` | `npm run fix-action-ids` | Rewrites invalid/non-alphanumeric `system.actions[*]._id` values so PF1e can resolve the action reliably. `--dry-run` to preview. |
 | `fix-spell-attacks.mjs` | `npm run fix-spell-attacks` | One-off cleanup: rewrites any `actionType: "rsak" → "rwak"` and `"msak" → "mwak"`, attaching the DEX/STR `ability` block. Idempotent — only touches matching action types. `--dry-run` to preview. |
 
 Convention for new transforms: scan `packs/_source/techniques/`, only rewrite a

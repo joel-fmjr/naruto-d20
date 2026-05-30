@@ -9,6 +9,7 @@
     "pack:feats": "node tools/pack-feats.mjs",
     "unpack": "node_modules/.bin/fvtt package unpack --id naruto-d20 --type Module --compendiumName techniques --in packs --out packs/_source/techniques",
     "add-actions": "node tools/add-actions.mjs",
+    "fix-action-ids": "node tools/fix-action-ids.mjs",
     "fix-spell-attacks": "node tools/fix-spell-attacks.mjs",
     "expand:blood-pact": "node tools/expand-blood-pact.mjs",
     "extract:feat-changes": "node tools/extract-feat-changes.mjs",
