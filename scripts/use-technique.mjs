@@ -2,6 +2,7 @@ import { MODULE_ID } from "./constants.mjs";
 import { chakraPoolValuePath, chakraPoolTempPath, chakraReserveValuePath } from "./flag-paths.mjs";
 import { DISCIPLINE_SKILL_MAP } from "./data/skills.mjs";
 import { checkAndUpdateConditions } from "./data/chakra-conditions.mjs";
+import { getTechniqueWeaponAttackConfig, rollSelectedWeaponAttackWithTechnique } from "./ui/technique-weapon-attack.mjs";
 
 export function canAffordTechnique(actor, item) {
     if (!actor) return false;
@@ -10,17 +11,18 @@ export function canAffordTechnique(actor, item) {
     return available >= (item.system.chakraCost ?? 0);
 }
 
-export async function performTechnique(item, actionId) {
+export async function performTechnique(item, actionId, event = null) {
     const actor = item.actor;
     if (!actor) {
         ui.notifications.warn("Equip this technique on an actor to use it.");
         return;
     }
-    const action = item.actions?.get(actionId);
+    let action = item.actions?.get(actionId);
     if (!action) {
         ui.notifications.warn(`${item.name}: action not found.`);
         return;
     }
+    const actionIndex = Array.from(item.actions ?? []).findIndex((a) => a.id === action.id);
 
     const sys  = item.system;
     const cost = sys.chakraCost ?? 0;
@@ -60,6 +62,33 @@ export async function performTechnique(item, actionId) {
                         <p>Perform check failed (DC ${performDC}${masteryNote}). No chakra spent.</p>
                       </div>`,
         });
+        return;
+    }
+
+    const currentItem = actor.items.get(item.id) ?? item;
+    action = currentItem.actions?.get(actionId) ?? Array.from(currentItem.actions ?? [])[actionIndex];
+    if (!action) {
+        ui.notifications.warn(`${item.name}: action not found after perform check.`);
+        return;
+    }
+
+    const weaponAttackConfig = getTechniqueWeaponAttackConfig(currentItem);
+    const useResult = weaponAttackConfig
+        ? await rollSelectedWeaponAttackWithTechnique({
+            technique: currentItem,
+            actor,
+            config: weaponAttackConfig,
+            event,
+        })
+        : await currentItem.use({
+            actionId: action.id,
+            skipDialog: !(action.hasAttack || action.hasDamage),
+            ev: event,
+        });
+    if (!useResult || useResult.err) return;
+
+    if (!canAffordTechnique(actor, currentItem)) {
+        ui.notifications.warn(`${actor.name}: not enough chakra to perform ${currentItem.name}.`);
         return;
     }
 
@@ -122,15 +151,20 @@ export async function performTechnique(item, actionId) {
         });
     }
 
-    await action.use({ skipDialog: true });
+    const updatedItem = actor.items.get(currentItem.id) ?? currentItem;
+    action = updatedItem.actions?.get(action.id) ?? Array.from(updatedItem.actions ?? [])[actionIndex];
+    if (!action) {
+        ui.notifications.warn(`${item.name}: action not found after chakra update.`);
+        return;
+    }
 
-    if (game.settings.get(MODULE_ID, "automaticBuffs") && item.system.automation?.enabled) {
+    if (game.settings.get(MODULE_ID, "automaticBuffs") && updatedItem.system.automation?.enabled) {
         const { applyTechniqueBuff } = await import("./automation/buff-application.mjs");
         try {
-            await applyTechniqueBuff(item, actor, action);
+            await applyTechniqueBuff(updatedItem, actor, action);
         } catch (err) {
-            console.error(`naruto-d20 | buff automation failed for "${item.name}":`, err);
-            ui.notifications.warn(`Buff automation failed for ${item.name}. See console.`);
+            console.error(`naruto-d20 | buff automation failed for "${updatedItem.name}":`, err);
+            ui.notifications.warn(`Buff automation failed for ${updatedItem.name}. See console.`);
         }
     }
 }

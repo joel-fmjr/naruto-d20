@@ -45,9 +45,9 @@
     "changes": [],
     "actions": [
       {
-        "_id": "diW4JSfam69--W5I",
+        "_id": "5587de5a33e1f5b3",
         "name": "Use",
-        "actionType": "msak",
+        "actionType": "mwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -67,14 +67,20 @@
         "damage": {
           "parts": [
             {
-              "formula": "2d6",
+              "formula": "2d6 + max(@cl, 5)",
               "types": [
                 "electric"
               ]
             }
           ]
         },
-        "touch": true
+        "touch": true,
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
       }
     ],
     "scriptCalls": [],

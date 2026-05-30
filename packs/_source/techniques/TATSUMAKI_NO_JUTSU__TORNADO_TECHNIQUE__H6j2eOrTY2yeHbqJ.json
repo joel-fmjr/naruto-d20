@@ -45,9 +45,9 @@
     "changes": [],
     "actions": [
       {
-        "_id": "bYs5nLx3E_grbcEz",
+        "_id": "b3214ecff6d572c2",
         "name": "Use",
-        "actionType": "rsak",
+        "actionType": "rwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -79,6 +79,12 @@
               "types": []
             }
           ]
+        },
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
         }
       }
     ],

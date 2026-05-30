@@ -45,7 +45,7 @@
     "changes": [],
     "actions": [
       {
-        "_id": "Cbh4x-EcHWqw2eX-",
+        "_id": "1e1dc72430cb7edc",
         "name": "Use",
         "actionType": "mwak",
         "activation": {
@@ -66,7 +66,7 @@
         },
         "ability": {
           "attack": "dex",
-          "damage": "dex",
+          "damage": "str",
           "critRange": 20,
           "critMult": 2
         }
@@ -82,7 +82,12 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {}
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "meleeWeapon",
+        "weaponAttack.attackBonus": "2[Kaiten Kenbu]",
+        "weaponAttack.damageBonus": "2[Kaiten Kenbu]"
+      }
     },
     "showInQuickbar": false,
     "showInCombat": false

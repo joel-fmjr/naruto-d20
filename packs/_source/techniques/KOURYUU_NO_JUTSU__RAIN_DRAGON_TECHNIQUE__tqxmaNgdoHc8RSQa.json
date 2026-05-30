@@ -45,9 +45,9 @@
     "changes": [],
     "actions": [
       {
-        "_id": "AXLLF-T3SV1pub-Y",
+        "_id": "0ff31271952f2411",
         "name": "Use",
-        "actionType": "rsak",
+        "actionType": "rwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -75,6 +75,12 @@
               ]
             }
           ]
+        },
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
         }
       }
     ],

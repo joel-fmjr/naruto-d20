@@ -45,7 +45,7 @@
     "changes": [],
     "actions": [
       {
-        "_id": "OrbaBgV9f59_wq5x",
+        "_id": "24ad703544359d4c",
         "name": "Use",
         "actionType": "mwak",
         "activation": {
@@ -82,7 +82,7 @@
         },
         "ability": {
           "attack": "dex",
-          "damage": "dex",
+          "damage": "str",
           "critRange": 20,
           "critMult": 2
         }

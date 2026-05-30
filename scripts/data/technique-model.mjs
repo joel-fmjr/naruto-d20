@@ -10,6 +10,8 @@
  * array automatically and populates `item.changes`.
  */
 
+import { createActionId, isValidActionId } from "./action-ids.mjs";
+
 /** Complexity lookup — Appendix B, Table B-1. */
 export const COMPLEXITY_TABLE = {
     "Extremely Easy": { learnMod: 1,  successes: 1, skillMod: 0, performMod: -10 },
@@ -161,7 +163,7 @@ export function createTechniqueDataModel() {
                 for (const a of source.actions) {
                     if (!a) continue;
                     if (a.id && !a._id) { a._id = a.id; delete a.id; }
-                    else if (!a._id || typeof a._id !== "string") { a._id = foundry.utils.randomID(8); }
+                    if (!isValidActionId(a._id)) { a._id = createActionId(); }
                 }
             }
 

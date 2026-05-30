@@ -45,7 +45,7 @@
     "changes": [],
     "actions": [
       {
-        "_id": "R2YEmkkcmmQN-hth",
+        "_id": "e6f84b705b78a516",
         "name": "Use",
         "actionType": "mwak",
         "activation": {
@@ -66,7 +66,7 @@
         },
         "ability": {
           "attack": "dex",
-          "damage": "dex",
+          "damage": "str",
           "critRange": 20,
           "critMult": 2
         }
@@ -82,7 +82,11 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {}
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "unarmedOnly",
+        "weaponAttack.attackBonus": "1[Keikai Uchi]"
+      }
     },
     "showInQuickbar": false,
     "showInCombat": false

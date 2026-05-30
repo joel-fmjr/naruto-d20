@@ -47,7 +47,7 @@
       {
         "_id": "t47mn3nDbYjY0cur",
         "name": "Use",
-        "actionType": "msak",
+        "actionType": "mwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -71,7 +71,13 @@
             }
           ]
         },
-        "touch": true
+        "touch": true,
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
       }
     ],
     "scriptCalls": [],

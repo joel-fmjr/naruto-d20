@@ -47,7 +47,7 @@
       {
         "_id": "VEPm37wZCJTWYp5e",
         "name": "Use",
-        "actionType": "rsak",
+        "actionType": "rwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -70,6 +70,12 @@
               ]
             }
           ]
+        },
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
         }
       }
     ],

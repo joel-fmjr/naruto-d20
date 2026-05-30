@@ -45,9 +45,9 @@
     "changes": [],
     "actions": [
       {
-        "_id": "0ovb8Ov_E8lp9FfW",
+        "_id": "672430bf1b2b9087",
         "name": "Use",
-        "actionType": "msak",
+        "actionType": "mwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -69,7 +69,13 @@
             }
           ]
         },
-        "touch": true
+        "touch": true,
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
       }
     ],
     "scriptCalls": [],

@@ -45,7 +45,7 @@
     "changes": [],
     "actions": [
       {
-        "_id": "qZGaamJnYOGqKY-6",
+        "_id": "6ea54f66d2d18545",
         "name": "Use",
         "actionType": "mwak",
         "activation": {
@@ -70,7 +70,7 @@
         },
         "ability": {
           "attack": "dex",
-          "damage": "dex",
+          "damage": "str",
           "critRange": 20,
           "critMult": 2
         }
@@ -86,7 +86,10 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {}
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "meleeWeapon"
+      }
     },
     "showInQuickbar": false,
     "showInCombat": false

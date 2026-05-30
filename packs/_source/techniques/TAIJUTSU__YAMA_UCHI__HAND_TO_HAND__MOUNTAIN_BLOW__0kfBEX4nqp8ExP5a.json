@@ -45,7 +45,7 @@
     "changes": [],
     "actions": [
       {
-        "_id": "VEQ-yllaOmJfoJS_",
+        "_id": "7e32515361eb1c67",
         "name": "Use",
         "actionType": "mwak",
         "activation": {
@@ -70,7 +70,7 @@
         },
         "ability": {
           "attack": "dex",
-          "damage": "dex",
+          "damage": "str",
           "critRange": 20,
           "critMult": 2
         }
@@ -86,7 +86,10 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {}
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "unarmedOnly"
+      }
     },
     "showInQuickbar": false,
     "showInCombat": false

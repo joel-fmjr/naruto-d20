@@ -45,7 +45,7 @@
     "changes": [],
     "actions": [
       {
-        "_id": "VxzX-N_WX2yUA872",
+        "_id": "37f97ebc6eb291f7",
         "name": "Use",
         "actionType": "mwak",
         "activation": {
@@ -78,7 +78,7 @@
         },
         "ability": {
           "attack": "dex",
-          "damage": "dex",
+          "damage": "str",
           "critRange": 20,
           "critMult": 2
         }

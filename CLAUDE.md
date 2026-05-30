@@ -11,7 +11,7 @@ Foundry VTT module for a Naruto D20 homebrew expansion on top of Pathfinder 1e (
 - A Chakra tab on the actor sheet, and Hero Statistics injected into the Summary tab
 - 4 elemental damage types (Earth, Water, Wind, Holy)
 - Buff targets for chakra resources and learn checks that plug into PF1e's changes engine
-- Buff automation: on a successful technique perform, look up a same-named buff in the `naruto-d20.technique-buffs` compendium and apply it to the selected targets (caster as fallback), inheriting the triggering action's duration
+- Buff automation: on a successful technique perform, look up a same-named buff in the `naruto-d20.technique-buffs` compendium and apply it to the caster for self-targeting techniques or selected targets for targeted techniques, inheriting the triggering action's duration
 
 ## Development cycle
 
@@ -167,7 +167,7 @@ Triggered at the tail of `performTechnique()` (`scripts/use-technique.mjs`) **on
 
 1. Gate: skip unless the world setting `automaticBuffs` is on **and** the technique's `item.system.automation.enabled` flag is true. The `buffTargetFiltering = "off"` setting also short-circuits the whole pipeline.
 2. Lookup: `findBuffByName(item.name)` scans `naruto-d20.technique-buffs` plus any pack IDs listed in the `customBuffCompendia` setting (comma-separated). It returns `{ exact, variants }` — exact name matches win; otherwise the first `"Name (..."` variant is used. If nothing matches, it logs a warning and exits silently.
-3. Targets: `[...game.user.targets]` selected on the canvas, falling back to the caster if none. Each target must be owned by the current user — un-owned targets show a `NarutoD20.Automation.NoPermission` warning and are skipped.
+3. Targets: personal/you/stance techniques apply to the caster. Other techniques apply to `[...game.user.targets]`; if none are selected, the automation warns with `NarutoD20.Automation.NoTargets` and does not apply the buff. Each target must be owned by the current user — un-owned targets show a `NarutoD20.Automation.NoPermission` warning and are skipped.
 4. Duration: copied from the triggering `ItemAction`'s `duration` (`{ units, value }`). `inst` / `perm` / `seeText` / missing → leave the compendium buff's own duration untouched.
 5. Apply: `applyBuffToTarget` matches by `flags["naruto-d20"].sourceId === buffDoc.uuid`. Existing buff → `update({ "system.active": true, "system.duration.*": ... })`. New buff → `toObject()` + strip `_id`, stamp the `sourceId` flag, write duration if provided, set `system.active = true`, then `createEmbeddedDocuments("Item", [...])`.
 

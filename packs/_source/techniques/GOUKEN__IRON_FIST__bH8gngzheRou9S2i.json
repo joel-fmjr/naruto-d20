@@ -45,7 +45,7 @@
     "changes": [],
     "actions": [
       {
-        "_id": "tiEMmx0vK1-pxth2",
+        "_id": "bb432d1100ceba98",
         "name": "Use",
         "actionType": "mwak",
         "activation": {
@@ -66,7 +66,7 @@
         },
         "ability": {
           "attack": "dex",
-          "damage": "dex",
+          "damage": "str",
           "critRange": 20,
           "critMult": 2
         }
@@ -82,7 +82,11 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {}
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "unarmedOnly",
+        "weaponAttack.damageBonus": "1[Gouken]"
+      }
     },
     "showInQuickbar": false,
     "showInCombat": false

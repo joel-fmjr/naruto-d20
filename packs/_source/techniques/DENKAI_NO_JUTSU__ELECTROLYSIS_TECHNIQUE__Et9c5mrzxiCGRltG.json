@@ -45,9 +45,9 @@
     "changes": [],
     "actions": [
       {
-        "_id": "E5idO0Ra395Z-NQu",
+        "_id": "31bec62f33bb144b",
         "name": "Use",
-        "actionType": "msak",
+        "actionType": "mwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -64,7 +64,13 @@
         "target": {
           "value": "A body of water"
         },
-        "touch": true
+        "touch": true,
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
       }
     ],
     "scriptCalls": [],

@@ -45,9 +45,9 @@
     "changes": [],
     "actions": [
       {
-        "_id": "hnKBJ-41V6-M31Us",
+        "_id": "021c46233271a654",
         "name": "Use",
-        "actionType": "rsak",
+        "actionType": "rwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -71,6 +71,12 @@
               "types": []
             }
           ]
+        },
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
         }
       }
     ],

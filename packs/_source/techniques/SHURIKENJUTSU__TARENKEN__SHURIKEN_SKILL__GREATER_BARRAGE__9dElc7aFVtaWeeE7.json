@@ -45,7 +45,7 @@
     "changes": [],
     "actions": [
       {
-        "_id": "ZLfcvWby__KFLFIZ",
+        "_id": "4e3e4bfacfc35871",
         "name": "Use",
         "actionType": "mwak",
         "activation": {
@@ -60,7 +60,7 @@
         },
         "ability": {
           "attack": "dex",
-          "damage": "dex",
+          "damage": "str",
           "critRange": 20,
           "critMult": 2
         }
@@ -76,7 +76,10 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {}
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "rangedWeapon"
+      }
     },
     "showInQuickbar": false,
     "showInCombat": false

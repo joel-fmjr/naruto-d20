@@ -45,7 +45,7 @@
     "changes": [],
     "actions": [
       {
-        "_id": "LXu_ISXzRafskwky",
+        "_id": "80de995c098cb05c",
         "name": "Use",
         "actionType": "mwak",
         "activation": {
@@ -66,7 +66,7 @@
         },
         "ability": {
           "attack": "dex",
-          "damage": "dex",
+          "damage": "str",
           "critRange": 20,
           "critMult": 2
         }
@@ -82,7 +82,12 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {}
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "meleeWeapon",
+        "weaponAttack.attackBonus": "2[Iaido]",
+        "weaponAttack.damageBonus": "2[Iaido]"
+      }
     },
     "showInQuickbar": false,
     "showInCombat": false

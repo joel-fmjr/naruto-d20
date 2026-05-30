@@ -47,7 +47,7 @@
       {
         "_id": "azmFsS3VJtDRDT5A",
         "name": "Use",
-        "actionType": "msak",
+        "actionType": "mwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -64,7 +64,13 @@
         "target": {
           "value": "One page or scroll"
         },
-        "touch": true
+        "touch": true,
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
       }
     ],
     "scriptCalls": [],

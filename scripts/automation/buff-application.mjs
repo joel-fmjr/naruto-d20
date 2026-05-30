@@ -32,15 +32,40 @@ export async function applyTechniqueBuff(item, actor, action) {
     }
     if (!buffDoc) return;
 
-    // Apply to user's selected targets; fall back to the caster if none
-    const targets = [...(game.user.targets ?? [])].map(t => t.actor).filter(Boolean);
-    const applyTargets = targets.length ? targets : [actor];
+    const applyTargets = _resolveBuffTargets(item, actor);
+    if (!applyTargets.length) return;
 
     const duration = _durationFromAction(action);
 
     for (const targetActor of applyTargets) {
         await applyBuffToTarget(buffDoc, targetActor, duration);
     }
+}
+
+/**
+ * Personal techniques always affect their performer. Other technique buffs
+ * require an explicit canvas target so debuffs are not accidentally self-applied.
+ */
+function _resolveBuffTargets(item, actor) {
+    if (_isSelfTargetingTechnique(item)) return [actor];
+
+    const targets = [...(game.user.targets ?? [])].map(t => t.actor).filter(Boolean);
+    if (targets.length) return targets;
+
+    ui.notifications.warn(game.i18n.localize("NarutoD20.Automation.NoTargets"));
+    return [];
+}
+
+function _isSelfTargetingTechnique(item) {
+    const system = item.system ?? {};
+    const range = String(system.range ?? "").trim().toLowerCase();
+    const target = String(system.target ?? "").trim().toLowerCase();
+    const subtype = String(system.subtype ?? "").trim().toLowerCase();
+
+    if (range.startsWith("personal")) return true;
+    if (target === "you" || target.startsWith("you ")) return true;
+
+    return subtype.split(/\s*,\s*/).includes("stance") && target === "";
 }
 
 /**

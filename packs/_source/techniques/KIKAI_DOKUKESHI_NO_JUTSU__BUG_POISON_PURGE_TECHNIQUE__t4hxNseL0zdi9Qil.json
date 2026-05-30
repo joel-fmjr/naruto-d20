@@ -45,9 +45,9 @@
     "changes": [],
     "actions": [
       {
-        "_id": "laXxeEM0Qw3pC_-W",
+        "_id": "bde0fc99e6739fa5",
         "name": "Use",
-        "actionType": "msak",
+        "actionType": "mwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -64,7 +64,13 @@
         "target": {
           "value": "One creature *"
         },
-        "touch": true
+        "touch": true,
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
       }
     ],
     "scriptCalls": [],

@@ -19,6 +19,7 @@ import { BUFF_TARGETS } from "./flag-paths.mjs";
 import { createTechniqueDataModel } from "./data/technique-model.mjs";
 import { createTechniqueItemSheet } from "./ui/technique-sheet.mjs";
 import { registerDamageTypes } from "./data/damage-types.mjs";
+import { normalizeActionIds } from "./data/action-ids.mjs";
 import { prepareBaseActorData, prepareDerivedActorData } from "./data/derived-data.mjs";
 import { registerNarutoSkills, ensureActorSkillEntries } from "./data/skills.mjs";
 import { installChakraTabPatch } from "./ui/render-patch.mjs";
@@ -33,7 +34,7 @@ import { registerTapReservesListener } from "./ui/tap-reserves.mjs";
 import { onActorRest } from "./data/rest-recovery.mjs";
 import { registerChakraConditions } from "./data/chakra-conditions.mjs";
 
-const FLAG_MIGRATION_VERSION = 3;
+const FLAG_MIGRATION_VERSION = 4;
 
 // ── [1] init ──────────────────────────────────────────────────────────────
 Hooks.once("init", () => {
@@ -166,6 +167,7 @@ Hooks.once("ready", async () => {
     if (!game.user.isGM) return;
     if (game.settings.get(MODULE_ID, "flagMigrationVersion") >= FLAG_MIGRATION_VERSION) return;
     await _migrateActorFlags();
+    await _migrateTechniqueActionIds();
     await game.settings.set(MODULE_ID, "flagMigrationVersion", FLAG_MIGRATION_VERSION);
 });
 
@@ -218,3 +220,29 @@ async function _migrateActorFlags() {
     }
 }
 
+async function _migrateTechniqueActionIds() {
+    const migrateItem = async (item) => {
+        if (item.type !== TECHNIQUE_ITEM_TYPE) return false;
+        const { actions, changed } = normalizeActionIds(item.system?.actions);
+        if (changed) await item.update({ "system.actions": actions });
+        return changed;
+    };
+
+    const migrateActorItems = async (actor) => {
+        const updates = [];
+        for (const item of actor.items) {
+            if (item.type !== TECHNIQUE_ITEM_TYPE) continue;
+            const { actions, changed } = normalizeActionIds(item.system?.actions);
+            if (changed) updates.push({ _id: item.id, "system.actions": actions });
+        }
+        if (updates.length) await actor.updateEmbeddedDocuments("Item", updates);
+    };
+
+    for (const item of game.items) await migrateItem(item);
+    for (const actor of game.actors) await migrateActorItems(actor);
+    for (const scene of game.scenes) {
+        for (const token of scene.tokens) {
+            if (token.actor && !token.actorLink) await migrateActorItems(token.actor);
+        }
+    }
+}
