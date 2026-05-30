@@ -1,0 +1,57 @@
+{
+  "_id": "ImcCUym4G2o2GM6a",
+  "name": "CHAKRA RESTORATION",
+  "type": "feat",
+  "img": "icons/magic/life/cross-beam-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> You now recover double your character level's worth of Chakra Reserve per evening of rest, and can use a short rest to recover Chakra one additional time per day.</p>",
+      "summary": "You now recover double your character level's worth of Chakra Reserve per evening of rest, and can use a short rest…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!ImcCUym4G2o2GM6a"
+}

@@ -1,0 +1,55 @@
+{
+  "_id": "cyGCAAgoE0oK4qAO",
+  "name": "MARK OF THE RED KING [META-CHAKRA]",
+  "type": "feat",
+  "img": "icons/magic/symbols/runes-carved-stone-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> True Red Eyes, Intimidate 15 ranks, Strong Mind, Strong Body +2.</p>\n<p><b>Benefit:</b> As a swift action up to twice a day, you can spend a meta-chakra charge to gain a +2 bonus to your Red Eyes and Strong Mind, Strong Body abilities, a 10 foot increase to your Swiftness ability and gain the ability to Sense Chakra as a free action each round without requiring concentration. While active, a glowing red cross appears on your back, and your eye turns blood red, with a white pupil.\n\nLasts 2 rounds.</p>",
+      "summary": "As a swift action up to twice a day, you can spend a meta-chakra charge to gain a +2 bonus to your Red Eyes and…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ]
+    }
+  },
+  "_key": "!items!cyGCAAgoE0oK4qAO"
+}

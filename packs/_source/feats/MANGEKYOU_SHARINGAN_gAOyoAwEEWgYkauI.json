@@ -1,0 +1,57 @@
+{
+  "_id": "gAOyoAwEEWgYkauI",
+  "name": "MANGEKYOU SHARINGAN",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-slit-red-orange.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Advanced Bloodline (Sharingan), Sharingan +4.</p>\n<p><b>Benefit:</b> You gain the Mangekyou Sharingan ability (see below), and you are now able to Learn Magen Kyouten Chiten and two of the following techniques: Amaterasu, Kamui or Tsukuyomi.</p>\n<p><b>Special:</b> The GM may require you to accomplish a special deed before you can take this feat.\n\nMANGEKYOU SHARINGAN (SU)\n\nWhile Sharingan is active, you can activate this power as a free action. For 2 rounds, your Sharingan and Offensive Insight bonuses increase by 1, you can See Chakra without needing to concentrate, and gain the ability to See Through Chakra while concentrating (as per Sharingan). This ability can be used once per day per five levels, but each use beyond the fourth on a given day adds one point of Mangekyou Sharingan Blindness.\n\nMangekyou Sharingan Blindness: Relying too much on the power of the Mangekyou Sharingan results in this condition, measured by points which are treated as ability damage that heals at the rate of 1 point per evening of rest, doubled with complete bed rest. However, Mangekyou Sharingan Blindness does not heal until all other temporary ability damage has been mended. Having one or more points of Mangekyou Sharingan Blindness incurs penalties (see Table 10-1: Mangekyou Sharingan Blindness) which apply whenever your Mangekyou Sharingan is not active.\n\n| Blindness   | Attack   | Defense   | Spot   | Reflex   | Special                                       |\n|-------------|----------|-----------|--------|----------|-----------------------------------------------|\n| 1 or less   | -        | -         | -      | -        | -                                             |\n| 2           | -1       | -1        | -2     | -1       | -                                             |\n| 3           | -1       | -2        | -4     | -1       | -                                             |\n| 4           | -2       | -3        | -6     | -2       | -                                             |\n| 5           | -2       | -3        | -8     | -2       | Fatigued for 30m after encounters             |\n| 6           | -3       | -4        | -10    | -3       | Fatigued for 1h after encounters              |\n| 7           | -3       | -5        | -12    | -3       | Exhausted for 1h after encounters             |\n| 8           | -3       | -6        | -14    | -3       | Exhausted for 2h after encounters             |\n| 9           | -4       | -6        | -16    | -4       | Exhausted for 4h after encounters             |\n| 10 or more  | -4       | -7        | -18    | -4       | Blinded and Exhausted for 8h after encounters |</p>",
+      "summary": "You gain the Mangekyou Sharingan ability (see below), and you are now able to Learn Magen Kyouten Chiten and two of…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!gAOyoAwEEWgYkauI"
+}

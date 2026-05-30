@@ -1,0 +1,57 @@
+{
+  "_id": "08quiokY0Q4CIYqA",
+  "name": "ENLARGE TECHNIQUE",
+  "type": "feat",
+  "img": "icons/magic/air/air-burst-spiral-large-pink.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> When applied to a technique, double the range it gains per two levels (For example, a technique with Long range gets a range of 30ft. + 30ft./two levels). If the technique has a maximum range, it is not increased. Increase the Perform Requirements by 2, and the Chakra Cost by 1 per 2 Ranks of the technique (rounded up).</p>",
+      "summary": "When applied to a technique, double the range it gains per two levels (For example, a technique with Long range gets…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!08quiokY0Q4CIYqA"
+}

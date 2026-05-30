@@ -1,0 +1,57 @@
+{
+  "_id": "6q4Sqcysgy0SqgI6",
+  "name": "Starship Operation",
+  "type": "feat",
+  "img": "icons/tools/navigation/compass-brass-blue-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Pilot 2 ranks.</p>\n<p><b>Benefit:</b> When operating a starship of the selected type, you take no penalty on Pilot checks and you apply your full class bonus to Defense to the ship's Defense.</p>\n<p><b>Special:</b> You can gain this feat multiple times. Each time you take the feat, it applies to a different type of starship (ultralight, light, mediumweight, heavy, or superheavy).</p>",
+      "summary": "When operating a starship of the selected type, you take no penalty on Pilot checks and you apply your full class…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!6q4Sqcysgy0SqgI6"
+}

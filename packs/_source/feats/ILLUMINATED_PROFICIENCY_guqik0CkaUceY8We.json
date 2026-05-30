@@ -1,0 +1,57 @@
+{
+  "_id": "guqik0CkaUceY8We",
+  "name": "ILLUMINATED PROFICIENCY",
+  "type": "feat",
+  "img": "icons/magic/light/beam-deflect-path-yellow.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "classFeat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Sacred Fist Stance, Buddhist Palm (Chakra), Wis 15.</p>\n<p><b>Benefit:</b> You may treat attacks with a quarterstaff, tonfa, nunchaku or kama as a sacred fist attack while in sacred fist stance. Your Buddhist Palm ability is also conferred to such weapons. You may use the weapon's base damage or your sacred fist damage, whichever is higher. (Other abilities that affect unarmed attacks will not apply)</p>",
+      "summary": "You may treat attacks with a quarterstaff, tonfa, nunchaku or kama as a sacred fist attack while in sacred fist…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "YIwCqqseAU6OcEks",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Class"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!guqik0CkaUceY8We"
+}

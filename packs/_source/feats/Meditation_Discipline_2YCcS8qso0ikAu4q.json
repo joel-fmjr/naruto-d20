@@ -1,0 +1,57 @@
+{
+  "_id": "2YCcS8qso0ikAu4q",
+  "name": "Meditation Discipline",
+  "type": "feat",
+  "img": "icons/magic/life/ankh-gold-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Wis 13.</p>\n<p><b>Benefit:</b> The hero may choose Concentration as a class skill. The skill is now modified by Wisdom.</p>",
+      "summary": "The hero may choose Concentration as a class skill. The skill is now modified by Wisdom.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!2YCcS8qso0ikAu4q"
+}

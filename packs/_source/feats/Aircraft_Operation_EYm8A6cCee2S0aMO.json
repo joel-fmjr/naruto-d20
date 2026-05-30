@@ -1,0 +1,57 @@
+{
+  "_id": "EYm8A6cCee2S0aMO",
+  "name": "Aircraft Operation",
+  "type": "feat",
+  "img": "icons/tools/navigation/compass-brass-blue-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Pilot 4 ranks.</p>\n<p><b>Benefit:</b> The character takes no penalty on Pilot checks or attack rolls made when operating an aircraft of the selected class (heavy aircraft, helicopters, jet fighters, or spacecraft).</p>\n<p><b>Special:</b> The character can gain this feat multiple times. Each time the character takes the feat, the character selects a different class of aircraft.</p>",
+      "summary": "The character takes no penalty on Pilot checks or attack rolls made when operating an aircraft of the selected class…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!EYm8A6cCee2S0aMO"
+}

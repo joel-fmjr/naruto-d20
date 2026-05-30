@@ -1,0 +1,57 @@
+{
+  "_id": "wmaC8auQO2iCeqKw",
+  "name": "TIMELESS BODY [EPIC FEAT]",
+  "type": "feat",
+  "img": "icons/magic/time/clock-analog-gray.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Advanced Bloodline (Sharingan), Sharingan +2.</p>\n<p><b>Benefit:</b> You can spend 1 meta-chakra to activate your Sharingan as a swift action.</p>",
+      "summary": "You can spend 1 meta-chakra to activate your Sharingan as a swift action.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!wmaC8auQO2iCeqKw"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "SUIkq82KGS84eMeI",
+  "name": "ELEMENTAL SHAPING",
+  "type": "feat",
+  "img": "icons/magic/air/air-burst-spiral-large-teal-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Any 1 meta-Chakra feat, Ninjutsu 12 ranks.</p>\n<p><b>Benefit:</b> When applied to an elemental ninjutsu technique with a cone, line, emanation or burst area of effect, you add the Shapeable (S) component to it. The Perform Requirements increase by 2, and the Chakra Cost increases by 1 for every 2 Ranks of the technique (rounded up).</p>",
+      "summary": "When applied to an elemental ninjutsu technique with a cone, line, emanation or burst area of effect, you add the…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!SUIkq82KGS84eMeI"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "mYaoCS0kqMwkYI2o",
+  "name": "Combat Expertise",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/combat-expertise.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Intelligence 13.</p>\n<p><b>Benefit:</b> When the character uses the attack action or the full attack action in melee, the character can take a penalty of up to -5 on his or her attack roll and add the same number (up to +5) to the character's Defense. This number may not exceed the character's Base Attack Bonus. The bonus to the character's Defense is a dodge bonus.</p>",
+      "summary": "When the character uses the attack action or the full attack action in melee, the character can take a penalty of up…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!mYaoCS0kqMwkYI2o"
+}

@@ -1,0 +1,19 @@
+{
+  "_id": "AQWgaEACqYeyQikC",
+  "name": "Strike",
+  "type": "Item",
+  "description": "",
+  "folder": "MWy2YACgQ8gYMoSC",
+  "sorting": "a",
+  "color": null,
+  "sort": 3000,
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!AQWgaEACqYeyQikC"
+}

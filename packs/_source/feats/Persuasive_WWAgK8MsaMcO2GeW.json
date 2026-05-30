@@ -1,0 +1,72 @@
+{
+  "_id": "WWAgK8MsaMcO2GeW",
+  "name": "Persuasive",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/persuasive.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> You get a +2 bonus on all Bluff checks and Intimidate checks.</p>",
+      "summary": "You get a +2 bonus on all Bluff checks and Intimidate checks.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "_id": "KYEM2qsOSoyWmES2",
+        "formula": "2",
+        "target": "skill.blf",
+        "type": "feat",
+        "operator": "add"
+      },
+      {
+        "_id": "meSaOM06Uua80M8o",
+        "formula": "2",
+        "target": "skill.int",
+        "type": "feat",
+        "operator": "add"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!WWAgK8MsaMcO2GeW"
+}

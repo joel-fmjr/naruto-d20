@@ -1,0 +1,57 @@
+{
+  "_id": "mqkWAS8Ya808iOGi",
+  "name": "MAXIMIZE TECHNIQUE",
+  "type": "feat",
+  "img": "icons/magic/fire/explosion-fire-orange.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Empower Technique, Chakra Pool 60, Chakra Control 15 ranks.</p>\n<p><b>Benefit:</b> When applied to a Fuinjutsu, Genjutsu or Ninjutsu technique, all random, numerical variables are counted as though you rolled the highest amount possible. Saving throws, weapon damage and opposed rolls are not affected. The Perform Requirements increase by 3, and the Chakra Cost increases by 3, plus 1 for every Rank of the technique.</p>\n<p><b>Special:</b> A technique enhanced in this way cannot be enhanced by other meta-Chakra feats.</p>",
+      "summary": "When applied to a Fuinjutsu, Genjutsu or Ninjutsu technique, all random, numerical variables are counted as though…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!mqkWAS8Ya808iOGi"
+}

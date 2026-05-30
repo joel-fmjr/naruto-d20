@@ -1,0 +1,58 @@
+{
+  "_id": "mSqMe2WSQsm2Gaay",
+  "name": "MOKUTON",
+  "type": "feat",
+  "img": "icons/magic/nature/elemental-plant-humanoid.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Heroic first level character, primary elemental affinity (earth or water).</p>\n<p><b>Benefit:</b> While you have both the earth and water affinities, you become able to perform Mokuton techniques.</p>",
+      "summary": "While you have both the earth and water affinities, you become able to perform Mokuton techniques.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General",
+        "First Level"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!mSqMe2WSQsm2Gaay"
+}

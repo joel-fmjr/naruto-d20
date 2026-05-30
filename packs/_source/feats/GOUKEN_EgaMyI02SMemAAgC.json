@@ -1,0 +1,57 @@
+{
+  "_id": "EgaMyI02SMemAAgC",
+  "name": "GOUKEN",
+  "type": "feat",
+  "img": "icons/weapons/fist/claw-red-black.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Taijutsu 4 ranks.</p>\n<p><b>Benefit:</b> You can learn Gouken techniques without penalty, and gain a +2 bonus to confirm critical hits with unarmed attacks.</p>",
+      "summary": "You can learn Gouken techniques without penalty, and gain a +2 bonus to confirm critical hits with unarmed attacks.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!EgaMyI02SMemAAgC"
+}

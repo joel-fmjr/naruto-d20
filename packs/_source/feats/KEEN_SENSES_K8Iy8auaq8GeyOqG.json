@@ -1,0 +1,57 @@
+{
+  "_id": "K8Iy8auaq8GeyOqG",
+  "name": "KEEN SENSES",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-slit-red-orange.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Heroic character level 6, Wis 13, Sense Chakra.</p>\n<p><b>Benefit:</b> Once per encounter, you can Sense Chakra as a swift action (unlimited out of combat). Your Sense Chakra now lasts as long as you concentrate plus 1d4+1 rounds, and you gain a +2 competence bonus to Wisdom and Spot checks made while using the ability.</p>",
+      "summary": "Once per encounter, you can Sense Chakra as a swift action (unlimited out of combat). Your Sense Chakra now lasts as…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!K8Iy8auaq8GeyOqG"
+}

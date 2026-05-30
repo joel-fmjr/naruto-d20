@@ -1,0 +1,57 @@
+{
+  "_id": "YgmScQcMwE0uGOAO",
+  "name": "WIDEN TECHNIQUE",
+  "type": "feat",
+  "img": "icons/magic/air/air-burst-spiral-large-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> When applied to a technique with a burst, emanation, line or spread shaped area of effect, you increase any numerical values of the technique's area by 50% (but not its range). The technique's Perform Requirements increase by 3, and the Chakra Cost increases by 2, plus 1 for every 2 Ranks of the technique (rounded up).</p>",
+      "summary": "When applied to a technique with a burst, emanation, line or spread shaped area of effect, you increase any numerical…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!YgmScQcMwE0uGOAO"
+}

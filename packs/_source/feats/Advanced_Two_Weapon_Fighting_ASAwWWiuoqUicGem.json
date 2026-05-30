@@ -1,0 +1,57 @@
+{
+  "_id": "ASAwWWiuoqUicGem",
+  "name": "Advanced Two-Weapon Fighting",
+  "type": "feat",
+  "img": "icons/weapons/swords/greatsword-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus 11, Dexterity 13, Two-Weapon Fighting, Improved Two-Weapon Fighting.</p>\n<p><b>Benefit:</b> The character gets a third attack with their offhand weapon, albeit at a -10 penalty. This feat also allows the character to use a melee weapon in one hand and a ranged weapon in the other.</p>",
+      "summary": "The character gets a third attack with their offhand weapon, albeit at a -10 penalty. This feat also allows the…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!ASAwWWiuoqUicGem"
+}

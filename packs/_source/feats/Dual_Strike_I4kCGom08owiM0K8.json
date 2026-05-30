@@ -1,0 +1,57 @@
+{
+  "_id": "I4kCGom08owiM0K8",
+  "name": "Dual Strike",
+  "type": "feat",
+  "img": "icons/skills/melee/blade-tips-double-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus +3, Combat Reflexes.</p>\n<p><b>Benefit:</b> If you and an ally both flank an opponent, you gain a +4 bonus on your attack roll.</p>",
+      "summary": "If you and an ally both flank an opponent, you gain a +4 bonus on your attack roll.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!I4kCGom08owiM0K8"
+}

@@ -1,0 +1,72 @@
+{
+  "_id": "maOskaMeE288GyWw",
+  "name": "Investigator",
+  "type": "feat",
+  "img": "icons/sundries/books/book-embossed-gold-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> You get a +2 bonus on all Gather Information and Search checks.</p>",
+      "summary": "You get a +2 bonus on all Gather Information and Search checks.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "_id": "EQGCMOkaMyWgwyii",
+        "formula": "2",
+        "target": "skill.dip",
+        "type": "feat",
+        "operator": "add"
+      },
+      {
+        "_id": "86oeS0i6464U8eIC",
+        "formula": "2",
+        "target": "skill.per",
+        "type": "feat",
+        "operator": "add"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!maOskaMeE288GyWw"
+}

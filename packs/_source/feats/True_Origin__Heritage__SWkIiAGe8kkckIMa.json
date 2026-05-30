@@ -1,0 +1,55 @@
+{
+  "_id": "SWkIiAGe8kkckIMa",
+  "name": "True Origin [Heritage]",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-ringed-glow-angry-large-teal.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Intimidate 4 ranks, Constitution 15. Can only be taken at 1st level; may not be chosen if the user has already selected the Advanced Bloodline feat.</p>\n<p><b>Benefit:</b> The user gains an inherent +4 bonus to their Chakra Pool. The character can manifest the Cursed Seal Level 1 ability for 1 round per level each day. After 10th level, the character can access the Cursed Seal Level 2 ability for 1 round per 3 levels each day. Each time the user activates either ability, they must succeed on a Will Save DC 15 or be enthralled by an unshakeable Rage for the duration. The user suffers 1 point of temporary Wisdom damage whenever they deactivate either ability.</p>",
+      "summary": "The user gains an inherent +4 bonus to their Chakra Pool. The character can manifest the Cursed Seal Level 1 ability…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ]
+    }
+  },
+  "_key": "!items!SWkIiAGe8kkckIMa"
+}

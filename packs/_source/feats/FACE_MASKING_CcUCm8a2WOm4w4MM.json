@@ -1,0 +1,58 @@
+{
+  "_id": "CcUCm8a2WOm4w4MM",
+  "name": "FACE MASKING",
+  "type": "feat",
+  "img": "icons/magic/symbols/mask-metal-silver-white.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Disguise 2 ranks, heroic character, can only be taken at first level.</p>\n<p><b>Benefit:</b> You gain a +2 bonus to disguise checks to assume the identity of a specific person. This feat is required to learn Kao Utsushi no Jutsu (p283).</p>",
+      "summary": "You gain a +2 bonus to disguise checks to assume the identity of a specific person. This feat is required to learn…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General",
+        "First Level"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!CcUCm8a2WOm4w4MM"
+}

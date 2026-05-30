@@ -1,0 +1,57 @@
+{
+  "_id": "0KoeOgAIueS4OiOW",
+  "name": "Planetary Adaptation",
+  "type": "feat",
+  "img": "icons/magic/air/air-smoke-casting.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> You gain one of the following benefits based on your planet of origin:\n- Barren World: +4 Survival and +4 Constitution checks vs starvation/thirst.\n- Cold World: +4 Fortitude vs extreme cold, cold resistance 5.\n- Dark World: Darkvision 60 ft.\n- High-G World: +2 Strength; reduce base height by 6 inches.\n- Hot World: +4 Fortitude vs extreme heat, fire resistance 5.\n- Low-G World: +2 Dexterity; increase base height by 6 inches.\n- Water World: +4 Swim checks; hold breath for twice your Constitution score in rounds.</p>\n<p><b>Special:</b> Can only be taken at 1st level. May be selected more than once if multiple feats are gained at 1st level; each time you choose this feat, you gain a different benefit.</p>",
+      "summary": "You gain one of the following benefits based on your planet of origin:\n- Barren World: +4 Survival and +4…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!0KoeOgAIueS4OiOW"
+}

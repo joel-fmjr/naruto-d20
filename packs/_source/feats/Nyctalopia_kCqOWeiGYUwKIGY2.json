@@ -1,0 +1,65 @@
+{
+  "_id": "kCqOWeiGYUwKIGY2",
+  "name": "Nyctalopia",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-slit-pink.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Must have functional eyes.</p>\n<p><b>Benefit:</b> You treat shadowy lighting as dark lighting. You can never benefit from darkvision or low-light vision.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "You treat shadowy lighting as dark lighting. You can never benefit from darkvision or low-light vision. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "uG8AWgE8O80Um6yC"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!kCqOWeiGYUwKIGY2"
+}

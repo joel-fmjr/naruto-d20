@@ -1,0 +1,57 @@
+{
+  "_id": "64OaQGusUkUEwU6A",
+  "name": "Precise Strike",
+  "type": "feat",
+  "img": "icons/skills/targeting/crosshair-triple-strike-orange.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus +5.</p>\n<p><b>Benefit:</b> Before making an attack on your turn, choose a single opponent and spend an action point. Until the beginning of your next turn, any attacks you make against that opponent use that opponent's touch Defense instead of the opponent's normal Defense.</p>",
+      "summary": "Before making an attack on your turn, choose a single opponent and spend an action point. Until the beginning of your…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!64OaQGusUkUEwU6A"
+}

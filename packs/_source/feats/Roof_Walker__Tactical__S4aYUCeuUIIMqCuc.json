@@ -1,0 +1,57 @@
+{
+  "_id": "S4aYUCeuUIIMqCuc",
+  "name": "Roof Walker [Tactical]",
+  "type": "feat",
+  "img": "icons/skills/movement/feet-bladed-boots-fire.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Balance 5 ranks, Jump 5 ranks, Dodge, Mobility.</p>\n<p><b>Benefit:</b> The Roof Walker feat enables the use of three tactical maneuvers.\n\nFleet of Feet: You can move at your full speed without taking a -5 penalty on your Balance check.\n\nGraceful Drop: If you intentionally jump from a height, you take falling damage as if you had dropped 20 fewer feet than you actually did (requires a successful Jump check).\n\nMaster of the Roof: You gain a +1 dodge bonus to Defense against any opponent who is at a different elevation from you.</p>",
+      "summary": "The Roof Walker feat enables the use of three tactical maneuvers.\n\nFleet of Feet: You can move at your full speed…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!S4aYUCeuUIIMqCuc"
+}

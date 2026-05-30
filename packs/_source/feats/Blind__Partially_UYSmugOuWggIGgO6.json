@@ -1,0 +1,65 @@
+{
+  "_id": "UYSmugOuWggIGgO6",
+  "name": "Blind, Partially",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-slit-pink.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Your race must have functional eyes.</p>\n<p><b>Benefit:</b> -4 to all Spot and Search checks.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "-4 to all Spot and Search checks. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "o4akg8uQ8IE6K8CQ"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!UYSmugOuWggIGgO6"
+}

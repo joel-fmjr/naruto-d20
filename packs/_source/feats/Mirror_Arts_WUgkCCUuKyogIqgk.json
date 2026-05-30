@@ -1,0 +1,57 @@
+{
+  "_id": "WUgkCCUuKyogIqgk",
+  "name": "Mirror Arts",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-ringed-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Knowledge (Physical Sciences) 5 ranks, Ninjutsu 5 ranks.</p>\n<p><b>Benefit:</b> You can learn Mirror techniques. Mirror Arts techniques can be affected by Elemental Specialization. The shinobi distorts the humidity in the air to create a reflective screen.</p>",
+      "summary": "You can learn Mirror techniques. Mirror Arts techniques can be affected by Elemental Specialization. The shinobi…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!WUgkCCUuKyogIqgk"
+}

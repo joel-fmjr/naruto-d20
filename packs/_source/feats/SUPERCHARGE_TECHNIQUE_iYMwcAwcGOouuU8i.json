@@ -1,0 +1,57 @@
+{
+  "_id": "iYMwcAwcGOouuU8i",
+  "name": "SUPERCHARGE TECHNIQUE",
+  "type": "feat",
+  "img": "icons/magic/lightning/bolt-forked-blue-yellow.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Any 1 meta-Chakra feat.</p>\n<p><b>Benefit:</b> When applied to an elemental Ninjutsu technique, half the elemental damage of the element's type dealt by the technique is changed to force damage. The technique's Perform Requirements increase by 3, and the Chakra Cost increases by 3, plus 1 for every 2 Ranks of the technique (rounded up).</p>\n<p><b>Special:</b> A technique enhanced by this feat cannot be enhanced by other meta-Chakra feats.</p>",
+      "summary": "When applied to an elemental Ninjutsu technique, half the elemental damage of the element's type dealt by the…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!iYMwcAwcGOouuU8i"
+}

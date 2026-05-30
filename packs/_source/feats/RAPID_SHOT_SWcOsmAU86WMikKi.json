@@ -1,0 +1,58 @@
+{
+  "_id": "SWcOsmAU86WMikKi",
+  "name": "RAPID SHOT",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/rapid-shot.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Dex 13, Point Blank Shot.</p>\n<p><b>Benefit:</b> When making a Full Attack with a bow or thrown weapon, you may make an additional attack at your highest attack bonus. All attacks you make during the action take a -2 penalty. Does not stack with other abilities that grant an extra attack (such as the Renzuki technique or the Storm of Blows class ability).</p>",
+      "summary": "When making a Full Attack with a bow or thrown weapon, you may make an additional attack at your highest attack…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Combat",
+        "Weapon"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!SWcOsmAU86WMikKi"
+}

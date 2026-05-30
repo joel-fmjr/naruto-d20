@@ -1,0 +1,57 @@
+{
+  "_id": "8W8G6CAugsMIAsms",
+  "name": "EMPOWER SUMMONING",
+  "type": "feat",
+  "img": "icons/magic/control/buff-flight-wings-runes-red-yellow.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Retrieval Expert.</p>\n<p><b>Benefit:</b> When applied to a technique that summons creatures, those creatures gain 1d8 HP, +1 per Level of the summon, and a +1 bonus to attack and damage rolls. The perform requirement increases by 3 and the Chakra Cost increases by 10.</p>\n<p><b>Special:</b> Can be selected twice, increasing the bonus by another +1 HP per level of the summon, and an additional +1 bonus to attack and damage rolls.</p>",
+      "summary": "When applied to a technique that summons creatures, those creatures gain 1d8 HP, +1 per Level of the summon, and a +1…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!8W8G6CAugsMIAsms"
+}

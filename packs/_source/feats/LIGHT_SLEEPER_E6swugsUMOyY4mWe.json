@@ -1,0 +1,57 @@
+{
+  "_id": "E6swugsUMOyY4mWe",
+  "name": "LIGHT SLEEPER",
+  "type": "feat",
+  "img": "icons/sundries/lights/candle-lit-angelic.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Con 13.</p>\n<p><b>Benefit:</b> You can sleep only 4 hours, recovering half the HP, Chakra and Chakra Reserves you normally would during a full night's rest, but no ability damage. You decrease the penalty to Listen checks while asleep by 2.</p>",
+      "summary": "You can sleep only 4 hours, recovering half the HP, Chakra and Chakra Reserves you normally would during a full…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!E6swugsUMOyY4mWe"
+}

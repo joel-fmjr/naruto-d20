@@ -1,0 +1,57 @@
+{
+  "_id": "0wkSeimcsYaiG4ec",
+  "name": "Combat Reflexes",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/combat-reflexes.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> The maximum number of Attacks of Opportunity the character may make each round is equal to the character's Dexterity modifier + 1. The character can still only make one attack of opportunity on a single opponent. With this feat, the character may also make attacks of opportunity when flat-footed.</p>\n<p><b>Special:</b> The Combat Reflexes feat doesn't allow a Fast Hero with the opportunist talent to use that talent more than once per round.</p>",
+      "summary": "The maximum number of Attacks of Opportunity the character may make each round is equal to the character's Dexterity…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!0wkSeimcsYaiG4ec"
+}

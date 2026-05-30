@@ -1,0 +1,57 @@
+{
+  "_id": "4U26kiu28c0uaQ2g",
+  "name": "Arterial Strike",
+  "type": "feat",
+  "img": "icons/skills/wounds/blood-spurt-spray-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus +4, sneak attack ability.</p>\n<p><b>Benefit:</b> If you hit with a sneak attack, you may choose to forgo +1d6 of extra sneak attack damage to deliver a wound that won't stop bleeding. Each wound caused in this manner saps an extra point of damage per round from the victim, until the victim receives the benefit of a DC 15 Treat Injury check. Wounds from multiple arterial strikes result in cumulative bleeding loss. You may deliver only one bleeding wound per successful sneak attack.</p>",
+      "summary": "If you hit with a sneak attack, you may choose to forgo +1d6 of extra sneak attack damage to deliver a wound that…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!4U26kiu28c0uaQ2g"
+}

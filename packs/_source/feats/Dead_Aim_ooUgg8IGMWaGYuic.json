@@ -1,0 +1,57 @@
+{
+  "_id": "ooUgg8IGMWaGYuic",
+  "name": "Dead Aim",
+  "type": "feat",
+  "img": "icons/skills/targeting/crosshair-scope-sniper-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Wisdom 13, Far Shot.</p>\n<p><b>Benefit:</b> Before making a ranged attack, the character may take a full-round action to line up their shot. This grants the character a +2 circumstance bonus on his or her next attack roll. Once the character begins aiming, he or she can't move, even to take a 5-foot step, until after the character makes his or her next attack, or the benefit of the feat is lost.</p>",
+      "summary": "Before making a ranged attack, the character may take a full-round action to line up their shot. This grants the…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!ooUgg8IGMWaGYuic"
+}

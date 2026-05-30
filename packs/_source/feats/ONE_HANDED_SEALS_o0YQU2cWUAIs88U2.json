@@ -1,0 +1,57 @@
+{
+  "_id": "o0YQU2cWUAIs88U2",
+  "name": "ONE-HANDED SEALS",
+  "type": "feat",
+  "img": "icons/magic/symbols/runes-carved-stone-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Ninjutsu 9 ranks, Sleight of Hand 6 ranks, Genius Ninja (genjutsu or ninjutsu).</p>\n<p><b>Benefit:</b> You may change the hand seal component of Fuinjutsu, Genjutsu and Ninjutsu techniques you perform to half seals by increasing its Perform Requirements by 2. Using this feat in this manner does not consume a meta-Chakra charge, though you may spend a charge to ignore the perform requirement increase for one technique.</p>",
+      "summary": "You may change the hand seal component of Fuinjutsu, Genjutsu and Ninjutsu techniques you perform to half seals by…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!o0YQU2cWUAIs88U2"
+}

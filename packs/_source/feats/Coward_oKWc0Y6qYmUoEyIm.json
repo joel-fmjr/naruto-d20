@@ -1,0 +1,65 @@
+{
+  "_id": "oKWc0Y6qYmUoEyIm",
+  "name": "Coward",
+  "type": "feat",
+  "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Must not be immune to fear.</p>\n<p><b>Benefit:</b> You have a -6 penalty on all saves against fear effects. Even if you succeed on such a save, you are still shaken for 1 round.</p>\n<p><b>Special:</b> If the effect would normally leave you shaken on a successful save, you become frightened instead. If the effect would normally leave you frightened on a successful save, you become panicked. This flaw overrides any class features, should they come into conflict.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "You have a -6 penalty on all saves against fear effects. Even if you succeed on such a save, you are still shaken for…. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "o2GkGsYGasW6c6AC"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!oKWc0Y6qYmUoEyIm"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "QyaqMMGsUyuOISCG",
+  "name": "HIVEMIND",
+  "type": "feat",
+  "img": "icons/creatures/invertebrates/bee-simple-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Symbiote, one or more Symbiote bloodline levels.</p>\n<p><b>Benefit:</b> In addition to your insect swarms, your body produces 1 Hive Mother per day, and you can carry up to one Hive Mother per 5 levels (maximum 4). A Hive Mother can Sense Chakra passively, at a range of 20 feet. By concentrating (as the Sense Chakra ability), you can Sense Chakra through the Hive Mother, as normal.\n\nA Hive Mother can merge with an insect swarm that does not yet have one, increasing the swarm's Constitution score by 2. If the swarm is destroyed, so is the Hive Mother merged with it. See the Friends and Foes chapter (p370) for more details on a Hive Mother.</p>",
+      "summary": "In addition to your insect swarms, your body produces 1 Hive Mother per day, and you can carry up to one Hive Mother…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!QyaqMMGsUyuOISCG"
+}

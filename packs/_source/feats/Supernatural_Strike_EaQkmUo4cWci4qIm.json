@@ -1,0 +1,57 @@
+{
+  "_id": "EaQkmUo4cWci4qIm",
+  "name": "Supernatural Strike",
+  "type": "feat",
+  "img": "icons/magic/unholy/hand-claw-fire-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus +2.</p>\n<p><b>Benefit:</b> When you roll a threat against a creature normally unaffected by critical hits (such as a construct, ooze, or undead), you may check for a critical hit and deal the increased damage if the threat is confirmed. This is a supernatural ability.</p>",
+      "summary": "When you roll a threat against a creature normally unaffected by critical hits (such as a construct, ooze, or…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!EaQkmUo4cWci4qIm"
+}

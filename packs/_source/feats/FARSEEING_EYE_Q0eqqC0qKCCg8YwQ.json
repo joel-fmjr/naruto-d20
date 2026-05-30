@@ -1,0 +1,57 @@
+{
+  "_id": "Q0eqqC0qKCCg8YwQ",
+  "name": "FARSEEING EYE",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-ringed-glow-angry-large-teal.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Advanced Bloodline (Byakugan), Byakugan +2, Keen Sight +2, Telescopic Eye.</p>\n<p><b>Benefit:</b> While your Byakugan is active, you ignore distance penalties to Spot checks for the first 50 feet. While using Telescopic Eye, you ignore Spot penalties for an additional 100 feet, and distance penalties become -1 for every 50 feet beyond that instead of their usual value.</p>",
+      "summary": "While your Byakugan is active, you ignore distance penalties to Spot checks for the first 50 feet. While using…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!Q0eqqC0qKCCg8YwQ"
+}

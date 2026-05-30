@@ -1,0 +1,101 @@
+{
+  "_id": "bVlAeymAaMNauU1H",
+  "name": "KAGE KUBISHIBARI NO JUTSU (SHADOW NECK BIND TECHNIQUE)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/spells/lighting-sky-3.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Ninjutsu (Shadow)</p>\n<p><b>Rank:</b> 7 (Spell Level 4)</p>\n<p><b>Chakra Cost:</b> 12</p>\n\n<p><b>Learn DC:</b> 22 | <b>Successes:</b> 5</p>\n<p><b>Perform:</b> 10 | <b>Perform DC:</b> 24</p>\n\n<p><b>Components:</b> C, S</p>\n\n<hr>\n\n<p>You stretch your shadows even further (not counting against Kage Mane's limit), and attempt to strangle the targets with your shadow, dealing 6d8 damage. Any creature suffering damage must also make a Massive Damage save.</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Ninjutsu",
+    "subtype": "Shadow",
+    "rank": 7,
+    "complexity": "A-Class",
+    "chakraCost": 12,
+    "activation": "standard",
+    "range": "",
+    "target": "Up to one creature/3 levels trapped in Kage Mane no Jutsu",
+    "area": "",
+    "duration": "Instant",
+    "save": "Fortitude halves *",
+    "compHandSeals": false,
+    "compHalfSeals": true,
+    "compConcentration": true,
+    "compMobility": false,
+    "compFocus": false,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": false,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "VIgKOr8-BmRmIVFX",
+        "name": "Use",
+        "actionType": "spellsave",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "target": {
+          "value": "Up to one creature/3 levels trapped in Kage Mane no Jutsu"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "6d8",
+              "types": []
+            }
+          ]
+        },
+        "save": {
+          "type": "fort",
+          "description": "Fortitude half"
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "2Uk0gAYssUkEE6Co",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!bVlAeymAaMNauU1H"
+}

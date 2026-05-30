@@ -1,0 +1,58 @@
+{
+  "_id": "oUKwgS6W8iyOQu0W",
+  "name": "TWO-WEAPON DEFENSE",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/two-weapon-defense.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Two-Weapon Fighting.</p>\n<p><b>Benefit:</b> While wielding a weapon in both hands (not counting unarmed attacks), you gain a +1 shield bonus to Defense, which increases to +2 while fighting defensively or taking a total defense action.</p>",
+      "summary": "While wielding a weapon in both hands (not counting unarmed attacks), you gain a +1 shield bonus to Defense, which…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Combat",
+        "Weapon"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!oUKwgS6W8iyOQu0W"
+}

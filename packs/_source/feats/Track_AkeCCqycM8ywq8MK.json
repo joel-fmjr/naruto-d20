@@ -1,0 +1,57 @@
+{
+  "_id": "AkeCCqycM8ywq8MK",
+  "name": "Track",
+  "type": "feat",
+  "img": "icons/creatures/abilities/paw-print-orange.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> To find tracks or follow them for one mile requires a Survival check (DC 5 for very soft ground up to DC 20 for hard surfaces). The character must make another Survival check every time the tracks become difficult to follow. The character moves at half his or her normal speed (or at normal speed with a -5 penalty, or at twice speed with a -20 penalty).</p>",
+      "summary": "To find tracks or follow them for one mile requires a Survival check (DC 5 for very soft ground up to DC 20 for hard…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!AkeCCqycM8ywq8MK"
+}

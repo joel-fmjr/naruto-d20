@@ -1,0 +1,19 @@
+{
+  "_id": "iEOwCgqQcgmowsOA",
+  "name": "09",
+  "type": "Item",
+  "description": "",
+  "folder": "seQe6cKu6WyqwOey",
+  "sorting": "a",
+  "color": null,
+  "sort": 5000,
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!iEOwCgqQcgmowsOA"
+}

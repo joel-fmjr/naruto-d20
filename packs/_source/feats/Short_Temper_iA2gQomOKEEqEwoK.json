@@ -1,0 +1,65 @@
+{
+  "_id": "iA2gQomOKEEqEwoK",
+  "name": "Short Temper",
+  "type": "feat",
+  "img": "icons/magic/fire/beam-strike-whip-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> Whenever you suffer damage, you become enraged. Whilst enraged, you take a -2 penalty to Armor Class and cannot make Intelligence, Wisdom or Charisma-based skill checks. You will stay in this enraged state for 1d4 rounds or until the thing that caused the damage is defeated.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "Whenever you suffer damage, you become enraged. Whilst enraged, you take a -2 penalty to Armor Class and cannot make…. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "WguQUy080wUacOsG"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!iA2gQomOKEEqEwoK"
+}

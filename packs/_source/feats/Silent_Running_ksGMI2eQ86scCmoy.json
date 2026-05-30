@@ -1,0 +1,57 @@
+{
+  "_id": "ksGMI2eQ86scCmoy",
+  "name": "Silent Running",
+  "type": "feat",
+  "img": "icons/magic/symbols/mask-yellow-orange.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Character level 6th, Dexterity 12, Move Silently 10 ranks, Hide 10 ranks, Stealthy.</p>\n<p><b>Benefit:</b> You suffer no penalty for moving at your base speed when making Move Silently skill checks. In addition, you suffer only a -10 penalty for running or charging when making Move Silently skill checks.</p>",
+      "summary": "You suffer no penalty for moving at your base speed when making Move Silently skill checks. In addition, you suffer…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!ksGMI2eQ86scCmoy"
+}

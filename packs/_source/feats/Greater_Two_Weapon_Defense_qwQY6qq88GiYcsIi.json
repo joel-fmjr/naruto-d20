@@ -1,0 +1,57 @@
+{
+  "_id": "qwQY6qq88GiYcsIi",
+  "name": "Greater Two Weapon Defense",
+  "type": "feat",
+  "img": "icons/equipment/shield/Scutum-steel-worn.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Dex 19, Improved Two-Weapon Defense, Two-Weapon Defense, Two-Weapon Fighting, base attack bonus +11.</p>\n<p><b>Benefit:</b> When wielding two weapons (not including natural weapons or unarmed strikes), you gain a +3 shield bonus to your AC. When you are fighting defensively or using the total defense action, this shield bonus increases to +6.</p>",
+      "summary": "When wielding two weapons (not including natural weapons or unarmed strikes), you gain a +3 shield bonus to your AC.…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!qwQY6qq88GiYcsIi"
+}

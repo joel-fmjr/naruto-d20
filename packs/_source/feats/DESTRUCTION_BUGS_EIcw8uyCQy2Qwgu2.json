@@ -1,0 +1,57 @@
+{
+  "_id": "EIcw8uyCQy2Qwgu2",
+  "name": "DESTRUCTION BUGS",
+  "type": "feat",
+  "img": "icons/creatures/invertebrates/bee-yellow.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Symbiote.</p>\n<p><b>Benefit:</b> Your swarms gain 1 hp per Hit Die, and the DC of their distractions increases by 2.</p>",
+      "summary": "Your swarms gain 1 hp per Hit Die, and the DC of their distractions increases by 2.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!EIcw8uyCQy2Qwgu2"
+}

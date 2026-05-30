@@ -1,0 +1,57 @@
+{
+  "_id": "CYMiIuGku2yKwkQO",
+  "name": "CRAFT LIVING PUPPETS",
+  "type": "feat",
+  "img": "icons/magic/control/buff-flight-wings-runes-purple.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Craft (mechanical) 12 ranks, Knowledge (earth and life sciences) 9 ranks, Craft Puppets.</p>\n<p><b>Benefit:</b> You can craft human and animal puppets. See the Puppet chapter.</p>",
+      "summary": "You can craft human and animal puppets. See the Puppet chapter.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Item Creation"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!CYMiIuGku2yKwkQO"
+}

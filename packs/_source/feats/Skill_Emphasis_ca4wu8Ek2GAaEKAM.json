@@ -1,0 +1,57 @@
+{
+  "_id": "ca4wu8Ek2GAaEKAM",
+  "name": "Skill Emphasis",
+  "type": "feat",
+  "img": "icons/sundries/books/book-clasp-spiral-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> You get a +3 bonus on all skill checks with the chosen skill.</p>\n<p><b>Special:</b> You can gain this feat multiple times. Its effects do not stack. Each time you take this feat, it applies to a different skill.</p>",
+      "summary": "You get a +3 bonus on all skill checks with the chosen skill.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!ca4wu8Ek2GAaEKAM"
+}

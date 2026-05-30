@@ -1,0 +1,57 @@
+{
+  "_id": "W0w0oCMa8ECWOYa0",
+  "name": "Dead Eye",
+  "type": "feat",
+  "img": "icons/skills/targeting/crosshair-pointed-orange.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Dex 13, base attack bonus +1, Point Blank Shot, Weapon Focus (any ranged weapon).</p>\n<p><b>Benefit:</b> You may add your Dexterity bonus to all damage rolls made with ranged weapons for which you have the Weapon Focus feat, so long as the target is within 30 feet.</p>\n<p><b>Special:</b> Dead Eye does not increase the damage dealt to creatures that are immune to critical hits.</p>",
+      "summary": "You may add your Dexterity bonus to all damage rolls made with ranged weapons for which you have the Weapon Focus…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!W0w0oCMa8ECWOYa0"
+}

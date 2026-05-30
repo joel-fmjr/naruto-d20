@@ -1,0 +1,55 @@
+{
+  "_id": "me0mo4Y4W4kuSMom",
+  "name": "HEART OF THE BLADE [META-CHAKRA]",
+  "type": "feat",
+  "img": "icons/weapons/swords/greatsword-crossguard-engraved-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Wis 15, Blade Affinity +1, DR 1/Bludgeoning or Piercing, Satori (20 feet).</p>\n<p><b>Benefit:</b> You can spend a meta-chakra charge as a free action to increase the Defense bonus granted by Blade Affinity by 2, as well as increase your DR/Bludgeoning or Piercing value by 2, for 1 round.</p>",
+      "summary": "You can spend a meta-chakra charge as a free action to increase the Defense bonus granted by Blade Affinity by 2, as…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ]
+    }
+  },
+  "_key": "!items!me0mo4Y4W4kuSMom"
+}

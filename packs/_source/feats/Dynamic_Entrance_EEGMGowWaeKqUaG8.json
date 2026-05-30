@@ -1,0 +1,57 @@
+{
+  "_id": "EEGMGowWaeKqUaG8",
+  "name": "Dynamic Entrance",
+  "type": "feat",
+  "img": "icons/skills/movement/feet-winged-boots-glowing-yellow.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Taijutsu 6 ranks, Taijutsu Adept.</p>\n<p><b>Benefit:</b> During this character's first round of combat, any opponent who is the target of this character's melee attack or Taijutsu technique is considered to be flat-footed. If the user was undetected, the bonuses conferred by Invisible Attacker are doubled for this round.</p>",
+      "summary": "During this character's first round of combat, any opponent who is the target of this character's melee attack or…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!EEGMGowWaeKqUaG8"
+}

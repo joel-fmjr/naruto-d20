@@ -1,0 +1,58 @@
+{
+  "_id": "K62OqikEqsE0Wmg6",
+  "name": "POWER CRITICAL",
+  "type": "feat",
+  "img": "icons/skills/melee/blade-tip-chipped-blood-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus +4, Weapon Focus.</p>\n<p><b>Benefit:</b> Choose a weapon for which you have Weapon Focus. Gain a +4 bonus to attack rolls to confirm critical hits with that weapon.</p>\n<p><b>Special:</b> You may select this feat more than once, either for the same weapon or a different one.</p>",
+      "summary": "Choose a weapon for which you have Weapon Focus. Gain a +4 bonus to attack rolls to confirm critical hits with that…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Combat",
+        "Weapon"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!K62OqikEqsE0Wmg6"
+}

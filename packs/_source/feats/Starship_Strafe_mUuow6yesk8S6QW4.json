@@ -1,0 +1,57 @@
+{
+  "_id": "mUuow6yesk8S6QW4",
+  "name": "Starship Strafe",
+  "type": "feat",
+  "img": "icons/skills/ranged/arrow-barbed-flying-gray.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Starship Gunnery.</p>\n<p><b>Benefit:</b> When using a starship's ranged weapon on autofire, you can affect an area four 500-foot squares long and one 500-foot square wide (any four 500-foot squares in a straight line).</p>",
+      "summary": "When using a starship's ranged weapon on autofire, you can affect an area four 500-foot squares long and one 500-foot…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!mUuow6yesk8S6QW4"
+}

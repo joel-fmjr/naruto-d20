@@ -1,0 +1,57 @@
+{
+  "_id": "8ECqQYWu2UEOk2sI",
+  "name": "Heroic Surge",
+  "type": "feat",
+  "img": "icons/skills/melee/blade-tips-triple-bent-white.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> The character may take an extra move action or attack action in a round, either before or after the character's regular actions. Uses per day by character level: 1st-4th: 1/day; 5th-8th: 2/day; 9th-12th: 3/day; 13th-16th: 4/day; 17th-20th: 5/day. Never more than once per round.</p>",
+      "summary": "The character may take an extra move action or attack action in a round, either before or after the character's…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!8ECqQYWu2UEOk2sI"
+}

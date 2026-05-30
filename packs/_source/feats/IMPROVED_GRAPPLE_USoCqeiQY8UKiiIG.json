@@ -1,0 +1,57 @@
+{
+  "_id": "USoCqeiQY8UKiiIG",
+  "name": "IMPROVED GRAPPLE",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/improved-grapple.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Str 13, Combat Throw.</p>\n<p><b>Benefit:</b> You do not provoke attacks of opportunity when trying to start a grapple, and gain a +4 competence bonus to all grapple checks.</p>",
+      "summary": "You do not provoke attacks of opportunity when trying to start a grapple, and gain a +4 competence bonus to all…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!USoCqeiQY8UKiiIG"
+}

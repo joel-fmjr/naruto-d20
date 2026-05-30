@@ -1,0 +1,57 @@
+{
+  "_id": "iYYeAIMEewEaGsSU",
+  "name": "Burst Fire",
+  "type": "feat",
+  "img": "icons/weapons/guns/gun-blunderbuss-bronze.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Wisdom 13, Personal Firearms Proficiency, Advanced Firearms Proficiency.</p>\n<p><b>Benefit:</b> When using an automatic firearm with at least five bullets loaded, the character may fire a short burst as a single attack against a single target. The character receives a -4 penalty on the attack roll, but deals +2 dice of damage. Firing a burst expends five bullets.</p>\n<p><b>Special:</b> If the firearm has a three-round burst setting, firing a burst expends three bullets instead of five.</p>",
+      "summary": "When using an automatic firearm with at least five bullets loaded, the character may fire a short burst as a single…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!iYYeAIMEewEaGsSU"
+}

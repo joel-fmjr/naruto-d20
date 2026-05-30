@@ -1,0 +1,57 @@
+{
+  "_id": "Oi4OCc6iyIQGMCG8",
+  "name": "IMPROVED COMBAT EXPERTISE",
+  "type": "feat",
+  "img": "icons/skills/melee/blood-slash-foam-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Int 13, Combat Expertise, base attack bonus +6.</p>\n<p><b>Benefit:</b> When using Combat Expertise, you may lower your attack bonus by any number up to your base attack bonus, and increase your Defense accordingly.</p>",
+      "summary": "When using Combat Expertise, you may lower your attack bonus by any number up to your base attack bonus, and increase…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!Oi4OCc6iyIQGMCG8"
+}

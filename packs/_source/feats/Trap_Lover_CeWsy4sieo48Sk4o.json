@@ -1,0 +1,65 @@
+{
+  "_id": "CeWsy4sieo48Sk4o",
+  "name": "Trap Lover",
+  "type": "feat",
+  "img": "icons/environment/traps/cage-grey-steel.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> You take a -4 penalty to Disable Device checks. If you are within 30 feet of a trap you know about, you are shaken until you personally trigger the trap or the trap can no longer be seen by you.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "You take a -4 penalty to Disable Device checks. If you are within 30 feet of a trap you know about, you are shaken…. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "Sc4COYScSwWOOcmW"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!CeWsy4sieo48Sk4o"
+}

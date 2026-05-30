@@ -1,0 +1,57 @@
+{
+  "_id": "608yCYcIS6mI2CqQ",
+  "name": "EFFICIENT TECHNIQUE",
+  "type": "feat",
+  "img": "icons/magic/symbols/cog-orange-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Any 1 meta-Chakra feat, Chakra Control 9 ranks.</p>\n<p><b>Benefit:</b> When applied to a technique, you decrease its base cost by 50% or its total Chakra Cost by 25%. Its Perform Requirements increase by 4.</p>\n<p><b>Special:</b> If you apply this feat to a technique, you cannot apply other meta-Chakra feats to it.</p>",
+      "summary": "When applied to a technique, you decrease its base cost by 50% or its total Chakra Cost by 25%. Its Perform…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!608yCYcIS6mI2CqQ"
+}

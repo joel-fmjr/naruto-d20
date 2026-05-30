@@ -1,0 +1,57 @@
+{
+  "_id": "ACOkEC2mMIMUoQ0i",
+  "name": "Improved Overrun",
+  "type": "feat",
+  "img": "icons/creatures/abilities/bull-head-horns-glowing.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Power Attack, Strength 13.</p>\n<p><b>Benefit:</b> When you attempt to overrun an opponent, the target may not choose to avoid you. You also gain a +4 competence bonus on the Strength check to knock down your opponent.</p>",
+      "summary": "When you attempt to overrun an opponent, the target may not choose to avoid you. You also gain a +4 competence bonus…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!ACOkEC2mMIMUoQ0i"
+}

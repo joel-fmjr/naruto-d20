@@ -1,0 +1,57 @@
+{
+  "_id": "UsoWYWyiYum24cUw",
+  "name": "Improved Iaijutsu Focus [Epic]",
+  "type": "feat",
+  "img": "icons/weapons/swords/greatsword-crossguard-embossed-gold.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Iaijutsu Focus 27 ranks.</p>\n<p><b>Benefit:</b> The extra damage you inflict when you make an Iaijutsu Focus check no longer has a maximum die cap. The progression of extra damage continues indefinitely, increasing by +1d6 for every 5 points over a result of 10 you receive on the check.</p>",
+      "summary": "The extra damage you inflict when you make an Iaijutsu Focus check no longer has a maximum die cap. The progression…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!UsoWYWyiYum24cUw"
+}

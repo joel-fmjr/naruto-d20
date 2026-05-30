@@ -1,0 +1,57 @@
+{
+  "_id": "WaYEskuIqCCQoeEG",
+  "name": "Darkstalker",
+  "type": "feat",
+  "img": "icons/magic/symbols/mask-yellow-orange.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> When you hide, creatures with Blindsense, Blindsight, Scent, or Tremorsense must make a Listen check or a Spot check (whichever DC is higher) to notice you, just as sighted creatures would make Spot checks to detect you. You cannot hide in plain sight unless you have that ability as a class feature. In addition, you can flank creatures that have the all-around vision special quality.</p>",
+      "summary": "When you hide, creatures with Blindsense, Blindsight, Scent, or Tremorsense must make a Listen check or a Spot check…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!WaYEskuIqCCQoeEG"
+}

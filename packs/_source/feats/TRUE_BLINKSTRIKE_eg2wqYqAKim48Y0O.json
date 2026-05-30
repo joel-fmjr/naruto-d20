@@ -1,0 +1,57 @@
+{
+  "_id": "eg2wqYqAKim48Y0O",
+  "name": "TRUE BLINKSTRIKE",
+  "type": "feat",
+  "img": "icons/skills/melee/blade-tip-energy-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "classFeat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Blinkstrike +3 class ability, Quick Draw, Dodge, Mobility, Agile Riposte.</p>\n<p><b>Benefit:</b> As a free action, you may upgrade your Blinkstrike stance for one round. While upgraded, you lose your Blinkstrike bonus to Defense, but gain a bonus to attack and damage equal to half your Blinkstrike level, rounded up. In addition, you may make a Full Attack and still move up to your speed (you may tumble normally or use Blink Step as part of this move), though you must move at least 5 ft. between each attack, and you cannot move to a square you have previ- ously occupied that turn. These bonuses only apply while you are in the Blinkstrike stance.</p>",
+      "summary": "As a free action, you may upgrade your Blinkstrike stance for one round. While upgraded, you lose your Blinkstrike…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "YIwCqqseAU6OcEks",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Class"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!eg2wqYqAKim48Y0O"
+}

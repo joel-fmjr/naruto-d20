@@ -1,0 +1,57 @@
+{
+  "_id": "2QOaMckYGMCWEOuw",
+  "name": "Chau Murky",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-slit-pink.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Poison Use.</p>\n<p><b>Benefit:</b> You gain a +2 competence bonus on Craft checks to prepare and identify poisons, and a +2 competence bonus to Treat Injury checks to treat poison. Additionally, if you are ever poisoned because of a botched roll, you may spend an action point to re-roll the failure.</p>",
+      "summary": "You gain a +2 competence bonus on Craft checks to prepare and identify poisons, and a +2 competence bonus to Treat…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!2QOaMckYGMCWEOuw"
+}

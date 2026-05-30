@@ -1,0 +1,57 @@
+{
+  "_id": "ykKwUCS6iu8WIYS2",
+  "name": "Fast Plus",
+  "type": "feat",
+  "img": "icons/skills/movement/arrow-upward-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> At least three ranks in the Fast Hero class.</p>\n<p><b>Benefit:</b> Character gains two talents from the Fast hero's talent trees. The talents must be selected from the following list, and the character must meet all prerequisites:\n\nDefensive Talent Tree: Uncanny Dodge 1, Uncanny Dodge 2, Defensive Roll, or Opportunist.\nIncreased Speed Talent Tree: Improved Increased Speed or Advanced Increased Speed.</p>\n<p><b>Special:</b> This feat may be selected multiple times. Each time it is selected, a different pair of talents must be chosen than the previous times.</p>",
+      "summary": "Character gains two talents from the Fast hero's talent trees. The talents must be selected from the following list,…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!ykKwUCS6iu8WIYS2"
+}

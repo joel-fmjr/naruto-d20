@@ -1,0 +1,57 @@
+{
+  "_id": "8aGK6Ym4wO02WCaU",
+  "name": "Hard-Eyed",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-ringed-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> You gain a +5 circumstance bonus on Intimidate checks when aiming a firearm at the target of your check. The target must be within 30 feet, and must be able to see you (and your firearm). The target does not have to be flat-footed.</p>\n<p><b>Special:</b> This bonus does not stack with the +2 circumstance bonus for threatening the target with a gun, but it can stack with other circumstance bonuses.</p>",
+      "summary": "You gain a +5 circumstance bonus on Intimidate checks when aiming a firearm at the target of your check. The target…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!8aGK6Ym4wO02WCaU"
+}

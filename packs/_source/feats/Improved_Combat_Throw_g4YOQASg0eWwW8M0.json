@@ -1,0 +1,57 @@
+{
+  "_id": "g4YOQASg0eWwW8M0",
+  "name": "Improved Combat Throw",
+  "type": "feat",
+  "img": "icons/weapons/fist/claw-hooked-grey.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus 3, Defensive Martial Arts, Combat Throw.</p>\n<p><b>Benefit:</b> In melee combat, if an opponent attacks and misses you, you may immediately make a trip attack against the opponent. This counts as an attack of opportunity which the character can make even if they are unarmed.</p>\n<p><b>Special:</b> This feat doesn't grant the character more attacks of opportunity than he is normally allowed in a round.</p>",
+      "summary": "In melee combat, if an opponent attacks and misses you, you may immediately make a trip attack against the opponent.…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!g4YOQASg0eWwW8M0"
+}

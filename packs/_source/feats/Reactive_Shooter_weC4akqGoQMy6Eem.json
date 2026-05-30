@@ -1,0 +1,57 @@
+{
+  "_id": "weC4akqGoQMy6Eem",
+  "name": "Reactive Shooter",
+  "type": "feat",
+  "img": "icons/skills/ranged/archery-bow-attack-yellow.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> If you have a Medium-size or smaller ranged weapon in hand, you may act in the surprise round even if you are surprised. You roll initiative as though you were not surprised. The only action you may take in the surprise round is a single ranged attack with the weapon in your hand at your highest attack bonus, but you suffer a -5 penalty on the attack. You are still considered flat-footed during the surprise round.</p>",
+      "summary": "If you have a Medium-size or smaller ranged weapon in hand, you may act in the surprise round even if you are…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!weC4akqGoQMy6Eem"
+}

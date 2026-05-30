@@ -1,0 +1,57 @@
+{
+  "_id": "wCIWCysOsQ8IQ2Ca",
+  "name": "Heft",
+  "type": "feat",
+  "img": "icons/creatures/abilities/bear-roar-bite-brown-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Str 15, Windup.</p>\n<p><b>Benefit:</b> You may add 150% of your Strength bonus to all damage rolls for thrown weapons instead of the Strength bonus you would normally add. If you are using weapons in both hands, this feat applies only to weapons thrown with your primary hand.</p>",
+      "summary": "You may add 150% of your Strength bonus to all damage rolls for thrown weapons instead of the Strength bonus you…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!wCIWCysOsQ8IQ2Ca"
+}

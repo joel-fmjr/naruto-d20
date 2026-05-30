@@ -1,0 +1,104 @@
+{
+  "_id": "v0GEFUpd9WDl4i5P",
+  "name": "SUIRYUUDAN NO JUTSU (WATER DRAGON BLAST TECHNIQUE)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/spells/fireball-eerie-3.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Ninjutsu (Suiton)</p>\n<p><b>Rank:</b> 7 (Spell Level 4)</p>\n<p><b>Chakra Cost:</b> 10</p>\n\n<p><b>Learn DC:</b> 21 | <b>Successes:</b> 3</p>\n<p><b>Perform:</b> 9 | <b>Perform DC:</b> 22</p>\n\n<p><b>Components:</b> F, H</p>\n\n<hr>\n\n<p>You create a small, watery dragon that crashes down, dealing 7d6+5 water damage to creatures caught in the area.</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Ninjutsu",
+    "subtype": "Suiton",
+    "rank": 7,
+    "complexity": "B-Class",
+    "chakraCost": 10,
+    "activation": "standard",
+    "range": "Close (10 ft. + 5 ft./2 levels)",
+    "target": "",
+    "area": "10 ft Square",
+    "duration": "Instant",
+    "save": "Reflex halves",
+    "compHandSeals": true,
+    "compHalfSeals": false,
+    "compConcentration": false,
+    "compMobility": false,
+    "compFocus": true,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": false,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "4z8wwOkWp-b5oVCd",
+        "name": "Use",
+        "actionType": "spellsave",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "range": {
+          "units": "close"
+        },
+        "area": "10 ft Square",
+        "damage": {
+          "parts": [
+            {
+              "formula": "7d6+5",
+              "types": [
+                "water"
+              ]
+            }
+          ]
+        },
+        "save": {
+          "type": "ref",
+          "description": "Reflex half"
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "ysA04wWAyAwaoIyK",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!v0GEFUpd9WDl4i5P"
+}

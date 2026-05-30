@@ -1,0 +1,19 @@
+{
+  "_id": "mamQSMegS8QGwM02",
+  "name": "General",
+  "type": "Item",
+  "description": "",
+  "folder": "8GkySMCAuOiYEIE8",
+  "sorting": "a",
+  "color": null,
+  "sort": 1000,
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!mamQSMegS8QGwM02"
+}

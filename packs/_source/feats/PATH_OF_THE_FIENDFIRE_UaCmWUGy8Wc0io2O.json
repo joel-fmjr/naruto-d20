@@ -1,0 +1,57 @@
+{
+  "_id": "UaCmWUGy8Wc0io2O",
+  "name": "PATH OF THE FIENDFIRE",
+  "type": "feat",
+  "img": "icons/magic/fire/beam-jet-stream-yellow.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Blood Mage, Knowledge (ninja lore) 9 ranks, Fuinjutsu 9 ranks, Con 15.</p>\n<p><b>Benefit:</b> As a swift action, you can spend a metaChakra charge to gain Fire Resistance 5 for 3 rounds. This feat is also required to learn Path of the Fiendfire techniques (p346), and you may do so without penalties (even if they are Fuinjutsu).</p>",
+      "summary": "As a swift action, you can spend a metaChakra charge to gain Fire Resistance 5 for 3 rounds. This feat is also…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!UaCmWUGy8Wc0io2O"
+}

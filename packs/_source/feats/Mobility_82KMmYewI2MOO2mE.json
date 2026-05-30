@@ -1,0 +1,57 @@
+{
+  "_id": "82KMmYewI2MOO2mE",
+  "name": "Mobility",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/mobility.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Dexterity 13, Dodge.</p>\n<p><b>Benefit:</b> The character gets a +4 dodge bonus to Defense against attacks of opportunity provoked when the character moves out of a threatened square.</p>",
+      "summary": "The character gets a +4 dodge bonus to Defense against attacks of opportunity provoked when the character moves out…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!82KMmYewI2MOO2mE"
+}

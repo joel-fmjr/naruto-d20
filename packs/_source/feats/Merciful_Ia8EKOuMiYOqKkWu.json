@@ -1,0 +1,65 @@
+{
+  "_id": "Ia8EKOuMiYOqKkWu",
+  "name": "Merciful",
+  "type": "feat",
+  "img": "icons/magic/life/heart-cross-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Good alignment.</p>\n<p><b>Benefit:</b> Whenever you or an ally you can see deals enough damage to a dragon, giant, fey, humanoid, magical beast or monstrous humanoid to bring it below 0 hit points and dying (but not killed), you feel compelled to save that creature's life. You are shaken until you or an ally makes a first aid check to stabilize that creature. If you or an ally willingly kills the creature, or you are otherwise unable to tend to it, you remain shaken for the rest of the day.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "Whenever you or an ally you can see deals enough damage to a dragon, giant, fey, humanoid, magical beast or monstrous…. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "cswYqKsaKIgUqIos"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!Ia8EKOuMiYOqKkWu"
+}

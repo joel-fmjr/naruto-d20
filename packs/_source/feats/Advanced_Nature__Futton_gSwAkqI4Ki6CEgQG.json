@@ -1,0 +1,57 @@
+{
+  "_id": "gSwAkqI4Ki6CEgQG",
+  "name": "Advanced Nature: Futton",
+  "type": "feat",
+  "img": "icons/magic/water/steam-clouds-purple.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Primary elemental affinity Fire or Water, can only be taken at 1st level.</p>\n<p><b>Benefit:</b> You gain an elemental affinity to Boil as well as Fire or Water (whichever you didn't select as your primary elemental affinity). Your Boil affinity may replace your primary elemental affinity, which is then downgraded to a normal affinity. You do not gain a new nature until level 21 via level progression. This release has the descriptor of Boil.</p>",
+      "summary": "You gain an elemental affinity to Boil as well as Fire or Water (whichever you didn't select as your primary…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!gSwAkqI4Ki6CEgQG"
+}

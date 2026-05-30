@@ -1,0 +1,19 @@
+{
+  "_id": "w2kSceCuioUWMekI",
+  "name": "General",
+  "type": "Item",
+  "description": "",
+  "folder": "4QmU4wOGyUamCoua",
+  "sorting": "a",
+  "color": null,
+  "sort": 0,
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!w2kSceCuioUWMekI"
+}

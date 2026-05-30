@@ -1,0 +1,57 @@
+{
+  "_id": "WWIW48QUGUWIICKs",
+  "name": "EMPOWERED RESILIENCE",
+  "type": "feat",
+  "img": "icons/magic/defensive/barrier-shield-dome-deflect-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Chakra Control 6 ranks, Chakra Pool 16.</p>\n<p><b>Benefit:</b> You may spend an instant action and 1 point of Chakra to gain a +4 resistance bonus to all saves until your next turn. Must be declared before rolling a save.</p>",
+      "summary": "You may spend an instant action and 1 point of Chakra to gain a +4 resistance bonus to all saves until your next…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!WWIW48QUGUWIICKs"
+}

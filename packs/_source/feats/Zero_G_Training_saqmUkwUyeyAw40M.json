@@ -1,0 +1,57 @@
+{
+  "_id": "saqmUkwUyeyAw40M",
+  "name": "Zero-G Training",
+  "type": "feat",
+  "img": "icons/magic/symbols/cog-glowing-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Dexterity 13, Tumble 4 ranks.</p>\n<p><b>Benefit:</b> You take no penalty on attack rolls in low-gravity or zero-gravity environments. In addition, you do not suffer the debilitating effects of space sickness.</p>",
+      "summary": "You take no penalty on attack rolls in low-gravity or zero-gravity environments. In addition, you do not suffer the…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!saqmUkwUyeyAw40M"
+}

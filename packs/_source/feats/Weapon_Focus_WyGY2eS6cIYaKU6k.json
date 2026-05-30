@@ -1,0 +1,57 @@
+{
+  "_id": "WyGY2eS6cIYaKU6k",
+  "name": "Weapon Focus",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/weapon-focus.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus 1, Proficient with weapon.</p>\n<p><b>Benefit:</b> The character adds +1 to all attack rolls he or she makes using the selected weapon.</p>\n<p><b>Special:</b> A character can gain this feat multiple times. Each time the character takes the feat, the character must select a different weapon.</p>",
+      "summary": "The character adds +1 to all attack rolls he or she makes using the selected weapon.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!WyGY2eS6cIYaKU6k"
+}

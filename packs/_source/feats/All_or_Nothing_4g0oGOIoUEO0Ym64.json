@@ -1,0 +1,57 @@
+{
+  "_id": "4g0oGOIoUEO0Ym64",
+  "name": "All or Nothing",
+  "type": "feat",
+  "img": "icons/skills/melee/blade-tip-chipped-blood-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus +4.</p>\n<p><b>Benefit:</b> Whenever you make a full attack, you can make it an all or nothing attack. You receive an additional melee strike at your highest base attack bonus. However, you lose one full action on your next initiative turn, and suffer a -4 circumstance penalty to Defense until you are able to perform another action.</p>",
+      "summary": "Whenever you make a full attack, you can make it an all or nothing attack. You receive an additional melee strike at…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!4g0oGOIoUEO0Ym64"
+}

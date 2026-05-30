@@ -1,0 +1,58 @@
+{
+  "_id": "Oqc64GSUse8keCuu",
+  "name": "DETERMINED GENIUS",
+  "type": "feat",
+  "img": "icons/sundries/books/book-backed-silver-gold.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Wis 13, can only be taken at first level.</p>\n<p><b>Benefit:</b> You are incapable of learning and performing Chakra Control, Genjutsu, Fuinjutsu and Ninjutsu techniques, though you can still identify them. You cannot Sense Chakra, but can still Suppress Chakra if you know how. Techniques gained by the Harmony and/or Innate Control feats ignore this limitation, as do the Hachimon Tonkou techniques, if you are otherwise capable of learning and using them.\n\nYou gain a +4 bonus to learn Taijutsu techniques if you take one-half again the normal time to learn it (before any time reduction from beating the DC by enough), and a +4 bonus to perform and identify Taijutsu techniques. In addition, the save DC of your Taijutsu techniques increases by 2.\n\nLastly, you gain a +2 bonus to Will saves against fear.</p>",
+      "summary": "You are incapable of learning and performing Chakra Control, Genjutsu, Fuinjutsu and Ninjutsu techniques, though you…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General",
+        "First Level"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!Oqc64GSUse8keCuu"
+}

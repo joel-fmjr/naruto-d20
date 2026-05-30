@@ -1,0 +1,57 @@
+{
+  "_id": "MyaqW4EMyy0mOCMm",
+  "name": "Urban Tracking",
+  "type": "feat",
+  "img": "icons/environment/settlement/abandoned-pier.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> To find the trail of an individual or to follow it for 1 hour requires a Gather Information check. The DC of the check and the number of checks required depends on the community population (DC 5 for fewer than 2,000 people up to DC 30 for 500,000+). You must make another Gather Information check every hour of the search, as well as each time the trail becomes difficult to follow.</p>\n<p><b>Special:</b> You can cut the time per Gather Information check in half (to 30 minutes), but you suffer a -5 penalty on the check.</p>",
+      "summary": "To find the trail of an individual or to follow it for 1 hour requires a Gather Information check. The DC of the…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!MyaqW4EMyy0mOCMm"
+}

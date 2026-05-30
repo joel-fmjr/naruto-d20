@@ -1,0 +1,57 @@
+{
+  "_id": "CAiWmuySECs6c6Y6",
+  "name": "SOUL EDGE SPECIALIZATION",
+  "type": "feat",
+  "img": "icons/weapons/swords/greatsword-crossguard-barbed.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "classFeat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Soul Edge class ability, Ghost Edge, Weapon Focus (Soul Edge), Wis 13.</p>\n<p><b>Benefit:</b> You receive the Weapon Specialization ability for the Soul Edge, gaining a +2 damage bonus with it.</p>",
+      "summary": "You receive the Weapon Specialization ability for the Soul Edge, gaining a +2 damage bonus with it.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "YIwCqqseAU6OcEks",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Class"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!CAiWmuySECs6c6Y6"
+}

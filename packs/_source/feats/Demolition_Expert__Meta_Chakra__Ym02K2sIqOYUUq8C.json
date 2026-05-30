@@ -1,0 +1,55 @@
+{
+  "_id": "Ym02K2sIqOYUUq8C",
+  "name": "Demolition Expert [Meta-Chakra]",
+  "type": "feat",
+  "img": "icons/magic/symbols/cog-glowing-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Chakra Control 9 ranks, any other Meta-Chakra feat.</p>\n<p><b>Benefit:</b> The character is able to empower an exploding tag with extra power. To do so, he must spend 2 additional points of chakra per damage dice when charging the tag. When the tag explodes, it deals 50% extra damage and the blast radius increases by 10 feet. Every use expends a meta-chakra charge. The DC to detonate said tag also increases by 5.</p>",
+      "summary": "The character is able to empower an exploding tag with extra power. To do so, he must spend 2 additional points of…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ]
+    }
+  },
+  "_key": "!items!Ym02K2sIqOYUUq8C"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "I4WSykYU0iE60CkM",
+  "name": "Ambush",
+  "type": "feat",
+  "img": "icons/weapons/daggers/dagger-black.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus +4, Wis 13.</p>\n<p><b>Benefit:</b> When setting an ambush, you receive a +4 circumstance bonus to your Initiative check, and also in determining awareness to see if the enemy perceives you. The bonus applies to Hide or Move Silently rolls, or whatever the DM deems appropriate to the situation.</p>",
+      "summary": "When setting an ambush, you receive a +4 circumstance bonus to your Initiative check, and also in determining…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!I4WSykYU0iE60CkM"
+}

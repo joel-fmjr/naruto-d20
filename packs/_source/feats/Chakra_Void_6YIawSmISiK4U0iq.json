@@ -1,0 +1,57 @@
+{
+  "_id": "6YIawSmISiK4U0iq",
+  "name": "Chakra Void",
+  "type": "feat",
+  "img": "icons/magic/death/hand-withered-gray.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Energy Resistance talent, Chakra Affinity.</p>\n<p><b>Benefit:</b> Whenever the character would reduce the damage taken from a technique by means of the Energy Resistance ability, they gain an equal amount of temporary chakra. This temporary chakra lasts until the end of the next round.</p>",
+      "summary": "Whenever the character would reduce the damage taken from a technique by means of the Energy Resistance ability, they…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!6YIawSmISiK4U0iq"
+}

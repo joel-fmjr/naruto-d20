@@ -1,0 +1,55 @@
+{
+  "_id": "SU4GKOoUGSEgamwq",
+  "name": "DESTRUCTION MARK [META-CHAKRA]",
+  "type": "feat",
+  "img": "icons/magic/symbols/runes-carved-stone-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Advanced Bloodline (Keirigan), Keirigan +2, Deadly Insight +2, Executioner's Mark.</p>\n<p><b>Benefit:</b> You can spend a meta-chakra charge to empower an attack made with the Executioner's Mark bonus. If the attack is a melee or ranged attack, its critical threat range increases by your Deadly Insight bonus. If the attack is a spell, ability or technique, its Save DC increases by your Deadly Insight bonus, but only for the studied target. Attacks made targeting an object or structure deal 50% extra damage.\n\nThis feat can be used twice per day. Critical threat range and Save DC increases do not stack with similar bonuses provided by other sources.</p>",
+      "summary": "You can spend a meta-chakra charge to empower an attack made with the Executioner's Mark bonus. If the attack is a…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ]
+    }
+  },
+  "_key": "!items!SU4GKOoUGSEgamwq"
+}

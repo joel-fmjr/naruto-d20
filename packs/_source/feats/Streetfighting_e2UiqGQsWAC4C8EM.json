@@ -1,0 +1,57 @@
+{
+  "_id": "e2UiqGQsWAC4C8EM",
+  "name": "Streetfighting",
+  "type": "feat",
+  "img": "icons/weapons/fist/claw-leather-black.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus 2, Brawl.</p>\n<p><b>Benefit:</b> Once per round, if the character makes a successful melee attack with an unarmed strike or a light weapon, the character deals an extra 1d4 points of damage.</p>",
+      "summary": "Once per round, if the character makes a successful melee attack with an unarmed strike or a light weapon, the…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!e2UiqGQsWAC4C8EM"
+}

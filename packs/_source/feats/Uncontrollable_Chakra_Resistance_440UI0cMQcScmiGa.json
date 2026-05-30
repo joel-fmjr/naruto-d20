@@ -1,0 +1,65 @@
+{
+  "_id": "440UI0cMQcScmiGa",
+  "name": "Uncontrollable Chakra Resistance",
+  "type": "feat",
+  "img": "icons/magic/unholy/energy-smoke-pink.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Chakra Resistance.</p>\n<p><b>Benefit:</b> You cannot willingly forgo your chakra resistance to allow a technique to affect you normally. Any technique used on you, including beneficial techniques, must beat your Chakra Resistance before affecting you.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "You cannot willingly forgo your chakra resistance to allow a technique to affect you normally. Any technique used on…. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "oeamiguEKmqY0Qau"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!440UI0cMQcScmiGa"
+}

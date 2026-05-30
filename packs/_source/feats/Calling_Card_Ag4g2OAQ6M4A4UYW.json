@@ -1,0 +1,57 @@
+{
+  "_id": "Ag4g2OAQ6M4A4UYW",
+  "name": "Calling Card",
+  "type": "feat",
+  "img": "icons/sundries/documents/blueprint-anchor.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Mastery in at least one technique, HD 8 or higher, Technique Focus.</p>\n<p><b>Benefit:</b> The ninja gains a +2 to Reputation. The character chooses a technique that they have selected with Technique Focus and have at least 1 level of mastery in. Once per encounter, the character may choose to perform this technique, dealing 2 additional die of damage if it deals damage and increasing the perform check by 5 and the chakra cost by 1. A technique that doesn't deal damage has its DC increased by 1 and duration increased by 50%. Every time an opponent is defeated with the calling card technique, the character gains a +1 to reputation.</p>",
+      "summary": "The ninja gains a +2 to Reputation. The character chooses a technique that they have selected with Technique Focus…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!Ag4g2OAQ6M4A4UYW"
+}

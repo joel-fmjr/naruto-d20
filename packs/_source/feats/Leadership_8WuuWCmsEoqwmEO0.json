@@ -1,0 +1,57 @@
+{
+  "_id": "8WuuWCmsEoqwmEO0",
+  "name": "Leadership",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/leadership.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Character level 7th.</p>\n<p><b>Benefit:</b> This feat enables you to attract a loyal cohort and a number of devoted subordinates who assist you. Your leader score is equal to the sum of your character level, your Reputation, and your Charisma modifier, modified by various factors. You can attract a cohort of up to a level determined by your leader score, and a number of followers by level as shown on the Leadership table.</p>",
+      "summary": "This feat enables you to attract a loyal cohort and a number of devoted subordinates who assist you. Your leader…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!8WuuWCmsEoqwmEO0"
+}

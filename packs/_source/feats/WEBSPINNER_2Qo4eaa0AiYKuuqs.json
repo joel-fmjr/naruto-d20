@@ -1,0 +1,57 @@
+{
+  "_id": "2Qo4eaa0AiYKuuqs",
+  "name": "WEBSPINNER",
+  "type": "feat",
+  "img": "icons/creatures/invertebrates/spider-large-white-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Advanced Bloodline (Gumoshin), Gumokeitou.</p>\n<p><b>Benefit:</b> You can spend 2 Chakra as a free action to create 2 additional kumonosu, up to three times per day. You cannot exceed your maximum number of kumonosu this way. Your kumonosu recharge rate is now 4 per hour.</p>",
+      "summary": "You can spend 2 Chakra as a free action to create 2 additional kumonosu, up to three times per day. You cannot exceed…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!2Qo4eaa0AiYKuuqs"
+}

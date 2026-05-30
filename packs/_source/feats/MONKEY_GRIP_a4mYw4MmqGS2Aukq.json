@@ -1,0 +1,58 @@
+{
+  "_id": "a4mYw4MmqGS2Aukq",
+  "name": "MONKEY GRIP",
+  "type": "feat",
+  "img": "icons/weapons/fist/claw-gauntlet-gray.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Str 13, base attack bonus +1.</p>\n<p><b>Benefit:</b> You can wield one-handed and two-handed weapons one size larger than you as a one-handed or two-handed weapon (respectively), though you still suffer the -2 penalty for wielding a weapon one size too large. In addition, you can perform techniques with a half seal component or cast spells with somatic components while wielding a two-handed weapon, as you temporarily free one of your hands.</p>",
+      "summary": "You can wield one-handed and two-handed weapons one size larger than you as a one-handed or two-handed weapon…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Combat",
+        "Weapon"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!a4mYw4MmqGS2Aukq"
+}

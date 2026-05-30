@@ -1,0 +1,57 @@
+{
+  "_id": "I6Kay8Kqg6iyw4cU",
+  "name": "TECHNICAL KNOWLEDGE",
+  "type": "feat",
+  "img": "icons/sundries/books/book-embossed-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "classFeat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Educated, Knowledge (ninja lore) 9 ranks, one Meta-Chakra Specialization class ability.</p>\n<p><b>Benefit:</b> You gain a +1 bonus to Learn checks when developing or creating Chakra Control, Fuinjutsu, Genjutsu or Ninjutsu techniques. When you teach others techniques of those types, you grant an additional +2 bonus to Learn checks, though you still cannot grant more than a +5 bonus total.</p>",
+      "summary": "You gain a +1 bonus to Learn checks when developing or creating Chakra Control, Fuinjutsu, Genjutsu or Ninjutsu…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "YIwCqqseAU6OcEks",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Class"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!I6Kay8Kqg6iyw4cU"
+}

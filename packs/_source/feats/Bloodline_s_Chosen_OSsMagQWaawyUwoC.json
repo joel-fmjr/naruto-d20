@@ -1,0 +1,57 @@
+{
+  "_id": "OSsMagQWaawyUwoC",
+  "name": "Bloodline's Chosen",
+  "type": "feat",
+  "img": "icons/skills/wounds/blood-drip-droplet-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Can only be taken at the 1st level, Advanced Bloodline.</p>\n<p><b>Benefit:</b> Upon selecting this feat, the potency of the chosen bloodline is decreased by one category. For example, a Major bloodline becomes an Intermediate bloodline for the sake of determining the number of levels that must be taken to advance the bloodline.</p>",
+      "summary": "Upon selecting this feat, the potency of the chosen bloodline is decreased by one category. For example, a Major…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!OSsMagQWaawyUwoC"
+}

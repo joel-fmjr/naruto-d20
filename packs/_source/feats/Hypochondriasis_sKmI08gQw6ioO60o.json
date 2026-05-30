@@ -1,0 +1,65 @@
+{
+  "_id": "sKmI08gQw6ioO60o",
+  "name": "Hypochondriasis",
+  "type": "feat",
+  "img": "icons/skills/wounds/blood-cells-disease-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> In any stressful situation where you cannot otherwise take 10, you take a -2 penalty on all Strength-based skill checks. When running, you decrease your speed by one multiple lower than normal. Furthermore, you heal naturally at half the normal rate and automatically suffer the longest duration on the following conditions: exhaustion, fatigue, nausea, paralysis, shaken, stunned, and sleep effects.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "In any stressful situation where you cannot otherwise take 10, you take a -2 penalty on all Strength-based skill…. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "8I6a8sO22aqcUq0e"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!sKmI08gQw6ioO60o"
+}

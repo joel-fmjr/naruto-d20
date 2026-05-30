@@ -1,0 +1,57 @@
+{
+  "_id": "KkMKKC0QIIiAcAaS",
+  "name": "BLOOD PACT (Hare)",
+  "type": "feat",
+  "img": "icons/creatures/mammals/rabbit-movement-glowing-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> To sign a blood pact, you must find the appropriate Contract. See Chapter 9 for details on obtaining contracts and the various summon tribes.</p>\n<p><b>Benefit:</b> You can summon creatures of the Hare tribe, and gain a +4 bonus to Charisma-based skill checks used on such creatures. While within 50 feet of a summoned Hare, you gain +1 bonus to all saves (luck).</p>",
+      "summary": "Summon Hare tribe; +4 Cha skill checks vs. Hares; +1 bonus to all saves (luck) within 50 ft of summon.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!KkMKKC0QIIiAcAaS"
+}

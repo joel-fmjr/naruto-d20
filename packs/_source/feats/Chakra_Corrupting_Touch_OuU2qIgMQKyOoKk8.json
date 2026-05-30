@@ -1,0 +1,65 @@
+{
+  "_id": "OuU2qIgMQKyOoKk8",
+  "name": "Chakra Corrupting Touch",
+  "type": "feat",
+  "img": "icons/magic/unholy/hand-claw-fog-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> A sealed item that you wear or otherwise utilize for the first time has a 25% chance of becoming cursed. This roll is made in secret by the DM. If the item is cursed, the type of curse is chosen at random or selected by the DM. If the item was cursed prior to you touching it, it now has two curses.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "A sealed item that you wear or otherwise utilize for the first time has a 25% chance of becoming cursed. This roll is…. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "EM8ES2QsUey8skQA"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!OuU2qIgMQKyOoKk8"
+}
