@@ -80,7 +80,7 @@
         },
         "ability": {
           "attack": "dex",
-          "damage": "dex",
+          "damage": "str",
           "critRange": 20,
           "critMult": 2
         }

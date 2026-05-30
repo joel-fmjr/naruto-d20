@@ -247,7 +247,7 @@ function inferActionType(system) {
     }
 
     // Naruto d20 has no spell-attack concept: model touch/melee as a melee
-    // weapon attack and ranged as a ranged weapon attack (both DEX-based below).
+    // weapon attack and ranged as a ranged weapon attack.
     if (/^touch$|^melee\s*touch|^melee\s*attack/i.test(rangeRaw)) return "mwak";
 
     if (/^close\b|^medium\b|^long\b/i.test(rangeRaw)) return hasDamage ? "rwak" : "other";
@@ -307,10 +307,9 @@ function generateAction(system) {
         action.touch = true;
     }
 
-    // Weapon attacks (Taijutsu mwak, plus the mwak/rwak we map from former
-    // melee/ranged spell attacks) all roll on DEX in the Naruto d20 system.
+    // Weapon attacks roll on DEX to hit and STR for damage in Naruto d20.
     if (isTaijutsu || actionType === "mwak" || actionType === "rwak") {
-        action.ability = { attack: "dex", damage: "dex", critRange: 20, critMult: 2 };
+        action.ability = { attack: "dex", damage: "str", critRange: 20, critMult: 2 };
     }
 
     return action;

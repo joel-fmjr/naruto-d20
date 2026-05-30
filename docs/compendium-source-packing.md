@@ -58,13 +58,13 @@ entry). Relevant fields:
   "range": { "units": "long" },  // personal|touch|close|medium|long|ft
   "damage": { "parts": [ { "formula": "1d8+1", "types": ["electric"] } ] },
   "save": { "type": "ref", "description": "Reflex half" },
-  "ability": { "attack": "dex", "damage": "dex", "critRange": 20, "critMult": 2 }
+  "ability": { "attack": "dex", "damage": "str", "critRange": 20, "critMult": 2 }
 }
 ```
 
 **Attack types in Naruto d20:** only weapon attacks are used —
-`mwak` (melee) and `rwak` (ranged) — and they always roll on **DEX**
-(`ability.attack`/`ability.damage = "dex"`). PF1e's *spell* attack types
+`mwak` (melee) and `rwak` (ranged) — and they roll attacks on **DEX** with
+**STR** for damage (`ability.attack = "dex"`, `ability.damage = "str"`). PF1e's *spell* attack types
 (`msak`/`rsak`) are **not** used: they key off a spellcasting class ability that
 techniques don't have. Non-attack actions use `spellsave`/`save`/`heal`/`other`.
 
@@ -73,7 +73,7 @@ techniques don't have. Non-attack actions use `spellsave`/`save`/`heal`/`other`.
 | Script | npm alias | Purpose |
 |---|---|---|
 | `add-actions.mjs` | `npm run add-actions` | Generates `system.actions[0]` for techniques from their flat fields (range, save, damage in description, …). **Skips** any technique that already has actions (use `--force` to override, `--dry-run` to preview). |
-| `fix-spell-attacks.mjs` | `npm run fix-spell-attacks` | One-off cleanup: rewrites any `actionType: "rsak" → "rwak"` and `"msak" → "mwak"`, attaching the DEX `ability` block. Idempotent — only touches matching action types. `--dry-run` to preview. |
+| `fix-spell-attacks.mjs` | `npm run fix-spell-attacks` | One-off cleanup: rewrites any `actionType: "rsak" → "rwak"` and `"msak" → "mwak"`, attaching the DEX/STR `ability` block. Idempotent — only touches matching action types. `--dry-run` to preview. |
 
 Convention for new transforms: scan `packs/_source/techniques/`, only rewrite a
 file when something actually changed, support `--dry-run`, and print a summary.
@@ -98,4 +98,4 @@ npm run pack                      # rebuild packs/techniques/ (LevelDB)
 - After `npm run pack`, the LevelDB files under `packs/techniques/` are updated
   (`git status` shows them modified).
 - In Foundry (F5), open the techniques compendium and confirm the action on a
-  converted technique shows the right attack type rolling on DEX.
+  converted technique uses DEX to hit and STR for damage.

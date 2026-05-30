@@ -4,12 +4,12 @@
  * Naruto d20 has no "spell attack" concept (rsak/msak), which key off a
  * spellcasting class ability the techniques don't have. This script rewrites
  * every generated action that used those types into the corresponding weapon
- * attack, keyed off DEX:
+ * attack, keyed off DEX to hit and STR for damage:
  *
  *   actionType "rsak" (ranged spell attack) -> "rwak" (ranged weapon attack)
  *   actionType "msak" (melee spell attack)  -> "mwak" (melee weapon attack)
  *
- * Converted actions get ability { attack: "dex", damage: "dex", critRange, critMult }
+ * Converted actions get ability { attack: "dex", damage: "str", critRange, critMult }
  * (mirroring how Taijutsu actions are seeded in add-actions.mjs). All other
  * fields (range, damage, save, target, touch, ...) are left untouched.
  *
@@ -30,7 +30,7 @@ const SRC_DIR   = join(ROOT, "packs/_source/techniques");
 
 const DRY_RUN = process.argv.includes("--dry-run");
 
-// rsak -> rwak (ranged), msak -> mwak (melee). Both become DEX-based weapon attacks.
+// rsak -> rwak (ranged), msak -> mwak (melee). Both become weapon attacks.
 const TYPE_MAP = { rsak: "rwak", msak: "mwak" };
 
 let total = 0, filesChanged = 0;
@@ -61,11 +61,11 @@ for (const filename of files) {
         counts[action.actionType]++;
         action.actionType = newType;
 
-        // Force DEX for the attack/damage roll, preserving any existing crit values.
+        // Force DEX to hit and STR for damage, preserving any existing crit values.
         const prev = action.ability ?? {};
         action.ability = {
             attack:    "dex",
-            damage:    "dex",
+            damage:    "str",
             critRange: prev.critRange ?? 20,
             critMult:  prev.critMult  ?? 2,
         };
