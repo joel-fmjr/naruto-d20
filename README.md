@@ -20,9 +20,30 @@ Definido em [`module.json`](module.json).
 
 ## Instalação
 
+**Via manifest URL (recomendado):** no Foundry, **Add-on Modules → Install Module**, cole a URL do manifest e instale — assim o Foundry detecta e aplica atualizações automaticamente:
+
+```
+https://github.com/ezioaalves/naruto-d20/releases/latest/download/module.json
+```
+
+**Manual:**
+
 1. Coloque o diretório `naruto-d20/` em `Data/modules/` do seu Foundry.
 2. No mundo, ative o módulo em **Game Settings → Manage Modules**.
 3. Recarregue o mundo (`F5` em página, `Ctrl+R` para reload de módulos).
+
+---
+
+## Publicação de releases
+
+O empacotamento e a publicação são automatizados por [`.github/workflows/release.yml`](.github/workflows/release.yml). Para lançar uma nova versão, basta criar e enviar uma tag `vX.Y.Z`:
+
+```bash
+git tag v1.2.3
+git push origin v1.2.3
+```
+
+O workflow injeta a versão e a `download` URL no `module.json`, gera um `module.zip` contendo apenas os artefatos de runtime (`scripts/`, `templates/`, `styles/`, `lang/`, `packs/` compilados, `icons/`, `module.json`, `README.md`, `LICENSE` — sem `packs/_source/`, `tools/` nem `node_modules/`) e cria a Release no GitHub com `module.json` + `module.zip`.
 
 ---
 
@@ -240,4 +261,4 @@ Veja [`CLAUDE.md`](CLAUDE.md) para guidance que orienta agentes Claude trabalhan
 
 ## Licença e créditos
 
-Autor: Ezio Alves. Sistema Pathfinder 1e por Furyspark / pf1 Team. Naruto D20 é uma adaptação homebrew — todo material relacionado à franquia Naruto pertence a Masashi Kishimoto e Shueisha.
+Autores: Ezio Alves e Joel Júnior. Código licenciado sob **MIT** (veja [`LICENSE`](LICENSE)). Sistema Pathfinder 1e por Furyspark / pf1 Team. Naruto D20 é uma adaptação homebrew — todo material relacionado à franquia Naruto pertence a Masashi Kishimoto e Shueisha.
