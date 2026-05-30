@@ -205,7 +205,7 @@ export function createTechniqueItemSheet() {
             event.stopPropagation();
             const row = event.currentTarget.closest(".item[data-action-id]");
             const id  = row?.dataset.actionId;
-            if (id) await performTechnique(this.item, id);
+            if (id) await performTechnique(this.item, id, event);
         }
 
         async _onAddAction(event) {

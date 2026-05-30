@@ -95,7 +95,7 @@ export function registerTechniqueListListeners() {
                 ui.notifications.warn(`${item.name}: no actions configured.`);
                 return;
             }
-            await performTechnique(item, firstAction.id);
+            await performTechnique(item, firstAction.id, ev);
         });
 
         // Delete technique from actor
