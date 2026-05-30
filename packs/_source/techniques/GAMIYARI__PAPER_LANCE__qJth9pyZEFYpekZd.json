@@ -47,7 +47,7 @@
       {
         "_id": "JLcqQvzgJjyMQUpW",
         "name": "Use",
-        "actionType": "msak",
+        "actionType": "mwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -65,7 +65,13 @@
         "target": {
           "value": "Paper objects *"
         },
-        "touch": true
+        "touch": true,
+        "ability": {
+          "attack": "dex",
+          "damage": "dex",
+          "critRange": 20,
+          "critMult": 2
+        }
       }
     ],
     "scriptCalls": [],

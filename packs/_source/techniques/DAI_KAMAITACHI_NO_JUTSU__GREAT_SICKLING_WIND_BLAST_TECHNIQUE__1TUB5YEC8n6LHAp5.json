@@ -47,7 +47,7 @@
       {
         "_id": "ZOVCYhsd67nrn9hb",
         "name": "Use",
-        "actionType": "rsak",
+        "actionType": "rwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -70,6 +70,12 @@
               ]
             }
           ]
+        },
+        "ability": {
+          "attack": "dex",
+          "damage": "dex",
+          "critRange": 20,
+          "critMult": 2
         }
       }
     ],

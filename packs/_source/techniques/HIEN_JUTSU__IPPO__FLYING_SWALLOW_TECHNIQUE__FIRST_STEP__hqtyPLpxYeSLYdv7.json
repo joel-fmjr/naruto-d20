@@ -47,7 +47,7 @@
       {
         "_id": "pjIxeMA_vXP9LUF-",
         "name": "Use",
-        "actionType": "msak",
+        "actionType": "mwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -65,7 +65,13 @@
         "target": {
           "value": "Held bladed weapon(s)"
         },
-        "touch": true
+        "touch": true,
+        "ability": {
+          "attack": "dex",
+          "damage": "dex",
+          "critRange": 20,
+          "critMult": 2
+        }
       }
     ],
     "scriptCalls": [],

@@ -47,7 +47,7 @@
       {
         "_id": "c6njNW0fqwwas0kj",
         "name": "Use",
-        "actionType": "msak",
+        "actionType": "mwak",
         "activation": {
           "type": "swift",
           "unchained": {
@@ -64,7 +64,13 @@
         "target": {
           "value": "A storage scroll *"
         },
-        "touch": true
+        "touch": true,
+        "ability": {
+          "attack": "dex",
+          "damage": "dex",
+          "critRange": 20,
+          "critMult": 2
+        }
       }
     ],
     "scriptCalls": [],
