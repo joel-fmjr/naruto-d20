@@ -77,12 +77,14 @@ ruleset, summarized faithfully:
   modifier (+ buffs/misc). This is exactly what the existing Chakra-tab
   `.shinobi-roll` learn checks already assemble per discipline
   (`learn.{ckc,gnj,nin,tai,fui}`), so learning reuses that roll and only changes
-  the comparison target to the **technique's** `learnDC`. Although the book text
-  names only Character Level + Relevant Ability Modifier, learning uses the
-  **full module breakdown (buff/misc/synergy rows included)** on purpose: the
-  learn-check buff targets (`learnNin`, etc.) exist precisely so bonuses like a
-  buff feed the roll, and a single breakdown keeps the Chakra-tab diagnostic roll
-  and the learning roll from ever diverging.
+  the comparison target to the **technique's** `learnDC`. Learning uses the
+  **full module breakdown (buff/misc/synergy rows included)** on purpose:
+  bonuses can apply to technique learn checks, and the learn-check buff targets
+  (`learnNin`, etc.) exist precisely so those bonuses feed the roll. The separate
+  exception is **Mastery step checks**: they do not use the normal Being Taught /
+  Self-Teaching bonuses, though they can still receive situational bonuses such
+  as Ninja Lore synergy and Training Weights where applicable, especially for
+  Training techniques tied to Strength and Speed ranks.
 - Required successes come straight from `derived.successes` (E-Class 1 … Epic 8;
   +1 Hijutsu, +2 Kinjutsu, −2 Combination floored at 1), so the loop tracks
   complexity for free.
@@ -288,8 +290,6 @@ default (`learned: false`) applies to newly created embedded items.
 4. **Phase 2 ordering** — which manual rule to automate next (learning time +
    chakra drain seems highest value; structured `(t)/(f)/(a)/(1-5)` requirements
    tie into the existing `links.prerequisites`).
-_(Resolved — see "How it mirrors the rules": learning reuses the full module
-learn breakdown, buffs included.)_
 
 ## Manual verification
 
