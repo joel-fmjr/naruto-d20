@@ -73,6 +73,29 @@ function resolveMatches(actor, pack, index) {
     return matches;
 }
 
+/**
+ * Deep structural equality that recurses into arrays.
+ * NOTE: foundry.utils.objectsEqual is unusable here — it compares arrays by
+ * reference (`v0 === v1`), so any object holding a non-empty array (every
+ * technique has `system.actions`) always reports "different".
+ */
+function deepEqual(a, b) {
+    if (a === b) return true;
+    if (a === null || b === null) return a === b;
+    if (Array.isArray(a)) {
+        if (!Array.isArray(b) || a.length !== b.length) return false;
+        return a.every((v, i) => deepEqual(v, b[i]));
+    }
+    if (typeof a === "object") {
+        if (typeof b !== "object" || Array.isArray(b)) return false;
+        const ak = Object.keys(a);
+        const bk = Object.keys(b);
+        if (ak.length !== bk.length) return false;
+        return ak.every((k) => Object.prototype.hasOwnProperty.call(b, k) && deepEqual(a[k], b[k]));
+    }
+    return a === b;
+}
+
 /** Recursively drop every `_id` key — identifiers are not semantic content. */
 function stripIds(value) {
     if (Array.isArray(value)) return value.map(stripIds);
@@ -88,18 +111,70 @@ function stripIds(value) {
 }
 
 /**
- * Normalize a `system` object for comparison. `_id`s inside actions/changes/links
- * are randomized on import and carry no meaning, so they are stripped before diff.
- * Callers should pass `item.system.toObject()` so both sides go through the same
- * DataModel schema (defaults filled identically — no spurious field diffs).
+ * Canonicalize an HTML string. Foundry re-serializes HTMLFields when an item is
+ * embedded on an actor (void tags `<br>`/`<hr>` become `<br />`/`<hr />`), so a
+ * byte comparison of the source vs the embedded copy always differs even when
+ * the content is identical. Round-tripping through innerHTML normalizes both
+ * forms to the same string.
+ */
+function canonicalizeHtml(s) {
+    if (typeof s !== "string" || !s) return s;
+    if (typeof document === "undefined") return s;
+    const el = document.createElement("div");
+    el.innerHTML = s;
+    return el.innerHTML;
+}
+
+/**
+ * Fill the same defaults that TechniqueDataModel.prepareBaseData applies on the
+ * live model. `toObject()` returns `_source`, which omits these when absent — so
+ * a freshly-authored compendium item (no `automation`/`tag`/empty arrays in its
+ * source) would otherwise never match an embedded copy whose model filled them.
+ * Mutates `s` in place (callers pass a clone). Mirror of prepareBaseData; keep
+ * the two in sync if the schema's defaults change.
+ */
+function applyTechniqueDefaults(s) {
+    s.description ??= {};
+    s.description.value ??= "";
+    s.description.summary ??= "";
+    s.description.instructions ??= "";
+    s.flags ??= {};
+    s.flags.boolean ??= {};
+    s.flags.dictionary ??= {};
+    s.links ??= {};
+    s.links.prerequisites ??= [];
+    s.links.supplements ??= [];
+    s.links.children ??= [];
+    s.tags ??= [];
+    s.changes ??= [];
+    s.actions ??= [];
+    s.automation ??= {};
+    s.automation.enabled ??= true;
+    s.automation.targetMode ??= "auto";
+    return s;
+}
+
+/**
+ * Normalize a `system` object for comparison. Callers pass `doc.toObject().system`
+ * (always available — `item.system.toObject()` can throw on a mistyped item).
+ * Removes the noise that the system introduces but the user never edits:
+ *  - `_id`s inside actions/changes/links (randomized on import),
+ *  - `system.tag` (pf1 auto-derives it from the name when empty),
+ *  - HTML serialization differences in description fields,
+ *  - prepareBaseData defaults being present on one side and absent on the other.
+ * Real content edits (cost, rank, description text, …) still survive and diff.
  */
 export function normalizeSystem(system) {
-    return stripIds(system);
+    const out = applyTechniqueDefaults(foundry.utils.deepClone(system));
+    delete out.tag;
+    out.description.value = canonicalizeHtml(out.description.value);
+    out.description.instructions = canonicalizeHtml(out.description.instructions);
+    return stripIds(out);
 }
 
 /** True when the embedded technique's stored data already matches the source. */
 export function diffTechnique(embeddedSystem, sourceSystem) {
-    return foundry.utils.objectsEqual(normalizeSystem(embeddedSystem), normalizeSystem(sourceSystem));
+    return deepEqual(normalizeSystem(embeddedSystem), normalizeSystem(sourceSystem));
 }
 
 function describe(item, status) {
@@ -134,7 +209,7 @@ export async function analyzeActor(actor) {
     return techniques.map((item) => {
         const sourceDoc = docById.get(matches.get(item.id));
         if (!sourceDoc) return describe(item, STATUS.ORPHAN);
-        const same = diffTechnique(item.system.toObject(), sourceDoc.system.toObject());
+        const same = diffTechnique(item.toObject().system, sourceDoc.toObject().system);
         return describe(item, same ? STATUS.UP_TO_DATE : STATUS.OUT_OF_DATE);
     });
 }

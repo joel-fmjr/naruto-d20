@@ -103,8 +103,13 @@ The scan runs **on a button click**, only over the techniques on **one actor**
 (~10-50), never the whole 1366-item pack. Matching is by `_stats.compendiumSource`
 (a UUID already on the sheet item — zero reads) with an exact-name fallback
 against the index. The matched source docs are batch-loaded in a single
-`pack.getDocuments({ _id__in })`, and the comparison itself
-(`foundry.utils.objectsEqual`) is sub-millisecond. Total: tens of ms, once.
+`pack.getDocuments({ _id__in })`, and the comparison itself (a small recursive
+`deepEqual`) is sub-millisecond. Total: tens of ms, once.
+
+> **Gotcha:** do **not** use `foundry.utils.objectsEqual` for this — it compares
+> arrays by reference (`v0 === v1`), so any object holding a non-empty array
+> (every technique has `system.actions`) always reports "different". The module
+> ships its own array-aware `deepEqual`.
 
 ### Future upgrade path (A → C)
 
@@ -132,8 +137,8 @@ definition and as the hash input, so A and C never disagree.
 |---|---|
 | `STATUS` | `up-to-date` / `out-of-date` / `orphan` enum |
 | `getTechniqueCompendium()` | `game.packs.get("naruto-d20.techniques")` |
-| `normalizeSystem(system)` | recursively strips every `_id` (action/change/link ids are randomized on import and carry no meaning) |
-| `diffTechnique(a, b)` | `foundry.utils.objectsEqual(normalizeSystem(a), normalizeSystem(b))` |
+| `normalizeSystem(system)` | strips comparison noise: `_id`s (randomized on import), `system.tag` (pf1 auto-derives it), HTML-serialization differences in description fields, and fills `prepareBaseData` defaults so present-vs-absent doesn't diff |
+| `diffTechnique(a, b)` | array-aware `deepEqual(normalizeSystem(a), normalizeSystem(b))` |
 | `analyzeActor(actor)` | classify every embedded technique; batch-loads matched source docs |
 | `syncTechnique(item, sourceDoc)` | overwrite `name`/`img`/`system` with `{diff:false}`, re-normalizing action ids — mirrors CPR's `ItemMedkit.update` |
 | `syncSelected(actor, ids)` | re-resolve matches + batch-load + sync the selected items |
@@ -144,12 +149,30 @@ when a compendium item is dropped on an actor; older items used
 `flags.core.sourceId`). If absent or stale (source deleted), it falls back to an
 exact name match against the pack index. Techniques with neither are `orphan`.
 
-**Comparison inputs** use `item.system.toObject()` on both sides so the data goes
-through the same `TechniqueDataModel` schema — defaults fill identically, so a
-field missing on one side and defaulted on the other doesn't cause a false diff.
+**Comparison inputs** use `doc.toObject().system` on both sides — *not*
+`item.system.toObject()`, which throws on a mistyped item (e.g. a technique whose
+stored `system` is spell-shaped). `toObject()` returns `_source`, which omits the
+defaults that `prepareBaseData` fills on the live model (`automation`, empty
+arrays, blank description fields) — so `normalizeSystem` re-applies those same
+defaults to both sides. `applyTechniqueDefaults` is a hand-kept mirror of
+`TechniqueDataModel.prepareBaseData`; **if the schema's defaults change, update
+both.**
+
+Three noise sources, all found and fixed during live verification:
+- **Arrays:** `foundry.utils.objectsEqual` compares arrays by reference → use the
+  module's `deepEqual`.
+- **HTML serialization:** embedding rewrites `<br>`→`<br />`, `<hr>`→`<hr />` →
+  `canonicalizeHtml` round-trips description fields through `innerHTML`.
+- **Auto-derived / default fields:** `system.tag` (dropped) and `prepareBaseData`
+  defaults (re-applied).
 
 Reuses: `normalizeActionIds` (`scripts/data/action-ids.mjs`),
 `TECHNIQUE_ITEM_TYPE` (`scripts/constants.mjs`).
+
+Verified live against three party sheets (Ikazuchi 17, Dan 14, Suigin 21): all
+matched techniques report up-to-date, 4 genuinely-homebrew Suigin techniques
+report orphan, and a dirtied `chakraCost` correctly flips to out-of-date and back
+after sync.
 
 ### `scripts/ui/technique-medkit-app.mjs` + `templates/actor/technique-medkit.hbs`
 
