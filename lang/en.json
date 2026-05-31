@@ -237,6 +237,20 @@
       },
       "NoTargets": "No targets selected for buff application.",
       "NoPermission": "No permission to modify {name}. Buff not applied."
+    },
+    "Medkit": {
+      "Title": "Technique Medkit",
+      "HeaderButton": "Sync Techniques",
+      "Status": {
+        "OutOfDate": "Out of date",
+        "UpToDate": "Up to date",
+        "Orphan": "Not in compendium"
+      },
+      "SelectOutdated": "Select all outdated",
+      "SyncSelected": "Sync selected",
+      "NothingSelected": "No techniques selected.",
+      "Synced": "Synced {count} technique(s) from the compendium.",
+      "Empty": "This actor has no techniques."
     }
   }
 }
