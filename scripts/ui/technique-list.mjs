@@ -3,6 +3,7 @@ import { normalizeActionIds } from "../data/action-ids.mjs";
 import { performTechnique } from "../use-technique.mjs";
 import { resolveDroppedItem } from "../utils/drag-drop.mjs";
 import { TechniqueCompendiumBrowser } from "./technique-browser.mjs";
+import { TechniqueMedkitApp } from "./technique-medkit-app.mjs";
 
 /**
  * Wire the technique list inside the Chakra tab: discipline filter chips,
@@ -16,6 +17,21 @@ export function registerTechniqueListListeners() {
         const $html = html instanceof HTMLElement ? $(html) : html;
         const chakraTab = $html.find(".tab.chakra");
         if (!chakraTab.length) return;
+
+        // Medkit button in the Techniques header (mirror of the window-title button)
+        const techHeader = chakraTab.find(".techniques-header")[0];
+        if (techHeader && !techHeader.querySelector(".naruto-technique-medkit-btn")) {
+            techHeader.insertAdjacentHTML("beforeend", `
+                <a class="naruto-technique-medkit-btn item-control"
+                   data-tooltip="${game.i18n.localize("NarutoD20.Medkit.HeaderButton")}">
+                  <i class="fa-solid fa-kit-medical" inert></i>
+                </a>
+            `);
+        }
+        chakraTab.find(".naruto-technique-medkit-btn").off("click").on("click", (ev) => {
+            ev.preventDefault();
+            new TechniqueMedkitApp({ actor: app.actor }).render(true);
+        });
 
         // Discipline filter chips
         const groups = chakraTab.find(".technique-disc-group");

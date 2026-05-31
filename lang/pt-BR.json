@@ -237,6 +237,20 @@
       },
       "NoTargets": "Nenhum alvo selecionado para aplicação de buff.",
       "NoPermission": "Sem permissão para modificar {name}. Buff não aplicado."
+    },
+    "Medkit": {
+      "Title": "Medkit de Técnicas",
+      "HeaderButton": "Sincronizar Técnicas",
+      "Status": {
+        "OutOfDate": "Desatualizada",
+        "UpToDate": "Atualizada",
+        "Orphan": "Fora do compendium"
+      },
+      "SelectOutdated": "Selecionar desatualizadas",
+      "SyncSelected": "Sincronizar selecionadas",
+      "NothingSelected": "Nenhuma técnica selecionada.",
+      "Synced": "{count} técnica(s) sincronizada(s) do compendium.",
+      "Empty": "Este personagem não tem técnicas."
     }
   }
 }
