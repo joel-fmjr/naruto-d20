@@ -73,6 +73,8 @@
         &middot; {{learning.attemptsUsed}}/{{learning.maxAttempts}} attempts
         {{/if}}
         {{#if learning.failureInsight}} &middot; +{{learning.failureInsight}} insight{{/if}}
+        {{#if learning.trainingBlocks}} &middot; {{learning.trainingBlocks}} training blocks{{/if}}
+        {{#if learning.chakraSpent}} &middot; {{learning.chakraSpent}} training chakra{{/if}}
       </div>
       <button type="button" class="reset-learning">Reset Learning</button>
     </div>

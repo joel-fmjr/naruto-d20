@@ -153,6 +153,9 @@ function applyTechniqueDefaults(s) {
     s.learning.progress ??= 0;
     s.learning.attemptsUsed ??= 0;
     s.learning.failureInsight ??= 0;
+    s.learning.trainingBlocks ??= 0;
+    s.learning.chakraSpent ??= 0;
+    s.learning.lastTrainingAt ??= 0;
     s.automation ??= {};
     s.automation.enabled ??= true;
     s.automation.targetMode ??= "auto";

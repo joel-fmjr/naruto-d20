@@ -139,6 +139,15 @@ Hooks.once("init", () => {
         name: "NarutoD20.Settings.LearnMarginInclusive.Name",
         hint: "NarutoD20.Settings.LearnMarginInclusive.Hint",
     });
+
+    game.settings.register(MODULE_ID, "deductLearningChakra", {
+        scope: "world",
+        config: true,
+        type: Boolean,
+        default: false,
+        name: "NarutoD20.Settings.DeductLearningChakra.Name",
+        hint: "NarutoD20.Settings.DeductLearningChakra.Hint",
+    });
 });
 
 // ── [2] pf1PostInit ───────────────────────────────────────────────────────
@@ -295,6 +304,9 @@ async function _migrateExistingTechniquesLearned() {
                 "system.learning.progress": Math.max(1, item.system?.derived?.successes ?? 1),
                 "system.learning.attemptsUsed": item.system?.learning?.attemptsUsed ?? 0,
                 "system.learning.failureInsight": 0,
+                "system.learning.trainingBlocks": item.system?.learning?.trainingBlocks ?? 0,
+                "system.learning.chakraSpent": item.system?.learning?.chakraSpent ?? 0,
+                "system.learning.lastTrainingAt": item.system?.learning?.lastTrainingAt ?? 0,
             });
         }
         if (updates.length) await actor.updateEmbeddedDocuments("Item", updates);

@@ -185,6 +185,10 @@
       "LearnMarginInclusive": {
         "Name": "Margem de Aprendizado Inclusiva",
         "Hint": "Quando ativado, uma margem de sucesso exatamente 5 conta para o melhor resultado de aprendizado. A margem 15 é sempre inclusiva."
+      },
+      "DeductLearningChakra": {
+        "Name": "Deduzir Chakra de Treino",
+        "Hint": "Quando ativado, o aprendizado de técnicas deduz chakra de treino da Pool e depois da Reserva. Condições não são atualizadas automaticamente porque treino ignora penalidades de depleção."
       }
     },
     "Conditions": {

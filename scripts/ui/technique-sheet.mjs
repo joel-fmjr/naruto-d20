@@ -235,6 +235,9 @@ export function createTechniqueItemSheet() {
                 "system.learning.progress": 0,
                 "system.learning.attemptsUsed": 0,
                 "system.learning.failureInsight": 0,
+                "system.learning.trainingBlocks": 0,
+                "system.learning.chakraSpent": 0,
+                "system.learning.lastTrainingAt": 0,
             });
         }
 

@@ -1,5 +1,5 @@
 import { MODULE_ID } from "./constants.mjs";
-import { learningCurrentTechniqueIdPath } from "./flag-paths.mjs";
+import { chakraPoolValuePath, chakraReserveValuePath, learningCurrentTechniqueIdPath } from "./flag-paths.mjs";
 import { buildLearnCheckBreakdown } from "./data/bonus-sources.mjs";
 import { DISCIPLINE_SKILL_MAP, resolveSkillAbility } from "./data/skills.mjs";
 
@@ -7,6 +7,9 @@ export const LEARNING_MODES = Object.freeze({
     STANDARD: "standard",
     FOUR_HOUR_BLOCKS: "fourHourBlocks",
 });
+
+const TRAINING_BLOCK_SECONDS = 4 * 60 * 60;
+const TRAINING_INTERRUPTION_SECONDS = 30 * 24 * 60 * 60;
 
 function characterLevel(actor) {
     return Number(actor.system.details?.level?.value ?? actor.system.details?.cr?.total ?? 0) || 0;
@@ -20,6 +23,11 @@ function escapeHTML(value) {
 
 function getLearningMode() {
     return game.settings.get(MODULE_ID, "learningProgressionMode") || LEARNING_MODES.STANDARD;
+}
+
+function trainingTimestamp() {
+    const worldTime = Number(game.time?.worldTime ?? 0) || 0;
+    return worldTime > 0 ? worldTime : Math.floor(Date.now() / 1000);
 }
 
 export function getLearningTargetProgress(item, mode = getLearningMode()) {
@@ -51,6 +59,9 @@ export function buildLearningView(item, actor, mode = getLearningMode()) {
     const progress = Math.min(Number(learning.progress ?? 0) || 0, targetProgress);
     const attemptsUsed = Number(learning.attemptsUsed ?? 0) || 0;
     const failureInsight = Number(learning.failureInsight ?? 0) || 0;
+    const trainingBlocks = Number(learning.trainingBlocks ?? 0) || 0;
+    const chakraSpent = Number(learning.chakraSpent ?? 0) || 0;
+    const lastTrainingAt = Number(learning.lastTrainingAt ?? 0) || 0;
 
     return {
         learned: learning.learned === true,
@@ -58,6 +69,10 @@ export function buildLearningView(item, actor, mode = getLearningMode()) {
         progress,
         attemptsUsed,
         failureInsight,
+        trainingBlocks,
+        chakraSpent,
+        lastTrainingAt,
+        expiresAt: lastTrainingAt ? lastTrainingAt + TRAINING_INTERRUPTION_SECONDS : 0,
         targetProgress,
         maxAttempts: getLearningMaxAttempts(actor, skillKey),
         mode,
@@ -71,6 +86,56 @@ function marginAward(margin, mode) {
     if (margin >= 15) return 4;
     const inclusive = game.settings.get(MODULE_ID, "learnMarginInclusive");
     return inclusive ? (margin >= 5 ? 2 : 1) : (margin > 5 ? 2 : 1);
+}
+
+function clearsFiveBoundary(margin) {
+    const inclusive = game.settings.get(MODULE_ID, "learnMarginInclusive");
+    return inclusive ? margin >= 5 : margin > 5;
+}
+
+function failsFiveBoundary(margin) {
+    const inclusive = game.settings.get(MODULE_ID, "learnMarginInclusive");
+    return inclusive ? margin <= -5 : margin < -5;
+}
+
+function trainingBlocksForRoll(item, mode, margin) {
+    if (mode === LEARNING_MODES.FOUR_HOUR_BLOCKS) return 1;
+
+    const rank = Math.max(1, Number(item.system.rank ?? 1) || 1);
+    const baseBlocks = rank * 2;
+    if (margin >= 15) return Math.max(1, Math.ceil(baseBlocks * 0.25));
+    if (clearsFiveBoundary(margin)) return Math.max(1, Math.ceil(baseBlocks * 0.5));
+    if (failsFiveBoundary(margin)) return Math.max(1, Math.ceil(baseBlocks * 1.5));
+    return baseBlocks;
+}
+
+function trainingChakraCost(actor, blocks) {
+    const poolMax = Number(actor.flags?.[MODULE_ID]?.chakra?.pool?.max ?? 0) || 0;
+    return Math.max(0, Math.ceil(poolMax * 0.4 * blocks));
+}
+
+async function applyTrainingChakraDeduction(actor, amount) {
+    if (!game.settings.get(MODULE_ID, "deductLearningChakra") || amount <= 0) {
+        return { deducted: 0, fromPool: 0, fromReserve: 0 };
+    }
+
+    const chakra = actor.flags?.[MODULE_ID]?.chakra ?? {};
+    const poolValue = Number(chakra.pool?.value ?? 0) || 0;
+    const reserveValue = Number(chakra.reserve?.value ?? 0) || 0;
+    const fromPool = Math.min(amount, poolValue);
+    const fromReserve = Math.min(amount - fromPool, reserveValue);
+    const deducted = fromPool + fromReserve;
+
+    await actor.update({
+        [chakraPoolValuePath]: poolValue - fromPool,
+        [chakraReserveValuePath]: reserveValue - fromReserve,
+    });
+
+    if (deducted < amount) {
+        ui.notifications.warn(`${actor.name}: training required ${amount} chakra, but only ${deducted} was available.`);
+    }
+
+    return { deducted, fromPool, fromReserve };
 }
 
 function rollTotal(result) {
@@ -103,6 +168,39 @@ async function resetFailureInsightForDifferentTechnique(actor, item, learning) {
 
     await actor.update({ [learningCurrentTechniqueIdPath]: item.id });
     return { ...learning, failureInsight: 0 };
+}
+
+async function expireInterruptedTraining(item, learning) {
+    const lastTrainingAt = Number(learning.lastTrainingAt ?? 0) || 0;
+    const now = trainingTimestamp();
+    if (!lastTrainingAt || now - lastTrainingAt <= TRAINING_INTERRUPTION_SECONDS) {
+        return { ...learning };
+    }
+
+    await item.update({
+        "system.learning.progress": 0,
+        "system.learning.attemptsUsed": 0,
+        "system.learning.failureInsight": 0,
+        "system.learning.trainingBlocks": 0,
+        "system.learning.chakraSpent": 0,
+        "system.learning.lastTrainingAt": 0,
+    });
+
+    await postLearningCard(item.actor, item, {
+        title: `${item.name} training interrupted`,
+        cssClass: "failed",
+        body: `<p>More than 30 days passed since the last training block. Learning progress is lost before the new attempt.</p>`,
+    });
+
+    return {
+        ...learning,
+        progress: 0,
+        attemptsUsed: 0,
+        failureInsight: 0,
+        trainingBlocks: 0,
+        chakraSpent: 0,
+        lastTrainingAt: 0,
+    };
 }
 
 export async function attemptLearnTechnique(item) {
@@ -152,7 +250,8 @@ export async function attemptLearnTechnique(item) {
         return;
     }
 
-    const activeLearning = await resetFailureInsightForDifferentTechnique(actor, item, learning);
+    const switchedLearning = await resetFailureInsightForDifferentTechnique(actor, item, learning);
+    const activeLearning = await expireInterruptedTraining(item, switchedLearning);
     const failureInsight = Math.min(5, Math.max(0, Number(activeLearning.failureInsight ?? 0) || 0));
 
     const breakdown = buildLearnCheckBreakdown(actor, skillKey);
@@ -190,6 +289,13 @@ export async function attemptLearnTechnique(item) {
     const oldAttempts = Number(activeLearning.attemptsUsed ?? 0) || 0;
     const attemptsUsed = oldAttempts + 1;
     const success = total >= learnDC;
+    const margin = total - learnDC;
+    const trainingBlocks = trainingBlocksForRoll(item, mode, margin);
+    const chakraCost = trainingChakraCost(actor, trainingBlocks);
+    const chakraDeduction = await applyTrainingChakraDeduction(actor, chakraCost);
+    const totalTrainingBlocks = (Number(activeLearning.trainingBlocks ?? 0) || 0) + trainingBlocks;
+    const totalChakraSpent = (Number(activeLearning.chakraSpent ?? 0) || 0) + chakraCost;
+    const now = trainingTimestamp();
 
     let progress = oldProgress;
     let nextFailureInsight = failureInsight;
@@ -217,6 +323,9 @@ export async function attemptLearnTechnique(item) {
         "system.learning.progress": progress,
         "system.learning.attemptsUsed": resetRun ? 0 : attemptsUsed,
         "system.learning.failureInsight": nextFailureInsight,
+        "system.learning.trainingBlocks": totalTrainingBlocks,
+        "system.learning.chakraSpent": totalChakraSpent,
+        "system.learning.lastTrainingAt": now,
     });
 
     if (learned) {
@@ -224,7 +333,8 @@ export async function attemptLearnTechnique(item) {
         await postLearningCard(actor, item, {
             title: `${item.name} learned`,
             cssClass: "success",
-            body: `<p>Learn check ${total} vs DC ${learnDC}. Progress ${progress}/${targetProgress}.</p>`,
+            body: `<p>Learn check ${total} vs DC ${learnDC}. Progress ${progress}/${targetProgress}.</p>
+                   <footer>Training time: +${trainingBlocks} block${trainingBlocks === 1 ? "" : "s"}; training chakra: ${chakraCost}${chakraDeduction.deducted ? ` (${chakraDeduction.deducted} deducted)` : ""}.</footer>`,
         });
         return;
     }
@@ -233,7 +343,8 @@ export async function attemptLearnTechnique(item) {
         await postLearningCard(actor, item, {
             title: `${item.name} learning failed`,
             cssClass: "failed",
-            body: `<p>Learn check ${total} vs DC ${learnDC}. Attempts ${attemptsUsed}/${maxAttempts}; progress is lost and the run starts over.</p>`,
+            body: `<p>Learn check ${total} vs DC ${learnDC}. Attempts ${attemptsUsed}/${maxAttempts}; progress is lost and the run starts over.</p>
+                   <footer>Training time: +${trainingBlocks} block${trainingBlocks === 1 ? "" : "s"}; training chakra: ${chakraCost}${chakraDeduction.deducted ? ` (${chakraDeduction.deducted} deducted)` : ""}.</footer>`,
         });
         return;
     }
@@ -249,6 +360,6 @@ export async function attemptLearnTechnique(item) {
         title: `Learning ${item.name}`,
         cssClass: success ? "success" : "failed",
         body: `<p>Learn check ${total} vs DC ${learnDC}. ${resultText}</p>
-               <footer>Progress ${progress}/${targetProgress}; ${attemptText}.</footer>`,
+               <footer>Progress ${progress}/${targetProgress}; ${attemptText}; +${trainingBlocks} training block${trainingBlocks === 1 ? "" : "s"}; training chakra ${chakraCost}${chakraDeduction.deducted ? ` (${chakraDeduction.deducted} deducted)` : ""}.</footer>`,
     });
 }

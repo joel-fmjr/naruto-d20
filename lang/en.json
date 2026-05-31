@@ -185,6 +185,10 @@
       "LearnMarginInclusive": {
         "Name": "Inclusive Learn Margin",
         "Hint": "When enabled, a success margin of exactly 5 counts for the better learning result. The margin 15 boundary is always inclusive."
+      },
+      "DeductLearningChakra": {
+        "Name": "Deduct Training Chakra",
+        "Hint": "When enabled, technique learning deducts training chakra from Pool then Reserve. Conditions are not updated automatically because training ignores depletion penalties."
       }
     },
     "Conditions": {

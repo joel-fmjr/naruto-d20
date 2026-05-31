@@ -1,7 +1,9 @@
 # Technique Learning Progression
 
-> **Status: planned.** This document is the implementation plan, not a record of
-> shipped code. File/line references describe the intended changes.
+> **Status: in progress.** Phase 1 shipped in commit `ab310f9`. Phase 2 has
+> started with training-time tracking, interruption expiry, exceptional time
+> modifiers, and optional training-chakra deduction. Remaining unchecked items
+> below are still planned work.
 
 A **learning loop** for techniques. A technique dragged onto an actor starts
 **unlearned**. The practitioner rolls learn checks for the technique's discipline
@@ -11,10 +13,11 @@ successes loop. In 4-hour-block mode, each roll represents one training block an
 margin of success controls how much progress is gained. Reaching the target
 marks the technique **learned** and unlocks its **Perform** action.
 
-This completes a loop that is already half-built: `TechniqueDataModel.derived`
-already computes `learnDC` and `successes` (successful learn checks required,
-including the Hijutsu/Kinjutsu/Combination adjustments), but nothing currently
-consumes them — a dropped technique can be performed immediately.
+This completes a loop that was already half-built: `TechniqueDataModel.derived`
+already computed `learnDC` and `successes` (successful learn checks required,
+including the Hijutsu/Kinjutsu/Combination adjustments). The shipped learning
+flow now consumes those values and gates Perform when learning enforcement is
+enabled.
 
 ## Canonical rules
 
@@ -132,17 +135,45 @@ still clears when the actor attempts to learn a different technique.
 
 ## Scope split
 
-**Phase 1 — automated core (this feature):** unlearned state, progress tracking,
+**Phase 1 — automated core (shipped):** unlearned state, progress tracking,
 learn-check roll vs `learnDC`, standard-mode attempts budget and out-of-attempts
 reset, 4-hour-block mode target/award calculation, Failure Insight bonus, the
 Perform gate, eligibility checks (rank ≤ level and ≥1 skill rank),
-unmapped-discipline handling, the `learningProgressionMode` setting, and
-take-10/no-take-20 on the roll dialog.
+unmapped-discipline handling, the `learningProgressionMode` setting, and a
+one-time migration that marks existing embedded techniques learned.
 
-**Phase 2 — manual / future:** learning time & chakra drain, interruption timer,
-exceptional-roll time changes, the four learning Methods, Action Point
-persistence, and the `(t)/(f)/(a)/(1-5)` structured requirements. These are
-documented above so GMs adjudicate them by hand; automation can follow later.
+**Known Phase 1 limitation:** PF1e v11.11's `pf1.dice.d20Roll` dialog exposes
+Take 10 and Take 20 together and does not currently provide a clean option to
+remove only Take 20. Learn rolls use the PF1e dialog for now; GMs must enforce
+the no-Take-20 rule until a custom learn-roll dialog replaces it.
+
+**Phase 2 — automation in progress:** learning time, chakra drain,
+interruption timer, exceptional-roll time changes, the four learning Methods,
+Action Point persistence, and the `(t)/(f)/(a)/(1-5)` structured requirements.
+The first shipped Phase 2 slice tracks training blocks/chakra, expires progress
+after long interruption, and can optionally deduct training chakra.
+
+## Implementation status
+
+| Area | Status | Notes |
+|---|---|---|
+| `system.learning` core state | Done | `learned`, `progress`, `attemptsUsed`, `failureInsight`; Phase 2 adds `trainingBlocks`, `chakraSpent`, `lastTrainingAt`. |
+| Learn roll vs technique `learnDC` | Done | Uses the same learn-check breakdown as the Chakra tab and reads the returned PF1e chat message directly. |
+| Standard progression | Done | Successes, attempts budget, out-of-attempts reset, Failure Insight. |
+| 4-hour-block progression | Done | `rank × successes × 2` target and margin awards `1 / 2 / 4`. |
+| Perform gate | Done | Controlled by `enforceLearning`. Unmapped disciplines are effectively learned for Phase 1. |
+| Chakra tab UI | Done | Learn button, progress badge, attempts/blocks readout, disabled Use when enforced. |
+| Technique sheet UI | Done | Learning badge, Learn button, GM learned toggle and reset. |
+| Medkit preservation | Done | `system.learning` is ignored for diffs and preserved during sync. |
+| Existing-world migration | Done | Migration v5 marks pre-existing embedded techniques as learned. |
+| Take 20 blocking | Pending | Needs custom dialog or PF1e dialog override. |
+| Manual Foundry verification | Pending | Static checks pass; in-world verification still needed. |
+| Phase 2: training time | Started | Each learn roll now records training blocks; standard mode applies exceptional-roll time changes. |
+| Phase 2: chakra drain | Started | Training chakra is computed from max pool; optional `deductLearningChakra` setting deducts Pool then Reserve. |
+| Phase 2: interruption timer | Started | Progress expires if more than 30 days pass since the last training block. |
+| Phase 2: learning Methods | Pending | Being Taught, Self-Teaching, Developing, Creating. |
+| Phase 2: Action Point persistence | Pending | Needs per-technique action-point state through a run. |
+| Phase 2: structured requirements | Pending | `(t)`, `(f)`, `(a)`, mastery-step and max Chakra requirements. |
 
 ## Data model
 
@@ -154,6 +185,9 @@ learning: new fields.SchemaField({
     progress:       new fields.NumberField({ ...opt, integer: true, initial: 0, min: 0 }),
     attemptsUsed:   new fields.NumberField({ ...opt, integer: true, initial: 0, min: 0 }),
     failureInsight: new fields.NumberField({ ...opt, integer: true, initial: 0, min: 0, max: 5 }),
+    trainingBlocks: new fields.NumberField({ ...opt, integer: true, initial: 0, min: 0 }),
+    chakraSpent:    new fields.NumberField({ ...opt, integer: true, initial: 0, min: 0 }),
+    lastTrainingAt: new fields.NumberField({ ...opt, integer: true, initial: 0, min: 0 }),
 }, opt),
 ```
 
@@ -252,6 +286,32 @@ content. The Technique Medkit must preserve it.
    - In `fourHourBlocks` mode, `attemptsUsed` counts completed 4-hour training
      blocks for display/audit only; it does not create a failure threshold.
 5. All mutations via a single `item.update({...})` so the sheet re-renders once.
+
+### Phase 2 training-time slice
+
+The current Phase 2 implementation adds training-time bookkeeping to each learn
+roll:
+
+- `trainingBlocks` records completed 4-hour blocks.
+- `chakraSpent` records the training chakra generated by those blocks.
+- `lastTrainingAt` stores the world-time timestamp of the most recent training
+  block, falling back to real time if world time is unavailable.
+- If more than 30 days pass before the next learn attempt, progress, attempts,
+  Failure Insight, training blocks, and training chakra are reset before the new
+  roll.
+- In `fourHourBlocks` mode, each roll is exactly one training block.
+- In `standard` mode, each roll starts from `rank × 2` blocks and applies the
+  exceptional-roll time modifiers:
+  - margin `>= 15`: 25% of base time, rounded up to a block;
+  - margin clearing the configured 5 boundary: 50% of base time, rounded up;
+  - failure crossing the configured 5 boundary: 150% of base time, rounded up;
+  - otherwise, base time.
+- Training chakra is `ceil(chakra.pool.max × 0.4 × blocks)`, matching 10% of max
+  Chakra per hour across 4-hour blocks.
+- `deductLearningChakra` controls whether the calculated training chakra is also
+  deducted from the actor. It is off by default. When enabled, deduction uses
+  Pool first, then Reserve, and intentionally does not refresh depletion
+  conditions because the rule says training ignores the depleted penalty.
 
 ## Perform gate
 
