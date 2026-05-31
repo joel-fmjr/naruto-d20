@@ -2,8 +2,9 @@
 
 > **Status: in progress.** Phase 1 shipped in commit `ab310f9`. Phase 2 has
 > started with training-time tracking, interruption expiry, exceptional time
-> modifiers, and optional training-chakra deduction. Remaining unchecked items
-> below are still planned work.
+> modifiers, optional training-chakra deduction, insufficient-chakra roll
+> blocking, and Chakra-tab scroll preservation during learning updates.
+> Remaining unchecked items below are still planned work.
 
 A **learning loop** for techniques. A technique dragged onto an actor starts
 **unlearned**. The practitioner rolls learn checks for the technique's discipline
@@ -169,7 +170,7 @@ after long interruption, and can optionally deduct training chakra.
 | Take 20 blocking | Pending | Needs custom dialog or PF1e dialog override. |
 | Manual Foundry verification | Pending | Static checks pass; in-world verification still needed. |
 | Phase 2: training time | Started | Each learn roll now records training blocks; standard mode applies exceptional-roll time changes. |
-| Phase 2: chakra drain | Started | Training chakra is computed from max pool; optional `deductLearningChakra` setting deducts Pool then Reserve. |
+| Phase 2: chakra drain | Started | Training chakra is computed from max pool; optional `deductLearningChakra` setting deducts Pool then Reserve and blocks learn rolls when the actor cannot pay. |
 | Phase 2: interruption timer | Started | Progress expires if more than 30 days pass since the last training block. |
 | Phase 2: learning Methods | Pending | Being Taught, Self-Teaching, Developing, Creating. |
 | Phase 2: Action Point persistence | Pending | Needs per-technique action-point state through a run. |
@@ -247,14 +248,20 @@ content. The Technique Medkit must preserve it.
      associated PF1e skill for them yet.
    - otherwise, `< 1` rank in `DISCIPLINE_SKILL_MAP[discipline]` → warn.
    (The `(t)/(f)/(a)/(1-5)` requirements are Phase 2 — not enforced yet.)
-2. **Failure Insight reset across techniques:** track the actor's
+2. **Training chakra preflight:** when `deductLearningChakra` is enabled, verify
+   the actor can pay the minimum possible training cost before opening the PF1e
+   roll dialog or mutating learning state. The minimum is one block in
+   `fourHourBlocks` mode; in `standard` mode it is the best possible exceptional
+   time result for the attempt (`ceil(rank × 2 × 0.25)`, minimum 1 block). If the
+   actor cannot pay Pool + Reserve for that minimum cost, warn and abort.
+3. **Failure Insight reset across techniques:** track the actor's
    currently-training technique in a flag
-   (`flags["naruto-d20"].learning.currentTechniqueId`). Add this path through
+   (`flags["naruto-d20"].learning.currentTechniqueId`). The path is exported by
    `scripts/flag-paths.mjs`; do not concatenate `"naruto-d20"` flag paths at
    call sites. If the player attempts a *different* technique, reset that
    technique's `failureInsight` to 0 and point the flag at the new one (per
    "lasts … until you attempt to learn a different technique").
-3. **Build & roll** the discipline check the same way the Chakra-tab button does
+4. **Build & roll** the discipline check the same way the Chakra-tab button does
    (`buildLearnCheckBreakdown(actor, key)` from `scripts/data/bonus-sources.mjs`),
    adding the current `failureInsight` as a labeled part
    (`"+N[Failure Insight]"`). Roll via
@@ -265,7 +272,8 @@ content. The Technique Medkit must preserve it.
    new learning flow should be less fragile.
    Configure the dialog to allow Take 10 but **disallow Take 20** if the dialog
    options permit it; otherwise note the limitation (see open questions).
-4. **Resolve the attempt** — increment `attemptsUsed` regardless of outcome:
+5. **Determine the attempt outcome** — after a paid/resolved attempt,
+   increment `attemptsUsed` regardless of success or failure:
    - Compute `targetProgress` from `learningProgressionMode`:
      - `standard`: `derived.successes`
      - `fourHourBlocks`: `item.system.rank × derived.successes × 2`
@@ -285,7 +293,13 @@ content. The Technique Medkit must preserve it.
      start over" card.
    - In `fourHourBlocks` mode, `attemptsUsed` counts completed 4-hour training
      blocks for display/audit only; it does not create a failure threshold.
-5. All mutations via a single `item.update({...})` so the sheet re-renders once.
+6. **Apply training chakra before persisting the outcome:** when
+   `deductLearningChakra` is enabled, deduction is all-or-nothing. If the
+   post-roll training cost is higher than the actor's remaining Pool + Reserve,
+   warn and abort the resolution without partial chakra loss, progress gain,
+   attempt count, or training-time bookkeeping.
+7. All learning mutations use a single `item.update({...})` so the sheet
+   re-renders once after a resolved attempt.
 
 ### Phase 2 training-time slice
 
@@ -310,8 +324,11 @@ roll:
   Chakra per hour across 4-hour blocks.
 - `deductLearningChakra` controls whether the calculated training chakra is also
   deducted from the actor. It is off by default. When enabled, deduction uses
-  Pool first, then Reserve, and intentionally does not refresh depletion
-  conditions because the rule says training ignores the depleted penalty.
+  Pool first, then Reserve, blocks the learn roll before the dialog if the actor
+  cannot afford the minimum possible training block cost, and resolves
+  post-roll deduction as all-or-nothing. The deduction intentionally does not
+  refresh depletion conditions because the rule says training ignores the
+  depleted penalty.
 
 ## Perform gate
 
@@ -349,6 +366,9 @@ is the authoritative enforcement point.
   to `.tab.chakra` like the existing open/use/delete handlers.
 - The row view-model passes `learning`, `targetProgress`, `learningMode`, and
   the computed `maxAttempts` through to each row.
+- The sheet patch registers `.techniques-body` in PF1/Foundry's inherited
+  `defaultOptions.scrollY`, so re-renders caused by learn rolls, misc bonus
+  edits, or technique use keep the technique list's current scroll position.
 
 ## UI — technique sheet (polish)
 
@@ -377,6 +397,10 @@ is the authoritative enforcement point.
   - `false` (`> 5`) — only a margin strictly greater than 5 counts; book-faithful
     ("more than 5"). Book-strict standard play should use this.
   The **15** boundary is always `≥ 15` — the rulebook and the house rule agree.
+- Register `deductLearningChakra` (Boolean, default `false`) in `init`. When on,
+  learn attempts require enough current Pool + Reserve to pay training chakra;
+  the pre-roll gate uses the minimum possible training time, and the actual
+  post-roll deduction must be paid in full.
 - **One-time `ready` migration (GM only)**, following the existing flag-backfill
   pattern: set `system.learning.learned = true` on every embedded technique that
   predates this feature, so existing games are not suddenly locked out. Guard it
@@ -395,26 +419,27 @@ default (`learned: false`) applies to newly created embedded items.
 | `scripts/use-technique.mjs` | Gate `performTechnique` on `learning.learned` (respects `enforceLearning`) |
 | `scripts/flag-paths.mjs` | Export the actor flag path for `learning.currentTechniqueId` |
 | `scripts/ui/technique-list.mjs` | `.shinobi-technique-learn` listener; disable Use when unlearned; pass `targetProgress`, `learningMode`, and `maxAttempts` to view-model |
+| `scripts/ui/render-patch.mjs` | Add Chakra tab content and register `.techniques-body` in inherited sheet `scrollY` so technique-list scroll survives re-renders |
 | `templates/actor/chakra-tab.hbs` | Learn button + progress/attempts-or-blocks badges per row; lock Use when unlearned |
 | `scripts/ui/technique-sheet.mjs` | Learned/progress badge; GM force-learn + reset toggle |
 | `templates/item/technique-sheet.hbs` | Learned/progress badge markup |
 | `scripts/automation/technique-sync.mjs` | Preserve and ignore actor-owned `system.learning` during medkit diff/sync |
-| `scripts/main.mjs` | Register `enforceLearning`, `learningProgressionMode`, and `learnMarginInclusive`; one-time `ready` learned-backfill migration |
-| `lang/en.json`, `lang/pt-BR.json` | `NarutoD20.Learning.*`, `NarutoD20.Settings.LearningProgressionMode.*`, and `NarutoD20.Settings.LearnMarginInclusive.*` labels |
+| `scripts/main.mjs` | Register `enforceLearning`, `learningProgressionMode`, `learnMarginInclusive`, and `deductLearningChakra`; one-time `ready` learned-backfill migration |
+| `lang/en.json`, `lang/pt-BR.json` | `NarutoD20.Learning.*`, `NarutoD20.Settings.LearningProgressionMode.*`, `NarutoD20.Settings.LearnMarginInclusive.*`, and `NarutoD20.Settings.DeductLearningChakra.*` labels |
 
 ## Open questions
 
 1. **Take 10 / Take 20 on the dialog** — `pf1.dice.d20Roll` exposes Take 10/20.
    The rules forbid Take 20 on learn checks; if the dialog can't be told to hide
    Take 20, do we accept it as a known limitation or roll without that dialog?
-2. **Failure Insight scope flag** — store the "currently training" technique id
-   on an actor flag (planned, path exported from `flag-paths.mjs`) vs. infer it
-   some other way.
-3. **Eligibility strictness** — block hard on rank/skill (planned) or warn-and-allow
-   so GMs can override at the table?
-4. **Phase 2 ordering** — which manual rule to automate next (learning time +
-   chakra drain seems highest value; structured `(t)/(f)/(a)/(1-5)` requirements
-   tie into the existing `links.prerequisites`).
+2. **Chakra preflight strictness** — the pre-roll gate uses the minimum possible
+   training cost so the actor can still roll when a good result might make the
+   attempt affordable. If the actual post-roll cost is higher than the remaining
+   chakra, the current behavior aborts resolution after the roll instead of
+   spending partial chakra or applying progress.
+3. **Phase 2 ordering** — which manual rule to automate next: the four Methods,
+   Action Point persistence, or structured `(t)/(f)/(a)/(1-5)` requirements tied
+   into the existing `links.prerequisites`.
 
 ## Manual verification
 
@@ -456,3 +481,13 @@ default (`learned: false`) applies to newly created embedded items.
     by exactly margin 5 drops to the `+1` award (book-strict `> 5`); flipping the
     setting back to `true` restores the `+2` award at margin 5. The 15 boundary
     is unaffected.
+14. **Learning chakra block:** with `deductLearningChakra` on and current Pool +
+    Reserve below the minimum training cost, clicking **Learn** warns and does
+    not open the roll dialog.
+15. **Learning chakra deduction:** with enough current Pool + Reserve, a resolved
+    learn attempt deducts Pool first and Reserve second. If the post-roll cost is
+    higher than the remaining chakra, no partial deduction or learning progress
+    is applied.
+16. **Chakra tab scroll:** scroll the technique list, then trigger a learn roll,
+    edit a learn misc bonus, or use a technique. The sheet may re-render, but the
+    `.techniques-body` scroll position should remain where it was.
