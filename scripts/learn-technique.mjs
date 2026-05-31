@@ -114,14 +114,43 @@ function trainingChakraCost(actor, blocks) {
     return Math.max(0, Math.ceil(poolMax * 0.4 * blocks));
 }
 
+function minimumTrainingBlocksForRoll(item, mode) {
+    if (mode === LEARNING_MODES.FOUR_HOUR_BLOCKS) return 1;
+
+    const rank = Math.max(1, Number(item.system.rank ?? 1) || 1);
+    return Math.max(1, Math.ceil(rank * 2 * 0.25));
+}
+
+function availableTrainingChakra(actor) {
+    const chakra = actor.flags?.[MODULE_ID]?.chakra ?? {};
+    const poolValue = Math.max(0, Number(chakra.pool?.value ?? 0) || 0);
+    const reserveValue = Math.max(0, Number(chakra.reserve?.value ?? 0) || 0);
+    return poolValue + reserveValue;
+}
+
+function warnInsufficientTrainingChakra(actor, amount, available = availableTrainingChakra(actor)) {
+    ui.notifications.warn(`${actor.name}: learning requires ${amount} training chakra, but only ${available} is available.`);
+}
+
+function canPayTrainingChakra(actor, amount) {
+    if (!game.settings.get(MODULE_ID, "deductLearningChakra") || amount <= 0) return true;
+    return availableTrainingChakra(actor) >= amount;
+}
+
 async function applyTrainingChakraDeduction(actor, amount) {
     if (!game.settings.get(MODULE_ID, "deductLearningChakra") || amount <= 0) {
-        return { deducted: 0, fromPool: 0, fromReserve: 0 };
+        return { paid: true, deducted: 0, fromPool: 0, fromReserve: 0 };
     }
 
     const chakra = actor.flags?.[MODULE_ID]?.chakra ?? {};
-    const poolValue = Number(chakra.pool?.value ?? 0) || 0;
-    const reserveValue = Number(chakra.reserve?.value ?? 0) || 0;
+    const poolValue = Math.max(0, Number(chakra.pool?.value ?? 0) || 0);
+    const reserveValue = Math.max(0, Number(chakra.reserve?.value ?? 0) || 0);
+    const available = poolValue + reserveValue;
+    if (available < amount) {
+        warnInsufficientTrainingChakra(actor, amount, available);
+        return { paid: false, deducted: 0, fromPool: 0, fromReserve: 0 };
+    }
+
     const fromPool = Math.min(amount, poolValue);
     const fromReserve = Math.min(amount - fromPool, reserveValue);
     const deducted = fromPool + fromReserve;
@@ -131,11 +160,7 @@ async function applyTrainingChakraDeduction(actor, amount) {
         [chakraReserveValuePath]: reserveValue - fromReserve,
     });
 
-    if (deducted < amount) {
-        ui.notifications.warn(`${actor.name}: training required ${amount} chakra, but only ${deducted} was available.`);
-    }
-
-    return { deducted, fromPool, fromReserve };
+    return { paid: true, deducted, fromPool, fromReserve };
 }
 
 function rollTotal(result) {
@@ -250,6 +275,13 @@ export async function attemptLearnTechnique(item) {
         return;
     }
 
+    const mode = getLearningMode();
+    const minimumChakraCost = trainingChakraCost(actor, minimumTrainingBlocksForRoll(item, mode));
+    if (!canPayTrainingChakra(actor, minimumChakraCost)) {
+        warnInsufficientTrainingChakra(actor, minimumChakraCost);
+        return;
+    }
+
     const switchedLearning = await resetFailureInsightForDifferentTechnique(actor, item, learning);
     const activeLearning = await expireInterruptedTraining(item, switchedLearning);
     const failureInsight = Math.min(5, Math.max(0, Number(activeLearning.failureInsight ?? 0) || 0));
@@ -282,7 +314,6 @@ export async function attemptLearnTechnique(item) {
         return;
     }
 
-    const mode = getLearningMode();
     const targetProgress = getLearningTargetProgress(item, mode);
     const maxAttempts = getLearningMaxAttempts(actor, skillKey);
     const oldProgress = Number(activeLearning.progress ?? 0) || 0;
@@ -293,6 +324,8 @@ export async function attemptLearnTechnique(item) {
     const trainingBlocks = trainingBlocksForRoll(item, mode, margin);
     const chakraCost = trainingChakraCost(actor, trainingBlocks);
     const chakraDeduction = await applyTrainingChakraDeduction(actor, chakraCost);
+    if (!chakraDeduction.paid) return;
+
     const totalTrainingBlocks = (Number(activeLearning.trainingBlocks ?? 0) || 0) + trainingBlocks;
     const totalChakraSpent = (Number(activeLearning.chakraSpent ?? 0) || 0) + chakraCost;
     const now = trainingTimestamp();
