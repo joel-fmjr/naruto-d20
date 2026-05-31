@@ -54,19 +54,18 @@
       "value": "1",
       "units": "round",
       "end": "turnStart",
-      "start": 2469342
+      "start": 0
     },
     "conditions": [],
     "hideFromToken": false,
     "showInQuickbar": false
   },
-  "name": "RYUUTSUKI (DRAGON THRUST)",
-  "img": "icons/svg/ice-aura.svg",
+  "name": "KENJUTSU: IAIDO (SWORD ART: IAIDO)",
+  "img": "systems/pf1/icons/feats/improved-disarm.png",
   "effects": [],
   "folder": null,
   "ownership": {
-    "default": 0,
-    "mIZLV3aRVXSMGsYi": 3
+    "default": 0
   },
   "flags": {},
   "_stats": {
@@ -76,11 +75,11 @@
     "coreVersion": "13.351",
     "systemId": "pf1",
     "systemVersion": "11.11",
-    "createdTime": 1779170781459,
-    "modifiedTime": 1779170781459,
-    "lastModifiedBy": "mIZLV3aRVXSMGsYi"
+    "createdTime": 1780120000003,
+    "modifiedTime": 1780120000003,
+    "lastModifiedBy": null
   },
-  "_id": "WPf197iHDWrM7kZG",
+  "_id": "KKhWMiimCs7iEpCr",
   "sort": 0,
-  "_key": "!items!WPf197iHDWrM7kZG"
+  "_key": "!items!KKhWMiimCs7iEpCr"
 }

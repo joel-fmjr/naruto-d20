@@ -44,25 +44,6 @@ export function getChargeDefensePenaltyBuff(actor) {
     return actor?.items?.find((item) => item.flags?.[MODULE_ID]?.sourceId === CHARGE_PENALTY_SOURCE_ID) ?? null;
 }
 
-export function isChargeDefensePenaltyBuff(item) {
-    if (item?.type !== "buff") return false;
-
-    const system = item.system ?? {};
-    const duration = system.duration ?? {};
-    if (duration.units !== "round") return false;
-    if (String(duration.value ?? "").trim() !== "1") return false;
-    if ((duration.end ?? "turnStart") !== "turnStart") return false;
-
-    const changes = Array.from(system.changes ?? []);
-    const meaningfulChanges = changes.filter((change) => change?.target || change?.formula);
-    if (meaningfulChanges.length !== 1) return false;
-
-    const [change] = meaningfulChanges;
-    return change.target === "ac"
-        && String(change.formula ?? "").trim() === "-2"
-        && (change.operator ?? "add") === "add";
-}
-
 function _isChargeActionUse(actionUse) {
     return actionUse?.actor
         && actionUse.action?.hasAttack

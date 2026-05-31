@@ -1,5 +1,4 @@
 import { MODULE_ID } from "../constants.mjs";
-import { isChargeDefensePenaltyBuff } from "./charge-defense.mjs";
 
 const SOURCE_FLAG = MODULE_ID;
 
@@ -8,7 +7,7 @@ const SOURCE_FLAG = MODULE_ID;
  * Called from performTechnique after a successful perform check.
  * `action` is the ItemAction that was used — its duration is copied onto the buff.
  */
-export async function applyTechniqueBuff(item, actor, action, { skipChargeDefensePenalty = false } = {}) {
+export async function applyTechniqueBuff(item, actor, action) {
     const auto = item.system.automation;
     if (!auto?.enabled) return;
 
@@ -32,7 +31,6 @@ export async function applyTechniqueBuff(item, actor, action, { skipChargeDefens
         buffDoc = await pack.getDocument(selectedEntry._id);
     }
     if (!buffDoc) return;
-    if (skipChargeDefensePenalty && isChargeDefensePenaltyBuff(buffDoc)) return;
 
     const applyTargets = _resolveBuffTargets(item, actor);
     if (!applyTargets.length) return;

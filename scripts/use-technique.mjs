@@ -165,7 +165,7 @@ export async function performTechnique(item, actionId, event = null) {
     if (game.settings.get(MODULE_ID, "automaticBuffs") && updatedItem.system.automation?.enabled) {
         const { applyTechniqueBuff } = await import("./automation/buff-application.mjs");
         try {
-            await applyTechniqueBuff(updatedItem, actor, action, { skipChargeDefensePenalty: usedCharge });
+            await applyTechniqueBuff(updatedItem, actor, action);
         } catch (err) {
             console.error(`naruto-d20 | buff automation failed for "${updatedItem.name}":`, err);
             ui.notifications.warn(`Buff automation failed for ${updatedItem.name}. See console.`);
