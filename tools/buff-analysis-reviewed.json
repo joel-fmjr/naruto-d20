@@ -1,0 +1,17 @@
+{
+  "_comment": "Tracks which techniques without buffs have already been analyzed and intentionally left without a changes-based buff. The analysis script reads this to mark Section D entries as 'reviewed' vs 'pending'. Add a discipline to reviewedDisciplines when an entire batch has been swept; add individual names to reviewedTechniques for one-off decisions.",
+  "reviewedDisciplines": ["Taijutsu"],
+  "reviewedTechniques": [
+    "BUNSHIN NO JUTSU (DUPLICATION TECHNIQUE)",
+    "KAWARIMI NO JUTSU (BODY SUBSTITUTION TECHNIQUE)",
+    "KINOBORI (TREE CLIMBING TECHNIQUE)",
+    "KOUSEN RYU (IRON WIRE STYLE)",
+    "MAGEN: SHITSUENJOU NO JUTSU (DEMONIC MIRAGE: REALITY REVISION TECHNIQUE)",
+    "SHOUGENZOU NO JUTSU (MINOR ILLUSION TECHNIQUE)",
+    "TADAYOU (WATER STRIDER)"
+  ],
+  "notes": {
+    "Taijutsu": "Batch 2026-06-01: 11 stance buffs created (YASEI KUMA, ISHIMARU SHODAN/NIDAN/SANDAN, SUIKEN, TOUROUKEN, TOUROU MANE, IAISOUKEN, SHISUI, DACHI-TENKEN, YABUKI). Remaining techniques reviewed and left without buff: Strikes apply a one-shot bonus that belongs to the technique's action, not a persistent buff; non-candidate stances grant only conditional/attribute-swap effects with no clean change target.",
+    "_emptyBuffs": "The 7 names in reviewedTechniques whose buffs are intentionally left with empty changes (narrative/situational effects, no clean change target). Decided 2026-06-01 — do not re-flag as candidates."
+  }
+}
