@@ -1,0 +1,101 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "<p>+4 bonus to Escape Artist checks, CMB to break free of grapples, and CMD against grapple.</p>",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "untyped",
+        "_id": "kb001111",
+        "operator": "add",
+        "priority": 0,
+        "formula": "4",
+        "target": "skill.esc"
+      },
+      {
+        "type": "untyped",
+        "_id": "kb002222",
+        "operator": "add",
+        "priority": 0,
+        "formula": "4",
+        "target": "cmb"
+      },
+      {
+        "type": "untyped",
+        "_id": "kb003333",
+        "operator": "add",
+        "priority": 0,
+        "formula": "4",
+        "target": "cmd"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 1,
+    "duration": {
+      "value": "1",
+      "units": "round",
+      "end": "turnStart",
+      "start": 0
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "KATSUTAI NO JUTSU (SLIPPERY BODY TECHNIQUE)",
+  "img": "systems/pf1/icons/spells/runes-blue-3.jpg",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1748736000000,
+    "modifiedTime": 1748736000000,
+    "lastModifiedBy": null
+  },
+  "_id": "fc757769Yx3Kpq8T",
+  "sort": 0,
+  "_key": "!items!fc757769Yx3Kpq8T"
+}
