@@ -9,10 +9,19 @@
 
 import { MODULE_ID }                            from "../constants.mjs";
 import { DISCIPLINE_SKILL_MAP }                 from "../data/skills.mjs";
-import { COMPLEXITY_TABLE }                     from "../data/technique-model.mjs";
+import {
+    COMPLEXITY_TABLE,
+    TECHNIQUE_DESCRIPTORS,
+} from "../data/technique-model.mjs";
 import { attemptLearnTechnique, buildLearningView } from "../learn-technique.mjs";
 import { canAffordTechnique, performTechnique } from "../use-technique.mjs";
 import { resolveDroppedItem }                   from "../utils/drag-drop.mjs";
+
+const SPECIAL_DESCRIPTOR_FLAGS = {
+    "Combination": "system.isCombination",
+    "Hijutsu":     "system.isHijutsu",
+    "Kinjutsu":    "system.isKinjutsu",
+};
 
 export function createTechniqueItemSheet() {
 
@@ -68,6 +77,13 @@ export function createTechniqueItemSheet() {
 
             // Actions — use PF1e's ItemAction collection when available
             context.actions  = Array.from(item.actions ?? []);
+            const descriptors = new Set(system.descriptors ?? []);
+            context.descriptorList = TECHNIQUE_DESCRIPTORS.filter((label) => descriptors.has(label));
+            context.hasDescriptors = descriptors.size > 0;
+            context.descriptorChoices = TECHNIQUE_DESCRIPTORS.map((label) => ({
+                label,
+                checked: descriptors.has(label),
+            }));
 
             // Perform flow
             const actor      = item.actor;
@@ -191,6 +207,7 @@ export function createTechniqueItemSheet() {
             html.on("click", ".edit-action",      this._onEditAction.bind(this));
             html.on("click", ".delete-action",    this._onDeleteAction.bind(this));
             html.on("click", ".duplicate-action", this._onDuplicateAction.bind(this));
+            html.on("change", ".descriptor-checkbox", this._onDescriptorToggle.bind(this));
 
             // Links
             html.on("click", ".delete-link",  this._onDeleteLink.bind(this));
@@ -279,6 +296,24 @@ export function createTechniqueItemSheet() {
             const actions = foundry.utils.deepClone(this.item.system.actions ?? []);
             actions.push(data);
             await this.item.update({ "system.actions": actions });
+        }
+
+        async _onDescriptorToggle(event) {
+            const input = event.currentTarget;
+            const descriptor = input.dataset.descriptor;
+            if (!descriptor) return;
+
+            await this._onSubmit(event, { preventRender: true });
+
+            const descriptors = new Set(this.item.system.descriptors ?? []);
+            if (input.checked) descriptors.add(descriptor);
+            else descriptors.delete(descriptor);
+
+            const updates = { "system.descriptors": Array.from(descriptors) };
+            for (const [special, path] of Object.entries(SPECIAL_DESCRIPTOR_FLAGS)) {
+                updates[path] = descriptors.has(special);
+            }
+            await this.item.update(updates);
         }
 
         // ─────────────────────────────────────────────────────────────

@@ -51,6 +51,15 @@
       {{/if}}
     </ul>
 
+    {{#if hasDescriptors}}
+    <ul class="property-list descriptors tags">
+      <h5>{{localize "NarutoD20.Technique.Descriptors.Legend"}}</h5>
+      {{#each descriptorList}}
+      <li class="property generic-tag">{{this}}</li>
+      {{/each}}
+    </ul>
+    {{/if}}
+
     {{#unless learning.effectivelyLearned}}
     {{#if item.actor}}
     <button type="button" class="learn-technique">
@@ -243,6 +252,18 @@
           <input type="checkbox" name="system.compXpCost" {{checked system.compXpCost}}>
           {{localize "NarutoD20.Technique.Components.XpCost.Label"}}
         </label>
+      </div>
+
+      {{!-- Descriptors --}}
+      <h3 class="form-header">{{localize "NarutoD20.Technique.Descriptors.Legend"}}</h3>
+
+      <div class="form-group stacked descriptor-grid">
+        {{#each descriptorChoices}}
+        <label class="checkbox">
+          <input type="checkbox" class="descriptor-checkbox" data-descriptor="{{label}}" {{checked checked}} {{#unless @root.editable}}disabled{{/unless}}>
+          {{label}}
+        </label>
+        {{/each}}
       </div>
     </div>
 

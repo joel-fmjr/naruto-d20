@@ -191,6 +191,16 @@ div.naruto-tai-setting .form-group {
    Technique Sheet — Advanced tab
 ══════════════════════════════════════════════════════ */
 
+.pf1.sheet.item .descriptor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2px 10px;
+}
+
+.pf1.sheet.item .descriptor-grid label.checkbox {
+    min-width: 0;
+}
+
 /* Delete buttons inside tag chips */
 .pf1.sheet.item .tag .delete-tag {
     margin-left: 4px;
