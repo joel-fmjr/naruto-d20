@@ -1,6 +1,6 @@
 # Relatório: Técnicas e Buffs com Changes
 
-Gerado em: 2026-06-01T21:22:34.258Z
+Gerado em: 2026-06-01T21:30:41.549Z
 > Arquivo gerado automaticamente por `tools/analyze-technique-buffs.mjs`. Não editar à mão — alterações são sobrescritas na próxima execução.
 
 ## Metodologia
@@ -40,15 +40,15 @@ Gerado em: 2026-06-01T21:22:34.258Z
 | Métrica | Valor |
 |---|---|
 | Técnicas totais | 1053 |
-| Buffs totais | 35 |
-| Técnicas com buff + changes válidas | 27 |
+| Buffs totais | 41 |
+| Técnicas com buff + changes válidas | 33 |
 | Técnicas com buff sem changes | 7 |
-| Técnicas sem buff | 1019 |
-| Buffs com changes válidas | 28 |
+| Técnicas sem buff | 1013 |
+| Buffs com changes válidas | 34 |
 | Buffs sem changes | 7 |
 | Buffs com targets inválidos | 0 |
 
-## Seção A — Buffs com changes válidas (28)
+## Seção A — Buffs com changes válidas (34)
 
 | Buff | Changes | Targets usados |
 |---|---|---|
@@ -70,12 +70,18 @@ Gerado em: 2026-06-01T21:22:34.258Z
 | Kanigakure Hiden: Raiton - Denki Shokku (Hidden Crab Secret: Lightning Release - Electric Shock) | 1 | mdamage |
 | KATSUTAI NO JUTSU (SLIPPERY BODY TECHNIQUE) | 3 | skill.esc, cmb, cmd |
 | KAWA NO YOROI (SKIN ARMOR) | 1 | nac |
+| KEI-MON KAI (VIEW GATE RELEASE) | 3 | str, dex, landSpeed |
 | KENJUTSU: DACHI - TENKEN (SWORD ART: STANCE - HEAVENLY BLADE) | 1 | ac |
 | KENJUTSU: IAIDO (SWORD ART: IAIDO) | 1 | ac |
 | KENSOKU: IAISOUKEN (SWIFT FISTS: TWIN UNDODGEABLE FISTS) | 2 | mattack, critConfirm |
+| KYO-MON KAI (WONDER GATE RELEASE) | 7 | str, dex, landSpeed, init, skill.acr, skill.clm, skill.swm |
+| KYU-MON KAI (HEAL GATE RELEASE) | 3 | str, dex, landSpeed |
+| SEI-MON KAI (LIFE GATE RELEASE) | 3 | str, dex, landSpeed |
 | SHINOBI NO JUTSU (INFILTRATION TECHNIQUE) | 1 | skill.ste |
 | SHISUI DACHI (STILL WATER STANCE) | 1 | wdamage |
+| SHOU-MON KAI (HARM GATE RELEASE) | 7 | str, dex, landSpeed, init, skill.acr, skill.clm, skill.swm |
 | SUIKEN DACHI (DRUNKEN FIST STANCE) | 1 | ac |
+| TO-MON KAI (LIMIT GATE RELEASE) | 7 | str, dex, landSpeed, init, skill.acr, skill.clm, skill.swm |
 | TOUROU MANE NO JUTSU (PRAYING MANTIS IMITATION TECHNIQUE) | 1 | skill.acr |
 | TOUROUKEN (PRAYING MANTIS STYLE) | 1 | skill.acr |
 | USAGIDO (WAY OF THE RABBIT) | 7 | str, fort, ref, ac, attack, wdamage, chakraPool |
@@ -97,11 +103,11 @@ Gerado em: 2026-06-01T21:22:34.258Z
 
 _Nenhum — todos os targets existentes são válidos._
 
-## Seção D — Técnicas sem buff, por disciplina (1019 total)
+## Seção D — Técnicas sem buff, por disciplina (1013 total)
 
 Revisão em batches: cada disciplina é uma subseção colapsável.
 
-Status: **207 revisadas** (analisadas e deixadas sem buff) / **812 pendentes**.
+Status: **208 revisadas** (analisadas e deixadas sem buff) / **805 pendentes**.
 
 ### Visão geral por disciplina
 
@@ -110,12 +116,13 @@ Status: **207 revisadas** (analisadas e deixadas sem buff) / **812 pendentes**.
 | Chakra Control | 44 | 0 | 44 |
 | Fuinjutsu | 76 | 0 | 76 |
 | Genjutsu | 99 | 0 | 99 |
-| Hachimon Tonkou | 7 | 0 | 7 |
+| Hachimon Tonkou ✓ | 1 | 1 | 0 |
 | Ninjutsu | 544 | 0 | 544 |
 | Taijutsu ✓ | 207 | 207 | 0 |
 | Training | 42 | 0 | 42 |
 
 Notas de revisão:
+- **Hachimon Tonkou:** Batch 2026-06-01: 6 Gate buffs created (KYU-MON, SEI-MON, SHOU-MON, TO-MON, KEI-MON, KYO-MON). Mapped persistent numeric bonuses to Strength, Dexterity, land speed, Initiative, Acrobatics, Climb, and Swim. Temporary Chakra, Fast Healing, ignored conditions, per-round damage, closing penalties, Hide failure, opening damage, and knockback were left as manual/narrative effects. SEISHUN NO CHIKARA!!! reviewed and left without a buff because temporary HP and ignored fatigue/exhaustion do not have a clean changes target.
 - **Taijutsu:** Batch 2026-06-01: 11 stance buffs created (YASEI KUMA, ISHIMARU SHODAN/NIDAN/SANDAN, SUIKEN, TOUROUKEN, TOUROU MANE, IAISOUKEN, SHISUI, DACHI-TENKEN, YABUKI). Remaining techniques reviewed and left without buff: Strikes apply a one-shot bonus that belongs to the technique's action, not a persistent buff; non-candidate stances grant only conditional/attribute-swap effects with no clean change target.
 - **_emptyBuffs:** The 7 names in reviewedTechniques whose buffs are intentionally left with empty changes (narrative/situational effects, no clean change target). Decided 2026-06-01 — do not re-flag as candidates.
 
@@ -353,17 +360,7 @@ Notas de revisão:
 | 12 | SHINBUKI NO JUTSU (MENTAL OVERRIDE TECHNIQUE) | Compulsion | pendente |
 | 12 | TSUKUYOMI (GOD OF THE MOON) | Doujutsu | pendente |
 
-### Hachimon Tonkou (7 pendentes de 7)
-
-| Rank | Nome | Subtipo | Status |
-|---|---|---|---|
-| 4 | KYU-MON KAI (HEAL GATE RELEASE) |  | pendente |
-| 6 | SEI-MON KAI (LIFE GATE RELEASE) |  | pendente |
-| 6 | SEISHUN NO CHIKARA!!! (POWER OF YOUTH!!!) |  | pendente |
-| 8 | SHOU-MON KAI (HARM GATE RELEASE) |  | pendente |
-| 10 | TO-MON KAI (LIMIT GATE RELEASE) |  | pendente |
-| 12 | KEI-MON KAI (VIEW GATE RELEASE) |  | pendente |
-| 14 | KYO-MON KAI (WONDER GATE RELEASE) |  | pendente |
+### Hachimon Tonkou (1) — ✓ revisada, sem pendências
 
 ### Ninjutsu (544 pendentes de 544)
 

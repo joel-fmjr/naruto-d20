@@ -24,7 +24,7 @@
     "complexity": "S-Class",
     "chakraCost": 0,
     "activation": "standard",
-    "range": "",
+    "range": "Personal",
     "target": "",
     "area": "",
     "duration": "",
@@ -58,6 +58,9 @@
         },
         "duration": {
           "units": "inst"
+        },
+        "range": {
+          "units": "personal"
         }
       }
     ],
