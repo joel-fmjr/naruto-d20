@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "",
+    "descriptors": [
+      "Evil",
+      "Lost Kinjutsu",
+      "Kinjutsu"
+    ],
     "rank": 4,
     "complexity": "C-Class",
     "chakraCost": 6,
@@ -38,7 +43,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

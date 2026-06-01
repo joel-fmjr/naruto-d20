@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Doton",
+    "descriptors": [
+      "Iwagakure Kinjutsu",
+      "Earth",
+      "Kinjutsu"
+    ],
     "rank": 6,
     "complexity": "B-Class",
     "chakraCost": 10,
@@ -38,7 +43,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

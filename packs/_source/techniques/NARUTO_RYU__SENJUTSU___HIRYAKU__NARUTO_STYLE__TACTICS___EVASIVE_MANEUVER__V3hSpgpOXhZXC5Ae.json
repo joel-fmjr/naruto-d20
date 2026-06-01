@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "",
+    "descriptors": [
+      "Uzumaki Naruto Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 7,
     "complexity": "B-Class",
     "chakraCost": 4,
@@ -37,7 +41,7 @@
     "compMastery": true,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

@@ -19,6 +19,10 @@
     },
     "discipline": "Chakra Control",
     "subtype": "Spirit",
+    "descriptors": [
+      "Konoha Kinjutsu",
+      "Kinjutsu"
+    ],
     "rank": 8,
     "complexity": "S-Class",
     "chakraCost": 0,
@@ -38,7 +42,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "",
+    "descriptors": [
+      "Orochimaru Kinjutsu",
+      "Kinjutsu"
+    ],
     "rank": 14,
     "complexity": "SS-Class",
     "chakraCost": 0,
@@ -38,7 +42,7 @@
     "compPhysical": false,
     "compXpCost": true,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

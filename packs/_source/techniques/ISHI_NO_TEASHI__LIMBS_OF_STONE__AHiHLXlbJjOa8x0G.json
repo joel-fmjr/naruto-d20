@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Doton",
+    "descriptors": [
+      "Earth",
+      "Ishimaru Clan Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 1,
     "complexity": "C-Class",
     "chakraCost": 6,
@@ -37,7 +42,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

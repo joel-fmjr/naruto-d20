@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Raiton",
+    "descriptors": [
+      "Electric",
+      "Uchiha Sasuke Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 3,
     "complexity": "S-Class",
     "chakraCost": 3,
@@ -37,7 +42,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

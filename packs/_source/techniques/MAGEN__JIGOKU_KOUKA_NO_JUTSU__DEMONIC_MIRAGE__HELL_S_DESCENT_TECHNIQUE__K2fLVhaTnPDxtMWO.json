@@ -19,6 +19,9 @@
     },
     "discipline": "Genjutsu",
     "subtype": "Phantasm",
+    "descriptors": [
+      "Mind-Affecting"
+    ],
     "rank": 6,
     "complexity": "B-Class",
     "chakraCost": 8,

@@ -19,6 +19,9 @@
     },
     "discipline": "Taijutsu",
     "subtype": "Stance",
+    "descriptors": [
+      "Grapple"
+    ],
     "rank": 2,
     "complexity": "D-Class",
     "chakraCost": 1,

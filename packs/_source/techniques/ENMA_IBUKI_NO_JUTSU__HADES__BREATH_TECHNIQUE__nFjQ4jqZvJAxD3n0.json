@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Fuuton",
+    "descriptors": [
+      "Acid",
+      "Fire"
+    ],
     "rank": 4,
     "complexity": "C-Class",
     "chakraCost": 4,

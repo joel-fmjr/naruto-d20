@@ -19,6 +19,12 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Suiton",
+    "descriptors": [
+      "Poison",
+      "Water",
+      "Amegakure Kinjutsu",
+      "Kinjutsu"
+    ],
     "rank": 3,
     "complexity": "A-Class",
     "chakraCost": 6,
@@ -38,7 +44,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

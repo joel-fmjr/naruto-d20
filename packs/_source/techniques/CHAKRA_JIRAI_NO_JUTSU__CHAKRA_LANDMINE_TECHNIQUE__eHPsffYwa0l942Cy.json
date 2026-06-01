@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "",
+    "descriptors": [
+      "Fire",
+      "Force"
+    ],
     "rank": 4,
     "complexity": "B-Class",
     "chakraCost": 4,

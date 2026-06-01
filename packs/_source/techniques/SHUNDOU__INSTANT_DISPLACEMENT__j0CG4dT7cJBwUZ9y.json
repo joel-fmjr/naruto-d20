@@ -19,6 +19,7 @@
     },
     "discipline": "Taijutsu",
     "subtype": "Mobility",
+    "descriptors": [],
     "rank": 4,
     "complexity": "C-Class",
     "chakraCost": 4,

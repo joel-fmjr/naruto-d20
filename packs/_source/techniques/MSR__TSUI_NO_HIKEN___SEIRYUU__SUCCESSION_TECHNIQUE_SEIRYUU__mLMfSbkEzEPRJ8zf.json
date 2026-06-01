@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Suiton",
+    "descriptors": [
+      "Water",
+      "Mibu Clan Kinjutsu",
+      "Kinjutsu"
+    ],
     "rank": 12,
     "complexity": "S-Class",
     "chakraCost": 20,
@@ -38,7 +43,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

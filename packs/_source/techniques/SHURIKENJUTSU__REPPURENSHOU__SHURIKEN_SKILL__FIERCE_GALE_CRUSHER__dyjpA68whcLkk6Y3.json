@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Fuuton",
+    "descriptors": [
+      "Armor",
+      "Wind",
+      "Combination"
+    ],
     "rank": 4,
     "complexity": "SS-Class",
     "chakraCost": 4,
@@ -39,7 +44,7 @@
     "compXpCost": false,
     "isHijutsu": false,
     "isKinjutsu": false,
-    "isCombination": false,
+    "isCombination": true,
     "performMiscBonus": 0,
     "active": false,
     "changes": [],

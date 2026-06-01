@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Fuuton",
+    "descriptors": [
+      "Wind",
+      "Mibu Clan Kinjutsu",
+      "Kinjutsu"
+    ],
     "rank": 8,
     "complexity": "A-Class",
     "chakraCost": 16,
@@ -38,7 +43,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

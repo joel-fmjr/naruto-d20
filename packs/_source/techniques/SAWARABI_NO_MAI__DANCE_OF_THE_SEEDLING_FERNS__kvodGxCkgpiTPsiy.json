@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "",
+    "descriptors": [
+      "Kaguya Clan Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 11,
     "complexity": "S-Class",
     "chakraCost": 20,
@@ -37,7 +41,7 @@
     "compMastery": false,
     "compPhysical": true,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

@@ -19,6 +19,9 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Fuuton",
+    "descriptors": [
+      "Wind"
+    ],
     "rank": 14,
     "complexity": "S-Class",
     "chakraCost": 15,

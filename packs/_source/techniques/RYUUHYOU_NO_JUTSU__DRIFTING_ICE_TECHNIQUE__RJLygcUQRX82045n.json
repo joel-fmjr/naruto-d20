@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Hyouton",
+    "descriptors": [
+      "Cold",
+      "Teleportation"
+    ],
     "rank": 4,
     "complexity": "B-Class",
     "chakraCost": 2,

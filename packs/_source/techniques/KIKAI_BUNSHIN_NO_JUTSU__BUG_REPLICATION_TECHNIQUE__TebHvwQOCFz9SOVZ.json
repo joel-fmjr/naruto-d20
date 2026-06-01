@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "",
+    "descriptors": [
+      "Aburame Clan Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 3,
     "complexity": "C-Class",
     "chakraCost": 0,
@@ -37,7 +41,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

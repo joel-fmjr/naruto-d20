@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Suiton",
+    "descriptors": [
+      "Water",
+      "Amegakure Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 3,
     "complexity": "B-Class",
     "chakraCost": 4,
@@ -37,7 +42,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

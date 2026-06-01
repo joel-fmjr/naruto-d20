@@ -19,6 +19,11 @@
     },
     "discipline": "Genjutsu",
     "subtype": "Doujutsu",
+    "descriptors": [
+      "Mind-Affecting",
+      "Uchiha Clan Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 10,
     "complexity": "B-Class",
     "chakraCost": 6,
@@ -37,7 +42,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

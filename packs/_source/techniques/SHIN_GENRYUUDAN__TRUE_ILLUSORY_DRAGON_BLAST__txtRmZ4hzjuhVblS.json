@@ -19,6 +19,11 @@
     },
     "discipline": "Genjutsu",
     "subtype": "Phantasm",
+    "descriptors": [
+      "Mind-Affecting",
+      "Lost Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 10,
     "complexity": "S-Class",
     "chakraCost": 12,
@@ -37,7 +42,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

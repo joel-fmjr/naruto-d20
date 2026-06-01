@@ -19,6 +19,9 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Suiton",
+    "descriptors": [
+      "Water"
+    ],
     "rank": 1,
     "complexity": "D-Class",
     "chakraCost": 1,

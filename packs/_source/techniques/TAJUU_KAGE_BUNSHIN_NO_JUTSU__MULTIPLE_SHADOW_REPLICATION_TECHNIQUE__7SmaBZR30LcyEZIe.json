@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "",
+    "descriptors": [
+      "Konoha Kinjutsu",
+      "Kinjutsu"
+    ],
     "rank": 9,
     "complexity": "A-Class",
     "chakraCost": 5,
@@ -38,7 +42,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

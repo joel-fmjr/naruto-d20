@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Hyouton",
+    "descriptors": [
+      "Cold",
+      "Shiseiten no Akira Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 10,
     "complexity": "S-Class",
     "chakraCost": 18,
@@ -37,7 +42,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

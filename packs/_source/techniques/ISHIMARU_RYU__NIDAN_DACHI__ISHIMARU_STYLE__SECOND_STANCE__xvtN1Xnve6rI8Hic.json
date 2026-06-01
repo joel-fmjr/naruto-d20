@@ -19,6 +19,10 @@
     },
     "discipline": "Taijutsu",
     "subtype": "Stance",
+    "descriptors": [
+      "Ishimaru Clan Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 3,
     "complexity": "C-Class",
     "chakraCost": 3,
@@ -37,7 +41,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

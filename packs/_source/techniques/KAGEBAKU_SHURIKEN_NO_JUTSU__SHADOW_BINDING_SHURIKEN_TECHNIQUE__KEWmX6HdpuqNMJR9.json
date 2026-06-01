@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Shadow",
+    "descriptors": [
+      "Lost Kinjutsu",
+      "Kinjutsu"
+    ],
     "rank": 4,
     "complexity": "S-Class",
     "chakraCost": 0,
@@ -38,7 +42,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Hyouton",
+    "descriptors": [
+      "Cold",
+      "Kumogakure Kinjutsu",
+      "Kinjutsu"
+    ],
     "rank": 5,
     "complexity": "B-Class",
     "chakraCost": 5,
@@ -38,7 +43,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

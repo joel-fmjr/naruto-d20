@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Raiton",
+    "descriptors": [
+      "Electric",
+      "Teleportation"
+    ],
     "rank": 5,
     "complexity": "C-Class",
     "chakraCost": 6,

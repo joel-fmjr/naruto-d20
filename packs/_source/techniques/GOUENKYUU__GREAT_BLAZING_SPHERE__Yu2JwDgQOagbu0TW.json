@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Katon",
+    "descriptors": [
+      "Fire",
+      "Uchiha Itachi Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 9,
     "complexity": "S-Class",
     "chakraCost": 10,
@@ -37,7 +42,7 @@
     "compMastery": true,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

@@ -19,6 +19,10 @@
     },
     "discipline": "Chakra Control",
     "subtype": "",
+    "descriptors": [
+      "Force",
+      "Sonic"
+    ],
     "rank": 8,
     "complexity": "S-Class",
     "chakraCost": 12,

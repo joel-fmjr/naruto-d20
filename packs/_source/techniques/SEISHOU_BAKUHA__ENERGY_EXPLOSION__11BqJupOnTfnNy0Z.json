@@ -19,6 +19,9 @@
     },
     "discipline": "Chakra Control",
     "subtype": "Body",
+    "descriptors": [
+      "Punch or Kick"
+    ],
     "rank": 2,
     "complexity": "D-Class",
     "chakraCost": 1,

@@ -19,6 +19,9 @@
     },
     "discipline": "Taijutsu",
     "subtype": "Strike",
+    "descriptors": [
+      "Armed"
+    ],
     "rank": 8,
     "complexity": "C-Class",
     "chakraCost": 5,

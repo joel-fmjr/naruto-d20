@@ -19,6 +19,7 @@
     },
     "discipline": "Training",
     "subtype": "Taijutsu",
+    "descriptors": [],
     "rank": 11,
     "complexity": "B-Class",
     "chakraCost": 0,

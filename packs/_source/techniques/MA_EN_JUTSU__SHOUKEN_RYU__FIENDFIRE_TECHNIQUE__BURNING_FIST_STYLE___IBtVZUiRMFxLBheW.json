@@ -19,6 +19,11 @@
     },
     "discipline": "Taijutsu",
     "subtype": "Stance",
+    "descriptors": [
+      "Fire",
+      "Lost Kinjutsu",
+      "Kinjutsu"
+    ],
     "rank": 3,
     "complexity": "C-Class",
     "chakraCost": 2,
@@ -38,7 +43,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

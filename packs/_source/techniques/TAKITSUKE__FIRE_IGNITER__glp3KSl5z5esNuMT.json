@@ -19,6 +19,9 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Katon",
+    "descriptors": [
+      "Fire"
+    ],
     "rank": 1,
     "complexity": "E-Class",
     "chakraCost": 2,

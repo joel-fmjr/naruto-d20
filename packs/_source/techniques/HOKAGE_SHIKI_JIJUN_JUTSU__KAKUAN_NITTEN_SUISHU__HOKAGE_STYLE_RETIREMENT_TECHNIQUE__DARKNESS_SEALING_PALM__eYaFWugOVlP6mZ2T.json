@@ -19,6 +19,10 @@
     },
     "discipline": "Fuinjutsu",
     "subtype": "",
+    "descriptors": [
+      "Shodaime Hokage Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 13,
     "complexity": "SS-Class",
     "chakraCost": 24,
@@ -37,7 +41,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

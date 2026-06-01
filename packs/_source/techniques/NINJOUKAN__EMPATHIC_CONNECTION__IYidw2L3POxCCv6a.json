@@ -19,6 +19,9 @@
     },
     "discipline": "Fuinjutsu",
     "subtype": "",
+    "descriptors": [
+      "Kinjutsu"
+    ],
     "rank": 5,
     "complexity": "B-Class",
     "chakraCost": 16,
@@ -38,7 +41,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

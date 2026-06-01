@@ -19,6 +19,10 @@
     },
     "discipline": "Taijutsu",
     "subtype": "Strike",
+    "descriptors": [
+      "Combination",
+      "Punch"
+    ],
     "rank": 14,
     "complexity": "SS-Class",
     "chakraCost": 18,
@@ -39,7 +43,7 @@
     "compXpCost": false,
     "isHijutsu": false,
     "isKinjutsu": false,
-    "isCombination": false,
+    "isCombination": true,
     "performMiscBonus": 0,
     "active": false,
     "changes": [],
