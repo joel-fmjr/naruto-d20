@@ -417,6 +417,7 @@ QA manual:
 Prioridade: media  
 Tipo: mantenibilidade/performance preventiva  
 Area: Technique Browser, Feat Browser
+Status: concluida
 
 Problema:
 
