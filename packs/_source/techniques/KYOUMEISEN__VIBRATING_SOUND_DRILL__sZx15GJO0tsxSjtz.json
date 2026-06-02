@@ -1,0 +1,107 @@
+{
+  "_id": "sZx15GJO0tsxSjtz",
+  "name": "KYOUMEISEN (VIBRATING SOUND DRILL)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/spells/beam-blue-3.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Ninjutsu </p>\n<p><b>Rank:</b> 5 (Spell Level 3)</p>\n<p><b>Chakra Cost:</b> 4</p>\n\n<p><b>Learn DC:</b> 18 | <b>Successes:</b> 3</p>\n<p><b>Perform:</b> 6 | <b>Perform DC:</b> 18</p>\n\n<p><b>Components:</b> C, S</p>\n\n<hr>\n\n<p>This complex technique deals 2d4+2 sonic damage to the target, and if it fails a Fortitude save it becomes @Condition[deaf]{deafened} for 1d4+1 rounds, as well as becoming @Condition[nauseated]{nauseated} for 1d3 rounds.</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Ninjutsu",
+    "subtype": "",
+    "descriptors": [
+      "Sonic",
+      "Hijutsu"
+    ],
+    "rank": 5,
+    "complexity": "C-Class",
+    "chakraCost": 4,
+    "activation": "standard",
+    "range": "Melee touch",
+    "target": "",
+    "area": "",
+    "duration": "Instant",
+    "save": "Fortitude partial",
+    "compHandSeals": false,
+    "compHalfSeals": true,
+    "compConcentration": true,
+    "compMobility": false,
+    "compFocus": false,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": true,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "a085be9b97eff88c",
+        "name": "Use",
+        "actionType": "spellsave",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "range": {
+          "units": "touch"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "2d4+2",
+              "types": [
+                "sonic"
+              ]
+            }
+          ]
+        },
+        "save": {
+          "type": "fort",
+          "description": "Fortitude partial"
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "Ss6sEWui4m2KO0ag",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!sZx15GJO0tsxSjtz"
+}

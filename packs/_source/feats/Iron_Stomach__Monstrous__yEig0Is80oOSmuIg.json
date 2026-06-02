@@ -1,0 +1,57 @@
+{
+  "_id": "yEig0Is80oOSmuIg",
+  "name": "Iron Stomach [Monstrous]",
+  "type": "feat",
+  "img": "icons/creatures/abilities/fangs-teeth-bite.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Con 15, Swallow Whole.</p>\n<p><b>Benefit:</b> You apply your full natural armor to your AC for those attempting to cut themselves out after being swallowed whole.</p>",
+      "summary": "You apply your full natural armor to your AC for those attempting to cut themselves out after being swallowed whole.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!yEig0Is80oOSmuIg"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "8augQOyi6sCo8QIg",
+  "name": "Epic Leadership [Epic]",
+  "type": "feat",
+  "img": "icons/environment/people/group.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Cha 25, Leadership, Leadership score 25.</p>\n<p><b>Benefit:</b> The character attracts a cohort and followers as shown on the Epic Leadership table. In all other ways, Epic Leadership functions as the Leadership feat.</p>",
+      "summary": "The character attracts a cohort and followers as shown on the Epic Leadership table. In all other ways, Epic…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!8augQOyi6sCo8QIg"
+}

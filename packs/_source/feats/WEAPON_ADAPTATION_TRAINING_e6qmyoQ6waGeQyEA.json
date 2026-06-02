@@ -1,0 +1,58 @@
+{
+  "_id": "e6qmyoQ6waGeQyEA",
+  "name": "WEAPON ADAPTATION TRAINING",
+  "type": "feat",
+  "img": "icons/tools/smithing/anvil.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Int 13.</p>\n<p><b>Benefit:</b> You may attempt to retrain a single weaponspecific feat or ability to have it apply to a different weapon you are proficient with.\n\nDoing so requires you to succeed at an Intelligence check (DC 10), for which you cannot take 10. You may make as many attempts as you need, but each attempt takes 4 hours.\n\nIf after retraining an ability, you lack any prerequisites it might have, it becomes unusable until you gain the required abilities. Similarly, if you retrain an ability that is required for other abilities you know, those abilities become unusable until you either retrain them to the new weapon type, or learn the required ability again.\n\nYou can only retrain abilities that offer a choice of weapon type when they are learned.</p>",
+      "summary": "You may attempt to retrain a single weaponspecific feat or ability to have it apply to a different weapon you are…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Combat",
+        "Weapon"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!e6qmyoQ6waGeQyEA"
+}

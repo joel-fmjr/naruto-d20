@@ -1,0 +1,72 @@
+{
+  "_id": "Qsqe0oK0sAIo2YU8",
+  "name": "Nimble",
+  "type": "feat",
+  "img": "icons/skills/movement/feet-winged-boots-brown.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> The character gets a +2 bonus on all Escape Artist checks and Sleight of Hand checks.</p>\n<p><b>Special:</b> Remember that the Sleight of Hand skill can't be used untrained.</p>",
+      "summary": "The character gets a +2 bonus on all Escape Artist checks and Sleight of Hand checks.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "_id": "aOAucSmeS6U8aAuk",
+        "formula": "2",
+        "target": "skill.slt",
+        "type": "feat",
+        "operator": "add"
+      },
+      {
+        "_id": "cggUOUC6eGaayasC",
+        "formula": "2",
+        "target": "skill.esc",
+        "type": "feat",
+        "operator": "add"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!Qsqe0oK0sAIo2YU8"
+}

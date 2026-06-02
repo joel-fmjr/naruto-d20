@@ -1,0 +1,72 @@
+{
+  "_id": "eo4wIIEeqweaswaC",
+  "name": "Blooded",
+  "type": "feat",
+  "img": "icons/skills/wounds/blood-cells-vessel-red-orange.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> You get a +2 bonus on Initiative and a +2 bonus on all Spot checks.</p>",
+      "summary": "You get a +2 bonus on Initiative and a +2 bonus on all Spot checks.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "_id": "2KMMc6Ay0KUqq0y6",
+        "formula": "2",
+        "target": "init",
+        "type": "feat",
+        "operator": "add"
+      },
+      {
+        "_id": "KoGiCyCyiQoc2Kma",
+        "formula": "2",
+        "target": "skill.per",
+        "type": "feat",
+        "operator": "add"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!eo4wIIEeqweaswaC"
+}

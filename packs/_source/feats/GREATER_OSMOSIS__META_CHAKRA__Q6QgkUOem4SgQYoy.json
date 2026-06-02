@@ -1,0 +1,55 @@
+{
+  "_id": "Q6QgkUOem4SgQYoy",
+  "name": "GREATER OSMOSIS [META-CHAKRA]",
+  "type": "feat",
+  "img": "icons/magic/control/buff-luck-fortune-clover-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Advanced Bloodline (Doukagan), Osmosis.</p>\n<p><b>Benefit:</b> Up to twice per day, you can spend a metachakra charge instead of an action point to use Osmosis.</p>",
+      "summary": "Up to twice per day, you can spend a metachakra charge instead of an action point to use Osmosis.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ]
+    }
+  },
+  "_key": "!items!Q6QgkUOem4SgQYoy"
+}

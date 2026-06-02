@@ -1,0 +1,57 @@
+{
+  "_id": "sM40kEgUiQAK0Moo",
+  "name": "Quick Reload",
+  "type": "feat",
+  "img": "icons/skills/ranged/arrow-flying-gray-brown.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus 1.</p>\n<p><b>Benefit:</b> Reloading a firearm with an already filled box magazine or speed loader is a free action. Reloading a revolver without a speed loader, or reloading any firearm with an internal magazine, is a move action.</p>",
+      "summary": "Reloading a firearm with an already filled box magazine or speed loader is a free action. Reloading a revolver…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!sM40kEgUiQAK0Moo"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "qguWe6o8woO0SOYY",
+  "name": "IMPROVED AVOIDANCE",
+  "type": "feat",
+  "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Str or Int 13.</p>\n<p><b>Benefit:</b> Up to three times per day, you can spend a meta-Chakra charge when performing a 'defensive maneuver' or 'avoiding an attack'. If you do, the action's use does not count against your daily limit or against that technique's uses per day (if any).</p>\n<p><b>Special:</b> Can be selected a second time to get two additional uses per day. The prerequisite increases to Str or Int 15.</p>",
+      "summary": "Up to three times per day, you can spend a meta-Chakra charge when performing a 'defensive maneuver' or 'avoiding an…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!qguWe6o8woO0SOYY"
+}

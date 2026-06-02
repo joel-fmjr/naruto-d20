@@ -1,0 +1,57 @@
+{
+  "_id": "kYSGKocUaW8coeuo",
+  "name": "INITIATE OF THE EIGHT CELESTIAL GATES",
+  "type": "feat",
+  "img": "icons/magic/symbols/cog-shield-white-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Str, Dex or Con 15.</p>\n<p><b>Benefit:</b> Required to Learn techniques of the Hachimon Tonkou subtype (p239).</p>",
+      "summary": "Required to Learn techniques of the Hachimon Tonkou subtype (p239).",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!kYSGKocUaW8coeuo"
+}

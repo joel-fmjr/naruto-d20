@@ -1,0 +1,57 @@
+{
+  "_id": "cuaIimYU2yAcE2OQ",
+  "name": "ELEMENTAL SPECIALIZATION",
+  "type": "feat",
+  "img": "icons/magic/fire/beam-jet-stream-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Chakra Control 12 ranks, Ninjutsu 15 ranks.</p>\n<p><b>Benefit:</b> You can ignore the material focus of techniques of the element of your choice (Doton, Fuuton, Hyouton, Katon, Raiton or Suiton). Any materials the technique might create dissipate immediately after the technique ends.</p>\n<p><b>Special:</b> You may select this feat multiple times. Choose a different element each time.</p>",
+      "summary": "You can ignore the material focus of techniques of the element of your choice (Doton, Fuuton, Hyouton, Katon, Raiton…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!cuaIimYU2yAcE2OQ"
+}

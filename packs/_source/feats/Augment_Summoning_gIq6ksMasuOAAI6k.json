@@ -1,0 +1,57 @@
+{
+  "_id": "gIq6ksMasuOAAI6k",
+  "name": "Augment Summoning",
+  "type": "feat",
+  "img": "icons/magic/control/buff-flight-wings-runes-red-yellow.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Blood Pact.</p>\n<p><b>Benefit:</b> Upon taking this feat you select one Blood Pact which you have. Each creature you summon from that Blood Pact gains a +4 enhancement to Strength and Constitution for the duration of their summoning.</p>",
+      "summary": "Upon taking this feat you select one Blood Pact which you have. Each creature you summon from that Blood Pact gains a…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!gIq6ksMasuOAAI6k"
+}

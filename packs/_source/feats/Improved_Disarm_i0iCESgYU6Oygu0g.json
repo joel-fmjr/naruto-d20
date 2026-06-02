@@ -1,0 +1,57 @@
+{
+  "_id": "i0iCESgYU6Oygu0g",
+  "name": "Improved Disarm",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/improved-disarm.png",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Intelligence 13, Combat Expertise.</p>\n<p><b>Benefit:</b> The character does not provoke an Attack of Opportunity when the character attempts to disarm an opponent, nor does the opponent get a chance to disarm the character.</p>",
+      "summary": "The character does not provoke an Attack of Opportunity when the character attempts to disarm an opponent, nor does…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!i0iCESgYU6Oygu0g"
+}

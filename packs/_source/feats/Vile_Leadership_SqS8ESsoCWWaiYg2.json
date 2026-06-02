@@ -1,0 +1,57 @@
+{
+  "_id": "SqS8ESsoCWWaiYg2",
+  "name": "Vile Leadership",
+  "type": "feat",
+  "img": "icons/magic/unholy/beam-impact-purple.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Character level 7th.</p>\n<p><b>Benefit:</b> You can attract a loyal cohort and a number of cowed followers to assist you. This feat is similar to Leadership, except Vile Leadership rewards rather than hinders leaders who have cruel reputations or who cause the deaths of their followers. In order to benefit from this feat, you must belong to one of the evil organizations and be in good standing with that organization. Your Vile Leadership score is determined by your character level, Reputation, and Charisma modifier, adjusted by various table factors.</p>",
+      "summary": "You can attract a loyal cohort and a number of cowed followers to assist you. This feat is similar to Leadership,…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!SqS8ESsoCWWaiYg2"
+}

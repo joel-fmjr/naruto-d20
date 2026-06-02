@@ -1,0 +1,93 @@
+{
+  "_id": "WWRDaVG0S5ENodHM",
+  "name": "TOUROUKEN (PRAYING MANTIS STYLE)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/feats/cleave.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Taijutsu (Stance)</p>\n<p><b>Rank:</b> 3 (Spell Level 2)</p>\n<p><b>Chakra Cost:</b> 3</p>\n\n<p><b>Learn DC:</b> 16 | <b>Successes:</b> 2</p>\n<p><b>Perform:</b> 4 | <b>Perform DC:</b> 16</p>\n\n<p><b>Components:</b> Mob</p>\n\n<hr>\n\n<p>You gain a +2 bonus to Balance and Tumble checks, and can make 1 additional attack of opportunity per round.</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Taijutsu",
+    "subtype": "Stance",
+    "descriptors": [],
+    "rank": 3,
+    "complexity": "C-Class",
+    "chakraCost": 3,
+    "activation": "swift",
+    "range": "",
+    "target": "",
+    "area": "",
+    "duration": "",
+    "save": "",
+    "compHandSeals": false,
+    "compHalfSeals": false,
+    "compConcentration": false,
+    "compMobility": true,
+    "compFocus": false,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": false,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "kCHvs9Js5OQN4ZtT",
+        "name": "Use",
+        "actionType": "mwak",
+        "activation": {
+          "type": "swift",
+          "unchained": {
+            "type": "action",
+            "cost": 1
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "qII8Woe2A4w6qsie",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!WWRDaVG0S5ENodHM"
+}

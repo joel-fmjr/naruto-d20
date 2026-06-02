@@ -1,0 +1,57 @@
+{
+  "_id": "QQ464yeWYkmiM8Ka",
+  "name": "Inventor",
+  "type": "feat",
+  "img": "icons/tools/laboratory/bowl-liquid-gold.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Master Crafter.</p>\n<p><b>Benefit:</b> When using the Master Crafter feat, you are only required to pay 1/3 the ordinary item's cost in XP.</p>",
+      "summary": "When using the Master Crafter feat, you are only required to pay 1/3 the ordinary item's cost in XP.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!QQ464yeWYkmiM8Ka"
+}

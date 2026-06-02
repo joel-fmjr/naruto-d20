@@ -1,0 +1,57 @@
+{
+  "_id": "C0ECosmcyWgcmYuY",
+  "name": "Builder",
+  "type": "feat",
+  "img": "icons/tools/smithing/anvil.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> Pick two of the following skills: Craft (chemical), Craft (electronic), Craft (mechanical), and Craft (structural). The character gets a +2 bonus on all checks with those skills.</p>\n<p><b>Special:</b> The character can select this feat twice. The second time, the character applies it to the two skills he or she didn't pick originally. Remember that Craft (chemical), Craft (electronic), and Craft (mechanical) cannot be used untrained.</p>",
+      "summary": "Pick two of the following skills: Craft (chemical), Craft (electronic), Craft (mechanical), and Craft (structural).…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!C0ECosmcyWgcmYuY"
+}

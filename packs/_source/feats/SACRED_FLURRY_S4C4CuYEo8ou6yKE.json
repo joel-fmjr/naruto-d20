@@ -1,0 +1,57 @@
+{
+  "_id": "S4C4CuYEo8ou6yKE",
+  "name": "SACRED FLURRY",
+  "type": "feat",
+  "img": "icons/magic/holy/ankh-gold-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "classFeat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Sacred Fist Stance (1d6), Buddhist Palm (Chakra), base attack bonus +6, Dex 13.</p>\n<p><b>Benefit:</b> Once each round, you may spend a swift action to gain sacred flurry, gaining an additional sacred fist attack at your highest attack bonus when making a Full Attack, but all attacks made that round suffer a -2 penalty to attack rolls. Does not stack with other abilities that grant additional attacks (such as the Renzuki technique or the Storm of Blows class ability).</p>",
+      "summary": "Once each round, you may spend a swift action to gain sacred flurry, gaining an additional sacred fist attack at your…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "YIwCqqseAU6OcEks",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Class"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!S4C4CuYEo8ou6yKE"
+}

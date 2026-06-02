@@ -1,0 +1,57 @@
+{
+  "_id": "a8Ge6uaCwkmWK20g",
+  "name": "Knockout Punch",
+  "type": "feat",
+  "img": "icons/weapons/fist/claw-red-black.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus 3, Brawl.</p>\n<p><b>Benefit:</b> When making the character's first unarmed attack against a flat-footed opponent, treat a successful attack as a critical hit. This damage is nonlethal damage.</p>\n<p><b>Special:</b> Even if the character has the ability to treat unarmed damage as lethal damage, the damage from a knockout punch is always nonlethal.</p>",
+      "summary": "When making the character's first unarmed attack against a flat-footed opponent, treat a successful attack as a…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!a8Ge6uaCwkmWK20g"
+}

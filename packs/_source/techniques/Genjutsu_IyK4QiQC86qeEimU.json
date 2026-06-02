@@ -1,0 +1,19 @@
+{
+  "_id": "IyK4QiQC86qeEimU",
+  "name": "Genjutsu",
+  "type": "Item",
+  "description": "",
+  "folder": null,
+  "sorting": "a",
+  "color": null,
+  "sort": 1000,
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "_key": "!folders!IyK4QiQC86qeEimU"
+}

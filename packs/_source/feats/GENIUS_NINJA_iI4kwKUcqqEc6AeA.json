@@ -1,0 +1,58 @@
+{
+  "_id": "iI4kwKUcqqEc6AeA",
+  "name": "GENIUS NINJA",
+  "type": "feat",
+  "img": "icons/sundries/books/book-embossed-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Can only be taken as a first level heroic character. Relevant ability score 13+.</p>\n<p><b>Benefit:</b> Choose a technique type (Chakra Control, Fuinjutsu, Genjutsu, Ninjutsu or Taijutsu). When learning techniques of that type, you can learn techniques of a Rank 1 higher than normal, and you gain a +2 bonus to Learn checks. You count as 5 years older when meeting requirements or determining your age category (max age 15). In addition, your Reputation in your home village is increased by 2.</p>\n<p><b>Special:</b> You can select this feat more than once. Choose a different technique type every time you do. The age reductions do not stack. (Optional: Your GM may decide to have Genius Ninja apply to all technique types)</p>",
+      "summary": "Choose a technique type (Chakra Control, Fuinjutsu, Genjutsu, Ninjutsu or Taijutsu). When learning techniques of that…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General",
+        "First Level"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!iI4kwKUcqqEc6AeA"
+}

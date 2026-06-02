@@ -1,0 +1,57 @@
+{
+  "_id": "4UK0YUaMCmIcAkIE",
+  "name": "Expert Advice",
+  "type": "feat",
+  "img": "icons/sundries/books/book-embossed-gold-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> At least 1 rank in the skill selected.</p>\n<p><b>Benefit:</b> When making checks with the selected skill, you may use your Reputation bonus instead of the usual ability modifier.</p>\n<p><b>Special:</b> You may gain this feat multiple times; its effects do not stack. Each time you take it, you select a different skill.</p>",
+      "summary": "When making checks with the selected skill, you may use your Reputation bonus instead of the usual ability modifier.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!4UK0YUaMCmIcAkIE"
+}

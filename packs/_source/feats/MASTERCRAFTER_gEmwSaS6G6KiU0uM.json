@@ -1,0 +1,57 @@
+{
+  "_id": "gEmwSaS6G6KiU0uM",
+  "name": "MASTERCRAFTER",
+  "type": "feat",
+  "img": "icons/tools/smithing/anvil.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Craft (electrical) 9 ranks, Craft (mechanical) 9 ranks, or both.</p>\n<p><b>Benefit:</b> You can create Mastercraft quality items, grant an existing object a Mastercraft bonus, or improve an object's Mastercraft bonus, as long as you have 9 or more ranks in the Craft skill used to make such an item.\n\nSee the D20 Modern rules (p94) for information on Mastercraft objects. Crafting such an item takes twice as long as it would to create a normal version of the item, and the purchase DC for the materials increases by the bonus you want to impart.\n\nThe craft check DC increases by +3 for a +1 bonus, by +5 for a +2 bonus, and by +10 for a +3 bonus. In addition, you must pay 250 XP per point of the bonus, which is paid when starting the attempt. If you would drop a level due to this payment, you cannot pay the cost. Modifying an existing object does not decrease the cost or the required time.\n\nGenerally speaking, weapons, armor and equipment that grants some kind of bonus to a specific skill check (such as a metal detector granting a bonus on Search checks to find metal objects) can be mastercrafted. When you mastercraft an item, choose which numerical quality of the item to improve (such as attack rolls or damage rolls for weapons, or armor bonus or skill check penalty for armor). The mastercraft quality will either reduce a penalty (if the item carries any) or grant a bonus to d20 rolls that the item is typically used for. An object can only have one mastercraft bonus.</p>",
+      "summary": "You can create Mastercraft quality items, grant an existing object a Mastercraft bonus, or improve an object's…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Item Creation"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!gEmwSaS6G6KiU0uM"
+}

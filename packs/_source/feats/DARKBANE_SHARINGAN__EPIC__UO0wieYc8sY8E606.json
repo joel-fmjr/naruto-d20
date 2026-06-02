@@ -1,0 +1,57 @@
+{
+  "_id": "UO0wieYc8sY8E606",
+  "name": "DARKBANE SHARINGAN (EPIC)",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-ringed-glow-angry-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Advanced Bloodline (Sharingan), Mangekyou Sharingan, Sharingan +6, Spot 27 ranks.</p>\n<p><b>Benefit:</b> You can activate your Mangekyou Sharingan safely for 2 additional times per day, and you gain LowLight Vision and Darkvision with 60 feet range while the ability is active. Your eyes permanently look like Mangekyou Sharingan is active, though you do not gain its bonuses. You do not suffer Mangekyou Sharingan Blindness as a result of using a technique, and can use\n\ntechniques requiring the Mangekyou Sharingan without having the ability active. You heal one additional point of Mangekyou Sharingan Blindness per evening of rest.\n\nNote: The main way to obtain this technique is to absorb someone else's pair of Mangekyou Sharingan eyes, which also immediately teaches you their host's Mangekyou Sharingan techniques (see Mangekyou Sharingan below).</p>",
+      "summary": "You can activate your Mangekyou Sharingan safely for 2 additional times per day, and you gain LowLight Vision and…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!UO0wieYc8sY8E606"
+}

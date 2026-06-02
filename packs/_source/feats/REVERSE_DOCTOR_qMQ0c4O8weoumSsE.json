@@ -1,0 +1,57 @@
+{
+  "_id": "qMQ0c4O8weoumSsE",
+  "name": "REVERSE DOCTOR",
+  "type": "feat",
+  "img": "icons/magic/life/cross-beam-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "classFeat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Chakra Scalpel class ability.</p>\n<p><b>Benefit:</b> You can use your Dexterity or Intelligence modifier to attack rolls when attacking with your Chakra scalpel. You may also add your Dexterity or Intelligence modifier to damage rolls with that weapon (up to +3).</p>",
+      "summary": "You can use your Dexterity or Intelligence modifier to attack rolls when attacking with your Chakra scalpel. You may…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "YIwCqqseAU6OcEks",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Class"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!qMQ0c4O8weoumSsE"
+}

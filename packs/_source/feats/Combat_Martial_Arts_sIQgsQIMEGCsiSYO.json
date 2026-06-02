@@ -1,0 +1,57 @@
+{
+  "_id": "sIQgsQIMEGCsiSYO",
+  "name": "Combat Martial Arts",
+  "type": "feat",
+  "img": "icons/weapons/fist/claw-gauntlet-gray.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus 1.</p>\n<p><b>Benefit:</b> With an unarmed strike, the character deals lethal or nonlethal damage (the character's choice) equal to 1d4 + the character's Strength modifier. The character's unarmed attacks count as armed, which means that opponents do not get Attacks of Opportunity when the character attacks them unarmed. The character may make attacks of opportunity against opponents who provoke such attacks.</p>",
+      "summary": "With an unarmed strike, the character deals lethal or nonlethal damage (the character's choice) equal to 1d4 + the…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!sIQgsQIMEGCsiSYO"
+}

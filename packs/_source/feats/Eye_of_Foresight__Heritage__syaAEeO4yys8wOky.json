@@ -1,0 +1,57 @@
+{
+  "_id": "syaAEeO4yys8wOky",
+  "name": "Eye of Foresight [Heritage]",
+  "type": "feat",
+  "img": "icons/magic/time/clock-spinning-gold-pink.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Wisdom 15, Sense Motive 4 ranks. Can only be taken at 1st level; may not be chosen if the user has already selected the Advanced Bloodline feat.</p>\n<p><b>Benefit:</b> You have the blood of the priestesses of Demon Country running through your veins. At the start of combat, the user gains their Wisdom modifier to Initiative, Defense and Saving Throws. This bonus reduces by 1 each round until it reaches 0. In addition, the user gains a +1 bonus to Initiative every 5th level.</p>",
+      "summary": "You have the blood of the priestesses of Demon Country running through your veins. At the start of combat, the user…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!syaAEeO4yys8wOky"
+}

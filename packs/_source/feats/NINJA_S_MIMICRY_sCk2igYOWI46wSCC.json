@@ -1,0 +1,57 @@
+{
+  "_id": "sCk2igYOWI46wSCC",
+  "name": "NINJA'S MIMICRY",
+  "type": "feat",
+  "img": "icons/magic/air/air-burst-spiral-blue-gray.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Advanced Bloodline (Sharingan), Sharingan +2.</p>\n<p><b>Benefit:</b> The bonus gained from Sharingan to checks to remember things you have seen is doubled.\n\nYou can ready an action to copy the next technique you see performed within 50 feet and identify, as long as it is a Genjutsu or Ninjutsu technique requiring Half or Hand Seals, or a Strike or Stance Taijutsu technique. You must meet all of the technique's requirements (including Perform Requirements), or the attempt fails and the action is wasted. Even if you meet all the requirements, the ability has an 80% chance of success, reduced to 50% if the technique was enhanced by a Meta-Chakra feat. If you can See Chakra, the chance is increased by 10%, and your chances are increased a further 10% if the target is under the Technique Copy effect of the Sharingan Ougi - Shinkou Jutsu technique. Upon success, you must pay the same Chakra Cost as the technique's user did, after which you choose to either Copy, Memorize or Nullify:\n\n- Copy: You perform the technique exactly as performed by the target, though you can choose new targets or area of effect if it has any. You gain a +2 bonus to Learn checks made to Develop the technique for 2 weeks.\n- Memorize: You gain a +4 bonus to Learn checks made to Develop the technique for 1 month, and regain half the Chakra you paid for the technique.\n- Nullify (Genjutsu or Ninjutsu only): You counter the target's technique, causing it to have no effect, and gain a +2 bonus to Learn checks made to Develop the technique for 2 weeks. You cannot nullify techniques with a Range of Personal.</p>",
+      "summary": "The bonus gained from Sharingan to checks to remember things you have seen is doubled.\n\nYou can ready an action to…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!sCk2igYOWI46wSCC"
+}

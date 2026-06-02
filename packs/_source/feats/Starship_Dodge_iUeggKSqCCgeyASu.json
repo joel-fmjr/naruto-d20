@@ -1,0 +1,57 @@
+{
+  "_id": "iUeggKSqCCgeyASu",
+  "name": "Starship Dodge",
+  "type": "feat",
+  "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Dexterity 13, Pilot 6 ranks, Starship Operation (of the appropriate type).</p>\n<p><b>Benefit:</b> When piloting a starship of a type with which you are proficient, you apply a +1 dodge bonus to your ship's Defense against attacks from one enemy starship you designate during your action. You can select a new enemy ship on any action.</p>",
+      "summary": "When piloting a starship of a type with which you are proficient, you apply a +1 dodge bonus to your ship's Defense…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!iUeggKSqCCgeyASu"
+}

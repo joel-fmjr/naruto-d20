@@ -1,0 +1,99 @@
+name: Release
+
+# Publishes a Foundry VTT module release whenever a version tag is pushed.
+#
+#   git tag v1.2.3
+#   git push origin v1.2.3
+#
+# Produces a GitHub Release with two assets:
+#   - module.json  (with version + download URL stamped to this tag)
+#   - module.zip   (runtime artifacts only — no dev tooling or pack sources)
+#
+# Before packaging, the job runs a set of lightweight gates so a broken release
+# can never be published:
+#   - module.json manifest validation (every referenced file exists)
+#   - compendium source JSON validation
+#   - CSS lint
+#   - recompiles the source-backed compendia (techniques, technique-buffs, feats)
+#     from packs/_source so the zip never ships stale LevelDB packs
+#
+# The manifest URL in module.json points at releases/latest/download/module.json,
+# so Foundry can detect and install updates automatically.
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Derive version from tag
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Stamp version and download URL into module.json
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          TAG: ${{ github.ref_name }}
+          REPO: ${{ github.repository }}
+        run: |
+          node - <<'EOF'
+          const fs = require("fs");
+          const m = JSON.parse(fs.readFileSync("module.json", "utf8"));
+          m.version = process.env.VERSION;
+          m.download = `https://github.com/${process.env.REPO}/releases/download/${process.env.TAG}/module.zip`;
+          fs.writeFileSync("module.json", JSON.stringify(m, null, 2) + "\n");
+          console.log(`Stamped version=${m.version}`);
+          console.log(`Stamped download=${m.download}`);
+          EOF
+
+      - name: Validate module manifest
+        run: npm run validate:manifest
+
+      - name: Validate compendium source JSON
+        run: npm run validate:compendia
+
+      - name: Lint CSS
+        run: npm run lint:css
+
+      - name: Recompile compendia from source
+        run: npm run pack:all
+
+      - name: Build module.zip (runtime artifacts only)
+        run: |
+          zip -r module.zip \
+            module.json \
+            scripts \
+            templates \
+            styles \
+            lang \
+            packs \
+            icons \
+            README.md \
+            LICENSE \
+            -x "packs/_source/*"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ github.ref_name }}
+          files: |
+            module.json
+            module.zip

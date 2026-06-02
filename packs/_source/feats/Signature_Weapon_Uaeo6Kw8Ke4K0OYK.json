@@ -1,0 +1,57 @@
+{
+  "_id": "Uaeo6Kw8Ke4K0OYK",
+  "name": "Signature Weapon",
+  "type": "feat",
+  "img": "icons/weapons/swords/greatsword-crossguard-engraved-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Weapon Focus, Weapon Specialization.</p>\n<p><b>Benefit:</b> Choose a specific model of weapon. When you're wielding that weapon, you gain a +2 bonus to attack and a +1 bonus to damage. This stacks with Weapon Focus and Weapon Specialization for the same weapon.</p>",
+      "summary": "Choose a specific model of weapon. When you're wielding that weapon, you gain a +2 bonus to attack and a +1 bonus to…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!Uaeo6Kw8Ke4K0OYK"
+}

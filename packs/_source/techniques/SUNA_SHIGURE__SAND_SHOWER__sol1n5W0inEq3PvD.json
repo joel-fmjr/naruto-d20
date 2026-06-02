@@ -1,0 +1,110 @@
+{
+  "_id": "sol1n5W0inEq3PvD",
+  "name": "SUNA SHIGURE (SAND SHOWER)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/spells/air-burst-air-3.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Ninjutsu (Doton)</p>\n<p><b>Rank:</b> 5 (Spell Level 3)</p>\n<p><b>Chakra Cost:</b> 12</p>\n\n<p><b>Learn DC:</b> 19 | <b>Successes:</b> 3</p>\n<p><b>Perform:</b> 7 | <b>Perform DC:</b> 20</p>\n\n<p><b>Components:</b> C, F</p>\n\n<hr>\n\n<p>You send a volley of deadly sand pellets to rain down on an area for one round. Creatures within the area take 2d6 Piercing and 2d6 Earth damage, and have their land and flight movement speed halved, though it does not restrict them from running.</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Ninjutsu",
+    "subtype": "Doton",
+    "descriptors": [
+      "Hijutsu"
+    ],
+    "rank": 5,
+    "complexity": "B-Class",
+    "chakraCost": 12,
+    "activation": "standard",
+    "range": "Medium (20 ft. + 10 ft./2 levels)",
+    "target": "",
+    "area": "20ft wide, 40ft high Cylinder (S)",
+    "duration": "1 Round",
+    "save": "",
+    "compHandSeals": false,
+    "compHalfSeals": false,
+    "compConcentration": true,
+    "compMobility": false,
+    "compFocus": true,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": true,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "SWdKdQtGw0J30uHX",
+        "name": "Use",
+        "actionType": "rwak",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "round",
+          "value": "1"
+        },
+        "range": {
+          "units": "medium"
+        },
+        "area": "20ft wide, 40ft high Cylinder (S)",
+        "damage": {
+          "parts": [
+            {
+              "formula": "2d6",
+              "types": [
+                "earth"
+              ]
+            }
+          ]
+        },
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "gyoESygouuMEMioc",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!sol1n5W0inEq3PvD"
+}

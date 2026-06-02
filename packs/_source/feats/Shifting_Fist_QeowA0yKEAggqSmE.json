@@ -1,0 +1,57 @@
+{
+  "_id": "QeowA0yKEAggqSmE",
+  "name": "Shifting Fist",
+  "type": "feat",
+  "img": "icons/weapons/fist/claw-leather-brown.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Brawl, Improved Brawl.</p>\n<p><b>Benefit:</b> As a swift action, you can opt for your unarmed strikes to deal your choice of bludgeoning, piercing, or slashing damage. Once you make this choice, your unarmed strikes continue to deal the chosen damage type until you use another swift action to change it.</p>",
+      "summary": "As a swift action, you can opt for your unarmed strikes to deal your choice of bludgeoning, piercing, or slashing…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!QeowA0yKEAggqSmE"
+}

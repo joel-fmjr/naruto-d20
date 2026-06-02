@@ -1,0 +1,97 @@
+{
+  "_id": "sZbxakwIkJV03gn6",
+  "name": "SHINKOU (MIND SNARE)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/skills/violet_03.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Genjutsu (Doujutsu)</p>\n<p><b>Rank:</b> 6 (Spell Level 3)</p>\n<p><b>Chakra Cost:</b> 2</p>\n\n<p><b>Learn DC:</b> 19 | <b>Successes:</b> 3</p>\n<p><b>Perform:</b> 7 | <b>Perform DC:</b> 19</p>\n\n<p><b>Components:</b> E, H</p>\n\n<hr>\n\n<p>This technique can be used in one of two ways:<br><br>Sharingan Mirage (Requires Glare (a)): The subject falls @Condition[unconscious]{unconscious} for 1d6+1 rounds, after which it is @Condition[dazed;duration=1]{dazed} for 1 round. The subject will lose all memory from 1 round before it fell unconscious to when it became @Condition[dazed]{dazed}, except highly impactful events.<br><br>Technique Copy: You gain a gaze attack, which increases the success chance of your Ninja's Mimicry abilities against any creature affected by the gaze attack (no save, is avoided completely by a creature using avert one's gaze).</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Genjutsu",
+    "subtype": "Doujutsu",
+    "descriptors": [
+      "Mind-Affecting",
+      "Hijutsu"
+    ],
+    "rank": 6,
+    "complexity": "C-Class",
+    "chakraCost": 2,
+    "activation": "standard",
+    "range": "50 ft *",
+    "target": "One creature *",
+    "area": "",
+    "duration": "Instant *",
+    "save": "*",
+    "compHandSeals": true,
+    "compHalfSeals": false,
+    "compConcentration": false,
+    "compMobility": false,
+    "compFocus": false,
+    "compEmpower": true,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": true,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "9sSJfHAVtve24D2o",
+        "name": "Use",
+        "actionType": "other",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "range": {
+          "units": "ft",
+          "value": "50"
+        },
+        "target": {
+          "value": "One creature *"
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "gyoY80WeI0kOc6WA",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!sZbxakwIkJV03gn6"
+}

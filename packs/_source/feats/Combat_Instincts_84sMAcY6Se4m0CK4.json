@@ -1,0 +1,57 @@
+{
+  "_id": "84sMAcY6Se4m0CK4",
+  "name": "Combat Instincts",
+  "type": "feat",
+  "img": "icons/skills/melee/blood-slash-foam-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> If you are not flat-footed when an adjacent opponent's melee attack roll misses you by more than 5, you may immediately make a single attack at your highest attack bonus as a free action against that opponent. You may use this feat a number of times per round equal to your Dexterity modifier.</p>",
+      "summary": "If you are not flat-footed when an adjacent opponent's melee attack roll misses you by more than 5, you may…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!84sMAcY6Se4m0CK4"
+}

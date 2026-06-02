@@ -1,0 +1,57 @@
+{
+  "_id": "y8QoS88qSEcWYs4U",
+  "name": "CHAKRA PRESENCE",
+  "type": "feat",
+  "img": "icons/magic/air/air-burst-spiral-large-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Chakra Pool 50+.</p>\n<p><b>Benefit:</b> If your Chakra Pool is above 25, you may spend a move action to activate this ability. For 1 minute, any creatures that come within 10 feet of you suffer a -2 penalty to attack rolls, Defense and skill checks for as long as they remain within 10 feet of you.\n\nA successful Fortitude save (DC 10 + 1 per 10 points of your Chakra Pool, maximum DC 30) will negate this penalty while they remain in range. If your Chakra Pool increases enough to increase the save DC, all creatures within range that aren't yet affected must make another save.\n\nThis ability can be used up to three times per day.</p>",
+      "summary": "If your Chakra Pool is above 25, you may spend a move action to activate this ability. For 1 minute, any creatures…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!y8QoS88qSEcWYs4U"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "oOcUoWauoCiQugWi",
+  "name": "Hyper Fighting",
+  "type": "feat",
+  "img": "icons/skills/melee/blood-slash-foam-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Advanced Combat Martial Arts, Weapon Focus (Unarmed), Combat Expertise.</p>\n<p><b>Benefit:</b> At the cost of an Action Point, all unarmed attacks made by the user for 1 round have a 50% chance to deny the target their Dexterity to Defense. In addition, when using the full attack action, the user may make an additional attack at their highest attack bonus. All attacks made during this round suffer a -4 penalty.</p>",
+      "summary": "At the cost of an Action Point, all unarmed attacks made by the user for 1 round have a 50% chance to deny the target…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!oOcUoWauoCiQugWi"
+}

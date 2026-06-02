@@ -1,0 +1,57 @@
+{
+  "_id": "ImGw2IeuaCK2seAW",
+  "name": "Agile Riposte",
+  "type": "feat",
+  "img": "icons/skills/melee/blade-tip-smoke-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus 11, Dexterity 13, Dodge.</p>\n<p><b>Benefit:</b> Once per round, if the opponent the character has designated as his or her dodge target makes a melee attack or melee touch attack against the character and misses, the character may make an attack of opportunity against that opponent. Resolve and apply the effects from both attacks simultaneously.</p>\n<p><b>Special:</b> Even a character with the Combat Reflexes feat can't use the Agile Riposte feat more than once per round. This feat does not grant more attacks of opportunity than the character is normally allowed in a round.</p>",
+      "summary": "Once per round, if the opponent the character has designated as his or her dodge target makes a melee attack or melee…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!ImGw2IeuaCK2seAW"
+}

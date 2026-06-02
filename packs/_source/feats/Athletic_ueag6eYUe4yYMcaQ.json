@@ -1,0 +1,72 @@
+{
+  "_id": "ueag6eYUe4yYMcaQ",
+  "name": "Athletic",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/athletic.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> The character gets a +2 bonus on all Climb checks and Swim checks.</p>",
+      "summary": "The character gets a +2 bonus on all Climb checks and Swim checks.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "_id": "UsA8McQw0mA2GEAG",
+        "formula": "2",
+        "target": "skill.clm",
+        "type": "feat",
+        "operator": "add"
+      },
+      {
+        "_id": "80E64qmw4C6CiEgk",
+        "formula": "2",
+        "target": "skill.swm",
+        "type": "feat",
+        "operator": "add"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!ueag6eYUe4yYMcaQ"
+}

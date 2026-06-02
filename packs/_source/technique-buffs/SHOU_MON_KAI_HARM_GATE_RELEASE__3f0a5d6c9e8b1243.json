@@ -1,0 +1,133 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "<p>You open the Harm Gate, gaining a +6 enhancement bonus to Strength and Dexterity, a 20 ft increase to land speed, and a +4 bonus to Initiative, Balance, Climb, Jump, Swim, and Tumble checks.</p><p>This buff does not automate temporary Chakra, Chakra Signature changes, damage taken each round, fatigue after the Gate closes, or later ability score penalties.</p>",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "enh",
+        "_id": "a31e5f7b",
+        "operator": "add",
+        "priority": 0,
+        "formula": "6",
+        "target": "str"
+      },
+      {
+        "type": "enh",
+        "_id": "b42f608c",
+        "operator": "add",
+        "priority": 0,
+        "formula": "6",
+        "target": "dex"
+      },
+      {
+        "type": "untyped",
+        "_id": "c530719d",
+        "operator": "add",
+        "priority": 0,
+        "formula": "20",
+        "target": "landSpeed"
+      },
+      {
+        "type": "untyped",
+        "_id": "d64182ae",
+        "operator": "add",
+        "priority": 0,
+        "formula": "4",
+        "target": "init"
+      },
+      {
+        "type": "untyped",
+        "_id": "e75293bf",
+        "operator": "add",
+        "priority": 0,
+        "formula": "4",
+        "target": "skill.acr"
+      },
+      {
+        "type": "untyped",
+        "_id": "f863a4c0",
+        "operator": "add",
+        "priority": 0,
+        "formula": "4",
+        "target": "skill.clm"
+      },
+      {
+        "type": "untyped",
+        "_id": "0974b5d1",
+        "operator": "add",
+        "priority": 0,
+        "formula": "4",
+        "target": "skill.swm"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 8,
+    "duration": {
+      "value": "",
+      "units": "round",
+      "end": "turnStart",
+      "start": 0
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "SHOU-MON KAI (HARM GATE RELEASE)",
+  "img": "systems/pf1/icons/spells/light-air-fire-3.jpg",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1780351200000,
+    "modifiedTime": 1780351200000,
+    "lastModifiedBy": null
+  },
+  "_id": "3f0a5d6c9e8b1243",
+  "sort": 0,
+  "_key": "!items!3f0a5d6c9e8b1243"
+}

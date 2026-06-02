@@ -1,0 +1,57 @@
+{
+  "_id": "Qk0cAQWa6ig4coUu",
+  "name": "HEIGHTEN TECHNIQUE",
+  "type": "feat",
+  "img": "icons/magic/lightning/bolt-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Any 1 meta-Chakra feat.</p>\n<p><b>Benefit:</b> When applied to a technique, you can increase a technique's effective rank by up to 5. This increases the technique's perform requirement and saving throw DC by 1 per additional rank (among other things). Effects that depend on the technique's rank will count its heightened rank. The Perform Requirements increase by an additional 3, and the Chakra Cost increases by 3, plus 1 for every 2 Ranks of the technique (round up).</p>\n<p><b>Special:</b> A technique enhanced in this way cannot be enhanced by other meta-Chakra feats.</p>",
+      "summary": "When applied to a technique, you can increase a technique's effective rank by up to 5. This increases the technique's…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!Qk0cAQWa6ig4coUu"
+}

@@ -1,0 +1,101 @@
+{
+  "_id": "uzcP9pJIEky9giEd",
+  "name": "SAIMIN JUTSU: SHINTEIRYUU NO JUTSU  (HYPNOTISM TECHNIQUE: MIND BLOCK TECHNIQUE)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/spells/fog-orange-1.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Genjutsu (Doujutsu)</p>\n<p><b>Rank:</b> 9 (Spell Level 5)</p>\n<p><b>Chakra Cost:</b> 6</p>\n\n<p><b>Learn DC:</b> 23 | <b>Successes:</b> 4</p>\n<p><b>Perform:</b> 11 | <b>Perform DC:</b> 24</p>\n\n<p><b>Components:</b> C, S</p>\n\n<hr>\n\n<p>You create a mental block within the target, making it unable to use two of the following abilities (your choice): Scent, See Chakra, See Through Chakra, Sense Chakra, Detect Emotions. This technique can be dispelled.</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Genjutsu",
+    "subtype": "Doujutsu",
+    "descriptors": [
+      "Mind-Affecting",
+      "Hijutsu"
+    ],
+    "rank": 9,
+    "complexity": "B-Class",
+    "chakraCost": 6,
+    "activation": "standard",
+    "range": "Close (10 ft. + 5 ft./2 levels)",
+    "target": "One creature",
+    "area": "",
+    "duration": "1r/level (D)",
+    "save": "Will negates",
+    "compHandSeals": false,
+    "compHalfSeals": true,
+    "compConcentration": true,
+    "compMobility": false,
+    "compFocus": false,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": true,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "8681417c776b05be",
+        "name": "Use",
+        "actionType": "save",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "round",
+          "value": "@cl"
+        },
+        "range": {
+          "units": "close"
+        },
+        "target": {
+          "value": "One creature"
+        },
+        "save": {
+          "type": "will",
+          "description": "Will negates"
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "wOUSQOoYiSMuG6yS",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!uzcP9pJIEky9giEd"
+}

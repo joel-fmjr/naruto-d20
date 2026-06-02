@@ -1,0 +1,57 @@
+{
+  "_id": "4EYoG2ikEy8aowaG",
+  "name": "Elusive Target",
+  "type": "feat",
+  "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Dexterity 13, Defensive Martial Arts.</p>\n<p><b>Benefit:</b> When fighting an opponent or multiple opponents in melee, other opponents attempting to target the character with ranged attacks take a -4 penalty. This penalty is in addition to the normal -4 penalty for firing into melee, making the total penalty to target the character -8.</p>\n<p><b>Special:</b> An opponent with the Precise Shot feat has the penalty lessened to -4 when targeting the character.</p>",
+      "summary": "When fighting an opponent or multiple opponents in melee, other opponents attempting to target the character with…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!4EYoG2ikEy8aowaG"
+}

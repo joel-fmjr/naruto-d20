@@ -1,0 +1,104 @@
+{
+  "_id": "RVQzSqnkr7UveLEt",
+  "name": "ZAN: HIENBATTOU KASUMIKIRI (SLASH: FLYING SPARROW MIST CUT)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/skills/weapon_04.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Taijutsu (Strike)</p>\n<p><b>Rank:</b> 5 (Spell Level 3)</p>\n<p><b>Chakra Cost:</b> 6</p>\n\n<p><b>Learn DC:</b> 19 | <b>Successes:</b> 3</p>\n<p><b>Perform:</b> 7 | <b>Perform DC:</b> 20</p>\n\n<p><b>Components:</b> F, Mas, Mob</p>\n\n<hr>\n\n<p>You must be wielding two weapons to use this technique. Make a normal attack with each weapon (incurring normal penalties for doing so), which will target all creatures in the target square.</p>\n\n\n<p><b>Mastery:</b> The second step grants the attacks Kawarimi Defense 1, and allows you to use the technique if both weapons are sheathed, though the Perform Requirements increase by 4 when doing so.</p>\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Taijutsu",
+    "subtype": "Strike",
+    "descriptors": [
+      "Armed"
+    ],
+    "rank": 5,
+    "complexity": "B-Class",
+    "chakraCost": 6,
+    "activation": "full",
+    "range": "Melee Attack",
+    "target": "One 5 ft square",
+    "area": "",
+    "duration": "Instant",
+    "save": "",
+    "compHandSeals": false,
+    "compHalfSeals": false,
+    "compConcentration": false,
+    "compMobility": true,
+    "compFocus": true,
+    "compEmpower": false,
+    "compMastery": true,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": false,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "xXwRmHYlWtLYksqf",
+        "name": "Use",
+        "actionType": "mwak",
+        "activation": {
+          "type": "full",
+          "unchained": {
+            "type": "action",
+            "cost": 3
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "range": {
+          "units": "touch"
+        },
+        "target": {
+          "value": "One 5 ft square"
+        },
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "meleeWeapon"
+      }
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "Y6G2KygqCgmo0wgw",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!RVQzSqnkr7UveLEt"
+}

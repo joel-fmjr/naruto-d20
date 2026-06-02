@@ -1,0 +1,57 @@
+{
+  "_id": "QoYYgyS6cKsu64eE",
+  "name": "TWIN SOUL STYLE",
+  "type": "feat",
+  "img": "icons/magic/symbols/elements-air-earth-fire-water.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "classFeat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Soul Edge class ability, Two-Weapon Fighting, Dex 15.</p>\n<p><b>Benefit:</b> When forming a Soul Edge, you may form an additional Soul Edge in your off-hand as a free action. The Shape Soul Edge class ability cannot be used for this second weapon.</p>",
+      "summary": "When forming a Soul Edge, you may form an additional Soul Edge in your off-hand as a free action. The Shape Soul Edge…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "YIwCqqseAU6OcEks",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Class"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!QoYYgyS6cKsu64eE"
+}

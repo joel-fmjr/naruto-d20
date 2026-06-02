@@ -1,0 +1,57 @@
+{
+  "_id": "wcEqOsQ62acoimiQ",
+  "name": "TRUE RED EYES",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-slit-red-orange.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Can only be taken as a 1 st level Heroic character, Intimidate 4 ranks, Strength, Dexterity or Constitution 16.</p>\n<p><b>Benefit:</b> You gain the Red Eyes bloodline, and your ECL increases by 1. Your Red Eyes ability becomes active permanently and cannot be turned off, and it no longer costs any Chakra to maintain. The bonuses it grants become sacred bonuses (rather than enhancement bonuses), and you are able to use skills and techniques normally.</p>",
+      "summary": "You gain the Red Eyes bloodline, and your ECL increases by 1. Your Red Eyes ability becomes active permanently and…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!wcEqOsQ62acoimiQ"
+}

@@ -1,0 +1,110 @@
+{
+  "_id": "5r9F3LbaiSldVpza",
+  "name": "KODACHI NITTOURYU: ONMYOU KOUSA (DUAL KODACHI STYLE: DUAL CROSS)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/feats/great-cleave.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Taijutsu (Strike)</p>\n<p><b>Rank:</b> 5 (Spell Level 3)</p>\n<p><b>Chakra Cost:</b> 4</p>\n\n<p><b>Learn DC:</b> 18 | <b>Successes:</b> 3</p>\n<p><b>Perform:</b> 6 | <b>Perform DC:</b> 18</p>\n\n<p><b>Components:</b> F, Mob</p>\n\n<hr>\n\n<p>This technique can only be used if you wield two weapons and missed the target by 5 or less with a melee attack this round. You make an attack that deals normal damage, and may choose to make a sunder or disarm attempt instead. The attack is made with the weapon that didn't miss (i.e. if your main hand attack missed, this is an attack with your off-hand weapon).</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Taijutsu",
+    "subtype": "Strike",
+    "descriptors": [
+      "Armed",
+      "Lost Hijutsu",
+      "Hijutsu"
+    ],
+    "rank": 5,
+    "complexity": "C-Class",
+    "chakraCost": 4,
+    "activation": "standard",
+    "range": "Melee attack",
+    "target": "One creature",
+    "area": "",
+    "duration": "Instant",
+    "save": "Reflex partial *",
+    "compHandSeals": false,
+    "compHalfSeals": false,
+    "compConcentration": false,
+    "compMobility": true,
+    "compFocus": true,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": true,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "fb78a245a395848c",
+        "name": "Use",
+        "actionType": "mwak",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "range": {
+          "units": "touch"
+        },
+        "target": {
+          "value": "One creature"
+        },
+        "save": {
+          "type": "ref",
+          "description": "Reflex partial"
+        },
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "meleeWeapon"
+      }
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "Y6G2KygqCgmo0wgw",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!5r9F3LbaiSldVpza"
+}

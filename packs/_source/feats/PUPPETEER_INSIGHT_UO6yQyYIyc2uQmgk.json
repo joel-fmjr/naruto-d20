@@ -1,0 +1,57 @@
+{
+  "_id": "UO6yQyYIyc2uQmgk",
+  "name": "PUPPETEER INSIGHT",
+  "type": "feat",
+  "img": "icons/magic/control/buff-flight-wings-runes-blue-white.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "classFeat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Advanced Puppetry II class ability, Int 13.</p>\n<p><b>Benefit:</b> Once per round, you can use an attack action and make a Concentration check (DC 20) and become focused until the end of the encounter. As an instant action, you can spend your focus to do one of the following:\n\nAnalyze: You automatically know the hit dice of any puppets an opponent controls for the next three rounds.\n\nCounter: Gain a +2 insight bonus to attack and damage against puppets of an opponent for three rounds.\n\nDefend: You and your puppets gain a +2 insight bonus to Defense and saves against an opponent's puppet attacks.\n\nYou may gain focus when an encounter starts, as long as you were not caught by surprise.</p>",
+      "summary": "Once per round, you can use an attack action and make a Concentration check (DC 20) and become focused until the end…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "YIwCqqseAU6OcEks",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Class"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!UO6yQyYIyc2uQmgk"
+}

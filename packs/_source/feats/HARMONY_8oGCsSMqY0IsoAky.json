@@ -1,0 +1,72 @@
+{
+  "_id": "8oGCsSMqY0IsoAky",
+  "name": "HARMONY",
+  "type": "feat",
+  "img": "icons/magic/life/ankh-shadow-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Chakra Control 5.</p>\n<p><b>Benefit:</b> You get +1 to Chakra Control checks, and the save DC for your Chakra control techniques increases by 1. You also immediately learn the Kinobori (p116) and Tadayou (p118) techniques and pass all future perform checks for them.</p>",
+      "summary": "You get +1 to Chakra Control checks, and the save DC for your Chakra control techniques increases by 1. You also…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "_id": "Ega8W6Qo0wU0iOOm",
+        "formula": "1",
+        "target": "learnCkc",
+        "type": "untyped",
+        "operator": "add"
+      },
+      {
+        "_id": "WggQsesy4OUAS688",
+        "formula": "1",
+        "target": "techDcCkc",
+        "type": "untyped",
+        "operator": "add"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!8oGCsSMqY0IsoAky"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "qS2KYKyywsUmc0w6",
+  "name": "CONTROL FRENZY",
+  "type": "feat",
+  "img": "icons/environment/people/infantry-armored.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "classFeat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Frenzy ability.</p>\n<p><b>Benefit:</b> Once per day, you can reroll a failed save or check to avoid entering a Frenzy. This feat can be taken more than once. Each instance adds an additional reroll per day.</p>",
+      "summary": "Once per day, you can reroll a failed save or check to avoid entering a Frenzy. This feat can be taken more than…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "YIwCqqseAU6OcEks",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Class"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!qS2KYKyywsUmc0w6"
+}

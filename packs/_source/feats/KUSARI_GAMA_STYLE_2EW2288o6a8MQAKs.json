@@ -1,0 +1,58 @@
+{
+  "_id": "2EW2288o6a8MQAKs",
+  "name": "KUSARI-GAMA STYLE",
+  "type": "feat",
+  "img": "icons/skills/melee/blade-tip-orange.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Int 13, Combat Expertise, proficiency with the kusari-gama.</p>\n<p><b>Benefit:</b> You may wield the kusari-gama as a twohanded weapon, allowing you to attack with either end (though not both) with a reach of 10 ft. Unlike normal reach weapons, you do not threaten a larger area, and can still attack adjacent opponents. The chain end can be used to trip or disarm opponents within reach. If the attempt fails and the opponent would trip or disarm you, you may drop the kusari-gama to avoid it.\n\nIn addition, while using the Combat Expertise feat, if you exchange 2 or more points, the bonus to Defense increases by 1. If you exchange 4 or more points, the penalty to attack is reduced by 1.\n\nInt 13\n\nYou can retrain weapon-specific feats and abilities</p>",
+      "summary": "You may wield the kusari-gama as a twohanded weapon, allowing you to attack with either end (though not both) with a…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Combat",
+        "Weapon"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!2EW2288o6a8MQAKs"
+}

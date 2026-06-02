@@ -1,0 +1,57 @@
+{
+  "_id": "CCCaiISWeAUgywc8",
+  "name": "Force Stop",
+  "type": "feat",
+  "img": "icons/magic/defensive/barrier-shield-dome-deflect-teal.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Drive 4 ranks, Vehicle Expert.</p>\n<p><b>Benefit:</b> When the character attempts a sideswipe stunt with a surface vehicle, the character can force the other vehicle to a stop by nudging it into a controlled sideways skid. After succeeding on the sideswipe check, the character makes a Drive check opposed by the other driver. If the character succeeds, both vehicles end stationary and take normal sideswipe damage. If the character fails, resolve the sideswipe normally.</p>",
+      "summary": "When the character attempts a sideswipe stunt with a surface vehicle, the character can force the other vehicle to a…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!CCCaiISWeAUgywc8"
+}

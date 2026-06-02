@@ -1,0 +1,72 @@
+{
+  "_id": "UEMM2asW8ewoc2mW",
+  "name": "FUINJUTSU ADEPT",
+  "type": "feat",
+  "img": "icons/magic/symbols/runes-carved-stone-purple.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> Gain +2 to Fuinjutsu checks, and the save DC of your Fuinjutsu techniques increases by 1. In addition, you may make 1 additional attempt when learning Fuinjutsu techniques, and your effective skill threshold when performing Fuinjutsu techniques is increased by 1.</p>",
+      "summary": "Gain +2 to Fuinjutsu checks, and the save DC of your Fuinjutsu techniques increases by 1. In addition, you may make 1…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "_id": "4kqo26SEwuOK460O",
+        "formula": "2",
+        "target": "learnFui",
+        "type": "untyped",
+        "operator": "add"
+      },
+      {
+        "_id": "qsKYs0c0EC2Y04aG",
+        "formula": "1",
+        "target": "techDcFui",
+        "type": "untyped",
+        "operator": "add"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!UEMM2asW8ewoc2mW"
+}

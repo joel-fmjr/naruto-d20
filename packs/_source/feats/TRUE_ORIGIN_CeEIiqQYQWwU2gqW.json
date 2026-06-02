@@ -1,0 +1,57 @@
+{
+  "_id": "CeEIiqQYQWwU2gqW",
+  "name": "TRUE ORIGIN",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-ringed-glow-angry-large-teal.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Heroic character, can only be taken at 1 st level.</p>\n<p><b>Benefit:</b> You were born with the Cursed Seal template, and have the Cursed Seal Level 1 ability. Your Cursed Seal has no origin, though you still decide whether you are a willing or unwilling bearer. You can activate and deactivate your Cursed Seal freely, without the need for Control Cursed Seal skill checks, and you do not gain CSP for using the cursed seal, though you still suffer Constitution damage from overuse.\n\nWhile your Cursed Seal is active, you are overcome with a frenzy lasting (6 + your Con modifier) rounds, during which you must attack those you perceive as foes to the best of your ability, without regard for your own safety. If you run out of enemies, you can make a Will save (DC 25) or a Control Cursed Seal check (DC 20, willing bearer only) each round to end the frenzy. If unsuccessful, you start attacking the nearest creature. A partial manifestation does not induce this frenzy.</p>\n<p><b>Special:</b> Your Level Adjustment increases by 1.</p>",
+      "summary": "You were born with the Cursed Seal template, and have the Cursed Seal Level 1 ability. Your Cursed Seal has no…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!CeEIiqQYQWwU2gqW"
+}

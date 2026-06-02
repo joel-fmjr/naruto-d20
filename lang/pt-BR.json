@@ -15,8 +15,64 @@
     "Item": {
       "TypeTechnique": "Técnica"
     },
+    "Common": {
+      "Current": "Atual",
+      "Temp": "Temp",
+      "Max": "Máx",
+      "Total": "Total"
+    },
+    "ChakraNature": {
+      "None": "Nenhum",
+      "Fire": "Fogo",
+      "Wind": "Vento",
+      "Lightning": "Relâmpago",
+      "Earth": "Terra",
+      "Water": "Água"
+    },
+    "SummaryStats": {
+      "Header": "Estatísticas do Herói",
+      "ActionPoints": "Pontos de Ação",
+      "RollActionPoint": "Rolar Ponto de Ação",
+      "Reputation": "Reputação",
+      "Wealth": "Riqueza"
+    },
+    "ChakraTab": {
+      "ChakraPool": "Chakra",
+      "ChakraReserve": "Reserva de Chakra",
+      "RollTapReserves": "Rolar Drenar Reservas",
+      "EmpathyPoints": "Pontos de Empatia",
+      "ElementalAffinities": "Afinidades Elementais",
+      "Primary": "Primária",
+      "Secondary": "Secundária",
+      "ShinobiLearnChecks": "Testes de Aprendizado Shinobi",
+      "LearnCheckFlavor": "Teste de aprendizado de {label}",
+      "NinjutsuConditionalTo": "em",
+      "Techniques": "Técnicas",
+      "All": "Todas",
+      "Activation": "Ativação",
+      "CreateTechnique": "Criar Técnica",
+      "LearnTechnique": "Aprender Técnica",
+      "UseTechnique": "Usar Técnica",
+      "OpenSheet": "Abrir Ficha",
+      "DuplicateTechnique": "Duplicar Técnica",
+      "Remove": "Remover",
+      "Attempts": "tentativas",
+      "Insight": "insight",
+      "TrainBlocks": "blocos de treino",
+      "ChakraUnit": "chakra",
+      "EmptyTechniques": "Arraste e solte itens de Técnica aqui para adicioná-los."
+    },
     "BuffTargets": {
       "Category": "Técnica",
+      "ChakraPool": "Máximo de Chakra",
+      "ChakraReserve": "Máximo de Reserva de Chakra",
+      "Learn": {
+        "ckc": "Aprender: Controle de Chakra",
+        "fui": "Aprender: Fuinjutsu",
+        "gnj": "Aprender: Genjutsu",
+        "nin": "Aprender: Ninjutsu",
+        "tai": "Aprender: Taijutsu"
+      },
       "TechDc": {
         "All": "CD de Técnica (Global)",
         "ckc": "CD de Técnica: Controle de Chakra",
@@ -25,6 +81,24 @@
         "nin": "CD de Técnica: Ninjutsu",
         "tai": "CD de Técnica: Taijutsu"
       }
+    },
+    "Breakdown": {
+      "CharacterLevel": "Nível de Personagem",
+      "BuffBonus": "Bônus de Buff",
+      "SkillSynergy": "Sinergia de Perícia",
+      "MiscBonus": "Bônus Diverso",
+      "PrimaryAffinity": "Afinidade Primária ({affinity})",
+      "ChakraPoolBase": "Base (2 + 2×Nv)",
+      "ConTimesLevel": "Con × Nível",
+      "TwoTimesLevel": "2 × Nível"
+    },
+    "WeaponAttackIssues": {
+      "Malformed": "\"{prefix}\" deve ser um objeto ou usar chaves pontilhadas \"{prefix}.*\"",
+      "UnknownField": "campo desconhecido \"{field}\"",
+      "MissingMode": "faltando \"{field}\" (esperado \"{expected}\")",
+      "UnsupportedMode": "\"{field}\" não suporta \"{value}\" (esperado \"{expected}\")",
+      "UnsupportedFilter": "\"{field}\" não suporta \"{value}\"; usando \"{fallback}\"",
+      "InvalidBoolean": "\"{field}\" deve ser \"true\" ou \"false\" (recebido \"{value}\")"
     },
     "Technique": {
       "Type": {
@@ -117,6 +191,9 @@
           "Hint": "Custa pontos de experiência para executar."
         }
       },
+      "Descriptors": {
+        "Legend": "Descritores"
+      },
       "Blocked": {
         "Grappled": "Você não pode formar selos enquanto agarrado ou imobilizado.",
         "Health": "Sua condição física impede o uso desta técnica."
@@ -171,6 +248,34 @@
       "CustomBuffCompendia": {
         "Name": "Compêndios de Buff Customizados",
         "Hint": "IDs de compêndio separados por vírgula para pesquisar além de naruto-d20.technique-buffs (ex: meu-modulo.buffs-extras)."
+      },
+      "EnforceLearning": {
+        "Name": "Exigir Aprendizado de Técnicas",
+        "Hint": "Quando ativado, técnicas não aprendidas não podem ser executadas até serem aprendidas."
+      },
+      "LearningProgressionMode": {
+        "Name": "Progressão de Aprendizado de Técnicas",
+        "Hint": "Escolha se o aprendizado usa as tentativas das regras padrão ou uma rolagem por bloco de treino de 4 horas.",
+        "Standard": "Regras padrão",
+        "FourHourBlocks": "Blocos de treino de 4 horas"
+      },
+      "LearnMarginInclusive": {
+        "Name": "Margem de Aprendizado Inclusiva",
+        "Hint": "Quando ativado, uma margem de sucesso exatamente 5 conta para o melhor resultado de aprendizado. A margem 15 é sempre inclusiva."
+      },
+      "DeductLearningChakra": {
+        "Name": "Deduzir Chakra de Treino",
+        "Hint": "Quando ativado, o aprendizado de técnicas deduz chakra de treino da Pool e depois da Reserva. Condições não são atualizadas automaticamente porque treino ignora penalidades de depleção."
+      }
+    },
+    "Conditions": {
+      "LowReserves": {
+        "Name": "Reservas Baixas",
+        "Hint": "Sua reserva de chakra está baixa. Você está fatigado."
+      },
+      "ChakraDepletion": {
+        "Name": "Depleção de Chakra",
+        "Hint": "Seu chakra está criticamente esgotado. Você está exausto e recupera apenas uma fração de sua pool ao descansar."
       }
     },
     "Automation": {
@@ -185,6 +290,7 @@
       },
       "TargetMode": {
         "Label": "Modo de Alvo",
+        "Auto": "Automático",
         "Selected": "Tokens selecionados",
         "Self": "Somente o próprio",
         "Allies": "Todos os aliados",
@@ -226,6 +332,92 @@
       },
       "NoTargets": "Nenhum alvo selecionado para aplicação de buff.",
       "NoPermission": "Sem permissão para modificar {name}. Buff não aplicado."
+    },
+    "Medkit": {
+      "Title": "Medkit de Técnicas",
+      "HeaderButton": "Sincronizar Técnicas",
+      "Status": {
+        "OutOfDate": "Desatualizada",
+        "UpToDate": "Atualizada",
+        "Orphan": "Fora do compendium"
+      },
+      "SelectOutdated": "Selecionar desatualizadas",
+      "SyncSelected": "Sincronizar selecionadas",
+      "NothingSelected": "Nenhuma técnica selecionada.",
+      "Synced": "{count} técnica(s) sincronizada(s) do compendium.",
+      "Empty": "Este personagem não tem técnicas."
+    },
+    "App": {
+      "TapReserves": "Drenar Reservas",
+      "BrowseTechniques": "Procurar Técnicas",
+      "BrowseFeats": "Procurar Talentos Naruto",
+      "RemoveTechnique": "Remover Técnica",
+      "RemoveTechniqueConfirm": "Remover <strong>{name}</strong> deste personagem?",
+      "ChooseAttack": "Escolher Ataque - {name}",
+      "KindWeapon": "Arma",
+      "KindAttack": "Ataque"
+    },
+    "Notifications": {
+      "NotEnoughChakra": "{actor}: chakra insuficiente para realizar {name}.",
+      "EquipToUse": "Equipe esta técnica em um personagem para usá-la.",
+      "NotLearned": "{name}: ainda não aprendida.",
+      "ActionNotFound": "{name}: ação não encontrada.",
+      "ActionNotFoundPhase": "{name}: ação não encontrada {phase}.",
+      "BuffAutomationFailed": "Automação de buff falhou para {name}. Veja o console.",
+      "NoActionsConfigured": "{name}: nenhuma ação configurada.",
+      "OnlyTechniqueDrop": "Apenas itens de Técnica podem ser soltos aqui.",
+      "TechniqueCompendiumNotFound": "Compêndio de técnicas não encontrado.",
+      "FeatsCompendiumNotFound": "Compêndio de talentos Naruto não encontrado.",
+      "TrainingChakraRequired": "{actor}: aprender requer {amount} de chakra de treino, mas só há {available} disponível.",
+      "EquipToLearn": "Equipe esta técnica em um personagem para aprendê-la.",
+      "NoPermissionUpdate": "{actor}: você não tem permissão para atualizar este personagem.",
+      "AlreadyLearned": "{name}: já aprendida.",
+      "RankTooHigh": "{name}: rank {rank} é maior que o nível {level} de {actor}.",
+      "SkillRankRequired": "{actor}: pelo menos 1 rank em {skill} é necessário para aprender {name}.",
+      "LearnDataNotReady": "{actor}: os dados de teste de aprendizado de {skill} não estão prontos.",
+      "CouldNotReadRoll": "{name}: não foi possível ler o total da rolagem de aprendizado.",
+      "CannotAddActionPoint": "{name}: não é possível adicionar um Ponto de Ação a esta rolagem de aprendizado (já gasto, aprendida ou substituída por uma rolagem mais recente).",
+      "NoActionPoints": "{actor} não tem Pontos de Ação restantes.",
+      "TapMinimum": "A quantidade a drenar deve ser pelo menos 1.",
+      "TapNotEnoughReserve": "Reserva de Chakra insuficiente (tem {have}, solicitado {requested}).",
+      "NoWeaponAttack": "{actor}: nenhuma arma ou ataque válido encontrado para {name}.",
+      "WeaponAttackConfig": "{name}: problema na config weaponAttack — {issues}",
+      "ChargeDefenseFailed": "A automação da penalidade de defesa por charge falhou. Veja o console."
+    },
+    "Cards": {
+      "Block": "bloco",
+      "Blocks": "blocos",
+      "ActionPointFlavor": "Ponto de Ação ({from} -> {to} restantes)",
+      "Perform": {
+        "Failed": "Teste de execução falhou (DC {dc}). Nenhum chakra gasto.",
+        "Spent": "Gastou {cost} de chakra ({summary}).",
+        "MasteryNote": " (+{value} maestria)",
+        "AutoBypass": "Ranks {ranks}{mastery} ≥ limiar {threshold} — execução automática.",
+        "NoCheckRequired": "Nenhum teste de execução necessário."
+      },
+      "TapReservesFlavor": "Drenar Reservas — {amount} de chakra{seal}",
+      "Learn": {
+        "Flavor": "Aprender: {name}",
+        "ActionPointFlavor": "Ponto de Ação — Aprender: {name} ({from} → {to} restantes)",
+        "ActionPointRollText": "Ponto de Ação 1d6 = {value}",
+        "UnmappedDiscipline": "Disciplina não mapeada",
+        "TrainingInterruptedTitle": "{name} treino interrompido",
+        "TrainingInterruptedLead": "Mais de 30 dias se passaram desde o último bloco de treino. O progresso de aprendizado é perdido antes da nova tentativa.",
+        "LearnedTitle": "{name} aprendida",
+        "LearningFailedTitle": "{name} aprendizado falhou",
+        "LearningTitle": "Aprendendo {name}",
+        "NoSkillLead": "{discipline} ainda não tem perícia de aprendizado mapeada, então esta técnica é tratada como aprendida na fase 1.",
+        "CheckProgress": "{ap}Teste de aprendizado {total} vs DC {dc}. Progresso {progress}/{target}.",
+        "CheckReset": "{ap}Teste de aprendizado {total} vs DC {dc}. Tentativas {used}/{max}; o progresso é perdido e a sequência recomeça.",
+        "CheckResult": "{ap}Teste de aprendizado {total} vs DC {dc}. {result}",
+        "ResultSuccess": "Sucesso, +{award} de progresso.",
+        "ResultFailure": "Falha, Failure Insight agora é +{insight}.",
+        "TrainingFooter": "Tempo de treino: +{blocks} {unit}; chakra de treino: {chakra}.",
+        "AttemptFooter": "Progresso {progress}/{target}; {attempts}; +{blocks} {unit} de treino; chakra de treino {chakra}.",
+        "AttemptsCount": "{used}/{max} tentativas",
+        "BlocksCount": "{count} {unit}",
+        "ChakraDeducted": "{cost} ({deducted} deduzido)"
+      }
     }
   }
 }

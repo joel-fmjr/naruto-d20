@@ -1,0 +1,57 @@
+{
+  "_id": "4W82MsIKssI0Yc68",
+  "name": "Favored Terrain",
+  "type": "feat",
+  "img": "icons/environment/wilderness/altar-hidden.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Survival 4 ranks.</p>\n<p><b>Benefit:</b> Choose one type of terrain (arctic, desert, forest, jungle, mountain, or swamp). When in this terrain, you gain a +3 competence bonus on Hide, Move Silently, and Survival checks, and any cover bonuses to Defense you gain are increased by +1.</p>\n<p><b>Special:</b> You may take this feat multiple times. Each time you take this feat, it applies to a different terrain.</p>",
+      "summary": "Choose one type of terrain (arctic, desert, forest, jungle, mountain, or swamp). When in this terrain, you gain a +3…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!4W82MsIKssI0Yc68"
+}

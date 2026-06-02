@@ -1,0 +1,57 @@
+{
+  "_id": "ioACYMw4ckS6KQEw",
+  "name": "SPECIALIST'S GAZE COUNTER",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-ringed-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Wis 13, base attack bonus +3.</p>\n<p><b>Benefit:</b> When Averting One's Eyes (D20 Modern, p227, Gaze (Su)) to defend against gaze attacks, you may reroll the success chance once if you fail and the opponent does not gain a concealment bonus against you.</p>",
+      "summary": "When Averting One's Eyes (D20 Modern, p227, Gaze (Su)) to defend against gaze attacks, you may reroll the success…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!ioACYMw4ckS6KQEw"
+}

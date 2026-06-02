@@ -1,0 +1,57 @@
+{
+  "_id": "4sSywukkYqauweya",
+  "name": "Donate Chakra",
+  "type": "feat",
+  "img": "icons/magic/life/cross-beam-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Treat Injury 9 ranks, Harmony, Medical Expert.</p>\n<p><b>Benefit:</b> As a move action you are able to give up to your Wisdom modifier per round in chakra to another creature. This does not counteract chakra depletion.</p>",
+      "summary": "As a move action you are able to give up to your Wisdom modifier per round in chakra to another creature. This does…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!4sSywukkYqauweya"
+}

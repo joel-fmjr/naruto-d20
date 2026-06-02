@@ -1,0 +1,133 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "untyped",
+        "_id": "NC1KMoZO",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-2",
+        "target": "str"
+      },
+      {
+        "type": "untyped",
+        "_id": "ccH5rjMZ",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-2",
+        "target": "fort"
+      },
+      {
+        "type": "untyped",
+        "_id": "uSBOOOVq",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-2",
+        "target": "ref"
+      },
+      {
+        "type": "untyped",
+        "_id": "lSFYEnqs",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-2",
+        "target": "ac"
+      },
+      {
+        "type": "untyped",
+        "_id": "BSbhNdAx",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-2",
+        "target": "attack"
+      },
+      {
+        "type": "untyped",
+        "_id": "eE2UwqiV",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-2",
+        "target": "wdamage"
+      },
+      {
+        "type": "untyped",
+        "_id": "KAatelbH",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-10",
+        "target": "chakraPool"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 7,
+    "duration": {
+      "value": "",
+      "units": "day",
+      "end": "turnStart",
+      "start": 0
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "USAGIDO (WAY OF THE RABBIT)",
+  "img": "systems/pf1/icons/spells/runes-blue-3.jpg",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1780120000010,
+    "modifiedTime": 1780120000010,
+    "lastModifiedBy": null
+  },
+  "_id": "XTuS8nQTI2YNgEtH",
+  "sort": 0,
+  "_key": "!items!XTuS8nQTI2YNgEtH"
+}

@@ -1,0 +1,55 @@
+{
+  "_id": "SiCqUuc2eEmQiOk4",
+  "name": "Artistic Illusions [Meta-Chakra]",
+  "type": "feat",
+  "img": "icons/magic/symbols/cog-glowing-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Perform (any instrument) 6 ranks, Genjutsu 6 ranks, Genjutsu Adept or Genius Ninja (genjutsu).</p>\n<p><b>Benefit:</b> You gain the ability to eschew hand seals and half seals when performing genjutsu, and can instead perform them with an additional material focus of your instrument of choice, and somatic components to play said instrument. This makes the genjutsu sound-based. Performing techniques this way makes them highly discreet — opponents unaware of your ability will not typically be prepared to counter your techniques or suspect you as the source of genjutsu. The technique's perform requirements increase by 2. You can spend a meta-chakra charge to ignore the perform requirement increase for one technique.</p>\n<p><b>Special:</b> If you apply this feat to a technique, it cannot be enhanced by another meta-chakra feat. Applying this feat does not always consume a meta-chakra charge.</p>",
+      "summary": "You gain the ability to eschew hand seals and half seals when performing genjutsu, and can instead perform them with…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ]
+    }
+  },
+  "_key": "!items!SiCqUuc2eEmQiOk4"
+}

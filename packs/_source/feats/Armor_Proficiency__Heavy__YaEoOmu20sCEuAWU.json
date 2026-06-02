@@ -1,0 +1,57 @@
+{
+  "_id": "YaEoOmu20sCEuAWU",
+  "name": "Armor Proficiency (Heavy)",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/armor-proficiency-heavy.png",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Armor Proficiency (Light), Armor Proficiency (Medium).</p>\n<p><b>Benefit:</b> When the character wears a type of armor with which the character is proficient, the character gets to add the armor's equipment bonus to his or her Defense. Also, the armor check penalty only applies to the following skills: Balance, Climb, Escape Artist, Hide, Jump, Move Silently, and Tumble.</p>",
+      "summary": "When the character wears a type of armor with which the character is proficient, the character gets to add the…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!YaEoOmu20sCEuAWU"
+}

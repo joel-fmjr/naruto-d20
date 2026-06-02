@@ -1,0 +1,57 @@
+{
+  "_id": "IuEQoU2e0IScqCea",
+  "name": "Inspire",
+  "type": "feat",
+  "img": "icons/skills/social/diplomacy-unity-alliance.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Cha 15, character level 8th, Leadership.</p>\n<p><b>Benefit:</b> By spending an action point and taking a move action, you can give a number of allies equal to your Charisma bonus one of the following benefits: A +2 bonus on attack rolls and saving throws for the next round; Immediately shake off a stunned or dazed condition; Gain an immediate new Will saving throw against a mental power affecting them, with a +2 bonus; or Reduce current vitality point damage by 3. The same benefit must be given to all affected allies, and they must all be able to hear and understand you.</p>",
+      "summary": "By spending an action point and taking a move action, you can give a number of allies equal to your Charisma bonus…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!IuEQoU2e0IScqCea"
+}

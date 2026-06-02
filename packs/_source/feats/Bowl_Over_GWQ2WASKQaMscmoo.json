@@ -1,0 +1,57 @@
+{
+  "_id": "GWQ2WASKQaMscmoo",
+  "name": "Bowl Over",
+  "type": "feat",
+  "img": "icons/creatures/abilities/bull-head-horns-glowing.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Str 15+, Heft, Rout, Windup.</p>\n<p><b>Benefit:</b> Whenever you deal 10 or more points of damage to an opponent with a thrown weapon, you may immediately make a trip attack as a free action against that target. When you make a trip attack in this manner, you cannot be tripped in turn. The benefit of this ability does not stack with the benefit of the Improved Trip feat.</p>",
+      "summary": "Whenever you deal 10 or more points of damage to an opponent with a thrown weapon, you may immediately make a trip…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!GWQ2WASKQaMscmoo"
+}

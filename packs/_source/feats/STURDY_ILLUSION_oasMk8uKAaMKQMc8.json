@@ -1,0 +1,57 @@
+{
+  "_id": "oasMk8uKAaMKQMc8",
+  "name": "STURDY ILLUSION",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-slit-pink.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Any 1 meta-Chakra feat, Genjutsu 12 ranks.</p>\n<p><b>Benefit:</b> When applied to a Genjutsu technique, it has a 20% chance to resist being dispelled (when someone attempts to dispel it, roll to determine if the at- tempt is resisted). The technique's Perform Requirements increase by 2, and the Chakra Cost increases by 1 for every 2 Ranks of the technique (rounded up).</p>\n<p><b>Special:</b> A technique enhanced by this feat cannot be enhanced by other meta-Chakra feats.</p>",
+      "summary": "When applied to a Genjutsu technique, it has a 20% chance to resist being dispelled (when someone attempts to dispel…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!oasMk8uKAaMKQMc8"
+}

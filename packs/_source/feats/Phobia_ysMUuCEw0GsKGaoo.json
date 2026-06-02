@@ -1,0 +1,65 @@
+{
+  "_id": "ysMUuCEw0GsKGaoo",
+  "name": "Phobia",
+  "type": "feat",
+  "img": "icons/creatures/magical/spirit-fear-energy-pink.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> You are afraid of a particular kind of object, creature or environment. You are shaken if you are aware of the presence of something that would trigger your phobia within 30 ft. The condition lasts until the triggering situation is overcome, or 1d6 rounds if the trigger is an instantaneous event. If the trigger is an object or creature, you become frightened if you touch (or are touched by) the object; or if the creature speaks or makes a cry directly to you.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "You are afraid of a particular kind of object, creature or environment. You are shaken if you are aware of the…. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "Oo2oo6yCmYyeQoOs"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!ysMUuCEw0GsKGaoo"
+}

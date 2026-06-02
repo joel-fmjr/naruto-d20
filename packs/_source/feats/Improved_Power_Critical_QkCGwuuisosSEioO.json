@@ -1,0 +1,57 @@
+{
+  "_id": "QkCGwuuisosSEioO",
+  "name": "Improved Power Critical",
+  "type": "feat",
+  "img": "icons/skills/melee/blade-tip-chipped-blood-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus +10, proficiency with weapon.</p>\n<p><b>Benefit:</b> You may spend an action point before making an attack with a weapon with which you are proficient. If the attack hits, it automatically threatens a critical hit (regardless of whether the attack roll falls within the weapon's actual threat range). You must roll to confirm the critical hit, as normal. This is a supernatural ability.</p>",
+      "summary": "You may spend an action point before making an attack with a weapon with which you are proficient. If the attack…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!QkCGwuuisosSEioO"
+}

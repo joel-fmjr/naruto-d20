@@ -1,0 +1,57 @@
+{
+  "_id": "aw2q6qkOgYUcSmoo",
+  "name": "Dedicated Plus",
+  "type": "feat",
+  "img": "icons/magic/life/heart-cross-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> At least three levels in the Dedicated Hero class.</p>\n<p><b>Benefit:</b> Character gains two talents from the Dedicated hero's talent trees. The talents must be selected from the following list, and the character must meet all prerequisites:\n\nEmpathic Talent Tree: Improved Aid Another or Intuition.\nHealing Talent Tree: Healing Touch 1 or Healing Touch 2.\nInsightful Talent Tree: Aware, Faith, or Cool Under Pressure.</p>\n<p><b>Special:</b> This feat may be selected multiple times. Each time it is selected, a different pair of talents must be chosen than the previous times.</p>",
+      "summary": "Character gains two talents from the Dedicated hero's talent trees. The talents must be selected from the following…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!aw2q6qkOgYUcSmoo"
+}

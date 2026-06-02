@@ -1,0 +1,57 @@
+{
+  "_id": "kQ4qMok4aAKM4oco",
+  "name": "Frightful Presence",
+  "type": "feat",
+  "img": "icons/skills/social/intimidation-impressing.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Charisma 15, Intimidate 9 ranks.</p>\n<p><b>Benefit:</b> When the character uses this feat, all opponents within 10 feet who have fewer levels than the character must make a Will saving throw (DC 10 + 1/2 the character's level + the character's Charisma modifier). An opponent who fails his or her save is shaken, taking a -2 penalty on attack rolls, saves, and skill checks for a number of rounds equal to 1d6 + the character's Charisma modifier. The character can use the feat once per round as a free action. A successful save indicates that the opponent is immune to the character's use of this feat for 24 hours. This feat does not affect creatures with an Intelligence of 3 or lower.</p>\n<p><b>Special:</b> If the character has the Renown feat, the Will saving throw's DC increases by 5.</p>",
+      "summary": "When the character uses this feat, all opponents within 10 feet who have fewer levels than the character must make a…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!kQ4qMok4aAKM4oco"
+}

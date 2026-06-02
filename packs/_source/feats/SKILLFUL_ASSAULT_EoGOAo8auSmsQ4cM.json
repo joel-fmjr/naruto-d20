@@ -1,0 +1,57 @@
+{
+  "_id": "EoGOAo8auSmsQ4cM",
+  "name": "SKILLFUL ASSAULT",
+  "type": "feat",
+  "img": "icons/skills/melee/blade-tips-triple-steel.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Wis 13, Heroic character.</p>\n<p><b>Benefit:</b> At the start of your turn, you may designate one opponent. Attacks you make against that opponent suffer a -2 circumstance penalty to attack and damage rolls, but will not reduce the opponent below 0 hit points.</p>",
+      "summary": "At the start of your turn, you may designate one opponent. Attacks you make against that opponent suffer a -2…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!EoGOAo8auSmsQ4cM"
+}

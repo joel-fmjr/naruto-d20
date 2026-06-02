@@ -1,0 +1,57 @@
+{
+  "_id": "ioum4OU42G4SouKq",
+  "name": "GRANDMASTER CRAFTSMAN",
+  "type": "feat",
+  "img": "icons/tools/smithing/furnace-fire-metal-orange.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Any item creation feat.</p>\n<p><b>Benefit:</b> Decrease the cost of base materials for any items you craft by 25% (if the cost is a purchase DC, reduce it by 2). XP costs are not affected.</p>",
+      "summary": "Decrease the cost of base materials for any items you craft by 25% (if the cost is a purchase DC, reduce it by 2). XP…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Item Creation"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!ioum4OU42G4SouKq"
+}

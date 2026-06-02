@@ -1,0 +1,65 @@
+{
+  "_id": "IYaQyI0YCmuSMsme",
+  "name": "Informal Training",
+  "type": "feat",
+  "img": "icons/sundries/books/book-backed-wood-tan.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> Whenever you are subject to an attack with a weapon you are not proficient in (including natural weapons), you are considered flat-footed and therefore lose any and all dodge bonuses to AC against the attack, including those provided by fighting defensively or total defense.</p>\n<p><b>Special:</b> This flaw overrides Uncanny Dodge.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "Whenever you are subject to an attack with a weapon you are not proficient in (including natural weapons), you are…. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "ky2AKeeiqWWaSGQ8"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!IYaQyI0YCmuSMsme"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "A064uG6c86SkGqYC",
+  "name": "Combat Awareness",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-ringed-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Wis 13, base attack bonus +1.</p>\n<p><b>Benefit:</b> Attackers do not gain the usual +2 bonus on their attack rolls when flanking you. This feat grants no effect when you are denied your Dexterity modifier to Defense, such as when you are flat-footed. You may still be sneak attacked when flanked.</p>",
+      "summary": "Attackers do not gain the usual +2 bonus on their attack rolls when flanking you. This feat grants no effect when you…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!A064uG6c86SkGqYC"
+}

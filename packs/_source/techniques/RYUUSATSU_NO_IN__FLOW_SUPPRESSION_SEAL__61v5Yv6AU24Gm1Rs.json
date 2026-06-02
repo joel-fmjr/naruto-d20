@@ -1,0 +1,100 @@
+{
+  "_id": "61v5Yv6AU24Gm1Rs",
+  "name": "RYUUSATSU NO IN (FLOW SUPPRESSION SEAL)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/spells/link-eerie-1.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Fuinjutsu </p>\n<p><b>Rank:</b> 10 (Spell Level 5)</p>\n<p><b>Chakra Cost:</b> 15</p>\n\n<p><b>Learn DC:</b> 25 | <b>Successes:</b> 5</p>\n<p><b>Perform:</b> 13 | <b>Perform DC:</b> 27</p>\n\n<p><b>Components:</b> C, H, M</p>\n\n<hr>\n\n<p>You seal the flow of the target's Chakra, making the target unable to use Chakra as though affected by a Chakra Sealing Tag, with one exception: as a move action that provokes attacks of opportunity and requires concentration, the target can make a Chakra Control check (DC 15) to dispel the seal. While in effect, the target's Chakra Signature appears to be two categories smaller than in reality (minimum faint).</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Fuinjutsu",
+    "subtype": "",
+    "descriptors": [
+      "Hijutsu"
+    ],
+    "rank": 10,
+    "complexity": "A-Class",
+    "chakraCost": 15,
+    "activation": "standard",
+    "range": "Touch",
+    "target": "One humanoid creature",
+    "area": "",
+    "duration": "1d/level",
+    "save": "Will negates",
+    "compHandSeals": true,
+    "compHalfSeals": false,
+    "compConcentration": true,
+    "compMobility": false,
+    "compFocus": false,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": true,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "4hSxUAhcaMzGNHsy",
+        "name": "Use",
+        "actionType": "save",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "day",
+          "value": "@cl"
+        },
+        "range": {
+          "units": "touch"
+        },
+        "target": {
+          "value": "One humanoid creature"
+        },
+        "save": {
+          "type": "will",
+          "description": "Will negates"
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sU0AUUqy0G8KMqiW",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!61v5Yv6AU24Gm1Rs"
+}

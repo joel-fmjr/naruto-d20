@@ -1,0 +1,57 @@
+{
+  "_id": "0e8cECSmGgeca0G0",
+  "name": "BLOOD PACT (Ogre)",
+  "type": "feat",
+  "img": "icons/creatures/magical/humanoid-giant-forest-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Str 15 or Con 15. To sign a blood pact, you must find the appropriate Contract. See Chapter 9 for details on obtaining contracts and the various summon tribes.</p>\n<p><b>Benefit:</b> You can summon creatures of the Ogre tribe, and gain a +4 bonus to Charisma-based skill checks used on such creatures. While within 50 feet of a summoned Ogre, you gain +2 bonus to Fortitude saves (morale).</p>",
+      "summary": "Summon Ogre tribe; +4 Cha skill checks vs. Ogres; +2 bonus to Fortitude saves (morale) within 50 ft of summon.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!0e8cECSmGgeca0G0"
+}

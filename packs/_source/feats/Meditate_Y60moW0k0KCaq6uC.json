@@ -1,0 +1,57 @@
+{
+  "_id": "Y60moW0k0KCaq6uC",
+  "name": "Meditate",
+  "type": "feat",
+  "img": "icons/magic/life/ankh-shadow-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Int 13, Wis 13, Focused.</p>\n<p><b>Benefit:</b> You can pay 1 action point to meditate for 2 rounds. If the action succeeds, you gain +2 on Defense, +3 on all attack rolls, +1 on all unarmed damage rolls, deal lethal damage on unarmed attacks, and get a +1 Concentration bonus on all skills for 2d6 rounds.</p>",
+      "summary": "You can pay 1 action point to meditate for 2 rounds. If the action succeeds, you gain +2 on Defense, +3 on all attack…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!Y60moW0k0KCaq6uC"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "I0mmea8iIqccOyyg",
+  "name": "Jinchuuriki's Descendant [Heritage]",
+  "type": "feat",
+  "img": "icons/creatures/magical/spirit-undead-masked-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Chakra Control 4 ranks, Chakra Affinity feat. Can only be taken at 1st level; may not be chosen if the user has already selected the Advanced Bloodline feat.</p>\n<p><b>Benefit:</b> Somewhere in the history of your family, an individual was either blessed or cursed with having one of the legendary tailed beasts sealed inside of them. The user gains the Improved Chakra Pool feat for free and the Overwhelming Chakra ability. The user's chakra signature is always treated as 1 higher for the purpose of sensing chakra and is incapable of Suppressing Chakra. In addition, the user gains the Improved Chakra Pool feat at every 5th level.</p>",
+      "summary": "Somewhere in the history of your family, an individual was either blessed or cursed with having one of the legendary…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!I0mmea8iIqccOyyg"
+}

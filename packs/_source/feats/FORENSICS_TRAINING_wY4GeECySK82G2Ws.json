@@ -1,0 +1,57 @@
+{
+  "_id": "wY4GeECySK82G2Ws",
+  "name": "FORENSICS TRAINING",
+  "type": "feat",
+  "img": "icons/sundries/books/book-embossed-gold-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Knowledge (earth and life sciences) 6 ranks, Treat Injury 6 ranks.</p>\n<p><b>Benefit:</b> You can perform autopsies by using the Knowledge (earth and life sciences) skill (See p39). You can only perform an autopsy on subjects of the same creature type as you. For every 3 ranks in the Knowledge (earth and life sciences) skill you have beyond 6, you learn to autopsy an additional creature type. (Skill ranks gained after this feat was acquired can still add additional creature types)</p>",
+      "summary": "You can perform autopsies by using the Knowledge (earth and life sciences) skill (See p39). You can only perform an…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!wY4GeECySK82G2Ws"
+}

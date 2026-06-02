@@ -1,0 +1,57 @@
+{
+  "_id": "kSC4EuagQUKcasYo",
+  "name": "Double Tap",
+  "type": "feat",
+  "img": "icons/weapons/guns/gun-blunderbuss-bronze.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Dexterity 13, Point Blank Shot.</p>\n<p><b>Benefit:</b> When using a semiautomatic firearm with at least two bullets loaded, the character may fire two bullets as a single attack against a single target. The character receives a -2 penalty on this attack, but deals +1 die of damage with a successful hit. Using this feat fires two bullets.</p>",
+      "summary": "When using a semiautomatic firearm with at least two bullets loaded, the character may fire two bullets as a single…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!kSC4EuagQUKcasYo"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "Os4McIG0kScOKuKU",
+  "name": "Advanced Nature: Hyouton",
+  "type": "feat",
+  "img": "icons/magic/water/barrier-ice-crystal-wall-faceted-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Primary elemental affinity Water or Wind, can only be taken at 1st level.</p>\n<p><b>Benefit:</b> You gain an elemental affinity to Ice as well as Water or Wind (whichever you didn't select as your primary elemental affinity). Your Ice affinity may replace your primary elemental affinity, which is then downgraded to a normal affinity. You do not gain a new nature until level 21 via level progression. This release has the descriptor of Cold.</p>",
+      "summary": "You gain an elemental affinity to Ice as well as Water or Wind (whichever you didn't select as your primary elemental…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!Os4McIG0kScOKuKU"
+}

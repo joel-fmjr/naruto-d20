@@ -1,0 +1,57 @@
+{
+  "_id": "QiKKo06KGyKQoCeu",
+  "name": "Cybernetic Surgery",
+  "type": "feat",
+  "img": "icons/tools/laboratory/burner-steel-grey.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Treat Injury 8 ranks, Surgery.</p>\n<p><b>Benefit:</b> The character can make a Treat Injury check (DC 20) to install or remove a cybernetic attachment. Without a Surgery kit or medical facility, take a -4 penalty. Cybernetic surgery takes 1d4 hours.\n\nIf the check fails by 5 or more, the patient suffers 1d4 Constitution damage. If the check fails by 10 or more, it is Constitution drain instead. A character who undergoes cybernetic surgery is fatigued for 24 hours, reduced by 2 hours per point above the DC (minimum 6 hours).</p>",
+      "summary": "The character can make a Treat Injury check (DC 20) to install or remove a cybernetic attachment. Without a Surgery…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!QiKKo06KGyKQoCeu"
+}

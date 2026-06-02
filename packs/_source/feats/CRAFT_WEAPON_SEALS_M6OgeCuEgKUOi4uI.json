@@ -1,0 +1,57 @@
+{
+  "_id": "M6OgeCuEgKUOi4uI",
+  "name": "CRAFT WEAPON SEALS",
+  "type": "feat",
+  "img": "icons/magic/symbols/runes-etched-steel-blade.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Craft (calligraphy) 4 ranks, Craft (mechanical) 6 ranks, Chakra Control 4 ranks, Heroic character.</p>\n<p><b>Benefit:</b> You can add Weapon Seals to eligible equipment. The penalty to learn Fuinjutsu is reduced by 4.</p>",
+      "summary": "You can add Weapon Seals to eligible equipment. The penalty to learn Fuinjutsu is reduced by 4.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Item Creation"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!M6OgeCuEgKUOi4uI"
+}

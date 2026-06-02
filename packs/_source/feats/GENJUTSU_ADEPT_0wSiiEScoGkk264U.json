@@ -1,0 +1,72 @@
+{
+  "_id": "0wSiiEScoGkk264U",
+  "name": "GENJUTSU ADEPT",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-ringed-glow-angry-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> Gain +2 to Genjutsu checks, and the save DC of your Genjutsu techniques increases by 1. In addition, you may make 1 additional attempt when learning Genjutsu techniques. Increase your effective skill threshold when performing Genjutsu techniques by 1.</p>",
+      "summary": "Gain +2 to Genjutsu checks, and the save DC of your Genjutsu techniques increases by 1. In addition, you may make 1…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "_id": "CGyKaAAUE4QICuya",
+        "formula": "2",
+        "target": "learnGnj",
+        "type": "untyped",
+        "operator": "add"
+      },
+      {
+        "_id": "EcqCWkCyekQkm6cY",
+        "formula": "1",
+        "target": "techDcGnj",
+        "type": "untyped",
+        "operator": "add"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!0wSiiEScoGkk264U"
+}

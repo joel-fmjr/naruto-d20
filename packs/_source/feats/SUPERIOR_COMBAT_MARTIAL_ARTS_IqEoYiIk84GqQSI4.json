@@ -1,0 +1,58 @@
+{
+  "_id": "IqEoYiIk84GqQSI4",
+  "name": "SUPERIOR COMBAT MARTIAL ARTS",
+  "type": "feat",
+  "img": "icons/weapons/fist/claw-grey-black.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Combat Martial Arts, base attack bonus +3</p>\n<p><b>Benefit:</b> Your unarmed attacks deal 1d6 damage, increasing to 1d8 at level 9 and 1d10 at level 17 (based on a Medium-sized creature). If you have the Feral Combat, Living Weapon, Sacred Fist Stance or Unarmed Strike class ability, you count as four class levels higher to determine the bonus it grants you.</p>",
+      "summary": "Your unarmed attacks deal 1d6 damage, increasing to 1d8 at level 9 and 1d10 at level 17 (based on a Medium-sized…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Combat",
+        "Weapon"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!IqEoYiIk84GqQSI4"
+}

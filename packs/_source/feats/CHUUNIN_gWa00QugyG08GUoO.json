@@ -1,0 +1,57 @@
+{
+  "_id": "gWa00QugyG08GUoO",
+  "name": "CHUUNIN",
+  "type": "feat",
+  "img": "icons/environment/people/infantry-armored.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Heroic character level 6, Genin. Know at least 9 techniques or have finished at least 8 C-Rank (or higher) missions, Cha 12.</p>\n<p><b>Benefit:</b> You get a 'Restricted' license in your Ninja village, a +3 Wealth bonus and a +2 bonus to one of the following: Bluff, Chakra Control, Diplomacy, Disable Device, Gather Information, Genjutsu, Hide, Investigate, Knowledge (ninja lore), Move Silently, Ninjutsu or Taijutsu. You may gain the ability to Sense Chakra (p11) or Suppress Chakra (p11) instead of the skill bonus.\n\nGaining this feat does not grant you the Chuunin title. Likewise, getting the title does not grant you this feat.</p>",
+      "summary": "You get a 'Restricted' license in your Ninja village, a +3 Wealth bonus and a +2 bonus to one of the following:…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!gWa00QugyG08GUoO"
+}

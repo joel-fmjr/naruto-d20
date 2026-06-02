@@ -1,0 +1,57 @@
+{
+  "_id": "eEiMSIuqsGm0qEsC",
+  "name": "SHADOW ARTS",
+  "type": "feat",
+  "img": "icons/creatures/unholy/demon-fanged-horned-yellow.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Hide 5 ranks, Ninjutsu 5 ranks.</p>\n<p><b>Benefit:</b> You can now learn Shadow ninjutsu techniques, most of which can be found with Special Styles (p245) and Hijutsu and Kinjutsu (p252).</p>",
+      "summary": "You can now learn Shadow ninjutsu techniques, most of which can be found with Special Styles (p245) and Hijutsu and…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!eEiMSIuqsGm0qEsC"
+}

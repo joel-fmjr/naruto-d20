@@ -1,0 +1,57 @@
+{
+  "_id": "WeWegOMaOyUcw2QA",
+  "name": "TALENTED SHINOBI",
+  "type": "feat",
+  "img": "icons/magic/symbols/cog-shield-white-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> Gain (5 + your Intelligence modifier) skill points (minimum 4). Spend these points only on class skills and/or the following: Balance, Chakra Control, Concentration, Craft (calligraphy, chemical, mechanical), Fuinjutsu, Genjutsu, Hide, Jump, Knowledge (ninja lore, tactics), Listen, Move Silently, Ninjutsu, Search, Sign Language, Sleight of Hand, Spot, Survival, Taijutsu and Tumble.</p>",
+      "summary": "Gain (5 + your Intelligence modifier) skill points (minimum 4). Spend these points only on class skills and/or the…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "General"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!WeWegOMaOyUcw2QA"
+}

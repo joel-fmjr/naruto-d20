@@ -1,0 +1,101 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "<p>You open the View Gate, gaining a +8 enhancement bonus to Strength and Dexterity and a 30 ft increase to land speed.</p><p>This buff does not automate temporary Chakra, damage taken each round, consequences when the Gate closes, later ability score penalties, or increased damage taken after closing. The Initiative and skill bonuses from To-Mon Kai do not apply.</p>",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "enh",
+        "_id": "a0c4e6f8",
+        "operator": "add",
+        "priority": 0,
+        "formula": "8",
+        "target": "str"
+      },
+      {
+        "type": "enh",
+        "_id": "b1d5f709",
+        "operator": "add",
+        "priority": 0,
+        "formula": "8",
+        "target": "dex"
+      },
+      {
+        "type": "untyped",
+        "_id": "c2e6081a",
+        "operator": "add",
+        "priority": 0,
+        "formula": "30",
+        "target": "landSpeed"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 12,
+    "duration": {
+      "value": "",
+      "units": "round",
+      "end": "turnStart",
+      "start": 0
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "KEI-MON KAI (VIEW GATE RELEASE)",
+  "img": "systems/pf1/icons/spells/explosion-royal-1.jpg",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1780351200000,
+    "modifiedTime": 1780351200000,
+    "lastModifiedBy": null
+  },
+  "_id": "5b2c7f8e1a0d3465",
+  "sort": 0,
+  "_key": "!items!5b2c7f8e1a0d3465"
+}

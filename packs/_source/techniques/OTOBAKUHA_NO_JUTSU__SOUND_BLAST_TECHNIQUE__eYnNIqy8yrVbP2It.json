@@ -1,0 +1,112 @@
+{
+  "_id": "eYnNIqy8yrVbP2It",
+  "name": "OTOBAKUHA NO JUTSU (SOUND BLAST TECHNIQUE)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/spells/air-burst-air-2.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Ninjutsu </p>\n<p><b>Rank:</b> 7 (Spell Level 4)</p>\n<p><b>Chakra Cost:</b> 8</p>\n\n<p><b>Learn DC:</b> 21 | <b>Successes:</b> 4</p>\n<p><b>Perform:</b> 9 | <b>Perform DC:</b> 22</p>\n\n<p><b>Components:</b> E, F, H</p>\n\n<hr>\n\n<p>You focus Chakra through your sound amplifier, firing a powerful blast of sound that deals 4d6 sonic damage (Fortitude halves) and deafening creatures in the area for 1d4 rounds (Fortitude negates).</p>\n\n<hr><p><b>Empower:</b> Spend 2 Chakra to increase the damage by 1d6, up to 1d6 per 2 levels or 10d6.</p>\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Ninjutsu",
+    "subtype": "",
+    "descriptors": [
+      "Sonic",
+      "Hijutsu"
+    ],
+    "rank": 7,
+    "complexity": "B-Class",
+    "chakraCost": 8,
+    "activation": "standard",
+    "range": "Medium (20 ft. + 10 ft./2 levels)",
+    "target": "",
+    "area": "10 ft Burst",
+    "duration": "Instant *",
+    "save": "Fortitude halves and partial *",
+    "compHandSeals": true,
+    "compHalfSeals": false,
+    "compConcentration": false,
+    "compMobility": false,
+    "compFocus": true,
+    "compEmpower": true,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": true,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "sC1RLjtl0zRh6TIz",
+        "name": "Use",
+        "actionType": "spellsave",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "range": {
+          "units": "medium"
+        },
+        "area": "10 ft Burst",
+        "measureTemplate": {
+          "type": "circle",
+          "size": "10"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "4d6",
+              "types": [
+                "sonic"
+              ]
+            }
+          ]
+        },
+        "save": {
+          "type": "fort",
+          "description": "Fortitude half and partial"
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "m8SwiwcAKa0gkEOK",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!eYnNIqy8yrVbP2It"
+}

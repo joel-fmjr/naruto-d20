@@ -1,0 +1,72 @@
+{
+  "_id": "su4eo88mWsQgAkg4",
+  "name": "Ambassador",
+  "type": "feat",
+  "img": "icons/skills/social/diplomacy-peace-alliance.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> You gain a +2 competence bonus to all Diplomacy and Sense Motive checks.</p>",
+      "summary": "You gain a +2 competence bonus to all Diplomacy and Sense Motive checks.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "_id": "Ocu4kuSKGQCmQCEY",
+        "formula": "2",
+        "target": "skill.sen",
+        "type": "competence",
+        "operator": "add"
+      },
+      {
+        "_id": "CaqOmGIQiWIwg2OK",
+        "formula": "2",
+        "target": "skill.dip",
+        "type": "competence",
+        "operator": "add"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!su4eo88mWsQgAkg4"
+}

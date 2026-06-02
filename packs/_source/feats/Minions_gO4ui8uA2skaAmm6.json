@@ -1,0 +1,57 @@
+{
+  "_id": "gO4ui8uA2skaAmm6",
+  "name": "Minions",
+  "type": "feat",
+  "img": "icons/environment/people/group.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> 6th level.</p>\n<p><b>Benefit:</b> You attract loyal minions according to the Minions table based on your leader score. Your leader score is equal to the sum of your character level, your Reputation, and your Charisma modifier, modified by various factors. Minions are generally loyal, but aren't fanatical and won't do anything obviously suicidal. Minions who die or leave the character are replaced with new recruits within a month's time.</p>",
+      "summary": "You attract loyal minions according to the Minions table based on your leader score. Your leader score is equal to…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!gO4ui8uA2skaAmm6"
+}

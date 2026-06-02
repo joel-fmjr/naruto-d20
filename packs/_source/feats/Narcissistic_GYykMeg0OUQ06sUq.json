@@ -1,0 +1,65 @@
+{
+  "_id": "GYykMeg0OUQ06sUq",
+  "name": "Narcissistic",
+  "type": "feat",
+  "img": "icons/skills/social/intimidation-impressing.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> Whenever you see yourself in a reflective surface, you are fascinated by it for 1d4 rounds. Additionally, if you take a full HD's worth of damage in one attack, you become shaken until you spend a standard action to check yourself over. Failure to do so will leave you shaken until you do.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "Whenever you see yourself in a reflective surface, you are fascinated by it for 1d4 rounds. Additionally, if you take…. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "MSIAKIUyQqSiQesA"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!GYykMeg0OUQ06sUq"
+}

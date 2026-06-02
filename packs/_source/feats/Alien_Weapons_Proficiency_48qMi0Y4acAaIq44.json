@@ -1,0 +1,57 @@
+{
+  "_id": "48qMi0Y4acAaIq44",
+  "name": "Alien Weapons Proficiency",
+  "type": "feat",
+  "img": "icons/weapons/guns/gun-blunderbuss-bronze.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> Creatures with this feat take no penalty on attack rolls when using any kind of alien weapon.</p>\n<p><b>Special:</b> A creature without this feat takes a -4 nonproficient penalty when making attacks with an alien weapon.</p>",
+      "summary": "Creatures with this feat take no penalty on attack rolls when using any kind of alien weapon.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!48qMi0Y4acAaIq44"
+}

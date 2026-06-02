@@ -1,0 +1,57 @@
+{
+  "_id": "mWy8m2gKakM0ie46",
+  "name": "TECHNIQUE FOCUS",
+  "type": "feat",
+  "img": "icons/magic/symbols/cog-glowing-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> Choose a Ninjutsu or Genjutsu technique subtype. You are treated as one level higher when per- forming techniques of that type, and gain a +1 enhancement bonus to your skill threshold for those techniques. You may choose Universal, which applies to all Ninjutsu or Genjutsu without a subtype.</p>\n<p><b>Special:</b> May be selected more than once, applying to a different subtype each time.</p>",
+      "summary": "Choose a Ninjutsu or Genjutsu technique subtype. You are treated as one level higher when per- forming techniques of…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!mWy8m2gKakM0ie46"
+}

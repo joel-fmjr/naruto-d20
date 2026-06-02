@@ -1,7 +1,7 @@
 {
   "id": "naruto-d20",
   "title": "Naruto D20",
-  "description": "Pathfinder 1e Naruto D20 Expansion",
+  "description": "<p>A Naruto D20 homebrew expansion for the Pathfinder 1e (PF1e) system. Adds a custom <strong>Technique</strong> item type, Chakra Pool/Reserve resources, five ninja discipline learn-check skills, elemental damage types, a Chakra sheet tab, and buff automation that plugs into PF1e's changes engine.</p>",
   "version": "1.0.0",
   "compatibility": {
     "minimum": "11",
@@ -9,9 +9,22 @@
   },
   "authors": [
     {
-      "name": "Ezio Alves"
+      "name": "Ezio Alves",
+      "discord": "Ezio#3363",
+      "url": "https://github.com/ezioaalves"
+    },
+    {
+      "name": "Joel Júnior",
+      "discord": "Joel.fmjr#0711",
+      "url": "https://github.com/joel-fmjr"
     }
   ],
+  "url": "https://github.com/ezioaalves/naruto-d20",
+  "manifest": "https://github.com/ezioaalves/naruto-d20/releases/latest/download/module.json",
+  "download": "https://github.com/ezioaalves/naruto-d20/releases/download/v1.0.0/module.zip",
+  "readme": "https://github.com/ezioaalves/naruto-d20/blob/master/README.md",
+  "bugs": "https://github.com/ezioaalves/naruto-d20/issues",
+  "license": "LICENSE",
   "relationships": {
     "systems": [
       {
@@ -26,14 +39,25 @@
   },
   "documentTypes": {
     "Item": {
-      "technique": {}
+      "technique": {
+        "htmlFields": ["description.value", "description.instructions"]
+      }
     }
   },
   "esmodules": [
     "scripts/main.mjs"
   ],
   "styles": [
-    "styles/naruto-d20.css"
+    "styles/apps/tap-reserves.css",
+    "styles/settings/actor-settings.css",
+    "styles/actor/summary-stats.css",
+    "styles/actor/chakra-tab.css",
+    "styles/item/technique-sheet.css",
+    "styles/actor/technique-list.css",
+    "styles/item/technique-actions.css",
+    "styles/chat/technique-cards.css",
+    "styles/item/technique-sidebar.css",
+    "styles/apps/technique-medkit.css"
   ],
   "languages": [
     {
@@ -61,6 +85,25 @@
       "path":   "packs/technique-buffs",
       "type":   "Item",
       "system": "pf1"
+    },
+    {
+      "name":   "feats",
+      "label":  "Naruto Feats",
+      "path":   "packs/feats",
+      "type":   "Item",
+      "system": "pf1"
+    }
+  ],
+  "packFolders": [
+    {
+      "name": "Naruto D20",
+      "sorting": "m",
+      "color": "#c0392b",
+      "packs": [
+        "techniques",
+        "technique-buffs",
+        "feats"
+      ]
     }
   ]
 }

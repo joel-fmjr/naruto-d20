@@ -1,0 +1,57 @@
+{
+  "_id": "YGqw6giYm6a6qi2w",
+  "name": "BLOOD PACT (Shark)",
+  "type": "feat",
+  "img": "icons/creatures/fish/fish-shark-swimming.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Survival 4, Swim 4. To sign a blood pact, you must find the appropriate Contract. See Chapter 9 for details on obtaining contracts and the various summon tribes.</p>\n<p><b>Benefit:</b> You can summon creatures of the Shark tribe, and gain a +4 bonus to Charisma-based skill checks used on such creatures. While within 50 feet of a summoned Shark, you gain the ability to smell blood in the air up to 200 feet.</p>",
+      "summary": "Summon Shark tribe; +4 Cha skill checks vs. Sharks; the ability to smell blood in the air up to 200 feet within 50 ft of summon.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!YGqw6giYm6a6qi2w"
+}

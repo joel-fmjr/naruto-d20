@@ -1,0 +1,57 @@
+{
+  "_id": "egEGSiQs0oqaMmGq",
+  "name": "Endurance",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/endurance.png",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> The character gains a +4 bonus on the following checks and saves: hourly Swim checks to avoid becoming fatigued, Constitution checks to continue running, Constitution checks to hold the character's breath, Constitution checks to avoid damage from starvation or thirst, Fortitude saves to avoid damage from hot or cold environments, and Fortitude saves to resist suffocation or drowning. Also, the character may sleep in medium or light armor without becoming Fatigued.</p>",
+      "summary": "The character gains a +4 bonus on the following checks and saves: hourly Swim checks to avoid becoming fatigued,…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!egEGSiQs0oqaMmGq"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "6ycQom0SgIY0SwOO",
+  "name": "PUPPET MULTIATTACK",
+  "type": "feat",
+  "img": "icons/magic/control/buff-flight-wings-runes-red.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "classFeat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Advanced Puppetry class ability.</p>\n<p><b>Benefit:</b> When making attacks with a puppet's secondary natural weapon, reduce the attack penalty to -2. If your puppet doesn't have a secondary natural weapon, instead you may make a second attack with its primary natural weapon at a -5 penalty.</p>",
+      "summary": "When making attacks with a puppet's secondary natural weapon, reduce the attack penalty to -2. If your puppet doesn't…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "YIwCqqseAU6OcEks",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Class"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!6ycQom0SgIY0SwOO"
+}

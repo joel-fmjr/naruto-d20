@@ -1,0 +1,57 @@
+{
+  "_id": "gAMQcAYMkMQOQ2ce",
+  "name": "HAND SEALS MASTERY",
+  "type": "feat",
+  "img": "icons/magic/symbols/runes-carved-stone-yellow.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Ninjutsu 15 ranks, Sleight of Hand 12 ranks, Genius Ninja (Genjutsu or Ninjutsu), Onehanded Seals.</p>\n<p><b>Benefit:</b> You can increase the Perform Requirements of any Fuinjutsu, Genjutsu or Ninjutsu techniques you perform by 3 to ignore their hand seals and half-seals components. Using this feat in this manner does not consume a meta-Chakra charge, though you may spend a charge to ignore the Perform Requirements increase for one technique.</p>\n<p><b>Special:</b> A technique enhanced in this way cannot be enhanced by other meta-Chakra feats.</p>",
+      "summary": "You can increase the Perform Requirements of any Fuinjutsu, Genjutsu or Ninjutsu techniques you perform by 3 to…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!gAMQcAYMkMQOQ2ce"
+}

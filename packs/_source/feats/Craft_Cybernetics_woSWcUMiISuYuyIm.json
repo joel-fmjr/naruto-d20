@@ -1,0 +1,57 @@
+{
+  "_id": "woSWcUMiISuYuyIm",
+  "name": "Craft Cybernetics",
+  "type": "feat",
+  "img": "icons/tools/laboratory/alembic-glass-ball-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Craft (mechanical) 10 ranks, Craft (electrical) 10 ranks, Knowledge (technology) 5 ranks.</p>\n<p><b>Benefit:</b> The character can build cybernetic attachments. They must first make a Wealth check against the purchase DC of the attachment, then invest 24 hours in its construction. At the end of that time, they must succeed at a Craft (mechanical) check (DC 30) and a Craft (electrical) check (DC 30). If both checks succeed, the attachment can be installed at any time. If either check fails, another 24 hours must be spent fixing the problems.</p>\n<p><b>Special:</b> This feat does not allow a cybernetic attachment of a higher Progress Level to be built.</p>",
+      "summary": "The character can build cybernetic attachments. They must first make a Wealth check against the purchase DC of the…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!woSWcUMiISuYuyIm"
+}

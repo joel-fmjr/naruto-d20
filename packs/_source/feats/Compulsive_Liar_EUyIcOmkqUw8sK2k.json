@@ -1,0 +1,65 @@
+{
+  "_id": "EUyIcOmkqUw8sK2k",
+  "name": "Compulsive Liar",
+  "type": "feat",
+  "img": "icons/skills/social/peace-luck-insult.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> When someone asks you a question that you know the answer to, roll a 1d3. If you get a 1, you must attempt to lie and misdirect the person questioning you (your Bluff against their Sense Motive). You must not ever hint to the truth about the question if this happens. If affected by anything that would otherwise force you to tell the truth, you must cower until the effect has passed.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "When someone asks you a question that you know the answer to, roll a 1d3. If you get a 1, you must attempt to lie and…. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "WK02kgsyGG2gEUwy"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!EUyIcOmkqUw8sK2k"
+}

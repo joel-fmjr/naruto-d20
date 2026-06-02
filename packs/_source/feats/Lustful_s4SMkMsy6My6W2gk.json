@@ -1,0 +1,65 @@
+{
+  "_id": "s4SMkMsy6My6W2gk",
+  "name": "Lustful",
+  "type": "feat",
+  "img": "icons/magic/symbols/clover-luck-white-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "misc",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> Choose a sex. Creatures of the chosen sex of the same creature type as you may make a Charisma check (DC 10 + your own Charisma modifier) in social situations against you. If successful, you are considered charmed by that creature for as long as you remain in communication with it and 10 minutes thereafter. In combat, you take a -1 penalty on attack rolls and AC against creatures of the chosen sex.</p>\n<p><b>Gain:</b> Taking this flaw grants you one bonus feat.</p>",
+      "summary": "Choose a sex. Creatures of the chosen sex of the same creature type as you may make a Charisma check (DC 10 + your…. Gain: Taking this flaw grants you one bonus feat.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [
+      {
+        "formula": "1",
+        "target": "bonusFeats",
+        "type": "untyped",
+        "operator": "add",
+        "_id": "W8MmAKggUEkwGuc0"
+      }
+    ],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "OySC4cuKwYoUSO4g",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Flaw"
+      ],
+      "hasChanges": true,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!s4SMkMsy6My6W2gk"
+}

@@ -1,0 +1,110 @@
+{
+  "_id": "Pu7tPQxIMq8vkqKC",
+  "name": "MAGEN: GOUKYOU GENMU NO JUTSU (DEMONIC MIRAGE: PHANTASMAL TORTURE TECHNIQUE)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/skills/shadow_10.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Genjutsu </p>\n<p><b>Rank:</b> 7 (Spell Level 4)</p>\n<p><b>Chakra Cost:</b> 8</p>\n\n<p><b>Learn DC:</b> 22 | <b>Successes:</b> 6</p>\n<p><b>Perform:</b> 10 | <b>Perform DC:</b> 24</p>\n\n<p><b>Components:</b> C, H</p>\n\n<hr>\n\n<p>The subject writhes in pain as they experience their flesh being ripped from its body and their flesh being burned and torn from their bones. The subject suffers 1d4+1 damage each round, and a -1 penalty to skill checks, ability checks and attack rolls that stacks up to eight times. Once the technique expires, these penalties persist, but are reduced by one each round until they disappear entirely. If the subject is reduced to 0 HP, it stops taking damage and becomes unable to act while the technique lasts. This technique can be dispelled.</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Genjutsu",
+    "subtype": "",
+    "descriptors": [
+      "Fear",
+      "Mind-Affecting",
+      "Lost Kinjutsu",
+      "Kinjutsu"
+    ],
+    "rank": 7,
+    "complexity": "A-Class",
+    "chakraCost": 8,
+    "activation": "standard",
+    "range": "Touch",
+    "target": "One creature",
+    "area": "",
+    "duration": "1r/2 levels (D)",
+    "save": "Will negates",
+    "compHandSeals": true,
+    "compHalfSeals": false,
+    "compConcentration": true,
+    "compMobility": false,
+    "compFocus": false,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": false,
+    "isKinjutsu": true,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "pJmWZe743OjwIJJ5",
+        "name": "Use",
+        "actionType": "spellsave",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "seeText"
+        },
+        "range": {
+          "units": "touch"
+        },
+        "target": {
+          "value": "One creature"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "1d4+1",
+              "types": []
+            }
+          ]
+        },
+        "save": {
+          "type": "will",
+          "description": "Will negates"
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "a4W0c4GqAYQWAi60",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!Pu7tPQxIMq8vkqKC"
+}

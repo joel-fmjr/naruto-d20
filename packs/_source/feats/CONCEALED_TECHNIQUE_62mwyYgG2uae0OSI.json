@@ -1,0 +1,57 @@
+{
+  "_id": "62mwyYgG2uae0OSI",
+  "name": "CONCEALED TECHNIQUE",
+  "type": "feat",
+  "img": "icons/magic/symbols/mask-metal-silver-white.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Efficient Technique, Chakra Control 12 ranks.</p>\n<p><b>Benefit:</b> When applied to a non-Taijutsu technique, the cost of the technique is completely concealed and the cost is reduced by 1 point of Chakra for every 4 ranks it has (minimum 1). The Perform Requirements increase by 6</p>",
+      "summary": "When applied to a non-Taijutsu technique, the cost of the technique is completely concealed and the cost is reduced…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!62mwyYgG2uae0OSI"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "4E4OaYgayA6k6YCQ",
+  "name": "BYAKUGAN SIGHT",
+  "type": "feat",
+  "img": "icons/magic/perception/eye-ringed-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Advanced Bloodline (Byakugan), Wis 13, Spot 6 ranks, Byakugan +2, Tenketsu Sealing.</p>\n<p><b>Benefit:</b> While your Byakugan is active, you can only be flanked by creatures of your level of higher. When using Telescopic Eye, you can look in any direction without needing to move your head or body. Finally, you cannot be denied your Dexterity bonus to Defense while your Byakugan is active (including while using Telescopic Sight), unless you are flat-footed, immobilized, or a technique or ability specifically denies you your Dexterity to Defense.</p>",
+      "summary": "While your Byakugan is active, you can only be flanked by creatures of your level of higher. When using Telescopic…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!4E4OaYgayA6k6YCQ"
+}

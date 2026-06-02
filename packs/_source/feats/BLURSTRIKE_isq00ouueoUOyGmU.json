@@ -1,0 +1,57 @@
+{
+  "_id": "isq00ouueoUOyGmU",
+  "name": "BLURSTRIKE",
+  "type": "feat",
+  "img": "icons/weapons/swords/greatsword-crossguard-curved.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Quick Draw, Blinkstrike +1 class ability, Kenjutsu: Iaido (5).</p>\n<p><b>Benefit:</b> While in the Blinkstrike stance, you can sheathe a weapon as a free action, without provoking attacks of opportunity. In addition, you may spend 1 meta-Chakra charge to increase your Blinkstrike bonus by +2 for one round while making a Full Attack.\n\nCan be used three times per encounter. This bonus cannot be active at the same time as that of True Blinkstrike.</p>",
+      "summary": "While in the Blinkstrike stance, you can sheathe a weapon as a free action, without provoking attacks of opportunity.…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Meta-Chakra"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!isq00ouueoUOyGmU"
+}

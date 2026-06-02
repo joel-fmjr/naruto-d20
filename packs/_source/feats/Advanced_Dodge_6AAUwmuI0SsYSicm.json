@@ -1,0 +1,57 @@
+{
+  "_id": "6AAUwmuI0SsYSicm",
+  "name": "Advanced Dodge",
+  "type": "feat",
+  "img": "icons/magic/defensive/illusion-evasion-echo-purple.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Dodge, Improved Dodge, Dex 17.</p>\n<p><b>Benefit:</b> You may apply the effects of the Dodge feat to a number of targets equal to your Dexterity modifier +1 (minimum of 2). You may also apply the effects twice (stacking) to a given target. Doing so counts as applying Dodge's effects to two different targets. You may not apply the effects of Dodge to a single target more than twice. This feat replaces the Improved Dodge feat.</p>",
+      "summary": "You may apply the effects of the Dodge feat to a number of targets equal to your Dexterity modifier +1 (minimum of…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!6AAUwmuI0SsYSicm"
+}

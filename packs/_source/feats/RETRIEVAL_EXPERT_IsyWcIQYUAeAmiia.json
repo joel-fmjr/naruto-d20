@@ -1,0 +1,57 @@
+{
+  "_id": "IsyWcIQYUAeAmiia",
+  "name": "RETRIEVAL EXPERT",
+  "type": "feat",
+  "img": "icons/skills/targeting/crosshair-bars-yellow.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Ninjutsu 9 ranks.</p>\n<p><b>Benefit:</b> You do not take a -8 penalty to learn checks or take double the time when learning Spacetime techniques.</p>",
+      "summary": "You do not take a -8 penalty to learn checks or take double the time when learning Spacetime techniques.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!IsyWcIQYUAeAmiia"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "uCe6W2GQSM02y4se",
+  "name": "Defensive Strike",
+  "type": "feat",
+  "img": "icons/magic/defensive/shield-barrier-blades-teal.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Dex 13, Int 13, Combat Expertise, Dodge.</p>\n<p><b>Benefit:</b> If an opponent attacks you and misses while you are using the total defense action, you can attack that opponent on your next turn with a +4 bonus on your attack roll. You gain no bonus against an opponent that does not attack you or against an opponent that attacks and hits you.</p>",
+      "summary": "If an opponent attacks you and misses while you are using the total defense action, you can attack that opponent on…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!uCe6W2GQSM02y4se"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "keEIgISW4M6iiWqc",
+  "name": "Greater Dodge",
+  "type": "feat",
+  "img": "icons/magic/defensive/barrier-shield-dome-deflect-teal.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Dex 13, Dodge, Improved Dodge.</p>\n<p><b>Benefit:</b> Your skill with the Dodge feat is such that you receive a +3 dodge bonus to Defense against attacks from your chosen opponent.</p>",
+      "summary": "Your skill with the Dodge feat is such that you receive a +3 dodge bonus to Defense against attacks from your chosen…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!keEIgISW4M6iiWqc"
+}

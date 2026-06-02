@@ -1,0 +1,57 @@
+{
+  "_id": "o00gWsISumQaQqOW",
+  "name": "Fleet of Foot",
+  "type": "feat",
+  "img": "icons/skills/movement/feet-winged-boots-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Run.</p>\n<p><b>Benefit:</b> When running or charging, you can make a single direction change of 90 degrees or less. You cannot use this feat while wearing medium or heavy armor, or if you're carrying a medium or heavy load.</p>",
+      "summary": "When running or charging, you can make a single direction change of 90 degrees or less. You cannot use this feat…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!o00gWsISumQaQqOW"
+}

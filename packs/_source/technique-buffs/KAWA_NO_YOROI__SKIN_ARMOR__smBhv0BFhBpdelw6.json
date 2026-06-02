@@ -1,0 +1,87 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "untyped",
+        "_id": "ooUKxKkV",
+        "operator": "add",
+        "priority": 0,
+        "formula": "1",
+        "target": "nac"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 4,
+    "duration": {
+      "value": "",
+      "units": "minute",
+      "end": "turnEnd",
+      "start": 2469240
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "KAWA NO YOROI (SKIN ARMOR)",
+  "img": "icons/magic/defensive/armor-stone-skin.webp",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0,
+    "gvxnSdRZKSX8B66p": 3,
+    "mIZLV3aRVXSMGsYi": 3
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1779167284107,
+    "modifiedTime": 1780187594892,
+    "lastModifiedBy": "mIZLV3aRVXSMGsYi"
+  },
+  "_id": "smBhv0BFhBpdelw6",
+  "sort": 0,
+  "_key": "!items!smBhv0BFhBpdelw6"
+}

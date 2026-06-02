@@ -1,0 +1,57 @@
+{
+  "_id": "Ck0QOiaAQIAykg0E",
+  "name": "BLACK DEATH",
+  "type": "feat",
+  "img": "icons/magic/death/hand-undead-skeleton-fire-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Symbiote, Hivemind, Greater Hivemind. Benefit: Every Hive Mother born inside your body has a poison added to her bite attack, which does not apply when she merges with a swarm. The poison deals 1d4 Dexterity damage as both primary and secondary damage, and has a Fortitude save DC of 10 + 1/3 level + Hive Mother's Constitution modifier.</p>",
+      "summary": "",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Clan"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!Ck0QOiaAQIAykg0E"
+}

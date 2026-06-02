@@ -1,0 +1,57 @@
+{
+  "_id": "2KqU8EWmeUyAOeQQ",
+  "name": "Concealed Weapon",
+  "type": "feat",
+  "img": "icons/magic/symbols/mask-metal-silver-white.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Sleight of Hand 4 ranks.</p>\n<p><b>Benefit:</b> Whenever you are searched, you gain a +10 competence bonus to your Sleight of Hand checks to conceal one small item or weapon.</p>",
+      "summary": "Whenever you are searched, you gain a +10 competence bonus to your Sleight of Hand checks to conceal one small item…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!2KqU8EWmeUyAOeQQ"
+}

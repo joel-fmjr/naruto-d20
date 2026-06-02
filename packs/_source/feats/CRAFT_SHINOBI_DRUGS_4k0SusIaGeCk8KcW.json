@@ -1,0 +1,57 @@
+{
+  "_id": "4k0SusIaGeCk8KcW",
+  "name": "CRAFT SHINOBI DRUGS",
+  "type": "feat",
+  "img": "icons/skills/toxins/cauldron-bubbles-overflow-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> You can craft new shinobi drugs (see the new uses for Craft (Pharmaceutical)), and gain a +2 bonus to saves to resist the initial and secondary damage of such drugs.</p>",
+      "summary": "You can craft new shinobi drugs (see the new uses for Craft (Pharmaceutical)), and gain a +2 bonus to saves to resist…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Item Creation"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!4k0SusIaGeCk8KcW"
+}

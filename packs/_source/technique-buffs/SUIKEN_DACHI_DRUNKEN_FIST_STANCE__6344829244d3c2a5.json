@@ -1,0 +1,85 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "dodge",
+        "_id": "ad78ecdc",
+        "operator": "add",
+        "priority": 0,
+        "formula": "1",
+        "target": "ac"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 3,
+    "duration": {
+      "value": "",
+      "units": "perm",
+      "end": "turnStart",
+      "start": 0
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "SUIKEN DACHI (DRUNKEN FIST STANCE)",
+  "img": "systems/pf1/icons/skills/blue_35.jpg",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1780348642934,
+    "modifiedTime": 1780348642934,
+    "lastModifiedBy": null
+  },
+  "_id": "6344829244d3c2a5",
+  "sort": 0,
+  "_key": "!items!6344829244d3c2a5"
+}

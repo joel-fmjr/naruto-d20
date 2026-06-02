@@ -1,0 +1,57 @@
+{
+  "_id": "eKuq6qw4YCecuSqa",
+  "name": "BLOOD PACT (Monkey)",
+  "type": "feat",
+  "img": "icons/creatures/abilities/paw-print-pair-purple.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Climb 6. To sign a blood pact, you must find the appropriate Contract. See Chapter 9 for details on obtaining contracts and the various summon tribes.</p>\n<p><b>Benefit:</b> You can summon creatures of the Monkey tribe, and gain a +4 bonus to Charisma-based skill checks used on such creatures. While within 50 feet of a summoned Monkey, you gain +4 bonus to Climb checks (morale).</p>",
+      "summary": "Summon Monkey tribe; +4 Cha skill checks vs. Monkeys; +4 bonus to Climb checks (morale) within 50 ft of summon.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!eKuq6qw4YCecuSqa"
+}

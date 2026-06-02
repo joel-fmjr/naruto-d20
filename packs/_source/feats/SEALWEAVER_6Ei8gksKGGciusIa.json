@@ -1,0 +1,57 @@
+{
+  "_id": "6Ei8gksKGGciusIa",
+  "name": "SEALWEAVER",
+  "type": "feat",
+  "img": "icons/magic/symbols/circle-ouroboros.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Int 13.</p>\n<p><b>Benefit:</b> You can learn Fuinjutsu techniques without penalties to learn checks or learning time. If selected at first level, whenever Craft (calligraphy) is a class skill for you, you also gain Fuinjutsu as a class skill.</p>",
+      "summary": "You can learn Fuinjutsu techniques without penalties to learn checks or learning time. If selected at first level,…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Technique"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!6Ei8gksKGGciusIa"
+}

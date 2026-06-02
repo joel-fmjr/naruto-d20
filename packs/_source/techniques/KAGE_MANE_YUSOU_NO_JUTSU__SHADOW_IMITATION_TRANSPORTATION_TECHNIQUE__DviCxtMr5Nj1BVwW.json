@@ -1,0 +1,92 @@
+{
+  "_id": "DviCxtMr5Nj1BVwW",
+  "name": "KAGE MANE YUSOU NO JUTSU (SHADOW IMITATION TRANSPORTATION TECHNIQUE)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/spells/beam-orange-1.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Ninjutsu (Shadow)</p>\n<p><b>Rank:</b> 8 (Spell Level 4)</p>\n<p><b>Chakra Cost:</b> 4</p>\n\n<p><b>Learn DC:</b> 22 | <b>Successes:</b> 3</p>\n<p><b>Perform:</b> 10 | <b>Perform DC:</b> 23</p>\n\n<p><b>Components:</b> C</p>\n\n<hr>\n\n<p>You merge with your shadow and move yourself behind a subject of your Kage Mane no Jutsu, arriving in the square directly behind them on your next turn. This movement does not provoke attacks of opportunity.</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Ninjutsu",
+    "subtype": "Shadow",
+    "descriptors": [
+      "Hijutsu"
+    ],
+    "rank": 8,
+    "complexity": "B-Class",
+    "chakraCost": 4,
+    "activation": "standard",
+    "range": "Close (10 ft. + 5 ft./2 levels)",
+    "target": "",
+    "area": "",
+    "duration": "Instant",
+    "save": "",
+    "compHandSeals": false,
+    "compHalfSeals": false,
+    "compConcentration": true,
+    "compMobility": false,
+    "compFocus": false,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": true,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "8e0c0908f63151e7",
+        "name": "Use",
+        "actionType": "other",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "range": {
+          "units": "close"
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "Y6iuSyUEYkG6EGWo",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!DviCxtMr5Nj1BVwW"
+}

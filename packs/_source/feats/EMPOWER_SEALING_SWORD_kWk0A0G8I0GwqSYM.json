@@ -1,0 +1,57 @@
+{
+  "_id": "kWk0A0G8I0GwqSYM",
+  "name": "EMPOWER SEALING SWORD",
+  "type": "feat",
+  "img": "icons/weapons/swords/greatsword-crossguard-engraved-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "classFeat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Int 15, Sealing Sword (Superior) ability, base attack bonus +10.</p>\n<p><b>Benefit:</b> Your Chakra State weapon gains a +1 bonus to its critical threat range while the containment effect of the sealing sword ability is full. Does not stack with other critical threat range increasing effects.</p>",
+      "summary": "Your Chakra State weapon gains a +1 bonus to its critical threat range while the containment effect of the sealing…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "YIwCqqseAU6OcEks",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Core Rulebook",
+      "tags": [
+        "Class"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!kWk0A0G8I0GwqSYM"
+}

@@ -1,0 +1,57 @@
+{
+  "_id": "eceYAUQYOoAO28m2",
+  "name": "Spring Attack",
+  "type": "feat",
+  "img": "systems/pf1/icons/feats/spring-attack.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base attack bonus 4, Dexterity 13, Dodge, Mobility.</p>\n<p><b>Benefit:</b> When using an attack action with a melee weapon, the character can move both before and after the attack, provided that the total distance moved is not greater than the character's speed. Moving in this way does not provoke an attack of opportunity from the defender the character is attacking. A character can't use this feat if he or she is carrying a heavy load or wearing heavy armor.</p>",
+      "summary": "When using an attack action with a melee weapon, the character can move both before and after the attack, provided…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "D20 Modern",
+      "tags": [
+        "D20 Modern"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!eceYAUQYOoAO28m2"
+}

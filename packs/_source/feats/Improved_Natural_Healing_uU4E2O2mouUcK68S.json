@@ -1,0 +1,57 @@
+{
+  "_id": "uU4E2O2mouUcK68S",
+  "name": "Improved Natural Healing",
+  "type": "feat",
+  "img": "icons/magic/life/heart-cross-green.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Base Fortitude save bonus +5.</p>\n<p><b>Benefit:</b> You recover 2 hit points per character level per rest period (8 hours of sleep). If you undergo complete bed rest, you recover 4 hit points per character level per day. Ability damage returns at 2 points for resting 8 hours, or 4 points per day with complete bed rest.</p>",
+      "summary": "You recover 2 hit points per character level per rest period (8 hours of sleep). If you undergo complete bed rest,…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": true
+    }
+  },
+  "_key": "!items!uU4E2O2mouUcK68S"
+}

@@ -1,0 +1,101 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "untyped",
+        "_id": "xDFCO0KF",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-6",
+        "target": "skill.ckc"
+      },
+      {
+        "type": "untyped",
+        "_id": "kIlry2iA",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-6",
+        "target": "skill.gnj"
+      },
+      {
+        "type": "untyped",
+        "_id": "GSGWpOxR",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-6",
+        "target": "skill.nin"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 10,
+    "duration": {
+      "value": "",
+      "units": "hour",
+      "end": "turnStart",
+      "start": 0
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "CHACHA NO IN (DISRUPTION SEAL)",
+  "img": "systems/pf1/icons/spells/runes-blue-1.jpg",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1780120000004,
+    "modifiedTime": 1780120000004,
+    "lastModifiedBy": null
+  },
+  "_id": "eTcG8BXv1AKcfteq",
+  "sort": 0,
+  "_key": "!items!eTcG8BXv1AKcfteq"
+}

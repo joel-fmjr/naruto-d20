@@ -1,0 +1,112 @@
+{
+  "_id": "7ADTV7a850Y5soHX",
+  "name": "SHOUKAKYUU NO JUTSU (MINOR FIREBALL TECHNIQUE)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/spells/fireball-eerie-3.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Ninjutsu (Katon)</p>\n<p><b>Rank:</b> 2 (Spell Level 1)</p>\n<p><b>Chakra Cost:</b> 2</p>\n\n<p><b>Learn DC:</b> 14 | <b>Successes:</b> 1</p>\n<p><b>Perform:</b> 2 | <b>Perform DC:</b> 13</p>\n\n<p><b>Components:</b> C, E, H</p>\n\n<hr>\n\n<p>You spit out a ball of flame, dealing 2d4 fire damage. The range cannot exceed 20 ft.</p>\n\n<hr><p><b>Empower:</b> Spend 1 Chakra to increase the damage by 1d4, up to 1d4 per level or 5d4.</p>\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Ninjutsu",
+    "subtype": "Katon",
+    "descriptors": [
+      "Fire"
+    ],
+    "rank": 2,
+    "complexity": "D-Class",
+    "chakraCost": 2,
+    "activation": "standard",
+    "range": "5 ft/2 levels",
+    "target": "",
+    "area": "5 ft wide Line",
+    "duration": "Instant",
+    "save": "Reflex halves",
+    "compHandSeals": true,
+    "compHalfSeals": false,
+    "compConcentration": true,
+    "compMobility": false,
+    "compFocus": false,
+    "compEmpower": true,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": false,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "acf099cb540ccb7f",
+        "name": "Use",
+        "actionType": "spellsave",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "range": {
+          "units": "ft",
+          "value": "5"
+        },
+        "area": "5 ft wide Line",
+        "measureTemplate": {
+          "type": "ray",
+          "size": "5"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "2d4",
+              "types": [
+                "fire"
+              ]
+            }
+          ]
+        },
+        "save": {
+          "type": "ref",
+          "description": "Reflex half"
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "4Yge6CUwAK4eMmQs",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!7ADTV7a850Y5soHX"
+}

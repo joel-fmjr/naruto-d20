@@ -1,0 +1,102 @@
+{
+  "_id": "OKUqZz9uU7r4dSaR",
+  "name": "HAMETSU KATA (DECIMATION FORM)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/feats/blind-fight.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Taijutsu (Strike)</p>\n<p><b>Rank:</b> 10 (Spell Level 5)</p>\n<p><b>Chakra Cost:</b> 12</p>\n\n<p><b>Learn DC:</b> 24 | <b>Successes:</b> 4</p>\n<p><b>Perform:</b> 12 | <b>Perform DC:</b> 25</p>\n\n<p><b>Components:</b> C, M</p>\n\n<hr>\n\n<p>You declare one separate target for each attack your base attack bonus grants you, each of which must be affected by Keirigan Jutsu: Hissatsugaku or Keirigan Jutsu: Ousatsugaku. You make an attack at your highest attack bonus against all targets, moving up to your full speed while doing so. The attacks benefit from the Destruction Mark feat, and deal weapon damage +12d6 on hit. This extra damage is not multiplied on critical hits.</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Taijutsu",
+    "subtype": "Strike",
+    "descriptors": [
+      "Hijutsu"
+    ],
+    "rank": 10,
+    "complexity": "B-Class",
+    "chakraCost": 12,
+    "activation": "full",
+    "range": "*",
+    "target": "*",
+    "area": "",
+    "duration": "Instant",
+    "save": "",
+    "compHandSeals": false,
+    "compHalfSeals": false,
+    "compConcentration": true,
+    "compMobility": false,
+    "compFocus": false,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": true,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "Na7XfavVey7ATTMl",
+        "name": "Use",
+        "actionType": "mwak",
+        "activation": {
+          "type": "full",
+          "unchained": {
+            "type": "action",
+            "cost": 3
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "target": {
+          "value": "*"
+        },
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "meleeWeapon",
+        "weaponAttack.damageBonus": "12d6[Hametsu Kata]"
+      }
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "a2sUkKESAyk2K6mG",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!OKUqZz9uU7r4dSaR"
+}

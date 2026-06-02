@@ -1,0 +1,93 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "competence",
+        "_id": "34ec7f4e",
+        "operator": "add",
+        "priority": 0,
+        "formula": "2",
+        "target": "mwdamage"
+      },
+      {
+        "type": "competence",
+        "_id": "28133900",
+        "operator": "add",
+        "priority": 0,
+        "formula": "2",
+        "target": "mattack"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 3,
+    "duration": {
+      "value": "",
+      "units": "perm",
+      "end": "turnStart",
+      "start": 0
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "ISHIMARU RYU: NIDAN DACHI (ISHIMARU STYLE: SECOND STANCE)",
+  "img": "systems/pf1/icons/skills/yellow_18.jpg",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1780348642934,
+    "modifiedTime": 1780348642934,
+    "lastModifiedBy": null
+  },
+  "_id": "615cd32b20b85703",
+  "sort": 0,
+  "_key": "!items!615cd32b20b85703"
+}

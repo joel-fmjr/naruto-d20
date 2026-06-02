@@ -1,0 +1,57 @@
+{
+  "_id": "UyqCs6WeKqsYAuUW",
+  "name": "Open Minded",
+  "type": "feat",
+  "img": "icons/sundries/books/book-embossed-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Int 15.</p>\n<p><b>Benefit:</b> The character gets an extra skill point per HD. If he gains another HD, he gains another skill point for each time he possesses this feat.</p>\n<p><b>Special:</b> If taken at level 1, this extra skill point is multiplied by 4 as usual. You can take this feat multiple times.</p>",
+      "summary": "The character gets an extra skill point per HD. If he gains another HD, he gains another skill point for each time he…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!UyqCs6WeKqsYAuUW"
+}

@@ -1,0 +1,108 @@
+{
+  "_id": "o3WTR5mWQne3jQ8D",
+  "name": "KODACHI RYU: KAITEN KENBU (KODACHI STYLE: SWIRLING SWORD DANCE)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/skills/weapon_11.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Taijutsu (Strike)</p>\n<p><b>Rank:</b> 5 (Spell Level 3)</p>\n<p><b>Chakra Cost:</b> 4</p>\n\n<p><b>Learn DC:</b> 18 | <b>Successes:</b> 3</p>\n<p><b>Perform:</b> 6 | <b>Perform DC:</b> 18</p>\n\n<p><b>Components:</b> C, F, Mob</p>\n\n<hr>\n\n<p>The target must be unable to pinpoint your location (such as while hidden, invisible of fully concealed). You make a Full Attack with your held weapon, gaining a +2 bonus to attack and damage rolls. The target is denied its Dexterity bonus to Defense against the first attack, and the attacks deal damage as though the weapon was one size category larger.</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Taijutsu",
+    "subtype": "Strike",
+    "descriptors": [
+      "Armed",
+      "Lost Hijutsu",
+      "Hijutsu"
+    ],
+    "rank": 5,
+    "complexity": "C-Class",
+    "chakraCost": 4,
+    "activation": "full",
+    "range": "Melee attack",
+    "target": "One creature",
+    "area": "",
+    "duration": "Instant",
+    "save": "",
+    "compHandSeals": false,
+    "compHalfSeals": false,
+    "compConcentration": true,
+    "compMobility": true,
+    "compFocus": true,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": true,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "1e1dc72430cb7edc",
+        "name": "Use",
+        "actionType": "mwak",
+        "activation": {
+          "type": "full",
+          "unchained": {
+            "type": "action",
+            "cost": 3
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "range": {
+          "units": "touch"
+        },
+        "target": {
+          "value": "One creature"
+        },
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "meleeWeapon",
+        "weaponAttack.attackBonus": "2[Kaiten Kenbu]",
+        "weaponAttack.damageBonus": "2[Kaiten Kenbu]"
+      }
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "Y6G2KygqCgmo0wgw",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!o3WTR5mWQne3jQ8D"
+}

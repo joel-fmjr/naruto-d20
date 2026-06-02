@@ -1,0 +1,57 @@
+{
+  "_id": "c2KmMESkKMsGWWUu",
+  "name": "Class Plus",
+  "type": "feat",
+  "img": "icons/sundries/books/book-embossed-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Benefit:</b> You gain two talents from an advanced or prestige class in which you already have levels. Classes that offer a recurring same-named benefit with different options qualify (such as the Exarch's Exarch Arcana). You must still qualify for the abilities you select. The restrictions for those classes still apply.</p>\n<p><b>Special:</b> This does not apply to bloodline classes. Talents that grant bonus feats instead of special abilities cannot be selected. You may select this feat multiple times.</p>",
+      "summary": "You gain two talents from an advanced or prestige class in which you already have levels. Classes that offer a…",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!c2KmMESkKMsGWWUu"
+}

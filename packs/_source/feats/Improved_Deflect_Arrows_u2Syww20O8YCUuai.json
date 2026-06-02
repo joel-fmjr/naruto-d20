@@ -1,0 +1,57 @@
+{
+  "_id": "u2Syww20O8YCUuai",
+  "name": "Improved Deflect Arrows",
+  "type": "feat",
+  "img": "icons/skills/ranged/arrow-flying-spiral-blue.webp",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "subType": "feat",
+    "abilityType": "ex",
+    "description": {
+      "value": "<p><b>Prerequisite:</b> Dex 16, Combat Martial Arts, Deflect Arrows.</p>\n<p><b>Benefit:</b> You may now deflect a number of attacks per round equal to your Dexterity modifier.</p>",
+      "summary": "You may now deflect a number of attacks per round equal to your Dexterity modifier.",
+      "instructions": ""
+    },
+    "tags": [],
+    "disabled": false,
+    "changes": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "actions": [],
+    "scriptCalls": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "sIYCY0IyyIAy8mqI",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {
+    "naruto-d20": {
+      "discipline": "",
+      "source": "Community Compendium",
+      "tags": [
+        "Community"
+      ],
+      "hasChanges": false,
+      "activeEffect": false
+    }
+  },
+  "_key": "!items!u2Syww20O8YCUuai"
+}

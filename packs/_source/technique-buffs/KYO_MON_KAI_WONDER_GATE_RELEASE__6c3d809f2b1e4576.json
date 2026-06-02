@@ -1,0 +1,133 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "<p>You open the Wonder Gate, gaining a +10 enhancement bonus to Strength and Dexterity, a 30 ft increase to land speed, and a +8 bonus to Initiative, Balance, Climb, Jump, Swim, and Tumble checks.</p><p>This buff does not automate temporary Chakra, automatic Hide check failure, opening damage and knockback, damage taken each round, consequences when the Gate closes, later ability score penalties, or increased damage taken after closing.</p>",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "enh",
+        "_id": "a4d7f901",
+        "operator": "add",
+        "priority": 0,
+        "formula": "10",
+        "target": "str"
+      },
+      {
+        "type": "enh",
+        "_id": "b5e80a12",
+        "operator": "add",
+        "priority": 0,
+        "formula": "10",
+        "target": "dex"
+      },
+      {
+        "type": "untyped",
+        "_id": "c6f91b23",
+        "operator": "add",
+        "priority": 0,
+        "formula": "30",
+        "target": "landSpeed"
+      },
+      {
+        "type": "untyped",
+        "_id": "d70a2c34",
+        "operator": "add",
+        "priority": 0,
+        "formula": "8",
+        "target": "init"
+      },
+      {
+        "type": "untyped",
+        "_id": "e81b3d45",
+        "operator": "add",
+        "priority": 0,
+        "formula": "8",
+        "target": "skill.acr"
+      },
+      {
+        "type": "untyped",
+        "_id": "f92c4e56",
+        "operator": "add",
+        "priority": 0,
+        "formula": "8",
+        "target": "skill.clm"
+      },
+      {
+        "type": "untyped",
+        "_id": "0a3d5f67",
+        "operator": "add",
+        "priority": 0,
+        "formula": "8",
+        "target": "skill.swm"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 14,
+    "duration": {
+      "value": "",
+      "units": "round",
+      "end": "turnStart",
+      "start": 0
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "KYO-MON KAI (WONDER GATE RELEASE)",
+  "img": "systems/pf1/icons/spells/explosion-royal-2.jpg",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1780351200000,
+    "modifiedTime": 1780351200000,
+    "lastModifiedBy": null
+  },
+  "_id": "6c3d809f2b1e4576",
+  "sort": 0,
+  "_key": "!items!6c3d809f2b1e4576"
+}

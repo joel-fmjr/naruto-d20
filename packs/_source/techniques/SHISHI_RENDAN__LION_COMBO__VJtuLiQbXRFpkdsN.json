@@ -1,0 +1,105 @@
+{
+  "_id": "VJtuLiQbXRFpkdsN",
+  "name": "SHISHI RENDAN (LION COMBO)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/feats/combat-expertise.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Taijutsu (Strike)</p>\n<p><b>Rank:</b> 4 (Spell Level 2)</p>\n<p><b>Chakra Cost:</b> 3</p>\n\n<p><b>Learn DC:</b> 17 | <b>Successes:</b> 3</p>\n<p><b>Perform:</b> 5 | <b>Perform DC:</b> 17</p>\n\n<p><b>Components:</b> Mob</p>\n\n<hr>\n\n<p>Make an unarmed Full Attack against the target. If at least one attack hits, you gain a free trip attempt against the target, for which you gain a +2 bonus to the check per attack that hit. If the trip attempt is successful, you may make an attack of opportunity against the target, which is made as though you performed Todome (p231).<br><br>If used as a follow-up to Kage Buyou, the trip attempt automatically succeeds, and the target will be @Condition[prone]{prone} when it lands. If the target was knocked up high enough to take fall damage when landing, it cannot make a Tumble check to reduce or avoid that damage. You will land in a square adjacent to the target.</p>\n\n\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Taijutsu",
+    "subtype": "Strike",
+    "descriptors": [
+      "Kick",
+      "Hijutsu"
+    ],
+    "rank": 4,
+    "complexity": "C-Class",
+    "chakraCost": 3,
+    "activation": "full",
+    "range": "Melee Attack",
+    "target": "One creature",
+    "area": "",
+    "duration": "Instant",
+    "save": "",
+    "compHandSeals": false,
+    "compHalfSeals": false,
+    "compConcentration": false,
+    "compMobility": true,
+    "compFocus": false,
+    "compEmpower": false,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": true,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "46bd48d1cc5e2f4e",
+        "name": "Use",
+        "actionType": "mwak",
+        "activation": {
+          "type": "full",
+          "unchained": {
+            "type": "action",
+            "cost": 3
+          }
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "range": {
+          "units": "touch"
+        },
+        "target": {
+          "value": "One creature"
+        },
+        "ability": {
+          "attack": "dex",
+          "damage": "str",
+          "critRange": 20,
+          "critMult": 2
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "unarmedOnly"
+      }
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "iEw44g26KYEWeYcE",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!VJtuLiQbXRFpkdsN"
+}
