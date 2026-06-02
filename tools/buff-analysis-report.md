@@ -1,6 +1,6 @@
 # Relatório: Técnicas e Buffs com Changes
 
-Gerado em: 2026-06-01T21:30:41.549Z
+Gerado em: 2026-06-02T01:03:02.163Z
 > Arquivo gerado automaticamente por `tools/analyze-technique-buffs.mjs`. Não editar à mão — alterações são sobrescritas na próxima execução.
 
 ## Metodologia
@@ -40,24 +40,26 @@ Gerado em: 2026-06-01T21:30:41.549Z
 | Métrica | Valor |
 |---|---|
 | Técnicas totais | 1053 |
-| Buffs totais | 41 |
-| Técnicas com buff + changes válidas | 33 |
+| Buffs totais | 45 |
+| Técnicas com buff + changes válidas | 37 |
 | Técnicas com buff sem changes | 7 |
-| Técnicas sem buff | 1013 |
-| Buffs com changes válidas | 34 |
+| Técnicas sem buff | 1009 |
+| Buffs com changes válidas | 38 |
 | Buffs sem changes | 7 |
 | Buffs com targets inválidos | 0 |
 
-## Seção A — Buffs com changes válidas (34)
+## Seção A — Buffs com changes válidas (38)
 
 | Buff | Changes | Targets usados |
 |---|---|---|
 | CHACHA NO IN (DISRUPTION SEAL) | 3 | skill.ckc, skill.gnj, skill.nin |
+| CHIBIZUKU NO JUTSU (COMPRESSION TECHNIQUE) | 6 | size, dex, str, con, skill.ckc, concentration |
 | CHOUNOURYOKU (EXTRA-SENSORY PERCEPTION) | 1 | skill.sen |
 | CHOUYAKU NO JUTSU (JUMP TECHNIQUE) | 1 | skill.acr |
 | DAICHOUYAKU NO JUTSU (GREATER LEAP TECHNIQUE) | 1 | skill.acr |
 | GOGYOU FUUIN (FIVE ELEMENT SEAL) | 1 | skill.ckc |
 | GYOUKOU (GOOD FORTUNE) | 2 | allSavingThrows, attack |
+| HANTEN CHOUYAKU (LEAP TO THE SKY) | 1 | skill.acr |
 | HENGE NO JUTSU (TRANSFORMATION TECHNIQUE) | 1 | skill.dis |
 | HIKEN DACHI: YASEI KUMA (SECRET STANCE: WILD BEAR) | 2 | ac, mwdamage |
 | HOKOJUTSU HIKEN: YABUKI DACHI (ARMED SECRET TECHNIQUE: SPIRITUAL DESTROYER STANCE) | 1 | wdamage |
@@ -75,11 +77,13 @@ Gerado em: 2026-06-01T21:30:41.549Z
 | KENJUTSU: IAIDO (SWORD ART: IAIDO) | 1 | ac |
 | KENSOKU: IAISOUKEN (SWIFT FISTS: TWIN UNDODGEABLE FISTS) | 2 | mattack, critConfirm |
 | KYO-MON KAI (WONDER GATE RELEASE) | 7 | str, dex, landSpeed, init, skill.acr, skill.clm, skill.swm |
+| KYOUKA KAGE BUNSHIN NO JUTSU (SHADOW REPLICATION REINFORCEMENT TECHNIQUE) | 2 | attack, ac |
 | KYU-MON KAI (HEAL GATE RELEASE) | 3 | str, dex, landSpeed |
 | SEI-MON KAI (LIFE GATE RELEASE) | 3 | str, dex, landSpeed |
 | SHINOBI NO JUTSU (INFILTRATION TECHNIQUE) | 1 | skill.ste |
 | SHISUI DACHI (STILL WATER STANCE) | 1 | wdamage |
 | SHOU-MON KAI (HARM GATE RELEASE) | 7 | str, dex, landSpeed, init, skill.acr, skill.clm, skill.swm |
+| SORAPO NO JUTSU (AIR WALKING TECHNIQUE) | 1 | skill.acr |
 | SUIKEN DACHI (DRUNKEN FIST STANCE) | 1 | ac |
 | TO-MON KAI (LIMIT GATE RELEASE) | 7 | str, dex, landSpeed, init, skill.acr, skill.clm, skill.swm |
 | TOUROU MANE NO JUTSU (PRAYING MANTIS IMITATION TECHNIQUE) | 1 | skill.acr |
@@ -103,17 +107,17 @@ Gerado em: 2026-06-01T21:30:41.549Z
 
 _Nenhum — todos os targets existentes são válidos._
 
-## Seção D — Técnicas sem buff, por disciplina (1013 total)
+## Seção D — Técnicas sem buff, por disciplina (1009 total)
 
 Revisão em batches: cada disciplina é uma subseção colapsável.
 
-Status: **208 revisadas** (analisadas e deixadas sem buff) / **805 pendentes**.
+Status: **248 revisadas** (analisadas e deixadas sem buff) / **761 pendentes**.
 
 ### Visão geral por disciplina
 
 | Disciplina | Sem buff | Revisadas | Pendentes |
 |---|---|---|---|
-| Chakra Control | 44 | 0 | 44 |
+| Chakra Control ✓ | 40 | 40 | 0 |
 | Fuinjutsu | 76 | 0 | 76 |
 | Genjutsu | 99 | 0 | 99 |
 | Hachimon Tonkou ✓ | 1 | 1 | 0 |
@@ -122,58 +126,12 @@ Status: **208 revisadas** (analisadas e deixadas sem buff) / **805 pendentes**.
 | Training | 42 | 0 | 42 |
 
 Notas de revisão:
+- **Chakra Control:** Batch 2026-06-02: 4 buffs created (CHIBIZUKU, HANTEN CHOUYAKU, KYOUKA KAGE BUNSHIN, SORAPO). Mapped persistent numeric bonuses to size, abilities, Chakra Control, Concentration, Acrobatics/Jump, attack, and Defense. Detection/scent, traversal permissions, light, dispels, healing/temp HP, conditional penalties, energy resistance, resource buffers, one-shot attacks, knockback, paralysis/conditions, Frightful Presence, and charge-spending effects were left as manual/narrative effects.
 - **Hachimon Tonkou:** Batch 2026-06-01: 6 Gate buffs created (KYU-MON, SEI-MON, SHOU-MON, TO-MON, KEI-MON, KYO-MON). Mapped persistent numeric bonuses to Strength, Dexterity, land speed, Initiative, Acrobatics, Climb, and Swim. Temporary Chakra, Fast Healing, ignored conditions, per-round damage, closing penalties, Hide failure, opening damage, and knockback were left as manual/narrative effects. SEISHUN NO CHIKARA!!! reviewed and left without a buff because temporary HP and ignored fatigue/exhaustion do not have a clean changes target.
 - **Taijutsu:** Batch 2026-06-01: 11 stance buffs created (YASEI KUMA, ISHIMARU SHODAN/NIDAN/SANDAN, SUIKEN, TOUROUKEN, TOUROU MANE, IAISOUKEN, SHISUI, DACHI-TENKEN, YABUKI). Remaining techniques reviewed and left without buff: Strikes apply a one-shot bonus that belongs to the technique's action, not a persistent buff; non-candidate stances grant only conditional/attribute-swap effects with no clean change target.
 - **_emptyBuffs:** The 7 names in reviewedTechniques whose buffs are intentionally left with empty changes (narrative/situational effects, no clean change target). Decided 2026-06-01 — do not re-flag as candidates.
 
-### Chakra Control (44 pendentes de 44)
-
-| Rank | Nome | Subtipo | Status |
-|---|---|---|---|
-| 1 | DOKU HAKKEN NO JUTSU (POISON DETECTION TECHNIQUE) |  | pendente |
-| 1 | INUHANA NO JUTSU (DOG'S NOSE TECHNIQUE) | Body | pendente |
-| 1 | MAJIN KOUSEI NO JUTSU (DEVILISH REGENERATION TECHNIQUE) | Spirit | pendente |
-| 1 | SAIHOU NO JUTSU (SEWING TECHNIQUE) |  | pendente |
-| 2 | CHAKRA NO HIKARI (CHAKRA LIGHT) | Spirit | pendente |
-| 2 | CHAKRA NO KOGASU (CHAKRA BURN) | Body | pendente |
-| 2 | GAMIYARI (PAPER LANCE) |  | pendente |
-| 2 | GENJUTSU KAI (ILLUSION DISPEL) | Spirit | pendente |
-| 2 | HAKKEN NO JUTSU (DETECTION TECHNIQUE) | Body | pendente |
-| 2 | SEISHOU BAKUHA (ENERGY EXPLOSION) | Body | pendente |
-| 2 | UNKI TATE NO JUTSU (WARMTH SHIELD TECHNIQUE) |  | pendente |
-| 3 | AKARI (TRUE LIGHT) | Spirit | pendente |
-| 3 | CHAKRA UTSUSHI NO JUTSU (CHAKRA REVEALING TECHNIQUE) |  | pendente |
-| 3 | GISHI NO JUTSU (FEIGN DEATH) | Body | pendente |
-| 3 | NEN (DESIRE) | Spirit | pendente |
-| 3 | REIKI (LAY ON HANDS) | Spirit | pendente |
-| 3 | SEIREIHA (SOUL EDGE) | Spirit | pendente |
-| 3 | YUKIGUTSU (SNOW WALKING) | Body | pendente |
-| 4 | BOUENKYOU SHIKAKU NO JUTSU (TELESCOPIC VISION TECHNIQUE) | Spirit | pendente |
-| 4 | DAI GAMIYARI (GREAT PAPER LANCE) |  | pendente |
-| 4 | DENSETSU NO REIKI (AURA OF LEGEND) | Spirit | pendente |
-| 4 | KAKUSU NIOI (CONCEAL ODOR) | Body | pendente |
-| 4 | SHINOBI HIKEN: CHAKRA TOUSHI (SHINOBI SECRET: CHAKRA SIGHT) | Body | pendente |
-| 4 | SUMI NAMARU NO JUTSU  (INK CONCEALMENT TECHNIQUE) | Spirit | pendente |
-| 5 | CHIBIZUKU NO JUTSU (COMPRESSION TECHNIQUE) | Body | pendente |
-| 5 | GEKITAI NO JUTSU (REPULSION TECHNIQUE) | Body | pendente |
-| 5 | HANTEN CHOUYAKU (LEAP TO THE SKY) | Body | pendente |
-| 5 | KAYOU YUUGYOU NO WAZA (METHOD OF RAPID SWIMMING) | Body | pendente |
-| 5 | MUGEN IBUKI NO JUTSU (AIR SUPPLY TECHNIQUE) | Body | pendente |
-| 5 | REIKIHA (AURA WAVE) | Spirit | pendente |
-| 5 | RYOKUJUN NO JUTSU (ENERGY SHIELD TECHNIQUE) | Body | pendente |
-| 6 | CHAKRA GOMUMARI (CHAKRA SUPER BALL) | Spirit | pendente |
-| 6 | CHAKRA KANSHOUKI (CHAKRA BUFFER) | Spirit | pendente |
-| 6 | GENJUTSU JOUKAI (GREATER ILLUSION DISPEL) | Spirit | pendente |
-| 6 | RANSHINSOU (CHAOTIC MENTAL COLLISION) | Body | pendente |
-| 6 | REIRETSU (SPIRITUAL FURY) | Body | pendente |
-| 7 | SHINOBI HIKEN: SAKKI JUTSU (SHINOBI SECRET: KILLING INTENT) | Spirit | pendente |
-| 7 | SORAPO NO JUTSU (AIR WALKING TECHNIQUE) | Body | pendente |
-| 8 | KAIRIKI (SUPERHUMAN STRENGTH) |  | pendente |
-| 8 | KAMEHAMEHA (TURTLE WAVE BLAST) |  | pendente |
-| 8 | KYOUKA KAGE BUNSHIN NO JUTSU (SHADOW REPLICATION REINFORCEMENT TECHNIQUE) | Spirit | pendente |
-| 8 | TENSHU KYAKU (SKY-SPLITTING HEEL DROP) |  | pendente |
-| 8 | ZENSHIN FUZUI NO JUTSU (COMPLETE PARALYSIS TECHNIQUE) | Spirit | pendente |
-| 10 | CHAKRAMANE NO JUTSU (CHAKRA IMITATION TECHNIQUE) | Spirit | pendente |
+### Chakra Control (40) — ✓ revisada, sem pendências
 
 ### Fuinjutsu (76 pendentes de 76)
 
