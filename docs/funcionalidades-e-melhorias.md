@@ -434,6 +434,15 @@ Aplicação:
 - Reaplicar refresca o buff em vez de duplicar.
 - Duração pode ser herdada da action da técnica.
 
+Diagnostico de performance:
+
+- O gargalo mais provavel e o lookup em compendio durante o uso:
+  `findBuffByName()` chama `pack.getIndex()` para cada pack configurado e depois
+  `pack.getDocument()` para o buff escolhido.
+- A otimizacao recomendada e cachear indexes por pack durante a sessao e separar
+  lookup, resolucao de documento, alvo, duracao e apply/refresh.
+- Detalhes em `docs/auto-add-buffs-performance.md`.
+
 Arquivo principal:
 
 - `scripts/automation/buff-application.mjs`

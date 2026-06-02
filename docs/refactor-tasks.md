@@ -227,6 +227,7 @@ QA manual:
 Prioridade: alta  
 Tipo: performance/diagnostico  
 Area: uso de tecnicas, buffs
+Status: concluida
 
 Problema:
 
@@ -267,6 +268,14 @@ QA manual:
 - Usar uma tecnica com buff automatico em alvo selecionado.
 - Repetir a mesma tecnica duas vezes para comparar create vs refresh.
 - Testar em mundo com o pack `technique-buffs` ja aberto e fechado.
+
+Resultado:
+
+- Diagnostico registrado em `docs/auto-add-buffs-performance.md`.
+- Gargalo mais provavel: lookup em compendio no fim do uso, principalmente
+  `pack.getIndex()` frio/recorrente e `pack.getDocument()` no primeiro load.
+- Proposta para a Tarefa 6: cache de index por pack durante a sessao e separacao
+  de lookup, resolucao de documento, alvos, duracao e apply/refresh.
 
 ## Tarefa 6: refatorar e otimizar auto-add-buffs
 
