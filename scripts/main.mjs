@@ -67,6 +67,8 @@ Hooks.once("init", () => {
         `modules/${MODULE_ID}/templates/actor/technique-medkit.hbs`,
         `modules/${MODULE_ID}/templates/apps/technique-browser.hbs`,
         `modules/${MODULE_ID}/templates/apps/feat-browser.hbs`,
+        `modules/${MODULE_ID}/templates/chat/technique-perform.hbs`,
+        `modules/${MODULE_ID}/templates/chat/learning-result.hbs`,
     ]);
 
     // Namespaced equality helper for this module's templates — avoids colliding

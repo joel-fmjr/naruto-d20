@@ -15,12 +15,6 @@ function characterLevel(actor) {
     return Number(actor.system.details?.level?.value ?? actor.system.details?.cr?.total ?? 0) || 0;
 }
 
-function escapeHTML(value) {
-    const div = document.createElement("div");
-    div.textContent = String(value ?? "");
-    return div.innerHTML;
-}
-
 function getLearningMode() {
     return game.settings.get(MODULE_ID, "learningProgressionMode") || LEARNING_MODES.STANDARD;
 }
@@ -168,13 +162,14 @@ function rollTotal(result) {
     return result?.rolls?.[0]?.total ?? result?.roll?.total ?? result?.total ?? null;
 }
 
-async function postLearningCard(actor, item, { title, body, cssClass = "", flags = null }) {
+async function postLearningCard(actor, item, { title, lead = "", footer = "", cssClass = "", flags = null }) {
+    const content = await foundry.applications.handlebars.renderTemplate(
+        `modules/${MODULE_ID}/templates/chat/learning-result.hbs`,
+        { title, lead, footer, cssClass },
+    );
     const data = {
         speaker: ChatMessage.implementation.getSpeaker({ actor }),
-        content: `<div class="naruto-technique-card learning ${cssClass}">
-                    <header><h3>${escapeHTML(title)}</h3></header>
-                    ${body}
-                  </div>`,
+        content,
     };
     if (flags) data.flags = { [MODULE_ID]: { learn: flags } };
     await ChatMessage.create(data);
@@ -218,7 +213,7 @@ async function expireInterruptedTraining(item, learning) {
     await postLearningCard(item.actor, item, {
         title: `${item.name} training interrupted`,
         cssClass: "failed",
-        body: `<p>More than 30 days passed since the last training block. Learning progress is lost before the new attempt.</p>`,
+        lead: "More than 30 days passed since the last training block. Learning progress is lost before the new attempt.",
     });
 
     return {
@@ -302,7 +297,7 @@ async function learnUnmappedTechnique(item, actor, learning) {
     await postLearningCard(actor, item, {
         title: `${item.name} learned`,
         cssClass: "success",
-        body: `<p>${escapeHTML(item.system.discipline || "Unmapped discipline")} has no mapped learn skill yet, so this technique is treated as learned for phase 1.</p>`,
+        lead: `${item.system.discipline || "Unmapped discipline"} has no mapped learn skill yet, so this technique is treated as learned for phase 1.`,
     });
 }
 
@@ -488,15 +483,17 @@ function buildLearnAttemptCardFlags(item, actor, { result, baseLearning, chakraD
 }
 
 async function postLearnAttemptResultCard(actor, item, { result, baseLearning, chakraDeduction, now, apRollText }) {
-    const apLine = apRollText ? `${escapeHTML(apRollText)} → ` : "";
+    const apLine = apRollText ? `${apRollText} → ` : "";
     const chakraLine = `${result.chakraCost}${chakraDeduction.deducted ? ` (${chakraDeduction.deducted} deducted)` : ""}`;
+
+    const trainingFooter = `Training time: +${result.trainingBlocks} block${result.trainingBlocks === 1 ? "" : "s"}; training chakra: ${chakraLine}.`;
 
     if (result.learned) {
         await postLearningCard(actor, item, {
             title: `${item.name} learned`,
             cssClass: "success",
-            body: `<p>${apLine}Learn check ${result.total} vs DC ${result.learnDC}. Progress ${result.progress}/${result.targetProgress}.</p>
-                   <footer>Training time: +${result.trainingBlocks} block${result.trainingBlocks === 1 ? "" : "s"}; training chakra: ${chakraLine}.</footer>`,
+            lead: `${apLine}Learn check ${result.total} vs DC ${result.learnDC}. Progress ${result.progress}/${result.targetProgress}.`,
+            footer: trainingFooter,
         });
         return;
     }
@@ -505,8 +502,8 @@ async function postLearnAttemptResultCard(actor, item, { result, baseLearning, c
         await postLearningCard(actor, item, {
             title: `${item.name} learning failed`,
             cssClass: "failed",
-            body: `<p>${apLine}Learn check ${result.total} vs DC ${result.learnDC}. Attempts ${result.attemptsUsed}/${result.maxAttempts}; progress is lost and the run starts over.</p>
-                   <footer>Training time: +${result.trainingBlocks} block${result.trainingBlocks === 1 ? "" : "s"}; training chakra: ${chakraLine}.</footer>`,
+            lead: `${apLine}Learn check ${result.total} vs DC ${result.learnDC}. Attempts ${result.attemptsUsed}/${result.maxAttempts}; progress is lost and the run starts over.`,
+            footer: trainingFooter,
         });
         return;
     }
@@ -521,8 +518,8 @@ async function postLearnAttemptResultCard(actor, item, { result, baseLearning, c
     await postLearningCard(actor, item, {
         title: `Learning ${item.name}`,
         cssClass: result.success ? "success" : "failed",
-        body: `<p>${apLine}Learn check ${result.total} vs DC ${result.learnDC}. ${resultText}</p>
-               <footer>Progress ${result.progress}/${result.targetProgress}; ${attemptText}; +${result.trainingBlocks} training block${result.trainingBlocks === 1 ? "" : "s"}; training chakra ${chakraLine}.</footer>`,
+        lead: `${apLine}Learn check ${result.total} vs DC ${result.learnDC}. ${resultText}`,
+        footer: `Progress ${result.progress}/${result.targetProgress}; ${attemptText}; +${result.trainingBlocks} training block${result.trainingBlocks === 1 ? "" : "s"}; training chakra ${chakraLine}.`,
         flags: buildLearnAttemptCardFlags(item, actor, { result, baseLearning, chakraDeduction, now }),
     });
 }

@@ -191,36 +191,34 @@ async function applyChakraSpend(actor, spend) {
     await checkAndUpdateConditions(actor);
 }
 
-async function postPerformFailureCard(actor, item, { performDC, masteryNote }) {
+async function postPerformCard(actor, data) {
+    const content = await foundry.applications.handlebars.renderTemplate(
+        `modules/${MODULE_ID}/templates/chat/technique-perform.hbs`,
+        data,
+    );
     await ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor }),
-        content: `<div class="naruto-technique-card failed">
-                    <header><h3>${item.name}</h3></header>
-                    <p>Perform check failed (DC ${performDC}${masteryNote}). No chakra spent.</p>
-                  </div>`,
+        content,
+    });
+}
+
+async function postPerformFailureCard(actor, item, { performDC, masteryNote }) {
+    await postPerformCard(actor, {
+        name: item.name,
+        cssClass: "failed",
+        message: `Perform check failed (DC ${performDC}${masteryNote}). No chakra spent.`,
     });
 }
 
 async function postTechniqueSuccessCard(actor, item, cost, spendSummary, bypassNote) {
     // Post outcome card when there was an auto-bypass (roll card covers the roll path).
-    if (bypassNote) {
-        await ChatMessage.create({
-            speaker: ChatMessage.getSpeaker({ actor }),
-            content: `<div class="naruto-technique-card success">
-                        <header><h3>${item.name}</h3></header>
-                        <p class="naruto-perform-bypass">${bypassNote}</p>
-                        <footer>Spent ${cost} chakra (${spendSummary}).</footer>
-                      </div>`,
-        });
-    } else {
-        await ChatMessage.create({
-            speaker: ChatMessage.getSpeaker({ actor }),
-            content: `<div class="naruto-technique-card success">
-                        <header><h3>${item.name}</h3></header>
-                        <footer>Spent ${cost} chakra (${spendSummary}).</footer>
-                      </div>`,
-        });
-    }
+    await postPerformCard(actor, {
+        name: item.name,
+        cssClass: "success",
+        message: bypassNote || "",
+        messageClass: bypassNote ? "naruto-perform-bypass" : "",
+        footer: `Spent ${cost} chakra (${spendSummary}).`,
+    });
 }
 
 async function applyPostUseAutomation(item, actor, action) {

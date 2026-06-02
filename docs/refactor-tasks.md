@@ -466,6 +466,7 @@ QA manual:
 Prioridade: media  
 Tipo: mantenibilidade/i18n  
 Area: chat UX
+Status: concluida
 
 Problema:
 
