@@ -85,6 +85,7 @@ export class TechniqueCompendiumBrowser extends Application {
     #loading = true;
     /** Restore search focus after re-render when true */
     #focusSearch = false;
+    #searchSelection = null;
 
     constructor(options = {}) {
         super(options);
@@ -117,7 +118,8 @@ export class TechniqueCompendiumBrowser extends Application {
     /** True if `entry` passes the current search + every active filter group. */
     #matches(entry) {
         const s = entry.system;
-        if (this.#query && !entry.name.toLowerCase().includes(this.#query)) return false;
+        const query = this.#query.toLowerCase().trim();
+        if (query && !entry.name.toLowerCase().includes(query)) return false;
 
         const { discipline, rank, complexity, special, components } = this.#filters;
         if (discipline.size && !discipline.has(s.discipline)) return false;
@@ -161,12 +163,14 @@ export class TechniqueCompendiumBrowser extends Application {
         const root = html[0];
 
         if (this.#focusSearch) {
-            restoreSearchFocus(root);
+            restoreSearchFocus(root, this.#searchSelection);
             this.#focusSearch = false;
+            this.#searchSelection = null;
         }
 
-        registerBrowserSearch(root, (value) => {
+        registerBrowserSearch(root, ({ value, selection }) => {
             this.#query = value;
+            this.#searchSelection = selection;
             this.#focusSearch = true;
             this.render();
         });
@@ -182,6 +186,7 @@ export class TechniqueCompendiumBrowser extends Application {
 
         registerClearFiltersListener(root, () => {
             this.#query = "";
+            this.#searchSelection = null;
             clearFilterSets(this.#filters);
             this.render();
         });

@@ -64,6 +64,7 @@ export class NarutoFeatBrowser extends Application {
     #loading = true;
     /** Restore search focus after re-render when true */
     #focusSearch = false;
+    #searchSelection = null;
 
     constructor(options = {}) {
         super(options);
@@ -100,7 +101,8 @@ export class NarutoFeatBrowser extends Application {
     #matches(entry) {
         const s = entry.system;
         const nf = entry.flags?.[MODULE_ID] ?? {};
-        if (this.#query && !entry.name.toLowerCase().includes(this.#query)) return false;
+        const query = this.#query.toLowerCase().trim();
+        if (query && !entry.name.toLowerCase().includes(query)) return false;
 
         const { subType, discipline, abilityType } = this.#filters;
         if (subType.size && !subType.has(s.subType)) return false;
@@ -162,12 +164,14 @@ export class NarutoFeatBrowser extends Application {
         const root = html[0];
 
         if (this.#focusSearch) {
-            restoreSearchFocus(root);
+            restoreSearchFocus(root, this.#searchSelection);
             this.#focusSearch = false;
+            this.#searchSelection = null;
         }
 
-        registerBrowserSearch(root, (value) => {
+        registerBrowserSearch(root, ({ value, selection }) => {
             this.#query = value;
+            this.#searchSelection = selection;
             this.#focusSearch = true;
             this.render();
         });
@@ -183,6 +187,7 @@ export class NarutoFeatBrowser extends Application {
 
         registerClearFiltersListener(root, () => {
             this.#query = "";
+            this.#searchSelection = null;
             clearFilterSets(this.#filters);
             this.render();
         });

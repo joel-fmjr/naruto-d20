@@ -18,13 +18,15 @@ export function clearFilterSets(filters) {
     for (const set of Object.values(filters)) set.clear();
 }
 
-export function restoreSearchFocus(root) {
+export function restoreSearchFocus(root, selection = null) {
     const input = root.querySelector('input[name="filter"]');
     if (!input) return false;
 
     input.focus();
     const len = input.value.length;
-    input.setSelectionRange(len, len);
+    const start = Number.isInteger(selection?.start) ? Math.min(selection.start, len) : len;
+    const end = Number.isInteger(selection?.end) ? Math.min(selection.end, len) : start;
+    input.setSelectionRange(start, end);
     return true;
 }
 
@@ -35,8 +37,11 @@ export function registerBrowserSearch(root, onSearch, delay = 200) {
     let timer;
     search.addEventListener("input", (ev) => {
         clearTimeout(timer);
-        const value = ev.target.value.toLowerCase().trim();
-        timer = setTimeout(() => onSearch(value), delay);
+        const { selectionStart, selectionEnd, value } = ev.target;
+        timer = setTimeout(() => onSearch({
+            value,
+            selection: { start: selectionStart, end: selectionEnd },
+        }), delay);
     });
 }
 
