@@ -19,6 +19,9 @@
     },
     "discipline": "Taijutsu",
     "subtype": "Strike",
+    "descriptors": [
+      "Punch"
+    ],
     "rank": 4,
     "complexity": "C-Class",
     "chakraCost": 4,
@@ -89,7 +92,8 @@
       "dictionary": {
         "weaponAttack.mode": "selected",
         "weaponAttack.filter": "unarmedOnly",
-        "weaponAttack.attackBonus": "2[Iaiken]"
+        "weaponAttack.attackBonus": "2[Iaiken]",
+        "weaponAttack.damageBonus": "(min(floor(@cl / 3), 4))d4[Iaiken]"
       }
     },
     "showInQuickbar": false,

@@ -19,6 +19,11 @@
     },
     "discipline": "Genjutsu",
     "subtype": "Compulsion",
+    "descriptors": [
+      "Language-Dependent",
+      "Mind-Affecting",
+      "Kinjutsu"
+    ],
     "rank": 12,
     "complexity": "SS-Class",
     "chakraCost": 15,
@@ -38,7 +43,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

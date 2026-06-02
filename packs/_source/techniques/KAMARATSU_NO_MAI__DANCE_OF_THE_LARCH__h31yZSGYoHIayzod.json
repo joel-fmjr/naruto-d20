@@ -19,6 +19,9 @@
     },
     "discipline": "Taijutsu",
     "subtype": "Enhancement",
+    "descriptors": [
+      "Hijutsu"
+    ],
     "rank": 8,
     "complexity": "A-Class",
     "chakraCost": 10,
@@ -37,7 +40,7 @@
     "compMastery": false,
     "compPhysical": true,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

@@ -117,6 +117,9 @@
           "Hint": "Costs experience points to perform."
         }
       },
+      "Descriptors": {
+        "Legend": "Descriptors"
+      },
       "Blocked": {
         "Grappled": "You cannot perform hand seals while grappled or pinned.",
         "Health": "Your physical condition prevents the use of this technique."

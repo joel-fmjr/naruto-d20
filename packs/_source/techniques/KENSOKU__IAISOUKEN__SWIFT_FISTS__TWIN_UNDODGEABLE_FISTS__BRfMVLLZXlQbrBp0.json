@@ -19,6 +19,9 @@
     },
     "discipline": "Taijutsu",
     "subtype": "Stance",
+    "descriptors": [
+      "Punch"
+    ],
     "rank": 7,
     "complexity": "B-Class",
     "chakraCost": 8,

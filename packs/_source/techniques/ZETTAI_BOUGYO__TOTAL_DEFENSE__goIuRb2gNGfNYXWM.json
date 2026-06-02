@@ -19,6 +19,7 @@
     },
     "discipline": "Taijutsu",
     "subtype": "Stance",
+    "descriptors": [],
     "rank": 1,
     "complexity": "D-Class",
     "chakraCost": 1,
@@ -47,7 +48,7 @@
       {
         "_id": "1pY0efwlpj7JRuXG",
         "name": "Use",
-        "actionType": "mwak",
+        "actionType": "other",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -57,12 +58,6 @@
         },
         "duration": {
           "units": "inst"
-        },
-        "ability": {
-          "attack": "dex",
-          "damage": "str",
-          "critRange": 20,
-          "critMult": 2
         }
       }
     ],

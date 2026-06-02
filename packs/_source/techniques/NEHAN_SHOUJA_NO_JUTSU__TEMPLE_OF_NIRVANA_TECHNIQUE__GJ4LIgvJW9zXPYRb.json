@@ -19,6 +19,10 @@
     },
     "discipline": "Genjutsu",
     "subtype": "",
+    "descriptors": [
+      "Mind-Affecting",
+      "Sleep"
+    ],
     "rank": 6,
     "complexity": "A-Class",
     "chakraCost": 9,

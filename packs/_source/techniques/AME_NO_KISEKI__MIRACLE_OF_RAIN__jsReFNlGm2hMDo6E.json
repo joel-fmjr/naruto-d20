@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Suiton",
+    "descriptors": [
+      "Water",
+      "Kinjutsu"
+    ],
     "rank": 11,
     "complexity": "S-Class",
     "chakraCost": 16,
@@ -38,7 +42,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

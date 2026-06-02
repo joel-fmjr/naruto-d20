@@ -31,6 +31,52 @@ export const COMPLEXITY_TABLE = {
 export const MASTERY_PERFORM = [0, 1, 2, 3, 4, 6]; // bonus to Perform roll + threshold ranks
 export const MASTERY_LEVEL   = [0, 0, 1, 2, 3, 5]; // effective-level offset (acts as cl offset)
 
+export const TECHNIQUE_DESCRIPTORS = [
+    "*",
+    "Acid",
+    "Air",
+    "Armed",
+    "Armed or Punch",
+    "Armor",
+    "Chaotic",
+    "Cold",
+    "Combination",
+    "Darkness",
+    "Death",
+    "Earth",
+    "Electric",
+    "Evil",
+    "Fear",
+    "Fire",
+    "Force",
+    "Good",
+    "Grapple",
+    "Hijutsu",
+    "Kick",
+    "Kick or Punch",
+    "Kinjutsu",
+    "Language-Dependent",
+    "Lawful",
+    "Light",
+    "Lost Hijutsu",
+    "Lost Kinjutsu",
+    "Mind-Affecting",
+    "Mind-Affecting Fear",
+    "Negative Energy",
+    "Poison",
+    "Punch",
+    "Punch or Kick",
+    "Sleep",
+    "Sonic",
+    "Summoning",
+    "Teleportation",
+    "varies",
+    "Varies",
+    "Water",
+    "Wind",
+    "Wood",
+];
+
 export function createTechniqueDataModel() {
 
     class TechniqueDataModel extends foundry.abstract.TypeDataModel {
@@ -108,6 +154,7 @@ export function createTechniqueDataModel() {
                 // ── Naruto-specific (unchanged) ────────────────────────
                 discipline:    new fields.StringField({  ...opt, blank: true, initial: "Ninjutsu" }),
                 subtype:       new fields.StringField({  ...opt, blank: true, initial: "" }),
+                descriptors:   new fields.SetField(new fields.StringField({ blank: false, required: true }), opt),
                 rank:          new fields.NumberField({  required: true, integer: true, initial: 1, min: 1, max: 15 }),
                 complexity:    new fields.StringField({  ...opt, blank: true, initial: "E-Class" }),
                 mastery:       new fields.NumberField({  required: true, integer: true, initial: 0, min: 0, max: 5 }),
@@ -210,7 +257,12 @@ export function createTechniqueDataModel() {
             this.links.children ??= [];
 
             this.tags ??= new Set();
+            this.descriptors ??= new Set();
             this.changes ??= [];
+
+            if (this.isHijutsu) this.descriptors.add("Hijutsu");
+            if (this.isKinjutsu) this.descriptors.add("Kinjutsu");
+            if (this.isCombination) this.descriptors.add("Combination");
 
             this.learning ??= {};
             this.learning.learned ??= false;
@@ -260,10 +312,14 @@ export function createTechniqueDataModel() {
         get derived() {
             const c = COMPLEXITY_TABLE[this.complexity] ?? COMPLEXITY_TABLE["E-Class"];
             let { learnMod, successes, skillMod, performMod } = c;
+            const descriptors = this.descriptors ?? new Set();
 
-            if (this.isHijutsu)     successes += 1;
-            if (this.isKinjutsu)    successes += 2;
-            if (this.isCombination) { learnMod += 5; successes = Math.max(1, successes - 2); }
+            if (this.isHijutsu || descriptors.has("Hijutsu"))     successes += 1;
+            if (this.isKinjutsu || descriptors.has("Kinjutsu"))    successes += 2;
+            if (this.isCombination || descriptors.has("Combination")) {
+                learnMod += 5;
+                successes = Math.max(1, successes - 2);
+            }
 
             const m = Math.max(0, Math.min(5, this.mastery ?? 0));
 

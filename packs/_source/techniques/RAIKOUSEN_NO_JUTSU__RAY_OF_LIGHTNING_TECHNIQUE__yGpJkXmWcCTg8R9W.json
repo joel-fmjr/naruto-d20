@@ -19,6 +19,9 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Raiton",
+    "descriptors": [
+      "Electric"
+    ],
     "rank": 2,
     "complexity": "C-Class",
     "chakraCost": 3,

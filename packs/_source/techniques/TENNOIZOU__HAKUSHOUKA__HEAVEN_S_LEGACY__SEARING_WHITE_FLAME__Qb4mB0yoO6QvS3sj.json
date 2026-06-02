@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Katon",
+    "descriptors": [
+      "Fire",
+      "Lost Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 14,
     "complexity": "SS-Class",
     "chakraCost": 30,
@@ -37,7 +42,7 @@
     "compMastery": false,
     "compPhysical": true,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

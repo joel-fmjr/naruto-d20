@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Hyouton",
+    "descriptors": [
+      "Cold",
+      "Hijutsu"
+    ],
     "rank": 7,
     "complexity": "B-Class",
     "chakraCost": 8,
@@ -37,7 +41,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

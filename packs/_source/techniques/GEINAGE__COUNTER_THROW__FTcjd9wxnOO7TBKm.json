@@ -19,6 +19,9 @@
     },
     "discipline": "Training",
     "subtype": "Chakra Control",
+    "descriptors": [
+      "Combination"
+    ],
     "rank": 6,
     "complexity": "SS-Class",
     "chakraCost": 0,
@@ -39,7 +42,7 @@
     "compXpCost": false,
     "isHijutsu": false,
     "isKinjutsu": false,
-    "isCombination": false,
+    "isCombination": true,
     "performMiscBonus": 0,
     "active": false,
     "changes": [],

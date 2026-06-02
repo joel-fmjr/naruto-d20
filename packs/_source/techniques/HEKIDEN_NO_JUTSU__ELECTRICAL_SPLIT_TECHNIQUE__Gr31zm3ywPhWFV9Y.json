@@ -19,6 +19,9 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Raiton",
+    "descriptors": [
+      "Electric"
+    ],
     "rank": 1,
     "complexity": "E-Class",
     "chakraCost": 2,
@@ -47,7 +50,7 @@
       {
         "_id": "39480e4f1e2f6cbf",
         "name": "Use",
-        "actionType": "save",
+        "actionType": "mwak",
         "activation": {
           "type": "standard",
           "unchained": {
@@ -67,6 +70,12 @@
         "save": {
           "type": "fort",
           "description": "Fortitude negates"
+        },
+        "touch": true,
+        "ability": {
+          "attack": "dex",
+          "critRange": 20,
+          "critMult": 2
         }
       }
     ],

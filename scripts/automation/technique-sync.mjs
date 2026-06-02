@@ -146,6 +146,10 @@ function applyTechniqueDefaults(s) {
     s.links.supplements ??= [];
     s.links.children ??= [];
     s.tags ??= [];
+    s.descriptors ??= [];
+    if (s.isHijutsu && !s.descriptors.includes("Hijutsu")) s.descriptors.push("Hijutsu");
+    if (s.isKinjutsu && !s.descriptors.includes("Kinjutsu")) s.descriptors.push("Kinjutsu");
+    if (s.isCombination && !s.descriptors.includes("Combination")) s.descriptors.push("Combination");
     s.changes ??= [];
     s.actions ??= [];
     s.learning ??= {};
@@ -176,6 +180,7 @@ export function normalizeSystem(system) {
     const out = applyTechniqueDefaults(foundry.utils.deepClone(system));
     delete out.tag;
     delete out.learning;
+    out.descriptors = Array.from(new Set(out.descriptors ?? [])).sort();
     out.description.value = canonicalizeHtml(out.description.value);
     out.description.instructions = canonicalizeHtml(out.description.instructions);
     return stripIds(out);

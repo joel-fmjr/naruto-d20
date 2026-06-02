@@ -19,6 +19,10 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Katon",
+    "descriptors": [
+      "Fire",
+      "Kinjutsu"
+    ],
     "rank": 6,
     "complexity": "B-Class",
     "chakraCost": 8,
@@ -38,7 +42,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

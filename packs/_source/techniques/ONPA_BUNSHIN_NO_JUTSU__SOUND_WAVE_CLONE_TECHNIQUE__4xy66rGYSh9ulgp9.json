@@ -19,6 +19,10 @@
     },
     "discipline": "Genjutsu",
     "subtype": "Phantasm",
+    "descriptors": [
+      "Mind-Affecting",
+      "Sonic"
+    ],
     "rank": 5,
     "complexity": "C-Class",
     "chakraCost": 4,

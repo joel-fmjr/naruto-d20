@@ -19,6 +19,9 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Spacetime",
+    "descriptors": [
+      "Summoning"
+    ],
     "rank": 4,
     "complexity": "C-Class",
     "chakraCost": 4,

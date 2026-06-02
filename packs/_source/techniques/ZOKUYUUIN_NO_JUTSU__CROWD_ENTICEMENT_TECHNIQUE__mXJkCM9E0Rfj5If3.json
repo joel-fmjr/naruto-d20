@@ -19,6 +19,10 @@
     },
     "discipline": "Genjutsu",
     "subtype": "Compulsion",
+    "descriptors": [
+      "Language-Dependent",
+      "Mind-Affecting"
+    ],
     "rank": 7,
     "complexity": "A-Class",
     "chakraCost": 4,

@@ -19,6 +19,9 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "",
+    "descriptors": [
+      "*"
+    ],
     "rank": 14,
     "complexity": "S-Class",
     "chakraCost": 15,

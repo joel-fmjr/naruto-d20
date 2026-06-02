@@ -19,6 +19,9 @@
     },
     "discipline": "Genjutsu",
     "subtype": "Doujutsu",
+    "descriptors": [
+      "Mind-Affecting"
+    ],
     "rank": 6,
     "complexity": "B-Class",
     "chakraCost": 5,

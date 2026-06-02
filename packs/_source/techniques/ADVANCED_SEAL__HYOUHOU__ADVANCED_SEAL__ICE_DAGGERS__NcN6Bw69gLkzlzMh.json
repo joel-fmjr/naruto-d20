@@ -19,6 +19,9 @@
     },
     "discipline": "Fuinjutsu",
     "subtype": "Advanced Seal",
+    "descriptors": [
+      "Cold"
+    ],
     "rank": 4,
     "complexity": "C-Class",
     "chakraCost": 2,

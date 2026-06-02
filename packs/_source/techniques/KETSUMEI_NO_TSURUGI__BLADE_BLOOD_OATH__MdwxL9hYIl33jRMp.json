@@ -19,6 +19,10 @@
     },
     "discipline": "Fuinjutsu",
     "subtype": "",
+    "descriptors": [
+      "Lost Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 8,
     "complexity": "S-Class",
     "chakraCost": 8,
@@ -37,7 +41,7 @@
     "compMastery": false,
     "compPhysical": true,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

@@ -19,6 +19,7 @@
     },
     "discipline": "Chakra Control",
     "subtype": "Spirit",
+    "descriptors": [],
     "rank": 4,
     "complexity": "C-Class",
     "chakraCost": 2,

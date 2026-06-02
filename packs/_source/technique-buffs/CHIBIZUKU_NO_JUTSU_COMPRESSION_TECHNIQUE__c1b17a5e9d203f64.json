@@ -1,0 +1,125 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "<p>Shrinks the user by one size category. Applies the non-size-derived modifiers: +2 Dexterity, -2 Strength, -2 Constitution, +1 Chakra Control checks, and +1 Concentration checks. Damage die reduction and physical size/weight changes remain manual.</p>",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "untyped",
+        "_id": "cz001111",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-1",
+        "target": "size"
+      },
+      {
+        "type": "size",
+        "_id": "cz002222",
+        "operator": "add",
+        "priority": 0,
+        "formula": "2",
+        "target": "dex"
+      },
+      {
+        "type": "size",
+        "_id": "cz003333",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-2",
+        "target": "str"
+      },
+      {
+        "type": "size",
+        "_id": "cz004444",
+        "operator": "add",
+        "priority": 0,
+        "formula": "-2",
+        "target": "con"
+      },
+      {
+        "type": "untyped",
+        "_id": "cz005555",
+        "operator": "add",
+        "priority": 0,
+        "formula": "1",
+        "target": "skill.ckc"
+      },
+      {
+        "type": "untyped",
+        "_id": "cz006666",
+        "operator": "add",
+        "priority": 0,
+        "formula": "1",
+        "target": "concentration"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 5,
+    "duration": {
+      "value": "",
+      "units": "conc",
+      "end": "turnStart",
+      "start": 0
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "CHIBIZUKU NO JUTSU (COMPRESSION TECHNIQUE)",
+  "img": "systems/pf1/icons/spells/enchant-sky-2.jpg",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1780350000001,
+    "modifiedTime": 1780350000001,
+    "lastModifiedBy": null
+  },
+  "_id": "c1b17a5e9d203f64",
+  "sort": 0,
+  "_key": "!items!c1b17a5e9d203f64"
+}

@@ -1,0 +1,101 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "<p>You open the Initial Gate, gaining a +2 enhancement bonus to Strength and Dexterity and a 10 ft increase to land speed.</p><p>You cannot suppress your Chakra Signature while this buff is active. At the start of each of your turns, take 2 damage that bypasses DR. If that damage would reduce your HP below 1, end this buff instead. When this buff ends, you are fatigued for the rest of the encounter and for 1 minute afterward; Fortitude DC 15 negates.</p>",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "enh",
+        "_id": "NcJTDFfv",
+        "operator": "add",
+        "priority": 0,
+        "formula": "2",
+        "target": "str"
+      },
+      {
+        "type": "enh",
+        "_id": "Iv4K5hQA",
+        "operator": "add",
+        "priority": 0,
+        "formula": "2",
+        "target": "dex"
+      },
+      {
+        "type": "untyped",
+        "_id": "2J58GHyP",
+        "operator": "add",
+        "priority": 0,
+        "formula": "10",
+        "target": "landSpeed"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 3,
+    "duration": {
+      "value": "",
+      "units": "round",
+      "end": "turnStart",
+      "start": 0
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "KAI-MON KAI (INITIAL GATE RELEASE)",
+  "img": "systems/pf1/icons/spells/beam-magenta-3.jpg",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1780272000000,
+    "modifiedTime": 1780272000000,
+    "lastModifiedBy": null
+  },
+  "_id": "FQ4FQsIE2Yn94WYP",
+  "sort": 0,
+  "_key": "!items!FQ4FQsIE2Yn94WYP"
+}

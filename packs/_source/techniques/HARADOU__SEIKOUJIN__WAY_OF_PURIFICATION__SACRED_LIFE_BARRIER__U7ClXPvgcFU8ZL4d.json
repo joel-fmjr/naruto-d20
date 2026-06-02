@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "",
+    "descriptors": [
+      "Good",
+      "Lost Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 9,
     "complexity": "A-Class",
     "chakraCost": 15,
@@ -37,7 +42,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

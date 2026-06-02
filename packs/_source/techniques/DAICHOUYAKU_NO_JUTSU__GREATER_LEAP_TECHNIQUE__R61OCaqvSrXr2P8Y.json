@@ -19,6 +19,7 @@
     },
     "discipline": "Chakra Control",
     "subtype": "Body",
+    "descriptors": [],
     "rank": 3,
     "complexity": "C-Class",
     "chakraCost": 3,

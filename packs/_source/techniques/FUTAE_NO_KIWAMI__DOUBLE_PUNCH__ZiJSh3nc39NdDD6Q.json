@@ -19,6 +19,11 @@
     },
     "discipline": "Taijutsu",
     "subtype": "Strike",
+    "descriptors": [
+      "Punch",
+      "Lost Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 9,
     "complexity": "A-Class",
     "chakraCost": 8,
@@ -37,7 +42,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

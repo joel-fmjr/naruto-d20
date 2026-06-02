@@ -19,6 +19,9 @@
     },
     "discipline": "Fuinjutsu",
     "subtype": "Advanced Seal",
+    "descriptors": [
+      "Force"
+    ],
     "rank": 7,
     "complexity": "A-Class",
     "chakraCost": 12,

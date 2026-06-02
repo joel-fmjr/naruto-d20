@@ -19,6 +19,9 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Hyouton",
+    "descriptors": [
+      "Cold"
+    ],
     "rank": 2,
     "complexity": "D-Class",
     "chakraCost": 2,

@@ -19,6 +19,7 @@
     },
     "discipline": "Training",
     "subtype": "Chakra Control",
+    "descriptors": [],
     "rank": 4,
     "complexity": "C-Class",
     "chakraCost": 0,

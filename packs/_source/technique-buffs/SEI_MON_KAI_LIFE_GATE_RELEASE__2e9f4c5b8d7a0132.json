@@ -1,0 +1,101 @@
+{
+  "type": "buff",
+  "system": {
+    "description": {
+      "value": "<p>You open the Life Gate, gaining a +4 enhancement bonus to Strength and Dexterity and a 15 ft increase to land speed.</p><p>This buff does not automate temporary Chakra, Chakra Signature changes, damage taken each round, or fatigue after the Gate closes.</p>",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "type": "enh",
+        "_id": "d04b2c8a",
+        "operator": "add",
+        "priority": 0,
+        "formula": "4",
+        "target": "str"
+      },
+      {
+        "type": "enh",
+        "_id": "e15c3d9b",
+        "operator": "add",
+        "priority": 0,
+        "formula": "4",
+        "target": "dex"
+      },
+      {
+        "type": "untyped",
+        "_id": "f26d4e0c",
+        "operator": "add",
+        "priority": 0,
+        "formula": "15",
+        "target": "landSpeed"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": {
+      "children": []
+    },
+    "tag": "",
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 6,
+    "duration": {
+      "value": "",
+      "units": "round",
+      "end": "turnStart",
+      "start": 0
+    },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "name": "SEI-MON KAI (LIFE GATE RELEASE)",
+  "img": "systems/pf1/icons/spells/explosion-royal-1.jpg",
+  "effects": [],
+  "folder": null,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_stats": {
+    "compendiumSource": null,
+    "duplicateSource": null,
+    "exportSource": null,
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": 1780351200000,
+    "modifiedTime": 1780351200000,
+    "lastModifiedBy": null
+  },
+  "_id": "2e9f4c5b8d7a0132",
+  "sort": 0,
+  "_key": "!items!2e9f4c5b8d7a0132"
+}

@@ -19,6 +19,7 @@
     },
     "discipline": "Training",
     "subtype": "Ninjutsu",
+    "descriptors": [],
     "rank": 2,
     "complexity": "D-Class",
     "chakraCost": 0,

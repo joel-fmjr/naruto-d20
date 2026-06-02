@@ -117,6 +117,9 @@
           "Hint": "Custa pontos de experiência para executar."
         }
       },
+      "Descriptors": {
+        "Legend": "Descritores"
+      },
       "Blocked": {
         "Grappled": "Você não pode formar selos enquanto agarrado ou imobilizado.",
         "Health": "Sua condição física impede o uso desta técnica."

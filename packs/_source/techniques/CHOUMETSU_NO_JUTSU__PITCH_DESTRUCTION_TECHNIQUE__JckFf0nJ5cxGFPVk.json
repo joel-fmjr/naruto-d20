@@ -19,6 +19,9 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "",
+    "descriptors": [
+      "Sonic"
+    ],
     "rank": 6,
     "complexity": "D-Class",
     "chakraCost": 6,

@@ -19,6 +19,9 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "",
+    "descriptors": [
+      "Kinjutsu"
+    ],
     "rank": 9,
     "complexity": "A-Class",
     "chakraCost": 8,
@@ -38,7 +41,7 @@
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
-    "isKinjutsu": false,
+    "isKinjutsu": true,
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,

@@ -19,6 +19,11 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Raiton",
+    "descriptors": [
+      "Electric",
+      "Sonic",
+      "Hijutsu"
+    ],
     "rank": 11,
     "complexity": "A-Class",
     "chakraCost": 10,
@@ -37,7 +42,7 @@
     "compMastery": false,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,

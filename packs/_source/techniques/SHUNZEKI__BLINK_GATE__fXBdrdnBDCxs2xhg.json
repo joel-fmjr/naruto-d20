@@ -19,6 +19,9 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Spacetime",
+    "descriptors": [
+      "Teleportation"
+    ],
     "rank": 10,
     "complexity": "S-Class",
     "chakraCost": 3,

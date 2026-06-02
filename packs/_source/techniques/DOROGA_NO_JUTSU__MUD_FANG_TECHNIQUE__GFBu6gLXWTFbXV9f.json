@@ -19,6 +19,9 @@
     },
     "discipline": "Ninjutsu",
     "subtype": "Doton",
+    "descriptors": [
+      "Earth"
+    ],
     "rank": 4,
     "complexity": "C-Class",
     "chakraCost": 3,

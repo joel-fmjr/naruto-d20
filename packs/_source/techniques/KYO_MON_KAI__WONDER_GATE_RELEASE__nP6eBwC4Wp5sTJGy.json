@@ -19,11 +19,12 @@
     },
     "discipline": "Hachimon Tonkou",
     "subtype": "",
+    "descriptors": [],
     "rank": 14,
     "complexity": "S-Class",
     "chakraCost": 0,
     "activation": "standard",
-    "range": "",
+    "range": "Personal",
     "target": "",
     "area": "",
     "duration": "",
@@ -67,6 +68,9 @@
               ]
             }
           ]
+        },
+        "range": {
+          "units": "personal"
         }
       }
     ],

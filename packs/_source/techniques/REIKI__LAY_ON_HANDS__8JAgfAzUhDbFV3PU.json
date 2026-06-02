@@ -19,6 +19,10 @@
     },
     "discipline": "Chakra Control",
     "subtype": "Spirit",
+    "descriptors": [
+      "Lost Hijutsu",
+      "Hijutsu"
+    ],
     "rank": 3,
     "complexity": "C-Class",
     "chakraCost": 4,
@@ -37,7 +41,7 @@
     "compMastery": true,
     "compPhysical": false,
     "compXpCost": false,
-    "isHijutsu": false,
+    "isHijutsu": true,
     "isKinjutsu": false,
     "isCombination": false,
     "performMiscBonus": 0,
