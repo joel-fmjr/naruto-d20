@@ -292,7 +292,7 @@ export async function attemptLearnTechnique(item) {
     const failureInsight = Math.min(5, Math.max(0, Number(activeLearning.failureInsight ?? 0) || 0));
     const apBonus = Math.max(0, Number(activeLearning.actionPointBonus ?? 0) || 0);
 
-    const breakdown = buildLearnCheckBreakdown(actor, skillKey);
+    const breakdown = buildLearnCheckBreakdown(actor, skillKey, { item, includeConditional: true });
     if (!breakdown) {
         ui.notifications.warn(`${actor.name}: learn check data for ${skillKey} is not ready.`);
         return;
