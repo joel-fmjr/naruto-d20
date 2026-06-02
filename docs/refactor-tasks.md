@@ -375,6 +375,7 @@ QA manual:
 Prioridade: media-alta  
 Tipo: mantenibilidade/risco silencioso  
 Area: Technique model, Medkit
+Status: concluida
 
 Problema:
 
