@@ -1,3 +1,5 @@
+import { getTechniqueCasterLevel } from "../data/technique-rolldata.mjs";
+
 const CONFIG_PREFIX = "weaponAttack";
 
 export function getTechniqueWeaponAttackConfig(item) {
@@ -27,6 +29,7 @@ export async function rollSelectedWeaponAttackWithTechnique({ technique, actor, 
         if (actionUse.item?.id !== selection.item.id) return;
         if (actionUse.action?.id !== selection.action.id) return;
 
+        actionUse.shared.rollData.cl = getTechniqueCasterLevel(technique, actor);
         if (config.attackBonus) actionUse.shared.attackBonus.push(config.attackBonus);
         if (config.damageBonus) actionUse.shared.damageBonus.push(config.damageBonus);
     };
