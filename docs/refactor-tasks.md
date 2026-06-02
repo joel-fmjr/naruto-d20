@@ -631,6 +631,78 @@ Criterios de aceite:
 - Passos indicam resultado esperado.
 - O documento pode ser usado antes de release ou PR grande.
 
+## Registro de execucao (sessao 2026-06-02)
+
+Tarefas 10, 11 e 12 executadas em sequencia na branch
+`refactor/refactor-by-feature`, um commit por tarefa.
+
+### Tarefa 10 - chat cards para templates (commit `bafda8e`)
+
+- Criados `templates/chat/technique-perform.hbs` e
+  `templates/chat/learning-result.hbs`, pre-carregados no `init`
+  (`scripts/main.mjs`).
+- `use-technique.mjs` e `learn-technique.mjs` renderizam os cards via
+  `renderTemplate` com dados estruturados (`name`, `cssClass`, `message`,
+  `footer`, `lead`, `title`).
+- Removido o helper `escapeHTML` de `learn-technique.mjs`: o Handlebars ja
+  escapa `{{lead}}`/`{{message}}` (evita escape duplo).
+- Classes CSS preservadas (`naruto-technique-card`, `success`, `failed`,
+  `learning`, `naruto-perform-bypass`) — saida identica a anterior.
+- Fora de escopo: o `<p>` de confirmacao de delete em `technique-list.mjs` e
+  um Dialog, nao um chat card.
+
+### Tarefa 11 - i18n de strings hardcoded (commit `6d66030`)
+
+- Novos namespaces em `lang/en.json` + `lang/pt-BR.json`: `Notifications`,
+  `App`, `Cards`.
+- Localizadas notificacoes, titulos de dialogo/app e textos de chat card em
+  `use-technique`, `learn-technique`, `ui/tap-reserves`, `ui/technique-list`,
+  `ui/technique-browser` e `ui/feat-browser`.
+- Pluralizacao de bloco/blocos via helper `blockUnit` em `learn-technique.mjs`.
+- Paridade de chaves en/pt-BR verificada por script: 100% (sem chaves
+  faltando ou sobrando).
+
+### Tarefa 12 - formalizar weapon-attack techniques (commit `25120f0`)
+
+- `scripts/ui/technique-weapon-attack.mjs`: `readWeaponAttackRaw` le os dois
+  formatos (`weaponAttack` aninhado e chaves pontilhadas `weaponAttack.*`,
+  aninhado tem precedencia); `parseWeaponAttackConfig` valida `mode`/`filter`/
+  `charge`, detecta campos desconhecidos e config malformada.
+- `reportWeaponAttackWarnings` emite aviso (`ui.notifications.warn` +
+  `console.warn`) apontando o campo problematico, sem quebrar o uso: config
+  invalida cai no fallback (`filter` -> `meleeWeapon`) ou e ignorada (`mode`).
+- Seletor de ataque localizado (titulo, labels `Arma`/`Ataque`, avisos
+  `NoWeaponAttack`/`WeaponAttackConfig`).
+- Formato e regras de validacao documentados em
+  `docs/funcionalidades-e-melhorias.md` (secao "Tecnicas que disparam ataque de
+  arma").
+- `scripts/data/technique-model.mjs` nao foi alterado: a config vive em
+  `system.flags.dictionary` (dictionary flags livres do pf1), entao a validacao
+  centralizada no parser e o lugar correto.
+
+### Mudanca de comportamento (Tarefa 12)
+
+Tecnicas com config `weaponAttack` parcial/invalida (ex.: `mode` ausente ou
+diferente de `selected`, ou campo com typo) agora emitem aviso a cada uso,
+onde antes eram ignoradas em silencio. Intencional; conferir no QA se ha
+tecnicas no pack com config "lixo" proposital.
+
+### Verificacao automatica feita
+
+- `node --check` em todos os scripts alterados: OK.
+- `JSON.parse` em `lang/en.json` e `lang/pt-BR.json`: OK.
+- Paridade de chaves en/pt-BR: OK.
+- Diagnosticos de TS que aparecem sao ruido conhecido (globais `game`/`ui`/
+  `foundry`/`ChatMessage`, `any` implicito), nao erros reais.
+
+### QA manual pendente (nao executado)
+
+- Trocar o mundo para PT-BR e conferir notificacoes, cards e titulos.
+- Auto-perform com sucesso; perform roll falho; learn success/failure; run
+  reset; training interrupted; Action Point aplicado.
+- Tecnica `weaponAttack` valida (melee/ranged/unarmed/charge) e uma malformada
+  para ver o aviso apontando o campo.
+
 ## Tarefas futuras opcionais
 
 Estas tarefas devem vir depois das areas criticas, a menos que virem bloqueio:
