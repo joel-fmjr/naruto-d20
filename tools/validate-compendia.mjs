@@ -58,6 +58,7 @@ const WEAPON_ATTACK_KEYS = new Set([
   "filter",
   "attackBonus",
   "damageBonus",
+  "nonCritDamageBonus",
   "held",
   "charge",
 ]);

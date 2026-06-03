@@ -4,7 +4,15 @@ const CONFIG_PREFIX = "weaponAttack";
 const DEFAULT_FILTER = "meleeWeapon";
 const SUPPORTED_MODES = new Set(["selected"]);
 const SUPPORTED_FILTERS = new Set(["meleeWeapon", "rangedWeapon", "unarmedOnly", "meleeOrUnarmed"]);
-const KNOWN_KEYS = new Set(["mode", "filter", "attackBonus", "damageBonus", "held", "charge"]);
+const KNOWN_KEYS = new Set([
+  "mode",
+  "filter",
+  "attackBonus",
+  "damageBonus",
+  "nonCritDamageBonus",
+  "held",
+  "charge",
+]);
 const ISSUE_TEMPLATES = {
   Malformed: '"{prefix}" must be an object or use dotted "{prefix}.*" keys',
   UnknownField: 'unknown field "{field}"',
@@ -113,6 +121,7 @@ export function parseWeaponAttackConfig({ values, keys, malformed }) {
       filter,
       attackBonus: str("attackBonus"),
       damageBonus: str("damageBonus"),
+      nonCritDamageBonus: str("nonCritDamageBonus"),
       held: str("held"),
       charge: chargeRaw === "true",
     },
@@ -150,8 +159,15 @@ export async function rollSelectedWeaponAttackWithTechnique({ technique, actor, 
     actionUse.shared.rollData.cl = getTechniqueCasterLevel(technique, actor);
     if (config.attackBonus) actionUse.shared.attackBonus.push(config.attackBonus);
     if (config.damageBonus) actionUse.shared.damageBonus.push(config.damageBonus);
+    if (config.nonCritDamageBonus) {
+      const nonCritParts = actionUse.shared.action.damage.nonCritParts ??= [];
+      const originalLength = nonCritParts.length;
+      nonCritParts.push({ formula: config.nonCritDamageBonus, types: [] });
+      cleanup.push(() => nonCritParts.splice(originalLength, 1));
+    }
   };
 
+  const cleanup = [];
   Hooks.on("pf1CreateActionUse", hook);
   try {
     const options = {};
@@ -166,6 +182,7 @@ export async function rollSelectedWeaponAttackWithTechnique({ technique, actor, 
     });
   } finally {
     Hooks.off("pf1CreateActionUse", hook);
+    for (const restore of cleanup.reverse()) restore();
   }
 }
 
