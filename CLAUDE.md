@@ -25,8 +25,9 @@ Foundry runs in Docker (`/home/ezioaalves/Documents/foundry/docker-compose.yml`)
 
 ## Branch merge policy
 
-- Pull requests merged into `develop` must use squash merge and delete the merged branch afterward.
-- Pull requests merged into `master` should use the repository's default merge mode.
+- Create feature branches off `master`.
+- Open pull requests against `master` (do **not** target `develop`).
+- Merge into `master` using the repository's default merge mode, then delete the merged branch afterward.
 
 ## PF1e version pinning — IMPORTANT
 

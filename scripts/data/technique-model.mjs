@@ -204,6 +204,16 @@ export function createTechniqueDataModel() {
           {
             learned: new fields.BooleanField({ ...opt, initial: false }),
             progress: new fields.NumberField({ ...opt, integer: true, initial: 0, min: 0 }),
+            // GM override for the target progress required to learn this
+            // technique, in the *current* training mode's units. Null → fall
+            // back to the rules-derived, mode-scaled value.
+            successesOverride: new fields.NumberField({
+              ...opt,
+              integer: true,
+              nullable: true,
+              initial: null,
+              min: 1,
+            }),
             attemptsUsed: new fields.NumberField({ ...opt, integer: true, initial: 0, min: 0 }),
             failureInsight: new fields.NumberField({
               ...opt,

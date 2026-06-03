@@ -1,5 +1,48 @@
 /* Technique Sheet */
 
+/* Header summary row.
+   pf1's `.summary li` draws table-like cell grooves (border-right /
+   border-bottom) plus a border-top on the row — meant for cells that hold a
+   bare label + value. Our cells hold full form controls (select / number)
+   that already carry their own border, so the cell groove doubles up into a
+   visible second box (and an empty bordered gap beside the Rank field).
+   Strip the pf1 cell chrome and let each control be the single field. */
+.pf1.sheet.item .sheet-header .summary {
+  border-top: none;
+  gap: 6px;
+  align-items: center;
+}
+
+.pf1.sheet.item .sheet-header .summary > li {
+  border: none;
+  padding: 0;
+  height: auto;
+  gap: 4px;
+  min-width: 0;
+}
+
+/* Discipline + complexity share the leftover width; rank stays compact. */
+.pf1.sheet.item .sheet-header .summary > li:nth-child(1),
+.pf1.sheet.item .sheet-header .summary > li:nth-child(3) {
+  flex: 1 1 0;
+  width: auto;
+}
+
+.pf1.sheet.item .sheet-header .summary > li:nth-child(2) {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.pf1.sheet.item .sheet-header .summary > li select {
+  width: 100%;
+  min-width: 0;
+}
+
+.pf1.sheet.item .sheet-header .summary > li input[type="number"] {
+  width: 3.5em;
+  min-width: 0;
+}
+
 .pf1.sheet.item .descriptor-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
