@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.3 - 2026-06-03
+
+- Added learning techniques by spending Empathy Points: click Empathy Points on the Chakra tab to open the technique browser, pick a technique, and learn it for a cost equal to its skill threshold. Techniques learned this way are flagged "via Empathy" on the sheet and the Chakra tab.
+- Fixed roll-less technique chat cards (Empathy learning, training interruption, unmapped-discipline learn) so they honour the active roll mode instead of always posting publicly.
+- Fixed Raite so it uses the unarmed attack configuration.
+
 ## v1.0.2 - 2026-06-03
 
 - Added GM-editable successes/failures to technique learning, with assorted sheet polish.
