@@ -39,13 +39,28 @@ function trainingTimestamp() {
   return worldTime > 0 ? worldTime : Math.floor(Date.now() / 1000);
 }
 
-export function getLearningTargetProgress(item, mode = getLearningMode()) {
+/**
+ * Rules-derived target progress for a mode, ignoring any GM override.
+ * Standard → raw successes; four-hour blocks → rank × successes × 2.
+ */
+function getDerivedTargetProgress(item, mode = getLearningMode()) {
   const successes = Math.max(1, Number(item.system.derived?.successes ?? 1) || 1);
   if (mode === LEARNING_MODES.FOUR_HOUR_BLOCKS) {
     const rank = Math.max(1, Number(item.system.rank ?? 1) || 1);
     return rank * successes * 2;
   }
   return successes;
+}
+
+/**
+ * Target progress required to learn. A GM override (stored as the final
+ * target in the *current* mode's units) wins; otherwise it is derived from
+ * the rules and scales with the training mode.
+ */
+export function getLearningTargetProgress(item, mode = getLearningMode()) {
+  const override = Number(item.system.learning?.successesOverride);
+  if (Number.isFinite(override) && override > 0) return Math.max(1, Math.floor(override));
+  return getDerivedTargetProgress(item, mode);
 }
 
 export function getLearningMaxAttempts(actor, skillKey) {
@@ -220,6 +235,9 @@ export function buildLearningView(item, actor, mode = getLearningMode()) {
     requiresDisciplineChoice: resolution.requiresChoice,
     expiresAt: lastTrainingAt ? lastTrainingAt + TRAINING_INTERRUPTION_SECONDS : 0,
     targetProgress,
+    requiredSuccesses: targetProgress,
+    derivedSuccesses: getDerivedTargetProgress(item, mode),
+    successesOverride: learning.successesOverride ?? null,
     maxAttempts: getLearningMaxAttempts(actor, skillKey),
     mode,
     isFourHourBlocks: mode === LEARNING_MODES.FOUR_HOUR_BLOCKS,

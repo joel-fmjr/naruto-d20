@@ -7,12 +7,94 @@
   border-top: 1px solid #c0b89a;
 }
 
-.pf1.sheet.item .technique-learning-controls {
-  gap: 4px;
-}
-
 .pf1.sheet.item .learning-progress-line {
   color: #6b6050;
   font-size: 0.8em;
   line-height: 1.2;
+}
+
+/* GM learning panel — stacked, label-above-input so long labels and
+   multi-digit values never clip in the narrow sidebar. */
+.pf1.sheet.item .gm-learning {
+  margin: 8px 0 0;
+  padding: 4px 8px 8px;
+  border: 1px solid #c0b89a;
+  border-radius: 4px;
+  background: rgba(192, 184, 154, 0.12);
+}
+
+.pf1.sheet.item .gm-learning > legend {
+  padding: 0 5px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #6b5a3c;
+}
+
+.pf1.sheet.item .gm-learning > legend > i {
+  margin-right: 3px;
+  opacity: 0.7;
+}
+
+.pf1.sheet.item .gm-learning__learned {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.pf1.sheet.item .gm-learning__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 8px;
+}
+
+.pf1.sheet.item .gm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  margin: 0;
+}
+
+.pf1.sheet.item .gm-field > span {
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #6b6050;
+}
+
+.pf1.sheet.item .gm-field > input[type="number"] {
+  width: 100%;
+  min-width: 0;
+  height: 22px;
+  padding: 0 4px;
+  text-align: center;
+  border: 1px solid #c0b89a;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.5);
+  font-variant-numeric: tabular-nums;
+}
+
+.pf1.sheet.item .gm-field > input[type="number"]:focus {
+  outline: none;
+  border-color: #8a6d3b;
+  box-shadow: 0 0 0 1px rgba(138, 109, 59, 0.35);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.pf1.sheet.item .gm-field > input[type="number"]::placeholder {
+  color: #a89c7e;
+}
+
+.pf1.sheet.item .gm-learning .learning-progress-line {
+  margin-top: 8px;
+}
+
+.pf1.sheet.item .gm-learning .reset-learning {
+  margin-top: 6px;
+  width: 100%;
 }

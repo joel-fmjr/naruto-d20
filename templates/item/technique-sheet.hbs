@@ -43,7 +43,7 @@
       <li class="property generic-tag">Learn DC {{derived.learnDC}}</li>
       <li class="property generic-tag">Perform DC {{derived.performDC}}</li>
       <li class="property generic-tag">Threshold {{derived.skillThreshold}}</li>
-      <li class="property generic-tag">Successes {{derived.successes}}</li>
+      <li class="property generic-tag">Successes {{learning.requiredSuccesses}}</li>
       {{#if learning.effectivelyLearned}}
       <li class="property generic-tag learning learned">Learned</li>
       {{else}}
@@ -69,11 +69,34 @@
     {{/unless}}
 
     {{#if isGM}}
-    <div class="form-group stacked sidebar-flags technique-learning-controls">
-      <label class="checkbox">
+    <fieldset class="gm-learning">
+      <legend><i class="fa-solid fa-user-shield" inert></i> GM · Learning</legend>
+
+      <label class="gm-learning__learned checkbox">
         <input type="checkbox" name="system.learning.learned" {{checked system.learning.learned}}>
         Learned
       </label>
+
+      <div class="gm-learning__grid">
+        <label class="gm-field" title="Successes accumulated so far">
+          <span>Successes</span>
+          <input type="number" name="system.learning.progress" value="{{learning.progress}}" min="0" step="1">
+        </label>
+        <label class="gm-field" title="Successes required to learn (leave blank for the rules default)">
+          <span>Required</span>
+          <input type="number" name="system.learning.successesOverride" value="{{learning.successesOverride}}"
+                 placeholder="{{learning.derivedSuccesses}}" min="1" step="1">
+        </label>
+        <label class="gm-field" title="Attempts used this run">
+          <span>Attempts</span>
+          <input type="number" name="system.learning.attemptsUsed" value="{{learning.attemptsUsed}}" min="0" step="1">
+        </label>
+        <label class="gm-field" title="Failure insight bonus (0–5)">
+          <span>Insight</span>
+          <input type="number" name="system.learning.failureInsight" value="{{learning.failureInsight}}" min="0" max="5" step="1">
+        </label>
+      </div>
+
       <div class="learning-progress-line">
         {{learning.progress}}/{{learning.targetProgress}}
         {{#if learning.isFourHourBlocks}}
@@ -91,7 +114,7 @@
         {{#if learning.actionPointBonus}} &middot; ⚡ +{{learning.actionPointBonus}} AP{{/if}}
       </div>
       <button type="button" class="reset-learning">Reset Learning</button>
-    </div>
+    </fieldset>
     {{/if}}
 
     <label class="descriptor number">
