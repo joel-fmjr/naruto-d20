@@ -3,11 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "pack": "node_modules/.bin/fvtt package pack --id naruto-d20 --type Module --compendiumName techniques --in packs/_source/techniques --out packs",
-    "pack:buffs": "node_modules/.bin/fvtt package pack --id naruto-d20 --type Module --compendiumName technique-buffs --in packs/_source/technique-buffs --out packs",
-    "pack:feats": "node_modules/.bin/fvtt package pack --id naruto-d20 --type Module --compendiumName feats --in packs/_source/feats --out packs",
+    "pack": "node node_modules/@foundryvtt/foundryvtt-cli/fvtt.mjs package pack --id naruto-d20 --type Module --compendiumName techniques --in packs/_source/techniques --out packs",
+    "pack:buffs": "node node_modules/@foundryvtt/foundryvtt-cli/fvtt.mjs package pack --id naruto-d20 --type Module --compendiumName technique-buffs --in packs/_source/technique-buffs --out packs",
+    "pack:feats": "node node_modules/@foundryvtt/foundryvtt-cli/fvtt.mjs package pack --id naruto-d20 --type Module --compendiumName feats --in packs/_source/feats --out packs",
     "pack:all": "npm run pack && npm run pack:buffs && npm run pack:feats",
-    "unpack": "node_modules/.bin/fvtt package unpack --id naruto-d20 --type Module --compendiumName techniques --in packs --out packs/_source/techniques",
+    "unpack": "node node_modules/@foundryvtt/foundryvtt-cli/fvtt.mjs package unpack --id naruto-d20 --type Module --compendiumName techniques --in packs --out packs/_source/techniques",
     "add-actions": "node tools/add-actions.mjs",
     "fix-action-ids": "node tools/fix-action-ids.mjs",
     "fix-spell-attacks": "node tools/fix-spell-attacks.mjs",
@@ -16,10 +16,10 @@
     "validate:manifest": "node tools/validate-manifest.mjs",
     "test": "node --test tests/*.test.mjs",
     "lint:js": "eslint scripts tools eslint.config.mjs",
-    "lint:css": "stylelint \"styles/**/*.css\"",
+    "lint:css": "node node_modules/stylelint/bin/stylelint.mjs \"styles/**/*.css\"",
     "lint:format": "prettier --check \"scripts/**/*.mjs\" \"tools/**/*.mjs\" \"styles/**/*.css\" \"lang/**/*.json\"",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:format",
-    "lint:fix": "eslint --fix scripts tools eslint.config.mjs && stylelint --fix \"styles/**/*.css\" && prettier --write \"scripts/**/*.mjs\" \"tools/**/*.mjs\" \"styles/**/*.css\" \"lang/**/*.json\""
+    "lint:fix": "eslint --fix scripts tools eslint.config.mjs && node node_modules/stylelint/bin/stylelint.mjs --fix \"styles/**/*.css\" && prettier --write \"scripts/**/*.mjs\" \"tools/**/*.mjs\" \"styles/**/*.css\" \"lang/**/*.json\""
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
