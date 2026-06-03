@@ -70,7 +70,7 @@
         "damage": {
           "parts": [
             {
-              "formula": "2d6 + max(@cl, 5)",
+              "formula": "2d6 + min(@cl, 5)",
               "types": [
                 "electric"
               ]
@@ -80,7 +80,7 @@
         "touch": true,
         "ability": {
           "attack": "dex",
-          "damage": "str",
+          "damage": "",
           "critRange": 20,
           "critMult": 2
         }

@@ -27,7 +27,7 @@ Foundry runs in Docker (`/home/ezioaalves/Documents/foundry/docker-compose.yml`)
 
 - Create feature branches off `master`.
 - Open pull requests against `master` (do **not** target `develop`).
-- Merge into `master` using the repository's default merge mode, then delete the merged branch afterward.
+- Always merge into `master` using **squash merge**, then delete the merged branch afterward.
 
 ## PF1e version pinning — IMPORTANT
 

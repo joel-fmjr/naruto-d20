@@ -71,7 +71,7 @@
         "touch": true,
         "ability": {
           "attack": "dex",
-          "damage": "str",
+          "damage": "",
           "critRange": 20,
           "critMult": 2
         }
