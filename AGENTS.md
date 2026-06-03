@@ -31,7 +31,7 @@ No automated test suite is configured. Verify manually in Foundry VTT 13 with PF
 
 Recent history uses short conventional-style subjects such as `feat(rest): ...`, `fix(tap-reserves): ...`, `docs: ...`, and `chore: ...`. Keep commits focused and mention the subsystem when helpful.
 Unless the change is truly trivial, write a commit body that briefly explains the behavioral change and any notable scope or follow-up context.
-Create feature branches off `master` and open pull requests against `master` (do not target `develop`). Merge into `master` using the repository's default merge mode, then delete the merged branch afterward.
+Create feature branches off `master` and open pull requests against `master` (do not target `develop`). Always merge into `master` using **squash merge**, then delete the merged branch afterward.
 
 Pull requests should describe the behavior change, list manual Foundry verification steps, link related issues, and include screenshots or clips for visible sheet/UI changes. Note any compendium packing performed.
 
