@@ -2,11 +2,14 @@ import { getTechniqueCasterLevel } from "../data/technique-rolldata.mjs";
 
 const CONFIG_PREFIX = "weaponAttack";
 const DEFAULT_FILTER = "meleeWeapon";
+const DEFAULT_DAMAGE_MODE = "add";
 const SUPPORTED_MODES = new Set(["selected"]);
 const SUPPORTED_FILTERS = new Set(["meleeWeapon", "rangedWeapon", "unarmedOnly", "meleeOrUnarmed"]);
+const SUPPORTED_DAMAGE_MODES = new Set(["add", "replace"]);
 const KNOWN_KEYS = new Set([
   "mode",
   "filter",
+  "damageMode",
   "attackBonus",
   "damageBonus",
   "nonCritDamageBonus",
@@ -19,6 +22,7 @@ const ISSUE_TEMPLATES = {
   MissingMode: 'missing "{field}" (expected "{expected}")',
   UnsupportedMode: 'unsupported "{field}" = "{value}" (expected "{expected}")',
   UnsupportedFilter: 'unsupported "{field}" = "{value}"; using "{fallback}"',
+  UnsupportedDamageMode: 'unsupported "{field}" = "{value}"; using "{fallback}"',
   InvalidBoolean: '"{field}" should be "true" or "false" (got "{value}")',
 };
 
@@ -105,6 +109,18 @@ export function parseWeaponAttackConfig({ values, keys, malformed }) {
     filter = DEFAULT_FILTER;
   }
 
+  let damageMode = str("damageMode") || DEFAULT_DAMAGE_MODE;
+  if (!SUPPORTED_DAMAGE_MODES.has(damageMode)) {
+    warnings.push(
+      issue("UnsupportedDamageMode", {
+        field: `${CONFIG_PREFIX}.damageMode`,
+        value: damageMode,
+        fallback: DEFAULT_DAMAGE_MODE,
+      }),
+    );
+    damageMode = DEFAULT_DAMAGE_MODE;
+  }
+
   const chargeRaw = str("charge").toLowerCase();
   if (chargeRaw && chargeRaw !== "true" && chargeRaw !== "false") {
     warnings.push(
@@ -119,6 +135,7 @@ export function parseWeaponAttackConfig({ values, keys, malformed }) {
     config: {
       mode,
       filter,
+      damageMode,
       attackBonus: str("attackBonus"),
       damageBonus: str("damageBonus"),
       nonCritDamageBonus: str("nonCritDamageBonus"),
@@ -147,7 +164,13 @@ export function getTechniqueWeaponAttackConfig(item) {
   return config;
 }
 
-export async function rollSelectedWeaponAttackWithTechnique({ technique, actor, config, event }) {
+export async function rollSelectedWeaponAttackWithTechnique({
+  technique,
+  techniqueAction,
+  actor,
+  config,
+  event,
+}) {
   const selection = await selectTechniqueWeaponAttack(actor, technique, config);
   if (!selection) return null;
 
@@ -157,6 +180,9 @@ export async function rollSelectedWeaponAttackWithTechnique({ technique, actor, 
     if (actionUse.action?.id !== selection.action.id) return;
 
     actionUse.shared.rollData.cl = getTechniqueCasterLevel(technique, actor);
+    if (config.damageMode === "replace") {
+      replaceActionDamage(actionUse, techniqueAction, cleanup);
+    }
     if (config.attackBonus) actionUse.shared.attackBonus.push(config.attackBonus);
     if (config.damageBonus) actionUse.shared.damageBonus.push(config.damageBonus);
     if (config.nonCritDamageBonus) {
@@ -184,6 +210,83 @@ export async function rollSelectedWeaponAttackWithTechnique({ technique, actor, 
     Hooks.off("pf1CreateActionUse", hook);
     for (const restore of cleanup.reverse()) restore();
   }
+}
+
+function replaceActionDamage(actionUse, techniqueAction, cleanup) {
+  const selectedAction = actionUse.shared.action;
+  const selectedRollAction = actionUse.shared.rollData?.action;
+  if (!selectedAction || !selectedRollAction || !techniqueAction) return;
+
+  const actionSnapshot = {
+    damage: cloneDamage(selectedAction.damage),
+    ability: cloneDamageAbility(selectedAction.ability),
+    touch: selectedAction.touch,
+  };
+  const rollSnapshot = {
+    damage: cloneDamage(selectedRollAction.damage),
+    ability: cloneDamageAbility(selectedRollAction.ability),
+    touch: selectedRollAction.touch,
+  };
+
+  applyDamageReplacement(selectedAction, techniqueAction);
+  applyDamageReplacement(selectedRollAction, techniqueAction);
+
+  cleanup.push(() => {
+    restoreDamageReplacement(selectedAction, actionSnapshot);
+    restoreDamageReplacement(selectedRollAction, rollSnapshot);
+  });
+}
+
+function applyDamageReplacement(targetAction, sourceAction) {
+  targetAction.damage ??= {};
+  targetAction.ability ??= {};
+
+  targetAction.damage.parts = foundry.utils.deepClone(sourceAction.damage?.parts ?? []);
+  targetAction.damage.critParts = foundry.utils.deepClone(sourceAction.damage?.critParts ?? []);
+  targetAction.damage.nonCritParts = foundry.utils.deepClone(
+    sourceAction.damage?.nonCritParts ?? [],
+  );
+  targetAction.touch = sourceAction.touch === true;
+
+  const sourceAbility = sourceAction.ability ?? {};
+  targetAction.ability.damage = sourceAbility.damage ?? "";
+  targetAction.ability.damageMult = sourceAbility.damageMult ?? null;
+  targetAction.ability.critRange = sourceAbility.critRange ?? 20;
+  targetAction.ability.critMult = sourceAbility.critMult ?? 2;
+}
+
+function restoreDamageReplacement(targetAction, snapshot) {
+  targetAction.damage ??= {};
+  targetAction.ability ??= {};
+
+  targetAction.damage.parts = foundry.utils.deepClone(snapshot.damage.parts);
+  targetAction.damage.critParts = foundry.utils.deepClone(snapshot.damage.critParts);
+  targetAction.damage.nonCritParts = foundry.utils.deepClone(snapshot.damage.nonCritParts);
+  targetAction.touch = snapshot.touch;
+
+  targetAction.ability.damage = snapshot.ability.damage;
+  targetAction.ability.damageMult = snapshot.ability.damageMult;
+  targetAction.ability.critRange = snapshot.ability.critRange;
+  targetAction.ability.critMult = snapshot.ability.critMult;
+}
+
+function cloneDamage(damage) {
+  damage ??= {};
+  return {
+    parts: foundry.utils.deepClone(damage.parts ?? []),
+    critParts: foundry.utils.deepClone(damage.critParts ?? []),
+    nonCritParts: foundry.utils.deepClone(damage.nonCritParts ?? []),
+  };
+}
+
+function cloneDamageAbility(ability) {
+  ability ??= {};
+  return {
+    damage: ability.damage ?? "",
+    damageMult: ability.damageMult ?? null,
+    critRange: ability.critRange ?? 20,
+    critMult: ability.critMult ?? 2,
+  };
 }
 
 async function selectTechniqueWeaponAttack(actor, technique, config) {
