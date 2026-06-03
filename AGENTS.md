@@ -30,6 +30,7 @@ No automated test suite is configured. Verify manually in Foundry VTT 13 with PF
 ## Commit & Pull Request Guidelines
 
 Recent history uses short conventional-style subjects such as `feat(rest): ...`, `fix(tap-reserves): ...`, `docs: ...`, and `chore: ...`. Keep commits focused and mention the subsystem when helpful.
+Unless the change is truly trivial, write a commit body that briefly explains the behavioral change and any notable scope or follow-up context.
 
 Pull requests should describe the behavior change, list manual Foundry verification steps, link related issues, and include screenshots or clips for visible sheet/UI changes. Note any compendium packing performed.
 
