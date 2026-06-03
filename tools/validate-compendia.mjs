@@ -58,6 +58,7 @@ const WEAPON_ATTACK_KEYS = new Set([
   "filter",
   "attackBonus",
   "damageBonus",
+  "nonCritDamageBonus",
   "held",
   "charge",
 ]);
@@ -158,6 +159,7 @@ function validateCommon({ doc, filename, packName, expectedType }) {
 
   validateActions(packName, filename, doc.system?.actions, {
     technique: doc.type === "naruto-d20.technique",
+    range: doc.system?.range,
   });
   validateChanges(packName, filename, doc.system?.changes);
   validateLinks(packName, filename, doc.system?.links);
@@ -176,7 +178,7 @@ function validateUniqueIds(packName, docs) {
   }
 }
 
-function validateActions(packName, filename, actions, { technique = false } = {}) {
+function validateActions(packName, filename, actions, { technique = false, range } = {}) {
   if (actions === undefined) return;
   if (!Array.isArray(actions)) {
     error(packName, filename, "system.actions must be an array");
@@ -199,11 +201,21 @@ function validateActions(packName, filename, actions, { technique = false } = {}
       error(packName, filename, `${prefix} duplicates action _id "${action._id}"`);
     else seen.add(action._id);
 
-    if (technique) validateTechniqueAction(packName, filename, prefix, action);
+    if (technique) validateTechniqueAction(packName, filename, prefix, action, range);
   });
 }
 
-function validateTechniqueAction(packName, filename, prefix, action) {
+function isMeleeTouchRange(range) {
+  return (
+    typeof range === "string" &&
+    range
+      .trim()
+      .replace(/\s*\*$/, "")
+      .toLowerCase() === "melee touch"
+  );
+}
+
+function validateTechniqueAction(packName, filename, prefix, action, range) {
   const type = action.actionType;
   if (type === "msak" || type === "rsak") {
     error(
@@ -216,10 +228,19 @@ function validateTechniqueAction(packName, filename, prefix, action) {
   if (type === "mwak" || type === "rwak") {
     const attack = action.ability?.attack;
     const damage = action.ability?.damage;
+    // Melee touch is keyed off the technique's `system.range` descriptor, not
+    // the action's range.units (which is "touch" for both melee-touch chakra
+    // techniques and physical "Melee attack" strikes).
+    const meleeTouch = type === "mwak" && isMeleeTouchRange(range);
     if (attack !== "dex") {
       error(packName, filename, `${prefix} ${type} should use ability.attack="dex"`);
     }
-    if (hasActionDamage(action) && damage !== "str") {
+    if (meleeTouch) {
+      // Melee touch techniques don't add STR to damage (see #58).
+      if (hasActionDamage(action) && damage) {
+        error(packName, filename, `${prefix} melee touch with damage should use ability.damage=""`);
+      }
+    } else if (hasActionDamage(action) && damage !== "str") {
       error(packName, filename, `${prefix} ${type} with damage should use ability.damage="str"`);
     }
   }

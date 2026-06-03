@@ -122,6 +122,7 @@ describe("weaponAttack parsing", () => {
       filter: "rangedWeapon",
       attackBonus: "@cl",
       damageBonus: "",
+      nonCritDamageBonus: "",
       held: "",
       charge: true,
     });
