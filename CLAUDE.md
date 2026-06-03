@@ -154,6 +154,7 @@ Flag schema (on `character` and `npc` actors):
 ```
 flags["naruto-d20"].chakra.pool.{value, max, maxBonus}
 flags["naruto-d20"].chakra.reserve.{value, max, maxBonus}
+flags["naruto-d20"].chakra.tapReserves.buffBonus
 flags["naruto-d20"].chakra.nature.{primary, secondary[]}
 flags["naruto-d20"].learn.{ckc,gnj,nin,tai,fui}.{base, abilityMod, buffBonus, miscBonus, total, conditional}
 flags["naruto-d20"].{actionPoints, reputation, wealth}
