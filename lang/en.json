@@ -100,6 +100,7 @@
       "MissingMode": "missing \"{field}\" (expected \"{expected}\")",
       "UnsupportedMode": "unsupported \"{field}\" = \"{value}\" (expected \"{expected}\")",
       "UnsupportedFilter": "unsupported \"{field}\" = \"{value}\"; using \"{fallback}\"",
+      "UnsupportedDamageMode": "unsupported \"{field}\" = \"{value}\"; using \"{fallback}\"",
       "InvalidBoolean": "\"{field}\" should be \"true\" or \"false\" (got \"{value}\")"
     },
     "Technique": {

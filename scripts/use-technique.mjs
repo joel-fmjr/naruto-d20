@@ -164,6 +164,7 @@ async function useTechniqueAction(item, action, actor, event) {
   if (weaponAttackConfig) {
     return rollSelectedWeaponAttackWithTechnique({
       technique: item,
+      techniqueAction: action,
       actor,
       config: weaponAttackConfig,
       event,

@@ -56,6 +56,7 @@ const WEAPON_ATTACK_PREFIX = "weaponAttack";
 const WEAPON_ATTACK_KEYS = new Set([
   "mode",
   "filter",
+  "damageMode",
   "attackBonus",
   "damageBonus",
   "nonCritDamageBonus",
@@ -63,6 +64,7 @@ const WEAPON_ATTACK_KEYS = new Set([
   "charge",
 ]);
 const WEAPON_ATTACK_MODES = new Set(["selected"]);
+const WEAPON_ATTACK_DAMAGE_MODES = new Set(["add", "replace"]);
 const WEAPON_ATTACK_FILTERS = new Set([
   "meleeWeapon",
   "rangedWeapon",
@@ -388,6 +390,10 @@ function validateWeaponAttack(doc, filename, packName) {
   const filter = str("filter") || "meleeWeapon";
   if (!WEAPON_ATTACK_FILTERS.has(filter))
     error(packName, filename, `unsupported weaponAttack.filter "${filter}"`);
+
+  const damageMode = str("damageMode") || "add";
+  if (!WEAPON_ATTACK_DAMAGE_MODES.has(damageMode))
+    error(packName, filename, `unsupported weaponAttack.damageMode "${damageMode}"`);
 
   const charge = str("charge").toLowerCase();
   if (charge && charge !== "true" && charge !== "false")

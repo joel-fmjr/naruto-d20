@@ -71,6 +71,21 @@ types (`msak`/`rsak`) are **not** used: they key off a spellcasting class
 ability that techniques don't have. Non-attack actions use
 `spellsave`/`save`/`heal`/`other`.
 
+### Technique weapon attacks
+
+Some techniques use an actor's existing weapon or attack item instead of
+rolling the technique action directly. Configure this with
+`system.flags.dictionary.weaponAttack.*`:
+
+- `weaponAttack.mode: "selected"` opens the selector.
+- `weaponAttack.filter` is `meleeWeapon`, `rangedWeapon`, `unarmedOnly`, or
+  `meleeOrUnarmed` (`meleeWeapon` default).
+- `weaponAttack.damageMode` is `add` by default. Use `replace` when the selected
+  attack should provide the attack roll only and the technique action should
+  provide the damage.
+- `weaponAttack.attackBonus`, `damageBonus`, and `nonCritDamageBonus` add
+  technique-specific formulas to the selected action.
+
 ## Transform scripts (`tools/`)
 
 | Script | npm alias | Purpose |
