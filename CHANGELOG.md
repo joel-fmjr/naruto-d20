@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.7 - 2026-06-04
+
+- Fixed Synckit so actor-owned technique state no longer marks compendium-sourced techniques out of sync: current daily-use charges and mastery training progress are ignored during diffing.
+- Preserved local learning, mastery progress, mastery step, and daily-use charge state when syncing an actor-owned technique from the compendium.
+
 ## v1.0.6 - 2026-06-04
 
 - Added mastery step 5 free rounds for Strength Rank and Speed Rank techniques: mastered rank techniques now prompt for the once-per-day 5-round free activation instead of paying chakra.
