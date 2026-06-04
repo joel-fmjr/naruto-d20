@@ -1,5 +1,5 @@
 import { MAIN_DISCIPLINES, MODULE_ID } from "../constants.mjs";
-import { COMPLEXITY_TABLE } from "../data/technique-model.mjs";
+import { COMPLEXITY_TABLE, computeTechniqueDerived } from "../data/technique-model.mjs";
 import { learnTechniqueViaEmpathy } from "../learn-technique.mjs";
 import {
   buildFilterGroup,
@@ -56,13 +56,6 @@ const COMPONENT_FLAGS = {
 };
 
 const RANKS = Array.from({ length: 15 }, (_, i) => String(i + 1));
-
-/** Skill threshold from index fields — mirrors TechniqueDataModel#derived. */
-function computeSkillThreshold(system) {
-  const c = COMPLEXITY_TABLE[system?.complexity] ?? COMPLEXITY_TABLE["E-Class"];
-  const rank = Math.max(1, Number(system?.rank ?? 1) || 1);
-  return Math.max(1, rank + c.skillMod - 3);
-}
 
 /**
  * Custom compendium browser for technique items. Extends Application (V1) to
@@ -166,7 +159,10 @@ export class TechniqueCompendiumBrowser extends Application {
     const all = this.#entries ?? [];
     let filtered = all.filter((e) => this.#matches(e));
     if (this.empathyMode) {
-      filtered = filtered.map((e) => ({ ...e, threshold: computeSkillThreshold(e.system) }));
+      filtered = filtered.map((e) => ({
+        ...e,
+        threshold: computeTechniqueDerived(e.system).skillThreshold,
+      }));
     }
 
     const disciplineChoices = Object.fromEntries(MAIN_DISCIPLINES.map((d) => [d, d]));

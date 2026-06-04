@@ -56,6 +56,7 @@ export function createTechniqueItemSheet() {
       const context = await super.getData(options);
       const item = this.item;
       const system = item.system;
+      const derived = system.derived;
       const loc = (k) => game.i18n.localize(k);
 
       context.item = item;
@@ -64,7 +65,7 @@ export function createTechniqueItemSheet() {
       context.owner = item.isOwner;
       context.cssClass = this.isEditable ? "editable" : "locked";
       context.itemType = loc(CONFIG.Item.typeLabels?.[item.type] ?? "ITEM.TypeItem");
-      context.derived = system.derived;
+      context.derived = derived;
       context.isGM = game.user.isGM;
 
       const rollData = item.getRollData?.() ?? {};
@@ -92,8 +93,8 @@ export function createTechniqueItemSheet() {
       const learning = buildLearningView(item, actor);
       const skillKey = DISCIPLINE_SKILL_MAP[system.discipline];
       const skillRanks = skillKey && actor ? (actor.system.skills?.[skillKey]?.rank ?? 0) : 0;
-      const threshold = system.derived.skillThreshold;
-      const masteryPerform = system.derived.masteryPerform ?? 0;
+      const threshold = derived.skillThreshold;
+      const masteryPerform = derived.masteryPerform ?? 0;
       const effRanks = skillRanks + masteryPerform;
       const bypasses = !skillKey || effRanks >= threshold;
       const ranksLabel = masteryPerform > 0 ? `${skillRanks}+${masteryPerform}` : `${skillRanks}`;
@@ -114,7 +115,7 @@ export function createTechniqueItemSheet() {
           ? "No perform check required for this discipline."
           : bypasses
             ? `Ranks ${ranksLabel}/${threshold} — auto-perform.`
-            : `Ranks ${ranksLabel}/${threshold} — must roll vs DC ${system.derived.performDC}.`;
+            : `Ranks ${ranksLabel}/${threshold} — must roll vs DC ${derived.performDC}.`;
 
       context.hasComponents =
         system.compHandSeals ||

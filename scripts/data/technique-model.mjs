@@ -86,6 +86,45 @@ export const TECHNIQUE_DESCRIPTORS = [
   "Wood",
 ];
 
+function collectionHas(value, entry) {
+  if (value instanceof Set) return value.has(entry);
+  if (Array.isArray(value)) return value.includes(entry);
+  return value?.[entry] === true || Object.values(value ?? {}).includes(entry);
+}
+
+/** Compute technique stats from persisted source fields. Never persist this result. */
+export function computeTechniqueDerived(system = {}) {
+  const c = COMPLEXITY_TABLE[system.complexity] ?? COMPLEXITY_TABLE["E-Class"];
+  let { learnMod, successes } = c;
+  const { skillMod, performMod } = c;
+  const descriptors = system.descriptors ?? new Set();
+
+  // Success modifiers from special descriptors. The same delta applies to
+  // both learning and mastering (per learn_mechanics.md § Mastery).
+  let successModifier = 0;
+  if (system.isHijutsu || collectionHas(descriptors, "Hijutsu")) successModifier += 1;
+  if (system.isKinjutsu || collectionHas(descriptors, "Kinjutsu")) successModifier += 2;
+  if (system.isCombination || collectionHas(descriptors, "Combination")) {
+    learnMod += 5;
+    successModifier -= 2;
+  }
+  successes = Math.max(1, successes + successModifier);
+
+  const rank = Math.max(1, Number(system.rank ?? 1) || 1);
+  const mastery = Math.max(0, Math.min(5, Number(system.mastery ?? 0) || 0));
+
+  return {
+    learnDC: 10 + rank + learnMod,
+    performDC: 10 + rank + performMod,
+    successes,
+    successModifier,
+    skillThreshold: Math.max(1, rank + skillMod - 3),
+    masteryPerform: MASTERY_PERFORM[mastery],
+    masteryLevel: MASTERY_LEVEL[mastery],
+    masterySaves: MASTERY_SAVES[mastery],
+  };
+}
+
 export function createTechniqueDataModel() {
   class TechniqueDataModel extends foundry.abstract.TypeDataModel {
     static defineSchema() {
@@ -410,34 +449,7 @@ export function createTechniqueDataModel() {
 
     /** Computed stats from rank + complexity. Never stored. */
     get derived() {
-      const c = COMPLEXITY_TABLE[this.complexity] ?? COMPLEXITY_TABLE["E-Class"];
-      let { learnMod, successes } = c;
-      const { skillMod, performMod } = c;
-      const descriptors = this.descriptors ?? new Set();
-
-      // Success modifiers from special descriptors. The same delta applies to
-      // both learning and mastering (per learn_mechanics.md § Mastery).
-      let successModifier = 0;
-      if (this.isHijutsu || descriptors.has("Hijutsu")) successModifier += 1;
-      if (this.isKinjutsu || descriptors.has("Kinjutsu")) successModifier += 2;
-      if (this.isCombination || descriptors.has("Combination")) {
-        learnMod += 5;
-        successModifier -= 2;
-      }
-      successes = Math.max(1, successes + successModifier);
-
-      const m = Math.max(0, Math.min(5, this.mastery ?? 0));
-
-      return {
-        learnDC: 10 + this.rank + learnMod,
-        performDC: 10 + this.rank + performMod,
-        successes,
-        successModifier,
-        skillThreshold: Math.max(1, this.rank + skillMod - 3),
-        masteryPerform: MASTERY_PERFORM[m],
-        masteryLevel: MASTERY_LEVEL[m],
-        masterySaves: MASTERY_SAVES[m],
-      };
+      return computeTechniqueDerived(this);
     }
   }
 
