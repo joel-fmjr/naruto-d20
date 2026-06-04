@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { describe, it } from "node:test";
 
 import { applyTechniqueSystemDefaults } from "../scripts/data/technique-defaults.mjs";
+import { computeTechniqueDerived } from "../scripts/data/technique-model.mjs";
 import { calculateChakraSpend, canPayChakra } from "../scripts/data/chakra-spend.mjs";
 import { diffTechnique, normalizeSystem } from "../scripts/automation/technique-sync.mjs";
 import {
@@ -91,6 +92,45 @@ describe("technique defaults", () => {
 
     assert.ok(system.descriptors instanceof Set);
     assert.deepEqual([...system.descriptors], ["Kinjutsu"]);
+  });
+});
+
+describe("technique derived calculations", () => {
+  it("computes base DCs, successes, threshold, and mastery bonuses from source fields", () => {
+    const derived = computeTechniqueDerived({
+      rank: 5,
+      complexity: "B-Class",
+      mastery: 3,
+    });
+
+    assert.equal(derived.learnDC, 19);
+    assert.equal(derived.performDC, 20);
+    assert.equal(derived.successes, 3);
+    assert.equal(derived.skillThreshold, 4);
+    assert.equal(derived.masteryPerform, 3);
+    assert.equal(derived.masteryLevel, 2);
+    assert.equal(derived.masterySaves, 2);
+  });
+
+  it("applies special descriptor modifiers without requiring a prepared TypeDataModel", () => {
+    const derived = computeTechniqueDerived({
+      rank: 4,
+      complexity: "C-Class",
+      descriptors: ["Hijutsu", "Combination"],
+    });
+
+    assert.equal(derived.learnDC, 22);
+    assert.equal(derived.successModifier, -1);
+    assert.equal(derived.successes, 1);
+  });
+
+  it("supports compact index data for browser-only threshold calculations", () => {
+    const derived = computeTechniqueDerived({
+      rank: "8",
+      complexity: "A-Class",
+    });
+
+    assert.equal(derived.skillThreshold, 8);
   });
 });
 

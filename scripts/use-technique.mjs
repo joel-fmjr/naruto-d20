@@ -23,7 +23,8 @@ export async function performTechnique(item, actionId, event = null) {
   const context = validateTechniqueUse(item, actionId);
   if (!context) return;
 
-  let { actor, actionIndex, cost } = context;
+  const { actor, actionIndex } = context;
+  let { cost } = context;
   let currentItem = item;
 
   const freeUseChoice = await resolveRankMasteryFreeUseChoice(item, actor, cost);
@@ -187,11 +188,12 @@ function promptRankMasteryFreeUse(actor, item, cost) {
 
 async function resolvePerformCheck(item, actor) {
   const sys = item.system;
+  const derived = sys.derived;
   const skillKey = DISCIPLINE_SKILL_MAP[sys.discipline];
   const skillRanks = skillKey ? (actor.system.skills?.[skillKey]?.rank ?? 0) : Infinity;
-  const threshold = sys.derived.skillThreshold;
-  const performDC = sys.derived.performDC;
-  const masteryPerform = sys.derived.masteryPerform ?? 0;
+  const threshold = derived.skillThreshold;
+  const performDC = derived.performDC;
+  const masteryPerform = derived.masteryPerform ?? 0;
   const masteryNote =
     masteryPerform > 0
       ? game.i18n.format("NarutoD20.Cards.Perform.MasteryNote", { value: masteryPerform })
