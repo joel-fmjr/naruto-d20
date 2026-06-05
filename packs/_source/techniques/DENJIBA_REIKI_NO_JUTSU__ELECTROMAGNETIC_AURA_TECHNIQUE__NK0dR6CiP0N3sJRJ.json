@@ -1,0 +1,95 @@
+{
+  "_id": "NK0dR6CiP0N3sJRJ",
+  "name": "DENJIBA REIKI NO JUTSU (ELECTROMAGNETIC AURA TECHNIQUE)",
+  "type": "naruto-d20.technique",
+  "img": "systems/pf1/icons/spells/beam-blue-1.jpg",
+  "_stats": {
+    "coreVersion": "13.350",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "system": {
+    "description": {
+      "value": "\n<p><b>Type:</b> Ninjutsu (Raiton)</p>\n<p><b>Rank:</b> 3 (Spell Level 2)</p>\n<p><b>Chakra Cost:</b> 3</p>\n\n<p><b>Learn DC:</b> 16 | <b>Successes:</b> 2</p>\n<p><b>Perform:</b> 4 | <b>Perform DC:</b> 16</p>\n\n<p><b>Components:</b> H, E</p>\n\n<hr>\n\n<p>Você foca o seu Chakra de natureza Raiton para fora do corpo, criando uma aura de eletricidade estática densa ao seu redor que atua como um escudo eletromagnético repelente. A emanação cobre todos os quadrados adjacentes a você (5 pés).</p>\n\n<p>Enquanto a técnica durar, o campo magnético resiste ativamente à passagem de metais. Qualquer ataque corpo a corpo ou à distância realizado com uma arma feita primariamente de metal (como kunais, katanas, shurikens, espadas longas, etc.) que se origine de dentro da área da aura ou que atravesse a sua aura para tentar atingi-lo sofre uma penalidade de -1 nas rolagens de ataque. Essa penalidade afeta tanto os inimigos que tentam golpeá-lo de perto, quanto a você mesmo ou aliados caso tentem realizar ataques com armas de metal de dentro da aura para fora.</p>\n\n<p>A aura é visível para aqueles que podem See Chakra e gera pequenos estalos e faíscas azuis ou douradas ao seu redor.</p>\n\n<hr><p><b>Empower:</b> Você pode gastar 2 pontos de Chakra adicionais no momento da conjuração para aumentar a repulsão magnética, aumentando a penalidade em -1 (até um máximo de penalidade de -3). O aumento no custo usando Empower não aumenta os Perform Requirements originais desta técnica.</p>\n\n",
+      "summary": "",
+      "instructions": ""
+    },
+    "discipline": "Ninjutsu",
+    "subtype": "Raiton",
+    "descriptors": [
+      "Electric"
+    ],
+    "rank": 3,
+    "complexity": "C-Class",
+    "chakraCost": 3,
+    "activation": "standard",
+    "range": "",
+    "target": "",
+    "area": "5 ft. Emanation centered on you",
+    "duration": "1r/level (D)",
+    "save": "",
+    "compHandSeals": true,
+    "compHalfSeals": false,
+    "compConcentration": false,
+    "compMobility": false,
+    "compFocus": false,
+    "compEmpower": true,
+    "compMastery": false,
+    "compPhysical": false,
+    "compXpCost": false,
+    "isHijutsu": false,
+    "isKinjutsu": false,
+    "isCombination": false,
+    "performMiscBonus": 0,
+    "active": false,
+    "changes": [],
+    "actions": [
+      {
+        "_id": "5uCpLKRmwLTkjnGr",
+        "name": "Use",
+        "actionType": "other",
+        "activation": {
+          "type": "standard",
+          "unchained": {
+            "type": "action",
+            "cost": 2
+          }
+        },
+        "duration": {
+          "units": "round",
+          "value": "@cl"
+        },
+        "area": "5 ft. Emanation centered on you",
+        "measureTemplate": {
+          "type": "circle",
+          "size": "5"
+        }
+      }
+    ],
+    "scriptCalls": [],
+    "links": {
+      "prerequisites": [],
+      "supplements": [],
+      "children": []
+    },
+    "tag": "",
+    "tags": [],
+    "flags": {
+      "boolean": {},
+      "dictionary": {}
+    },
+    "showInQuickbar": false,
+    "showInCombat": false
+  },
+  "effects": [],
+  "folder": "4sSSMumaSWg4I2km",
+  "sort": 0,
+  "ownership": {
+    "default": 0
+  },
+  "flags": {},
+  "_key": "!items!NK0dR6CiP0N3sJRJ"
+}
