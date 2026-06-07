@@ -18,8 +18,7 @@
    "img" : "systems/pf1/icons/spells/evil-eye-eerie-3.jpg",
    "name" : "Genjutsu Master",
    "ownership" : {
-      "default" : 0,
-      "vTUJ4X3yMMGO4o4P" : 3
+      "default" : 0
    },
    "sort" : 0,
    "system" : {

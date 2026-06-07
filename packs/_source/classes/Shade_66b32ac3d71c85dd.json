@@ -18,8 +18,7 @@
    "img" : "systems/pf1/icons/skills/shadow_01.jpg",
    "name" : "Shade",
    "ownership" : {
-      "default" : 0,
-      "vTUJ4X3yMMGO4o4P" : 3
+      "default" : 0
    },
    "sort" : 0,
    "system" : {
