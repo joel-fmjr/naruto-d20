@@ -421,6 +421,18 @@ Na coluna `Special`, não liste `bonus chakra` quando a mesma linha já tiver
 valor na coluna `Chakra`. O bônus é tratado como progressão mecânica da classe,
 não como feature textual separada.
 
+Para classes basic e paragon, que não têm seção `Requirements`, use:
+
+- título `# Nome da classe`;
+- seção `## Examples of ...`;
+- seção `## Class Information` com bullets para `Ability`, `Hit Die`,
+  `Action Points`, `Class Skills`, `Skill Points at First Level` e
+  `Skill Points at Each Level`;
+- tabela principal `## Table: The Nome da classe`;
+- seção `## Starting Feats`;
+- seção `## Class Features`, com talentos e listas de bonus feats em
+  subtítulos `###`.
+
 Antes de usar o gerador para um novo lote, revise no início do script:
 
 | Configuração | Finalidade |

@@ -30,7 +30,19 @@ usage(0) if $help;
 $template_path //= "$output_dir/Livewire_ywwhNtzs3fPtKfO5.json";
 
 my %fixed_ids = (
+  "Charismatic Ninja" => "wVujknVqmoenCFZF",
+  "Charismatic Paragon" => "cH5aR9iS2mT8uL4p",
+  "Dedicated Ninja" => "50NvjYGRa8eOPxue",
+  "Dedicated Paragon" => "dE6bN1qV9zX3cH7k",
+  "Fast Ninja" => "RITwQLY5KREs7VBe",
+  "Fast Paragon" => "4We55EJqStV6f09r",
   "Livewire" => "ywwhNtzs3fPtKfO5",
+  "Smart Ninja" => "qizosda9B7IhAALf",
+  "Smart Paragon" => "mA4rT8yU2iO6pS1d",
+  "Strong Ninja" => "4hLXlBfADg43MAZ0",
+  "Strong Paragon" => "sP7kR2mN8vQ4xL6a",
+  "Tough Ninja" => "QCnjlxL46CsOgu4c",
+  "Tough Paragon" => "tG9cW3hF5jK7pD2n",
 );
 
 my %icons = (
@@ -38,12 +50,18 @@ my %icons = (
   "Beastmaster" => "systems/pf1/icons/races/creature-types/animal.png",
   "Berserker" => "systems/pf1/icons/feats/extra-rage.jpg",
   "Blinkstrike" => "systems/pf1/icons/spells/haste-fire-1.jpg",
+  "Charismatic Ninja" => "systems/pf1/icons/feats/deceitful.jpg",
+  "Charismatic Paragon" => "systems/pf1/icons/feats/deceitful.jpg",
   "Commando" => "systems/pf1/icons/feats/leadership.jpg",
+  "Dedicated Ninja" => "systems/pf1/icons/feats/alertness.jpg",
+  "Dedicated Paragon" => "systems/pf1/icons/feats/alertness.jpg",
   "Devastator" => "systems/pf1/icons/spells/fireball-red-3.jpg",
   "Elementalist" => "systems/pf1/icons/races/creature-types/elemental.png",
   "Exalted One" => "systems/pf1/icons/feats/stunning-fist.jpg",
   "Exarch" => "systems/pf1/icons/spells/heal-royal-3.jpg",
   "Exemplar" => "systems/pf1/icons/items/inventory/badge-sword.jpg",
+  "Fast Ninja" => "systems/pf1/icons/feats/dodge.jpg",
+  "Fast Paragon" => "systems/pf1/icons/feats/fleet.png",
   "Gadgeteer" => "systems/pf1/icons/skills/mech_7.jpg",
   "Genjutsu Master" => "systems/pf1/icons/spells/evil-eye-eerie-3.jpg",
   "Grand Scholar" => "systems/pf1/icons/items/inventory/book-blue.jpg",
@@ -73,10 +91,14 @@ my %icons = (
   "Shinobi Swordsman" => "systems/pf1/icons/items/weapons/longsword.png",
   "Shuriken Expert" => "systems/pf1/icons/items/weapons/shuriken.png",
   "Skirmisher" => "systems/pf1/icons/feats/spring-attack.jpg",
+  "Smart Ninja" => "systems/pf1/icons/feats/scribe-scroll.jpg",
+  "Smart Paragon" => "systems/pf1/icons/feats/scribe-scroll.jpg",
   "Sohei" => "systems/pf1/icons/feats/weapon-focus.jpg",
   "Soul Edge" => "systems/pf1/icons/items/weapons/sword-bastard.PNG",
   "Specialist" => "systems/pf1/icons/items/inventory/bomb.jpg",
   "Squad Captain" => "systems/pf1/icons/items/inventory/badge-sword.jpg",
+  "Strong Ninja" => "systems/pf1/icons/feats/athletic.jpg",
+  "Strong Paragon" => "systems/pf1/icons/feats/athletic.jpg",
   "Summoner" => "systems/pf1/icons/feats/augument-summoning.jpg",
   "Swarmwrecker" => "systems/pf1/icons/feats/whirlwind-attack.jpg",
   "Sword Savant" => "systems/pf1/icons/items/weapons/sword-dueling.png",
@@ -84,6 +106,8 @@ my %icons = (
   "Takedown Specialist" => "systems/pf1/icons/feats/greater-grapple.jpg",
   "Technique Analyst" => "systems/pf1/icons/items/inventory/scroll-secret.jpg",
   "Technowarrior" => "systems/pf1/icons/skills/mech_12.jpg",
+  "Tough Ninja" => "systems/pf1/icons/feats/intimidating-prowess.jpg",
+  "Tough Paragon" => "systems/pf1/icons/feats/intimidating-prowess.jpg",
   "Wild Technician" => "systems/pf1/icons/items/inventory/essence-void.jpg",
 );
 
@@ -154,11 +178,44 @@ for my $path (@files) {
   die "Missing class skill list for $name\n" unless defined $skill_text;
 
   my ($class_kind) =
-    $markdown =~ /pertains to the \Q$name\E\s+(advanced|prestige)\s+class/i;
-  die "Missing advanced/prestige classification for $name\n" unless $class_kind;
+    $markdown =~ /pertains to the \Q$name\E\s+(advanced|prestige|basic)\s+class/i;
+  ($class_kind) =
+    $class_info =~ /pertains to the [^\n]+?\s+(advanced|prestige|basic)\s+class/i
+    unless $class_kind;
+  die "Missing advanced/prestige/basic classification for $name\n" unless $class_kind;
 
   my $table = extract_main_table($markdown, $name);
   my $levels = scalar(@{$table->{bab}});
+  my $id = $fixed_ids{$name} // substr(sha256_hex("naruto-d20 class $name"), 0, 16);
+  my $slug = $name;
+  $slug =~ s/[^A-Za-z0-9]+/_/g;
+  $slug =~ s/^_+|_+$//g;
+  my $output_path = "$output_dir/${slug}_${id}.json";
+
+  if (lc($class_kind) eq "basic" && -f $output_path) {
+    my $item = $json->decode(read_file($output_path));
+    $item->{name} = $name;
+    $item->{_id} = $id;
+    $item->{_key} = "!items!$id";
+    $item->{folder} = $folder_id;
+    $item->{img} = $icons{$name} // $item->{img};
+    $item->{system}{description} = {
+      value => markdown_to_html($markdown),
+      instructions => "",
+    };
+    my $encoded = $json->encode($item);
+    if ($check_only) {
+      if (read_file($output_path) ne $encoded) {
+        warn "Generated output differs: $output_path\n";
+        $has_differences = 1;
+      }
+    } else {
+      write_file($output_path, $encoded);
+    }
+    print "$name: $levels levels -> $output_path\n";
+    next;
+  }
+
   my $bab = identify_bab($table->{bab}, $name);
   my $saves = {
     fort => identify_save($table->{fort}, "$name Fort"),
@@ -167,12 +224,6 @@ for my $path (@files) {
   };
   my $defense_formula = identify_defense($table->{defense}, $name);
   my $chakra = extract_chakra($markdown, $name, $table);
-
-  my $id = $fixed_ids{$name} // substr(sha256_hex("naruto-d20 class $name"), 0, 16);
-  my $slug = $name;
-  $slug =~ s/[^A-Za-z0-9]+/_/g;
-  $slug =~ s/^_+|_+$//g;
-  my $output_path = "$output_dir/${slug}_${id}.json";
 
   my $item = deep_clone($template);
   $item->{name} = $name;
@@ -215,7 +266,7 @@ for my $path (@files) {
     dictionary => {},
   };
   $system->{scriptCalls} = [];
-  $system->{subType} = lc($class_kind) eq "advanced" ? "base" : "prestige";
+  $system->{subType} = lc($class_kind) eq "prestige" ? "prestige" : "base";
   $system->{level} = 1;
   $system->{hd} = 0 + $hd;
   $system->{hp} = undef;
@@ -411,6 +462,18 @@ sub identify_save {
 sub identify_defense {
   my ($values, $name) = @_;
   my @patterns = (
+    [
+      'floor((@item.level + 2) / 2) - (floor(@item.level / 6) - floor((@item.level - 1) / 6)) - (floor(@item.level / 8) - floor((@item.level - 1) / 8)) - (floor(@item.level / 10) - floor((@item.level - 1) / 10))',
+      sub {
+        my ($level) = @_;
+        return int(($level + 2) / 2)
+          - (int($level / 6) - int(($level - 1) / 6))
+          - (int($level / 8) - int(($level - 1) / 8))
+          - (int($level / 10) - int(($level - 1) / 10));
+      },
+    ],
+    ['floor(@item.level / 2) + 3', sub { int($_[0] / 2) + 3 }],
+    ['ceil((@item.level - 1) / 2) + 3', sub { int($_[0] / 2) + 3 }],
     ['floor((@item.level + 1) / 2)', sub { int(($_[0] + 1) / 2) }],
     ['floor((2 * @item.level + 2) / 3)', sub { int((2 * $_[0] + 2) / 3) }],
     ['floor((@item.level + 2) / 2)', sub { int(($_[0] + 2) / 2) }],
