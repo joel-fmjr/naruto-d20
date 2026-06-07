@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.11 - 2026-06-07
+
+- Added 29 prestige classes to the classes compendium: Beastlord, Berserker, Blinkstrike, Devastator, Elementalist, Exalted One, Exarch, Exemplar, Genjutsu Master, Interrogator, Living Puppeteer, Master Artisan, Master Strategist, Ninja Hunter, Outlaw, Pain Engine, Poisoner, Reaver, Rising Star, Sage, Shade, Skirmisher, Sohei, Summoner, Swarmwrecker, Sword Savant, Takedown Specialist, Technique Analyst, Technowarrior.
+- Added 21 advanced classes to the classes compendium: Beastmaster, Commando, Gadgeteer, Grand Scholar, Master Infiltrator, Medical Specialist, Ninja Police, Ninja Scout, Puppeteer, Sacred Fist, Shadow Hand, Sharpshooter, Shinobi Adept, Shinobi Bodyguard, Shinobi Swordsman, Shuriken Expert, Soul Edge, Specialist, Squad Captain, Taijutsu Master, Wild Technician.
+- Updated Livewire class data.
+
 ## v1.0.10 - 2026-06-06
 
 - Fixed class skills for Fast Paragon, Strong Ninja, Strong Paragon, Tough Ninja, and Tough Paragon classes.
