@@ -3,17 +3,18 @@
 ## Requirements
 
 To qualify to become a master thrower, a character must fulfill all the following criteria.
-*   **Base Attack Bonus**:  +3
-*   **Skills**:  Sleight of Hand 5 ranks.
-*   **Feats**:  Point Blank Shot, Precise Shot, Weapon Focus (any thrown weapon).
+*   **Base Attack Bonus**: +3
+*   **Skills**: Sleight of Hand 5 ranks.
+*   **Feats**: Point Blank Shot, Precise Shot, Weapon Focus (any thrown weapon).
 
 ## Class Information
 
 The following information pertains to the Master Thrower prestige class.
 
-*   **Hit Die**:  d8
-*   **Action Points**:  6 + ½ character level, rounded down. CLASS SKILLS The Master Thrower's class skills are Balance (Dex), Bluff (Cha), Chakra Control (Wis), Climb (Str), Concentration (Con), Craft (Int), Disguise (Cha), Escape Artist (Dex), Hide (Dex), Jump (Str), Move Silently (Dex), Perform (Cha), Profession (Int), Search (Int), Sleight of Hand (Dex), Spot (Wis), Swim (Str), Taijutsu (Str), Tumble (Dex).
-*   **Skill Points**:  5 + Int modifier.
+*   **Hit Die**: d8
+*   **Action Points**: 6 + ½ character level, rounded down.
+*   **Class Skills**: Balance (Dex), Bluff (Cha), Chakra Control (Wis), Climb (Str), Concentration (Con), Craft (Int), Disguise (Cha), Escape Artist (Dex), Hide (Dex), Jump (Str), Move Silently (Dex), Perform (Cha), Profession (Int), Search (Int), Sleight of Hand (Dex), Spot (Wis), Swim (Str), Taijutsu (Str), Tumble (Dex).
+*   **Skill Points at Each Level**: 5 + Int modifier.
 
 ## Table: The Master Thrower
 

@@ -3,17 +3,18 @@
 ## Requirements
 
 To qualify to become a shadow adept, a character must fulfill all the following criteria.
-*   **Skills**:  Hide 9 ranks, Move Silently 6 ranks, Ninjutsu 9 ranks.
-*   **Feats**:  Shadow Arts, Stealthy.
-*   **Special**:  Must know at least 3 shadow arts techniques, must have attained at least the third step of mastery in any shadow art technique.
+*   **Skills**: Hide 9 ranks, Move Silently 6 ranks, Ninjutsu 9 ranks.
+*   **Feats**: Shadow Arts, Stealthy.
+*   **Special**: Must know at least 3 shadow arts techniques, must have attained at least the third step of mastery in any shadow art technique.
 
 ## Class Information
 
 The following information pertains to the Shadow Adept prestige class.
 
-*   **Hit Die**:  d6
-*   **Action Points**:  7 + ½ character level, rounded down. CLASS SKILLS The Shadow Adept's class skills are Balance (Dex), Bluff (Cha), Chakra Control (Wis), Concentration (Con), Disguise (Cha), Disable Device (Int), Gather Information (Cha), Hide (Dex), Jump (Str), Knowledge (current events, ninja lore, popular culture) (Int), Listen (Wis), Move Silently (Dex), Ninjutsu (Int), Read Language (None), Search (Int), Sleight of Hand (Dex), Speak Language (None), Spot (Wis), Tumble (Dex).
-*   **Skill Points**:  5 + Int modifier.
+*   **Hit Die**: d6
+*   **Action Points**: 7 + ½ character level, rounded down.
+*   **Class Skills**: Balance (Dex), Bluff (Cha), Chakra Control (Wis), Concentration (Con), Disguise (Cha), Disable Device (Int), Gather Information (Cha), Hide (Dex), Jump (Str), Knowledge (current events, ninja lore, popular culture) (Int), Listen (Wis), Move Silently (Dex), Ninjutsu (Int), Read Language (None), Search (Int), Sleight of Hand (Dex), Speak Language (None), Spot (Wis), Tumble (Dex).
+*   **Skill Points at Each Level**: 5 + Int modifier.
 
 ## Table: The Shadow Adept
 

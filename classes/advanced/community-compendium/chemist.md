@@ -3,17 +3,18 @@
 ## Requirements
 
 To qualify to become a chemist, a character must fulfill all the following criteria.
-*   **Skills**:  Craft (Pharmaceutical) 8 ranks, Knowledge (Earth and Life Sciences) 8 ranks.
-*   **Feats**:  Craft Poisons, Craft Shinobi Drugs
-*   **Special**:  Must have crafted at least four different poisons and successfully used them.
+*   **Skills**: Craft (Pharmaceutical) 8 ranks, Knowledge (Earth and Life Sciences) 8 ranks.
+*   **Feats**: Craft Poisons, Craft Shinobi Drugs
+*   **Special**: Must have crafted at least four different poisons and successfully used them.
 
 ## Class Information
 
 The following information pertains to the Chemist prestige class.
 
-*   **Hit Die**:  d6
-*   **Action Points**:  6 + ½ character level, rounded down. CLASS SKILLS The Chemist's class skills are Balance (Dex), Chakra Control (Wis), Concentration (Con), Craft (chemical, pharmaceutical) (Int), Fuinjutsu (Int), Genjutsu (Cha), Hide (Dex), Jump (Str), Knowledge (earth and life science, current events, ninja lore, popular culture) (Int), Listen (Wis), Move Silently (Dex), Ninjutsu (Int), Profession (Wis), Read Language (None), Speak Language (None), Spot (Wis), Survival (Wis), Treat Injury (Wis), Tumble (Dex).
-*   **Skill Points**:  5 + Int modifier.
+*   **Hit Die**: d6
+*   **Action Points**: 6 + ½ character level, rounded down.
+*   **Class Skills**: Balance (Dex), Chakra Control (Wis), Concentration (Con), Craft (chemical, pharmaceutical) (Int), Fuinjutsu (Int), Genjutsu (Cha), Hide (Dex), Jump (Str), Knowledge (earth and life science, current events, ninja lore, popular culture) (Int), Listen (Wis), Move Silently (Dex), Ninjutsu (Int), Profession (Wis), Read Language (None), Speak Language (None), Spot (Wis), Survival (Wis), Treat Injury (Wis), Tumble (Dex).
+*   **Skill Points at Each Level**: 5 + Int modifier.
 
 ## Table: The Chemist
 

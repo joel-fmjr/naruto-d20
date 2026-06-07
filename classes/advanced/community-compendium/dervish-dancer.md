@@ -5,17 +5,18 @@ Wild, exotic, and as dangerous as her whirling blades, the Dervish Dancer epitom
 ## Requirements
 
 To qualify to become a dervish dancer, a character must fulfill all the following criteria.
-*   **Base Attack Bonus**:  +5
-*   **Skills**:  Perform (dance) 5 ranks, Tumble 5 ranks
-*   **Feats**:  Combat Expertise, Dodge, Weapon Focus (any slashing weapon).
+*   **Base Attack Bonus**: +5
+*   **Skills**: Perform (dance) 5 ranks, Tumble 5 ranks
+*   **Feats**: Combat Expertise, Dodge, Weapon Focus (any slashing weapon).
 
 ## Class Information
 
 The following information pertains to the Dervish Dancer prestige class.
 
-*   **Hit Die**:  d10
-*   **Action Points**:  7 + ½ character level, rounded down. CLASS SKILLS The Dervish Dancer's class skills are Balance (Dex), Chakra Control (Wis), Craft (Int), Escape Artist (Dex), Genjutsu (Cha), Jump (Str), Listen (Wis), Ninjutsu (Int), Perform (Cha), Profession (Wis), Swim (Str), Taijutsu (Str), and Tumble (Dex)
-*   **Skill Points**:  3 + Int modifier.
+*   **Hit Die**: d10
+*   **Action Points**: 7 + ½ character level, rounded down.
+*   **Class Skills**: Balance (Dex), Chakra Control (Wis), Craft (Int), Escape Artist (Dex), Genjutsu (Cha), Jump (Str), Listen (Wis), Ninjutsu (Int), Perform (Cha), Profession (Wis), Swim (Str), Taijutsu (Str), and Tumble (Dex)
+*   **Skill Points at Each Level**: 3 + Int modifier.
 
 ## Table: The Dervish Dancer
 

@@ -20,7 +20,7 @@ The following information pertains to the Sensory Shinobi prestige class.
 ## Table: The Sensory Shinobi
 
 | Level | Base Attack Bonus | Fort Save | Ref Save | Will Save | Special | Defense Bonus | Reputation Bonus | Chakra |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :---: | :---: | :---: | :---: | :--- | :---: | :---: | :---: |
 | 1st | +0 | +1 | +1 | +1 | Enhanced Sense Chakra, Ever Perceptive | +1 | +0 | +1 / +2 |
 | 2nd | +1 | +2 | +2 | +2 | Light Sleeper, Track | +2 | +0 | +2 / +4 |
 | 3rd | +2 | +2 | +2 | +2 | Ever Perceptive, Increase speed (5 feet) | +2 | +1 | +3 / +6 |

@@ -5,17 +5,18 @@ After training under self-proclaimed a Tora Sensei, some students take their rol
 ## Requirements
 
 To qualify to become a tora oshiego, a character must fulfill all the following criteria.
-*   **Base Attack Bonus**:  +4
-*   **Skills**:  Chakra Control 6 ranks, Taijutsu 6 ranks.
-*   **Special**:  Possess the technique Tora no Kougake.
+*   **Base Attack Bonus**: +4
+*   **Skills**: Chakra Control 6 ranks, Taijutsu 6 ranks.
+*   **Special**: Possess the technique Tora no Kougake.
 
 ## Class Information
 
 The following information pertains to the Tora Oshiego prestige class.
 
-*   **Hit Die**:  d8
-*   **Action Points**:  6 + ½ character level, rounded down. CLASS SKILLS The Tora Oshiego's class skills are Balance (Dex), Chakra Control (Wis), Climb (Str), Handle Animal (Cha), Hide (Dex), Intimidate (Cha), Jump (Str), Knowledge (Ninja Lore) (Int), Listen (Wis), Move Silently (Dex), Profession (Wis), Sense Motive (Wis), Spot (Wis), Survival (Wis), Taijutsu (Str), Tumble (Dex).
-*   **Skill Points**:  3 + Int modifier.
+*   **Hit Die**: d8
+*   **Action Points**: 6 + ½ character level, rounded down.
+*   **Class Skills**: Balance (Dex), Chakra Control (Wis), Climb (Str), Handle Animal (Cha), Hide (Dex), Intimidate (Cha), Jump (Str), Knowledge (Ninja Lore) (Int), Listen (Wis), Move Silently (Dex), Profession (Wis), Sense Motive (Wis), Spot (Wis), Survival (Wis), Taijutsu (Str), Tumble (Dex).
+*   **Skill Points at Each Level**: 3 + Int modifier.
 
 ## Table: The Tora Oshiego
 

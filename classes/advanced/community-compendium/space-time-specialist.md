@@ -5,17 +5,18 @@ The space-time specialist is a shinobi who is adept in the ways of space-time Ni
 ## Requirements
 
 To qualify to become a space-time specialist, a character must fulfill all the following criteria.
-*   **Skills**:  Ninjutsu 13 ranks, Knowledge (Ninja Lore) 12 ranks, Concentration 10 Ranks.
-*   **Feats**:  Retrieval Expert, Ninjutsu Adept.
-*   **Special**:  Must know at least 3 Space-Time techniques.
+*   **Skills**: Ninjutsu 13 ranks, Knowledge (Ninja Lore) 12 ranks, Concentration 10 Ranks.
+*   **Feats**: Retrieval Expert, Ninjutsu Adept.
+*   **Special**: Must know at least 3 Space-Time techniques.
 
 ## Class Information
 
 The following information pertains to the Space-Time Specialist prestige class.
 
-*   **Hit Die**:  d8
-*   **Action Points**:  7 + ½ character level, rounded down. CLASS SKILLS The Space-Time Specialist’s class skills are Balance (Dex), Bluff (Cha), Chakra Control (Wis), Concentration (Con), Craft (Calligraphy, Mechanical) (Int), Escape Artist (Dex), Hide (Dex), Jump (Str), Move Silently (Dex), Ninjutsu (Int), Sleight of Hand (Dex), Survival (Wis), Taijutsu (Str), Tumble (Dex).
-*   **Skill Points**:  5 + Int modifier.
+*   **Hit Die**: d8
+*   **Action Points**: 7 + ½ character level, rounded down.
+*   **Class Skills**: Balance (Dex), Bluff (Cha), Chakra Control (Wis), Concentration (Con), Craft (Calligraphy, Mechanical) (Int), Escape Artist (Dex), Hide (Dex), Jump (Str), Move Silently (Dex), Ninjutsu (Int), Sleight of Hand (Dex), Survival (Wis), Taijutsu (Str), Tumble (Dex).
+*   **Skill Points at Each Level**: 5 + Int modifier.
 
 ## Table: The Space-Time Specialist
 

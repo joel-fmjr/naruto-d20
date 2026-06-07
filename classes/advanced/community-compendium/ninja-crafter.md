@@ -5,16 +5,18 @@ Ninja Crafter are those who specialize in crafting specific types of items. A Ni
 ## Requirements
 
 To qualify to become a ninja crafter, a character must fulfill all the following criteria.
-*   **Base Attack Bonus**:  +2
-*   **Skills**:  Craft (calligraphy) 6 rank, Craft (chemical) 6 rank, Craft (electronic) 6 rank, Craft (mechanical) 6 ranks or Craft (structural) 6 rank.
-*   **Feats**:  Craft Armor Seals, Craft Sealed Item, Craft Poison, Craft Puppets, Craft Shinobi Drugs, or Craft Weapon Seals.
+*   **Base Attack Bonus**: +2
+*   **Skills**: Craft (calligraphy) 6 rank, Craft (chemical) 6 rank, Craft (electronic) 6 rank, Craft (mechanical) 6 ranks or Craft (structural) 6 rank.
+*   **Feats**: Craft Armor Seals, Craft Sealed Item, Craft Poison, Craft Puppets, Craft Shinobi Drugs, or Craft Weapon Seals.
 
 ## Class Information
 
 The following information pertains to the Ninja Crafter prestige class.
 
-*   **Hit Die**:  d6
-*   **Action Points**:  6 + ½ character level, rounded down. CLASS SKILLS The Ninja Crafter’s class skills are Chakra Control (Wis), Computer Use (Int), Concentration (Con), Craft (calligraphy, chemical, electronic, mechanical, structural) (Int), Demolitions (Int), Disable Device (Int), Drive (Dex), Forgery (Int), Genjutsu (Cha), Knowledge (earth and life sciences, ninja lore, physical sciences, technology) (Int), Ninjutsu (Int), Pilot (Dex), Profession (Wis), Read Language (None), Repair (Int), (Dex), Search (Int), Speak Language (None). Skills Points: 7 + Int modifier
+*   **Hit Die**: d6
+*   **Action Points**: 6 + ½ character level, rounded down.
+*   **Class Skills**: Chakra Control (Wis), Computer Use (Int), Concentration (Con), Craft (calligraphy, chemical, electronic, mechanical, structural) (Int), Demolitions (Int), Disable Device (Int), Drive (Dex), Forgery (Int), Genjutsu (Cha), Knowledge (earth and life sciences, ninja lore, physical sciences, technology) (Int), Ninjutsu (Int), Pilot (Dex), Profession (Wis), Read Language (None), Repair (Int), (Dex), Search (Int), Speak Language (None).
+*   **Skill Points at Each Level**: 7 + Int modifier.
 
 ## Table: The Ninja Crafter
 
@@ -36,10 +38,4 @@ Choose one of the following Talents. A Talent cannot be chosen twice unless spec
 
 ### Bonus Feats
 
-Choose a feat from among the following, for which you must meet any prerequisites: Builder, Cautious, Combat Expertise, Craft Human Puppets, Craft Poison, Craft Puppets, Craft Advanced Weapon Seals, Craft Greater Weapon Seals, Craft Minor Weapon Seals, Chuunin, Gearhead, Genin, Jounin, Mastercrafter, Meticulous, Scribe Chakra Symbols. TABLE: THE NINJA CRAFTER
-
-### Level Bab Fort Ref Will Special
-
-### Def Rep
-
-1st +0 +1 +1 +1 Iron Gut +2, Chakra Infusion +1 +1 2nd +1 +2 +2 +2 Sneak Attack +1d6, Soul Food +1 +1 +1 3rd +1 +2 +2 +2 Iron Gut +4, Chakra Infusion +2 +1 4th +2 +2 +2 +2 Soul Food +2, Bonus Feat +2 +2 5th +2 +3 +3 +3 Iron Gut +6, Chakra Infusion +3 +2 6th +3 +3 +3 +3 Sneak Attack + 2d6, Soul Food +3 +3 +3 7th +3 +3 +3 +3 Iron Gut +8, Chakra Infusion +4 +3 8th +4 +4 +4 +4 Soul Food +4, Bonus Feat +4 +3 9th +4 +4 +4 +4 Iron Gut +10, Chakra Infusion +5 +4 10th +5 +5 +5 +5 Sneak Attack +3d6, Soul Food +5 +5 +4
+Choose a feat from among the following, for which you must meet any prerequisites: Builder, Cautious, Combat Expertise, Craft Human Puppets, Craft Poison, Craft Puppets, Craft Advanced Weapon Seals, Craft Greater Weapon Seals, Craft Minor Weapon Seals, Chuunin, Gearhead, Genin, Jounin, Mastercrafter, Meticulous, Scribe Chakra Symbols.

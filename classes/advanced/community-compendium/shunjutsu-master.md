@@ -5,18 +5,19 @@ The character has adapted to Shunjutsu so well that he is almost ethereal. Shino
 ## Requirements
 
 To qualify to become a shunjutsu master, a character must fulfill all the following criteria.
-*   **Base Attack Bonus**:  +5
-*   **Skills**:  Move Silently 9 ranks, Ninjutsu 13 ranks, Tumble 9 ranks.
-*   **Feats**:  Dodge, Mobility, Agile Riposte
-*   **Special**:  Must have achieved at least 5th step of mastery in Shunshin no Jutsu and Shunpo. technique are automatically met and performing the technique does not provoke an attack of opportunity. This enables the Shunjutsu Master to take other actions, even performing a second technique, in the same round as he performed a quickened technique. The Shunjutsu Master can only gain one quickened action per round, no matter the type (see Basic Game Mechanics for rules on Quickened Actions).
+*   **Base Attack Bonus**: +5
+*   **Skills**: Move Silently 9 ranks, Ninjutsu 13 ranks, Tumble 9 ranks.
+*   **Feats**: Dodge, Mobility, Agile Riposte
+*   **Special**: Must have achieved at least 5th step of mastery in Shunshin no Jutsu and Shunpo. technique are automatically met and performing the technique does not provoke an attack of opportunity. This enables the Shunjutsu Master to take other actions, even performing a second technique, in the same round as he performed a quickened technique. The Shunjutsu Master can only gain one quickened action per round, no matter the type (see Basic Game Mechanics for rules on Quickened Actions).
 
 ## Class Information
 
 The following information pertains to the Shunjutsu Master prestige class.
 
-*   **Hit Die**:  d8
-*   **Action Points**:  7 + ½ character level, rounded down. CLASS SKILLS The Shunjutsu Master's class skills are Balance (Dex), Chakra Control (Wis), Hide (Dex), Jump (Str), Knowledge (current events, ninja lore, popular culture, tactics) (Int), Move Silently (Dex), Ninjutsu (Int), Read Language (none), Speak Language (none), Spot (Wis), Taijutsu (Str), Tumble (Dex).
-*   **Skill Points**:  3 + Int modifier.
+*   **Hit Die**: d8
+*   **Action Points**: 7 + ½ character level, rounded down.
+*   **Class Skills**: Balance (Dex), Chakra Control (Wis), Hide (Dex), Jump (Str), Knowledge (current events, ninja lore, popular culture, tactics) (Int), Move Silently (Dex), Ninjutsu (Int), Read Language (none), Speak Language (none), Spot (Wis), Taijutsu (Str), Tumble (Dex).
+*   **Skill Points at Each Level**: 3 + Int modifier.
 
 ## Table: The Shunjutsu Master
 

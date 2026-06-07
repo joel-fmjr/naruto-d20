@@ -5,18 +5,19 @@ The Chakra Fighter is a shinobi who utilizes chakra control to enhance their Tai
 ## Requirements
 
 To qualify to become a chakra fighter, a character must fulfill all the following criteria.
-*   **Base Attack Bonus**:  +4
-*   **Skills**:  Chakra Control and Taijutsu 6 ranks.
-*   **Feats**:  Taijutsu Adept, Combat Martial Arts and Harmony.
-*   **Special**:  None
+*   **Base Attack Bonus**: +4
+*   **Skills**: Chakra Control and Taijutsu 6 ranks.
+*   **Feats**: Taijutsu Adept, Combat Martial Arts and Harmony.
+*   **Special**: None
 
 ## Class Information
 
 The following information pertains to the Chakra Fighter prestige class.
 
-*   **Hit Die**:  d8
-*   **Action Points**:  6 + ½ character level, rounded down. Class Skills The Chakra Fighter's class skills are Balance (Dex), Chakra Control (Wis), Concentration (Con), Climb (Str), Jump (Str), Listen, (Wis), Profession (Wis), Spot (Wis), Survival (Wis), Swim (Str), Taijutsu (Str), Tumble (Dex).
-*   **Skill Points**:  5 + Int modifier.
+*   **Hit Die**: d8
+*   **Action Points**: 6 + ½ character level, rounded down.
+*   **Class Skills**: Balance (Dex), Chakra Control (Wis), Concentration (Con), Climb (Str), Jump (Str), Listen, (Wis), Profession (Wis), Spot (Wis), Survival (Wis), Swim (Str), Taijutsu (Str), Tumble (Dex).
+*   **Skill Points at Each Level**: 5 + Int modifier.
 
 ## Table: The Chakra Fighter
 

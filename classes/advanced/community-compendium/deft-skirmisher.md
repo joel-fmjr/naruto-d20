@@ -3,16 +3,17 @@
 ## Requirements
 
 To qualify to become a deft skirmisher, a character must fulfill all the following criteria.
-*   **Base Attack Bonus**:  +2
-*   **Skills**:  Balance 3 ranks, Taijutsu 6 ranks, Tumble 6 ranks Feat: Weapon Finesse
+*   **Base Attack Bonus**: +2
+*   **Skills**: Balance 3 ranks, Taijutsu 6 ranks, Tumble 6 ranks Feat: Weapon Finesse
 
 ## Class Information
 
 The following information pertains to the Deft Skirmisher prestige class.
 
-*   **Hit Die**:  d8
-*   **Action Points**:  6 + 1/2 character level, rounded down CLASS SKILLS The Deft Skirmisher's class skills are Balance (Dex), Chakra Control (Wis), Concentration (Con), Disable Device (Int), Gather Information (Cha), Hide (Dex), Jump (Str), Knowledge (Tactics), Listen (Wis), Move Silently (Dex), Ninjutsu (Int), Profession (Wis), Read Language (None), Ride (Dex), Search (Int), Sleight of Hand (Dex), Speak Language (None), Spot (Wis), Survival (Wis), Taijutsu (Str), Tumble (Dex).
-*   **Skill Points**:  5 + Int modifier.
+*   **Hit Die**: d8
+*   **Action Points**: 6 + 1/2 character level, rounded down
+*   **Class Skills**: Balance (Dex), Chakra Control (Wis), Concentration (Con), Disable Device (Int), Gather Information (Cha), Hide (Dex), Jump (Str), Knowledge (Tactics), Listen (Wis), Move Silently (Dex), Ninjutsu (Int), Profession (Wis), Read Language (None), Ride (Dex), Search (Int), Sleight of Hand (Dex), Speak Language (None), Spot (Wis), Survival (Wis), Taijutsu (Str), Tumble (Dex).
+*   **Skill Points at Each Level**: 5 + Int modifier.
 
 ## Table: The Deft Skirmisher
 

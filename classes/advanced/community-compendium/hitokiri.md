@@ -3,18 +3,19 @@
 ## Requirements
 
 To qualify to become a hitokiri, a character must fulfill all the following criteria.
-*   **Base Attack Bonus**:  +6
-*   **Skills**:  Taijutsu 9 ranks
-*   **Feats**:  Power Attack
-*   **Special**:  Must have killed someone for money.
+*   **Base Attack Bonus**: +6
+*   **Skills**: Taijutsu 9 ranks
+*   **Feats**: Power Attack
+*   **Special**: Must have killed someone for money.
 
 ## Class Information
 
 The following information pertains to the Hitokiri prestige class.
 
-*   **Hit Die**:  d8
-*   **Action Points**:  7 + ½ character level, rounded down. CLASS SKILLS The Hitokiri's class skills are Balance (Dex), Bluff (Cha), Chakra Control (Wis), Climb (Str), Craft (Int), Diplomacy (Cha), Escape Artist (Dex), Genjutsu (Cha), Iaijutsu Focus (Cha), Jump (Str), Ninjutsu (Int), Perform (Cha), Profession (Wis), Ride (Dex), Sense Motive (Wis), Taijutsu (Str), and Tumble (Dex).
-*   **Skill Points**:  3 + Int modifier.
+*   **Hit Die**: d8
+*   **Action Points**: 7 + ½ character level, rounded down.
+*   **Class Skills**: Balance (Dex), Bluff (Cha), Chakra Control (Wis), Climb (Str), Craft (Int), Diplomacy (Cha), Escape Artist (Dex), Genjutsu (Cha), Iaijutsu Focus (Cha), Jump (Str), Ninjutsu (Int), Perform (Cha), Profession (Wis), Ride (Dex), Sense Motive (Wis), Taijutsu (Str), and Tumble (Dex).
+*   **Skill Points at Each Level**: 3 + Int modifier.
 
 ## Table: The Hitokiri
 

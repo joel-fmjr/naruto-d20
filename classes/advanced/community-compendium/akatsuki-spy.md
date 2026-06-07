@@ -5,17 +5,18 @@ Akatsuki is an elite organization formed and lead by a group of S criminals. The
 ## Requirements
 
 To qualify to become a akatsuki spy, a character must fulfill all the following criteria.
-*   **Skills**:  Bluff 6 Ranks, Ninjutsu 6 ranks, Gather Information 6 Ranks.
-*   **Feats**:  Deceptive.
-*   **Special**:  Must swear allegiance to one of the nine Akatsuki members.
+*   **Skills**: Bluff 6 Ranks, Ninjutsu 6 ranks, Gather Information 6 Ranks.
+*   **Feats**: Deceptive.
+*   **Special**: Must swear allegiance to one of the nine Akatsuki members.
 
 ## Class Information
 
 The following information pertains to the Akatsuki Spy prestige class.
 
-*   **Hit Die**:  d6
-*   **Action Points**:  6 + ½ character level, rounded down. CLASS SKILLS The Akatsuki Spy's class skills are Balance (Dex), Bluff (Cha), Chakra Control (Wis), Craft (Chemical, Pharmaceutical) (Int), Gather Information (Cha), Genjutsu (Cha), Hide (Dex), Intimidate (Cha), Investigate (Int), Jump (Str), Knowledge (Behavioral Science, Civics, Ninja Lore, Popular Culture, Streetwise) (Int), Listen (Wis), Move Silently (Dex), Ninjutsu (Int), Research (Int), Sleight of Hands (Dex), Spot (Wis), Tumble (Dex).
-*   **Skill Points**:  7 + Int modifier.
+*   **Hit Die**: d6
+*   **Action Points**: 6 + ½ character level, rounded down.
+*   **Class Skills**: Balance (Dex), Bluff (Cha), Chakra Control (Wis), Craft (Chemical, Pharmaceutical) (Int), Gather Information (Cha), Genjutsu (Cha), Hide (Dex), Intimidate (Cha), Investigate (Int), Jump (Str), Knowledge (Behavioral Science, Civics, Ninja Lore, Popular Culture, Streetwise) (Int), Listen (Wis), Move Silently (Dex), Ninjutsu (Int), Research (Int), Sleight of Hands (Dex), Spot (Wis), Tumble (Dex).
+*   **Skill Points at Each Level**: 7 + Int modifier.
 
 ## Table: The Akatsuki Spy
 

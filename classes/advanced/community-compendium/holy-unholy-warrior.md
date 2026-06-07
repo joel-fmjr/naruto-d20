@@ -5,18 +5,19 @@ The fastest path into this prestige class is from the Strong and Fast hero basic
 ## Requirements
 
 To qualify to become a holy/unholy warrior, a character must fulfill all the following criteria.
-*   **Base Attack Bonus**:  +8
-*   **Skills**:  Diplomacy 9 ranks, Gather Information 9 ranks, Knowledge (any one) 9 ranks.
-*   **Feats**:  Weapon Focus in a melee weapon.
-*   **Special**:  At the time that the character receives his first level in the Holy/Unholy Warrior prestige class, he must decide whether his faith leans toward the positive (good) or negative (evil) universe. This choice adds either the good or evil allegiance to the character, and determines how the Holy/Unholy Warrior uses certain aspects of his faith.
+*   **Base Attack Bonus**: +8
+*   **Skills**: Diplomacy 9 ranks, Gather Information 9 ranks, Knowledge (any one) 9 ranks.
+*   **Feats**: Weapon Focus in a melee weapon.
+*   **Special**: At the time that the character receives his first level in the Holy/Unholy Warrior prestige class, he must decide whether his faith leans toward the positive (good) or negative (evil) universe. This choice adds either the good or evil allegiance to the character, and determines how the Holy/Unholy Warrior uses certain aspects of his faith.
 
 ## Class Information
 
 The following information pertains to the Holy/Unholy Warrior prestige class.
 
-*   **Hit Die**:  d10
-*   **Action Points**:  7 + ½ character level, rounded down. CLASS SKILLS The Holy/Unholy Warrior's class skills are Chakra Control (Wis), Climb (Str), Concentration (Con), Diplomacy (Cha), Handle Animal (Cha), Intimidate (Cha), Jump (Str), Knowledge (arcane lore, current events, history, ninja lore, tactics, theology and philosophy) (Int), Ninjutsu (Int), Profession (Wis), Read/Write Language (none), Ride (Dex), Sense Motive (Wis), Speak Language (none), Taijutsu (Str), Treat Injury (Wis).
-*   **Skill Points**:  5 + Int modifier.
+*   **Hit Die**: d10
+*   **Action Points**: 7 + ½ character level, rounded down.
+*   **Class Skills**: Chakra Control (Wis), Climb (Str), Concentration (Con), Diplomacy (Cha), Handle Animal (Cha), Intimidate (Cha), Jump (Str), Knowledge (arcane lore, current events, history, ninja lore, tactics, theology and philosophy) (Int), Ninjutsu (Int), Profession (Wis), Read/Write Language (none), Ride (Dex), Sense Motive (Wis), Speak Language (none), Taijutsu (Str), Treat Injury (Wis).
+*   **Skill Points at Each Level**: 5 + Int modifier.
 
 ## Table: The Holy/Unholy Warrior
 

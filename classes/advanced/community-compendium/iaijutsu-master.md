@@ -5,17 +5,18 @@ Iaijutsu is the martial art of drawing a weapon (almost always a katana) and att
 ## Requirements
 
 To qualify to become a iaijutsu master, a character must fulfill all the following criteria.
-*   **Base Attack Bonus**:  +3
-*   **Skills**:  Iaijutsu Focus 5 ranks.
-*   **Feats**:  Improved Initiative, Quick Draw, Weapon Focus (katana)
+*   **Base Attack Bonus**: +3
+*   **Skills**: Iaijutsu Focus 5 ranks.
+*   **Feats**: Improved Initiative, Quick Draw, Weapon Focus (katana)
 
 ## Class Information
 
 The following information pertains to the Iaijutsu Master prestige class.
 
-*   **Hit Die**:  d10
-*   **Action Points**:  6 + ½ character level, rounded down. CLASS SKILLS The Iaijutsu Master's class skills are Balance (Dex), Bluff (Cha), Chakra Control (Wis), Climb (Str), Craft (Int), Diplomacy (Cha), Escape Artist (Dex), Genjutsu (Cha), Iaijutsu Focus (Cha), Jump (Str), Ninjutsu (Int), Perform (Cha), Profession (Wis), Ride (Dex), Sense Motive (Wis), Taijutsu (Str), and Tumble (Dex).
-*   **Skill Points**:  3 + Int modifier.
+*   **Hit Die**: d10
+*   **Action Points**: 6 + ½ character level, rounded down.
+*   **Class Skills**: Balance (Dex), Bluff (Cha), Chakra Control (Wis), Climb (Str), Craft (Int), Diplomacy (Cha), Escape Artist (Dex), Genjutsu (Cha), Iaijutsu Focus (Cha), Jump (Str), Ninjutsu (Int), Perform (Cha), Profession (Wis), Ride (Dex), Sense Motive (Wis), Taijutsu (Str), and Tumble (Dex).
+*   **Skill Points at Each Level**: 3 + Int modifier.
 
 ## Table: The Iaijutsu Master
 

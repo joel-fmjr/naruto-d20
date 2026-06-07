@@ -5,17 +5,18 @@ The Ryukyu Islands harbour the fugitives and lowlife criminals that once plagued
 ## Requirements
 
 To qualify to become a ryukyu swordsman, a character must fulfill all the following criteria.
-*   **Base Attack Bonus**:  +7 Saves: Reflex +5
-*   **Skills**:  Bluff 10 ranks, Survival 10 ranks, Taijutsu 12 ranks.
-*   **Special**:  Must be proficient in his chosen weapon. Must know at least 4 Strike or Stance Taijutsu techniques.
+*   **Base Attack Bonus**: +7 Saves: Reflex +5
+*   **Skills**: Bluff 10 ranks, Survival 10 ranks, Taijutsu 12 ranks.
+*   **Special**: Must be proficient in his chosen weapon. Must know at least 4 Strike or Stance Taijutsu techniques.
 
 ## Class Information
 
 The following information pertains to the Ryukyu Swordsman prestige class.
 
-*   **Hit Die**:  d8
-*   **Action Points**:  7 + ½ character level, rounded down. CLASS SKILLS The Ryukyu Swordsman's class skills are Bluff (Cha), Climb (Str), Hide (Dex), Iaijutsu Focus (Cha), Jump (Str), Knowledge (Streetwise) (Int), Listen (Wis), Move Silently (Dex), Ride (Dex), Sleight of Hands (Dex), Speak Language (None), Spot (Wis), Survival (Wis), Swim (Str), Taijutsu (Str), and Tumble (Dex).
-*   **Skill Points**:  3 + Int modifier.
+*   **Hit Die**: d8
+*   **Action Points**: 7 + ½ character level, rounded down.
+*   **Class Skills**: Bluff (Cha), Climb (Str), Hide (Dex), Iaijutsu Focus (Cha), Jump (Str), Knowledge (Streetwise) (Int), Listen (Wis), Move Silently (Dex), Ride (Dex), Sleight of Hands (Dex), Speak Language (None), Spot (Wis), Survival (Wis), Swim (Str), Taijutsu (Str), and Tumble (Dex).
+*   **Skill Points at Each Level**: 3 + Int modifier.
 
 ## Table: The Ryukyu Swordsman
 

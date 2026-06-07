@@ -19,7 +19,7 @@ The following information pertains to the Ninja Chef prestige class.
 ## Table: The Ninja Chef
 
 | Level | Base Attack Bonus | Fort Save | Ref Save | Will Save | Special | Defense Bonus | Reputation Bonus |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :---: | :---: | :---: | :---: | :--- | :---: | :---: |
 | 1st | +0 | +1 | +1 | +1 | Iron Gut +2, Chakra Infusion | +1 | +1 |
 | 2nd | +1 | +2 | +2 | +2 | Sneak Attack +1d6, Soul Food +1 | +1 | +1 |
 | 3rd | +1 | +2 | +2 | +2 | Iron Gut +4, Chakra Infusion | +2 | +1 |
@@ -36,7 +36,7 @@ The following information pertains to the Ninja Chef prestige class.
 The following features pertain to the Ninja Chef prestige class.
 
 ### Chakra Infusion (Su)
-Chakra Infusions remain stable for 10 minutes, after which the sealed chakra is released and the food becomes an ordinary, if savory dish. 
+Chakra Infusions remain stable for 10 minutes, after which the sealed chakra is released and the food becomes an ordinary, if savory dish.
 
 *   **Chakra Restoration**: Food created by the Ninja Chef restores 10 points of Chakra. Can be empowered to increase Chakra restored by 5 points per extra Meta-Chakra Charge.
 *   **Health Restoration**: Food created by the Ninja Chef restores 10 points of Health. Can be empowered to increase Health restored by 5 points per extra Meta-Chakra Charge.

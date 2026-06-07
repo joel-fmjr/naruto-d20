@@ -5,17 +5,18 @@ This kind of shinobi excels at using the Kuchiyose no Jutsu, a famous technique 
 ## Requirements
 
 To qualify to become a specialist summoner, a character must fulfill all the following criteria.
-*   **Skills**:  Ninjutsu 6 Ranks
-*   **Feats**:  Blood Pact
-*   **Special**:  The character must have achieved at least the first stage of mastery with Kuchiyose no Jutsu.
+*   **Skills**: Ninjutsu 6 Ranks
+*   **Feats**: Blood Pact
+*   **Special**: The character must have achieved at least the first stage of mastery with Kuchiyose no Jutsu.
 
 ## Class Information
 
 The following information pertains to the Specialist Summoner prestige class.
 
-*   **Hit Die**:  d6
-*   **Action Points**:  6 + ½ character level, rounded down. CLASS SKILLS The Specialist Summoner's class skills are Chakra Control (Wis), Concentration (Con), Craft (calligraphy) (Int), Diplomacy (Cha), Knowledge (ninja lore, theology and philosophy) (Int), Listen (Wis), Ninjutsu (Int), Profession (Wis), Search (Int), Spot (Wis).
-*   **Skill Points**:  5 + Int modifier.
+*   **Hit Die**: d6
+*   **Action Points**: 6 + ½ character level, rounded down.
+*   **Class Skills**: Chakra Control (Wis), Concentration (Con), Craft (calligraphy) (Int), Diplomacy (Cha), Knowledge (ninja lore, theology and philosophy) (Int), Listen (Wis), Ninjutsu (Int), Profession (Wis), Search (Int), Spot (Wis).
+*   **Skill Points at Each Level**: 5 + Int modifier.
 
 ## Table: The Specialist Summoner
 

@@ -22,7 +22,7 @@ The following information pertains to the Sword Saint prestige class.
 ## Table: The Sword Saint
 
 | Level | Base Attack Bonus | Fort Save | Ref Save | Will Save | Special | Defense Bonus | Reputation Bonus | Chakra |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| :--- | :---: | :---: | :---: | :---: | :--- | :---: | :---: | :---: |
 | 1st | +1 | +0 | +1 | +1 | Saint’s Blessing (+1) | +1 | +0 | +1 / +2 |
 | 2nd | +2 | +0 | +2 | +2 | Saint’s Fury | +2 | +0 | +2 / +4 |
 | 3rd | +3 | +1 | +2 | +2 | Saint’s Blessing (+2), Saint’s Conviction (+1) | +2 | +1 | +3 / +6 |
@@ -36,7 +36,7 @@ The following information pertains to the Sword Saint prestige class.
 The following features pertain to the Sword Saint prestige class.
 
 ### Saint's Blessing
-As the sword saint's skill in Taijutsu grows, so does her skill in Ninjutsu. The sword saint gains the ability to use freely ignore the hand-seal or half-seal requirement of an elemental Ninjutsu technique by swinging her weapon toward the targeted area. A Sword Saint may only ignore the hand-seal or half-seal requirement of a technique that matches the elemental of her Elemental Specialization ability. 
+As the sword saint's skill in Taijutsu grows, so does her skill in Ninjutsu. The sword saint gains the ability to use freely ignore the hand-seal or half-seal requirement of an elemental Ninjutsu technique by swinging her weapon toward the targeted area. A Sword Saint may only ignore the hand-seal or half-seal requirement of a technique that matches the elemental of her Elemental Specialization ability.
 
 To ignore the hand-seal or half-seal requirement of a technique the sword saint must be able to perform the technique purely with her skill threshold. If a sword saint must roll her Ninjutsu skill in order to perform the technique, then she may not ignore the hand-seal or half-seal requirements. Using a technique with this method does not provoke an Attack of Opportunity when threatened.
 

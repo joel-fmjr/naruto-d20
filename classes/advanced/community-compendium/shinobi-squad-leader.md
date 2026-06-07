@@ -5,15 +5,17 @@ Squad leaders are shinobi that are experts on leading and coordinating shinobi g
 ## Requirements
 
 To qualify to become a shinobi squad leader, a character must fulfill all the following criteria.
-*   **Skills**:  Bluff 6 ranks or Diplomacy 6 ranks, Knowledge (Tactics) 6 ranks.
-*   **Feats**:  Chuunin, Cell Leader
+*   **Skills**: Bluff 6 ranks or Diplomacy 6 ranks, Knowledge (Tactics) 6 ranks.
+*   **Feats**: Chuunin, Cell Leader
 
 ## Class Information
 
 The following information pertains to the Shinobi Squad Leader prestige class.
 
-*   **Hit Die**:  d8
-*   **Action Points**:  6 + ½ character level, rounded down. CLASS SKILLS The Shinobi Squad Leader's class skills are Bluff (Cha), Chakra Control (Wis), Concentration (Con), Diplomacy (Cha), Genjutsu (Cha), Hide (Dex), Intimidate (Cha), Investigate (Wis), Knowledge (current events, ninja lore, popular culture, streetwise, tactics) (Int), Listen (Wis), Ninjutsu (Int), Move Silently (Dex), Sense Motive (Cha), Speak Language (None), Spot (Wis), Survival (Wis), Treat Injury (Wis). Skill Points at Each Level: 5 + Int modifier.
+*   **Hit Die**: d8
+*   **Action Points**: 6 + ½ character level, rounded down.
+*   **Class Skills**: Bluff (Cha), Chakra Control (Wis), Concentration (Con), Diplomacy (Cha), Genjutsu (Cha), Hide (Dex), Intimidate (Cha), Investigate (Wis), Knowledge (current events, ninja lore, popular culture, streetwise, tactics) (Int), Listen (Wis), Ninjutsu (Int), Move Silently (Dex), Sense Motive (Cha), Speak Language (None), Spot (Wis), Survival (Wis), Treat Injury (Wis).
+*   **Skill Points at Each Level**: 5 + Int modifier.
 
 ## Table: The Shinobi Squad Leader
 

@@ -5,17 +5,18 @@ The Elemental Master is an authority on elemental jutsus. Their prowess enables 
 ## Requirements
 
 To qualify to become a elemental master, a character must fulfill all the following criteria.
-*   **Skills**:  Ninjutsu 15 ranks, Chakra Control 15 ranks
-*   **Feats**:  Ninjutsu Adept
-*   **Special**:  You may only take levels in your Affinity. Must know at least 7 Ninjutsu techniques of their Affinity.
+*   **Skills**: Ninjutsu 15 ranks, Chakra Control 15 ranks
+*   **Feats**: Ninjutsu Adept
+*   **Special**: You may only take levels in your Affinity. Must know at least 7 Ninjutsu techniques of their Affinity.
 
 ## Class Information
 
 The following information pertains to the Elemental Master prestige class.
 
-*   **Hit Die**:  d6
-*   **Action Points**:  7 + ½ character levels, rounded down. CLASS SKILLS The Elemental Master's class skills Balance (Dex), Chakra Control (Wis), Concentration (Con), Craft (chemical) (Int), Hide (Dex), Knowledge (current events, history, ninja lore, physical science, popular culture) (Int), Listen (Wis), Move Silently (Dex), Ninjutsu (Int), Profession (Wis), Read Language (None), Search (Int), Speak Language (None), Spot (Wis), Tumble (Dex).
-*   **Skill Points**:  5 + Int modifier.
+*   **Hit Die**: d6
+*   **Action Points**: 7 + ½ character levels, rounded down.
+*   **Class Skills**: Balance (Dex), Chakra Control (Wis), Concentration (Con), Craft (chemical) (Int), Hide (Dex), Knowledge (current events, history, ninja lore, physical science, popular culture) (Int), Listen (Wis), Move Silently (Dex), Ninjutsu (Int), Profession (Wis), Read Language (None), Search (Int), Speak Language (None), Spot (Wis), Tumble (Dex).
+*   **Skill Points at Each Level**: 5 + Int modifier.
 
 ## Table: The Elemental Master
 

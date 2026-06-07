@@ -3,17 +3,18 @@
 ## Requirements
 
 To qualify to become a beast tamer, a character must fulfill all the following criteria.
-*   **Base Attack Bonus**:  +2
-*   **Skills**:  Handle Animal 6 ranks, Survival 6 ranks, Treat Injury 6
-*   **Feats**:  Moujuu Aishou
+*   **Base Attack Bonus**: +2
+*   **Skills**: Handle Animal 6 ranks, Survival 6 ranks, Treat Injury 6
+*   **Feats**: Moujuu Aishou
 
 ## Class Information
 
 The following information pertains to the Beast Tamer prestige class.
 
-*   **Hit Die**:  d8
-*   **Action Points**:  6 + ½ character level, rounded down. CLASS SKILLS The Beast Tamer's class skills are Balance (Dex), Climb (Str), Handle Animal (Cha), Hide (Dex), Intimidate (Cha), Jump (Str), Listen (Wis), Move Silently (Dex), Profession (Wis), Spot (Wis), Survival (Wis), Swim (Str), Taijutsu (Str), Treat Injury (Wis), Tumble (Dex).
-*   **Skill Points**:  5 + Int modifier.
+*   **Hit Die**: d8
+*   **Action Points**: 6 + ½ character level, rounded down.
+*   **Class Skills**: Balance (Dex), Climb (Str), Handle Animal (Cha), Hide (Dex), Intimidate (Cha), Jump (Str), Listen (Wis), Move Silently (Dex), Profession (Wis), Spot (Wis), Survival (Wis), Swim (Str), Taijutsu (Str), Treat Injury (Wis), Tumble (Dex).
+*   **Skill Points at Each Level**: 5 + Int modifier.
 
 ## Table: The Beast Tamer
 
