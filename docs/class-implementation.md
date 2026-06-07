@@ -178,6 +178,92 @@ As chaves curtas são as que afetam efetivamente a ficha. Alguns sources antigos
 contêm aliases descritivos ou resíduos como `newSkill`; não replique essas
 chaves em conteúdo novo sem uma necessidade comprovada.
 
+### Conversão de skills do D20 Modern
+
+Os livros Naruto d20 usam a lista de skills do D20 Modern. Converta os nomes
+para PF1e antes de preencher `system.classSkills`:
+
+| D20 Modern | PF1e |
+|---|---|
+| Balance | Acrobatics |
+| Bluff | Bluff |
+| Climb | Climb |
+| Concentration | Chakra Control |
+| Craft | Craft, preservando as categorias descritas |
+| Decipher Script | Linguistics |
+| Demolitions | Disable Device e Craft (Explosives) |
+| Diplomacy | Diplomacy |
+| Disable Device | Disable Device |
+| Disguise | Disguise |
+| Drive | Ride |
+| Escape Artist | Escape Artist |
+| Forgery | Linguistics |
+| Gamble | Profession (Gambler) ou Perform |
+| Gather Information | Diplomacy ou Knowledge (Local) |
+| Handle Animal | Handle Animal |
+| Hide | Stealth |
+| Intimidate | Intimidate |
+| Investigate | Perception |
+| Jump | Acrobatics |
+| Knowledge (Ninja Lore) | Knowledge (Arcana) |
+| Knowledge (Arcane Lore) | Knowledge (Arcana) |
+| Knowledge (Art) | Knowledge (History) |
+| Knowledge (Behavioral Sciences) | Sense Motive |
+| Knowledge (Business) | Profession |
+| Knowledge (Civics) | Knowledge (Nobility) |
+| Knowledge (Current Events) | Knowledge (Local) |
+| Knowledge (Earth and Life Sciences) | Knowledge (Nature) |
+| Knowledge (History) | Knowledge (History) |
+| Knowledge (Physical Sciences) | Knowledge (Engineering) |
+| Knowledge (Popular Culture) | Knowledge (Local) |
+| Knowledge (Shadowlands) | Knowledge (Dungeoneering) |
+| Knowledge (Streetwise) | Knowledge (Local) |
+| Knowledge (Tactics) | Knowledge (Arcana) |
+| Listen | Perception |
+| Move Silently | Stealth |
+| Navigate | Survival |
+| Perform | Perform |
+| Pilot | Ride ou Profession |
+| Profession | Profession |
+| Read/Write Language | Linguistics |
+| Repair | Craft |
+| Research | Linguistics |
+| Ride | Ride |
+| Search | Perception |
+| Sense Motive | Sense Motive |
+| Sleight of Hand | Sleight of Hand |
+| Speak Language | Linguistics |
+| Spot | Perception |
+| Survival | Survival |
+| Swim | Swim |
+| Treat Injury | Heal |
+| Tumble | Acrobatics |
+| Use Computer | Craft ou Knowledge (Engineering) |
+| Use Rope | Escape Artist ou Survival |
+
+Ao aplicar a tabela:
+
+- Normalize singular, plural e erros tipográficos evidentes, como
+  `Sleight of Hands`, antes da conversão.
+- Trate `Read Language` como `Read/Write Language`.
+- Quando a tabela oferece duas conversões unidas por `e` ou `ou`, marque ambas
+  como class skills. Não escolha silenciosamente uma delas.
+- Quando skills diferentes convergem para a mesma skill PF1e, registre apenas a
+  chave PF1e resultante.
+- Para `Knowledge (all skills)`, habilite somente as categorias PF1e alcançadas
+  pelas conversões explícitas acima. Não marque toda skill de Knowledge do
+  sistema.
+- Categorias sem conversão definida, como `Knowledge (Theology and Philosophy)`
+  ou `Knowledge (Technology)`, permanecem na descrição, mas não geram uma chave
+  em `system.classSkills`.
+- `Sign Language` também permanece apenas na descrição enquanto não houver uma
+  decisão explícita de conversão.
+- O atributo exibido no texto antigo não altera a skill PF1e. Por exemplo,
+  `Spot (Int)` continua sendo convertido para Perception com o atributo definido
+  pelo PF1e.
+- Use as chaves canônicas do PF1e e do módulo, nunca nomes completos, aliases
+  descritivos ou entradas `newSkill`.
+
 ## Proficiências
 
 As proficiências ficam em:
