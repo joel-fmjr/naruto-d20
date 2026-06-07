@@ -120,7 +120,7 @@ my @skill_keys = qw(
 
 my $json = JSON::PP->new->utf8(0)->canonical(1)->pretty(1);
 my $template = $json->decode(read_file($template_path));
-my @files = sort glob("$source_dir/*.md");
+my @files = markdown_files($source_dir);
 die "No Markdown class files found in $source_dir\n" unless @files;
 
 my $has_differences = 0;
@@ -130,15 +130,27 @@ for my $path (@files) {
   die "Missing class name in $path\n" unless $name;
 
   my ($hd) = $markdown =~ /gains\s+1d(\d+)\s+hit points/i;
+  ($hd) = $markdown =~ /\*\*Hit Die\*\*:\s*(?:The\s+\Q$name\E\s+gains\s+)?(?:1)?d(\d+)/i
+    unless $hd;
   die "Missing Hit Die for $name\n" unless $hd;
 
+  my ($class_info) =
+    $markdown =~ /^##\s+Class Information\s*(.*?)(?=^##\s+(?:Table:|Class Features))/msi;
+  die "Missing Class Information section for $name\n" unless defined $class_info;
+
   my ($printed_skill_points) =
-    $markdown =~ /Skill Points at Each Level\*{0,2}:\*{0,2}\s*(\d+)\s*\+\s*Int/i;
+    $class_info =~ /Skill Points(?:\s+at\s+Each\s+Level)?\*{0,2}:\*{0,2}\s*(\d+)\s*\+\s*Int/i;
   die "Missing skill points for $name\n" unless $printed_skill_points;
   my $skills_per_level = $printed_skill_points - 1;
 
   my ($skill_text) =
-    $markdown =~ /class skills are as follows[.:](.*?)\*{0,2}Skill Points at Each Level/is;
+    $class_info =~ /\*\*Class Skills\*\*:\s*(.*?)(?=\n\s*\*\s+\*\*Skill Points)/is;
+  ($skill_text) =
+    $class_info =~ /CLASS SKILLS\s+(.*?)(?=\n\s*\*\s+\*\*Skill Points)/is
+    unless defined $skill_text;
+  ($skill_text) =
+    $class_info =~ /class skills are as follows[.:]?\s*(.*?)(?=\*{0,2}Skill Points)/is
+    unless defined $skill_text;
   die "Missing class skill list for $name\n" unless defined $skill_text;
 
   my ($class_kind) =
@@ -284,6 +296,14 @@ sub deep_clone {
   return $json->decode($json->encode($value));
 }
 
+sub markdown_files {
+  my ($dir) = @_;
+  opendir my $dh, $dir or die "Cannot read $dir: $!\n";
+  my @files = map { "$dir/$_" } sort grep { /\.md\z/ } readdir $dh;
+  closedir $dh or die "Cannot close $dir: $!\n";
+  return @files;
+}
+
 sub extract_main_table {
   my ($markdown, $name) = @_;
   my ($block) =
@@ -365,6 +385,8 @@ sub identify_save {
   my @patterns = (
     ['2 + floor(@level / 2)', sub { 2 + int($_[0] / 2) }],
     ['floor((2 * @level + 6) / 5)', sub { int((2 * $_[0] + 6) / 5) }],
+    ['floor((@level + 1) / 2)', sub { int(($_[0] + 1) / 2) }],
+    ['floor((@level + 1) / 3)', sub { int(($_[0] + 1) / 3) }],
     ['floor(@level / 3)', sub { int($_[0] / 3) }],
     ['floor((@level - 1) / 3)', sub { int(($_[0] - 1) / 3) }],
   );
@@ -542,7 +564,7 @@ sub build_class_skills {
     $skills{$_} = JSON::PP::true for qw(kar kdu ken khi klo kna kno sen pro);
   } else {
     $skills{kar} = JSON::PP::true
-      if $normalized =~ /knowledge\s*\([^)]*(?:\barcana?\b|\barcane\b|\bninja lore\b|\btactics\b)/;
+      if $normalized =~ /knowledge\s*\([^)]*(?:\barcana?\b|\barcane\b|\bnin(?:ja)? lore\b|\btactics\b)/;
     $skills{kdu} = JSON::PP::true
       if $normalized =~ /knowledge\s*\([^)]*\bshadowlands\b/;
     $skills{ken} = JSON::PP::true
