@@ -1,0 +1,161 @@
+{
+   "_id" : "5062987865071483",
+   "_key" : "!items!5062987865071483",
+   "_stats" : {
+      "compendiumSource" : null,
+      "coreVersion" : "13.351",
+      "createdTime" : 1780757309682,
+      "duplicateSource" : null,
+      "exportSource" : null,
+      "lastModifiedBy" : "mIZLV3aRVXSMGsYi",
+      "modifiedTime" : 1780764836276,
+      "systemId" : "pf1",
+      "systemVersion" : "11.11"
+   },
+   "effects" : [],
+   "flags" : {
+      "pf1" : {
+         "links" : {
+            "classAssociations" : {}
+         }
+      }
+   },
+   "folder" : "Ai9gJMf1XW9zrD8G",
+   "img" : "systems/pf1/icons/items/inventory/book-purple.jpg",
+   "name" : "Ravager",
+   "ownership" : {
+      "default" : 0
+   },
+   "sort" : 0,
+   "system" : {
+      "alignment" : "",
+      "armorProf" : [],
+      "bab" : "high",
+      "casting" : {
+         "type" : ""
+      },
+      "changeFlags" : {
+         "heavyArmorFullSpeed" : false,
+         "immuneToMorale" : false,
+         "loseDexToAC" : false,
+         "lowLightVision" : false,
+         "mediumArmorFullSpeed" : false,
+         "noHeavyEncumbrance" : false,
+         "noMediumEncumbrance" : false,
+         "seeInDarkness" : false,
+         "seeInvisibility" : false
+      },
+      "changes" : [
+         {
+            "_id" : "fd7f271f4a21cd11",
+            "formula" : "floor((2 * @item.level + 2) / 3)",
+            "operator" : "add",
+            "priority" : 0,
+            "target" : "ac",
+            "type" : "untyped"
+         }
+      ],
+      "classSkills" : {
+         "acr" : true,
+         "apr" : false,
+         "art" : false,
+         "blf" : false,
+         "ckc" : false,
+         "clm" : true,
+         "crf" : false,
+         "dev" : false,
+         "dip" : false,
+         "dis" : false,
+         "esc" : false,
+         "fly" : false,
+         "fui" : false,
+         "gnj" : false,
+         "han" : false,
+         "hea" : true,
+         "int" : true,
+         "kar" : true,
+         "kdu" : false,
+         "ken" : false,
+         "kge" : false,
+         "khi" : false,
+         "klo" : false,
+         "kna" : false,
+         "kno" : false,
+         "kpl" : false,
+         "kre" : false,
+         "lin" : true,
+         "lor" : false,
+         "nin" : false,
+         "per" : true,
+         "prf" : false,
+         "pro" : false,
+         "rid" : false,
+         "sen" : false,
+         "slt" : false,
+         "spl" : false,
+         "ste" : false,
+         "sur" : true,
+         "swm" : true,
+         "tai" : true,
+         "umd" : false
+      },
+      "contextNotes" : [],
+      "customHD" : "",
+      "description" : {
+         "instructions" : "",
+         "value" : "<article class=\"naruto-d20-class\">\n<h1>Ravager</h1>\n<p>The Ravager is a Yato born warrior who delights in the destruction he sows across the battlefield. Like an unshackled beast, the Ravager shatters enemy lines and human bodies alike, elating himself in the slaughter with a manic glee.</p>\n<h2>Requirements</h2>\n<p>To qualify to become a ravager, a character must fulfill all the following criteria.</p>\n<ul>\n<li><strong>Base Attack Bonus</strong>:  +3</li>\n<li><strong>Skills</strong>:  Taijutsu 6 ranks.</li>\n<li><strong>Feats</strong>:  Advanced Bloodline (Chi no Bousou), Taijutsu Adept.</li>\n<li><strong>Special</strong>:  Riot of the Blood ability.</li>\n</ul>\n<h2>Class Information</h2>\n<p>The following information pertains to the Ravager prestige class.</p>\n<ul>\n<li><strong>Hit Die</strong>:  d12</li>\n<li><strong>Action Points</strong>:  6 + ½ character level, rounded down. CLASS SKILLS The Ravager's class skills are Balance (Dex), Climb (Str), Intimidate (Cha), Jump (Str), Knowledge (tactics) (Int), Listen (Wis), Read/Write Language (none), Speak Language (none), Spot (Wis), Survival (Wis), Swim (Str), Taijutsu (Str), Treat Injury (Wis), Tumble (Dex).</li>\n<li><strong>Skill Points</strong>:  3 + Int modifier.</li>\n</ul>\n<h2>Table: The Ravager</h2>\n<table>\n<thead>\n<tr>\n<th>Level</th>\n<th>Base Attack Bonus</th>\n<th>Fort Save</th>\n<th>Ref Save</th>\n<th>Will Save</th>\n<th>Special</th>\n<th>Defense Bonus</th>\n<th>Reputation Bonus</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1st</td>\n<td>+1</td>\n<td>+2</td>\n<td>+1</td>\n<td>+0</td>\n<td>Dreadful Rage</td>\n<td>+1</td>\n<td>+0</td>\n</tr>\n<tr>\n<td>2nd</td>\n<td>+2</td>\n<td>+3</td>\n<td>+2</td>\n<td>+0</td>\n<td>Monstrous Rage</td>\n<td>+2</td>\n<td>+0</td>\n</tr>\n<tr>\n<td>3rd</td>\n<td>+3</td>\n<td>+3</td>\n<td>+2</td>\n<td>+1</td>\n<td>Atrocious Rage</td>\n<td>+2</td>\n<td>+0</td>\n</tr>\n</tbody>\n</table>\n<h2>Class Features</h2>\n<p>The following features pertain to the Ravager prestige class.</p>\n<h3>Dreadful Rage</h3>\n<p>A Ravager owes his combat ability to the brutish strength that runs through his veins. There is however, a kind of unrefined grace in the terrible power that he brings to bear. At 1st level, whenever the Ravager strikes a target as a standard action or deals enough damage to make it drop (typically by dropping it to below 0 hit points or killing it), he gets an immediate, extra melee attack against another creature within reach. The Ravager can use this ability once per round.</p>\n<h3>Monstrous Rage</h3>\n<p>A true Yato embraces the monster lurking within his human personage and learns to revel in the blood he sheds. At 3rd level, the Ravager is no longer limited to using his Dreadful Talent class feature once per round.</p>\n<h3>Atrocious Rage</h3>\n<p>A Yato warrior descends upon the battlefield in a blood haze, leaving nothing but carnage and the shattered forms of his foes in his wake. At 5th level, the Ravager can take a 5-foot step between attacks when using his Dreadful Talent class feature. These 5-foot steps do not count against his movement in the following round.</p>\n</article>"
+      },
+      "fc" : {
+         "alt" : {
+            "notes" : "",
+            "value" : 0
+         },
+         "hp" : {
+            "value" : 0
+         },
+         "skill" : {
+            "value" : 0
+         }
+      },
+      "flags" : {
+         "boolean" : {},
+         "dictionary" : {}
+      },
+      "hd" : 12,
+      "hp" : null,
+      "languages" : [],
+      "level" : 1,
+      "links" : {
+         "children" : [],
+         "classAssociations" : []
+      },
+      "savingThrows" : {
+         "fort" : {
+            "custom" : "2 + floor(@level / 2)",
+            "value" : "custom"
+         },
+         "ref" : {
+            "custom" : "floor((2 * @level + 6) / 5)",
+            "value" : "custom"
+         },
+         "will" : {
+            "custom" : "floor(@level / 3)",
+            "value" : "custom"
+         }
+      },
+      "scriptCalls" : [],
+      "skillsPerLevel" : 2,
+      "sources" : [
+         {
+            "pages" : "",
+            "title" : "Naruto d20"
+         }
+      ],
+      "subType" : "prestige",
+      "tag" : "",
+      "tags" : [],
+      "wealth" : "",
+      "weaponProf" : []
+   },
+   "type" : "class"
+}

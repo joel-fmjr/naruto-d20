@@ -1,0 +1,161 @@
+{
+   "_id" : "30cc4729789edcc9",
+   "_key" : "!items!30cc4729789edcc9",
+   "_stats" : {
+      "compendiumSource" : null,
+      "coreVersion" : "13.351",
+      "createdTime" : 1780757309682,
+      "duplicateSource" : null,
+      "exportSource" : null,
+      "lastModifiedBy" : "mIZLV3aRVXSMGsYi",
+      "modifiedTime" : 1780764836276,
+      "systemId" : "pf1",
+      "systemVersion" : "11.11"
+   },
+   "effects" : [],
+   "flags" : {
+      "pf1" : {
+         "links" : {
+            "classAssociations" : {}
+         }
+      }
+   },
+   "folder" : "Ai9gJMf1XW9zrD8G",
+   "img" : "systems/pf1/icons/items/inventory/book-purple.jpg",
+   "name" : "Akimichi Master",
+   "ownership" : {
+      "default" : 0
+   },
+   "sort" : 0,
+   "system" : {
+      "alignment" : "",
+      "armorProf" : [],
+      "bab" : "med",
+      "casting" : {
+         "type" : ""
+      },
+      "changeFlags" : {
+         "heavyArmorFullSpeed" : false,
+         "immuneToMorale" : false,
+         "loseDexToAC" : false,
+         "lowLightVision" : false,
+         "mediumArmorFullSpeed" : false,
+         "noHeavyEncumbrance" : false,
+         "noMediumEncumbrance" : false,
+         "seeInDarkness" : false,
+         "seeInvisibility" : false
+      },
+      "changes" : [
+         {
+            "_id" : "955fdbc1f541861b",
+            "formula" : "floor((2 * @item.level + 2) / 3)",
+            "operator" : "add",
+            "priority" : 0,
+            "target" : "ac",
+            "type" : "untyped"
+         }
+      ],
+      "classSkills" : {
+         "acr" : true,
+         "apr" : false,
+         "art" : false,
+         "blf" : false,
+         "ckc" : true,
+         "clm" : false,
+         "crf" : true,
+         "dev" : false,
+         "dip" : false,
+         "dis" : false,
+         "esc" : false,
+         "fly" : false,
+         "fui" : false,
+         "gnj" : false,
+         "han" : false,
+         "hea" : false,
+         "int" : true,
+         "kar" : true,
+         "kdu" : false,
+         "ken" : false,
+         "kge" : false,
+         "khi" : false,
+         "klo" : false,
+         "kna" : false,
+         "kno" : false,
+         "kpl" : false,
+         "kre" : false,
+         "lin" : true,
+         "lor" : false,
+         "nin" : true,
+         "per" : true,
+         "prf" : false,
+         "pro" : true,
+         "rid" : false,
+         "sen" : false,
+         "slt" : false,
+         "spl" : false,
+         "ste" : false,
+         "sur" : false,
+         "swm" : false,
+         "tai" : true,
+         "umd" : false
+      },
+      "contextNotes" : [],
+      "customHD" : "",
+      "description" : {
+         "instructions" : "",
+         "value" : "<article class=\"naruto-d20-class\">\n<h1>Akimichi Master</h1>\n<p>Akimichi Clan of Hidden Leaf is not widely known across the world. But they are a powerful clan from that village, having mastered a great array of size-increasing techniques and highly powerful chemicals to increase their power even more.</p>\n<h2>Requirements</h2>\n<p>To qualify to become a akimichi master, a character must fulfill all the following criteria.</p>\n<ul>\n<li><strong>Skills</strong>: Taijutsu 6 ranks, Ninjutsu 6 ranks.</li>\n<li><strong>Feats</strong>: Akimichi Toughness.</li>\n<li><strong>Techniques</strong>: At least one Akimichi Hijutsu.</li>\n<li><strong>Special</strong>: Must be a member of Akimichi Clan.</li>\n</ul>\n<h2>Class Information</h2>\n<p>The following information pertains to the Akimichi Master prestige class.</p>\n<ul>\n<li><strong>Hit Die</strong>: d10</li>\n<li><strong>Action Points</strong>: 6 + ½ character level, rounded down.</li>\n<li><strong>Class Skills</strong>: Chakra Control (Wis), Concentration (Con), Craft (Chemical), Intimidate (Cha), Jump (Str), Knowledge (ninja lore) (Int), Ninjutsu (Int), Profession (Wis), Read Language (None), Search (Int), Speak Language (None), Taijutsu (Str).</li>\n<li><strong>Skill Points at Each Level</strong>: 3 + Int modifier.</li>\n</ul>\n<h2>Table: Akimichi Master</h2>\n<table>\n<thead>\n<tr>\n<th>Level</th>\n<th>Base Attack Bonus</th>\n<th>Fort Save</th>\n<th>Ref Save</th>\n<th>Will Save</th>\n<th>Special</th>\n<th>Defense Bonus</th>\n<th>Reputation Bonus</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n<td>1st</td>\n<td>+0</td>\n<td>+1</td>\n<td>+0</td>\n<td>+0</td>\n<td>Akimichi Secret</td>\n<td>+1</td>\n<td>+0</td>\n</tr>\n<tr>\n<td>2nd</td>\n<td>+1</td>\n<td>+2</td>\n<td>+0</td>\n<td>+0</td>\n<td>Bonus Feat</td>\n<td>+2</td>\n<td>+0</td>\n</tr>\n<tr>\n<td>3rd</td>\n<td>+2</td>\n<td>+2</td>\n<td>+1</td>\n<td>+1</td>\n<td>Akimichi Secret</td>\n<td>+2</td>\n<td>+1</td>\n</tr>\n</tbody>\n</table>\n<h2>Class Features</h2>\n<p>The following features pertain to the Akimichi Master prestige class.</p>\n<h3>Akimichi Secret</h3>\n<p>The character can choose one ability from that list every time he gains this ability. The ability can't be chosen twice unless specified. This ability is gained on 1st and 3rd level of Akimichi Master. </p>\n<ul>\n<li><strong>Akimichi Fortitude</strong>: The Akimichi gains a bonus of +1 in all fortitude saves, and an extra bonus of +2 to resist again the side effects of Akimichi Food Pills and Akimichi Hijutsu.</li>\n<li><strong>Akimichi Resilience</strong>: The Akimichi gains Damage Reduction 2/- while under the effects of any Akimichi Hijutsu that increases size (Such as Baika no Jutsu). Said Damage Reduction stacks with other sources of Damage Reduction.</li>\n<li><strong>Greater Akimichi Toughness</strong> (Require any other ability from the list): The Akimichi receives a bonus of +1 hit point for each HD he currently has, and one more for each level he gains.</li>\n<li><strong>Hijutsu Mastery</strong>: The character receives a bonus of +1 to learn, and +2 to perform and convert Akimichi Hijutsu (Such as Baika no Jutsu to hit points).</li>\n<li><strong>Tough Skin</strong>: The character receives a Natural Armor bonus of +1. This ability can be taken a second time, increasing the bonus to +2.</li>\n<li><strong>Advanced Armor Proficiency</strong>: Choose a type of armor on which the character is proficient (Light, Medium, etc.). From now on, the armor penalty for wearing that kind of armor is reduced by 1, and the maximum dexterity bonus of that kind of armor is increased by 1.</li>\n</ul>\n<h3>Bonus Feat</h3>\n<p>At 2nd level, the Akimichi Master gets a bonus feat. The bonus feat must be selected from the following list, and the Akimichi Master must meet all the prerequisites of the feat to select it. </p>\n<p>Armor Proficiency, Genin, Chuunin, Jounin, Power Attack, Toughness, Archaic Weapon Proficiency, Technique Focus (Akimichi Hijutsu only).</p>\n</article>"
+      },
+      "fc" : {
+         "alt" : {
+            "notes" : "",
+            "value" : 0
+         },
+         "hp" : {
+            "value" : 0
+         },
+         "skill" : {
+            "value" : 0
+         }
+      },
+      "flags" : {
+         "boolean" : {},
+         "dictionary" : {}
+      },
+      "hd" : 10,
+      "hp" : null,
+      "languages" : [],
+      "level" : 1,
+      "links" : {
+         "children" : [],
+         "classAssociations" : []
+      },
+      "savingThrows" : {
+         "fort" : {
+            "custom" : "floor((2 * @level + 6) / 5)",
+            "value" : "custom"
+         },
+         "ref" : {
+            "custom" : "floor(@level / 3)",
+            "value" : "custom"
+         },
+         "will" : {
+            "custom" : "floor(@level / 3)",
+            "value" : "custom"
+         }
+      },
+      "scriptCalls" : [],
+      "skillsPerLevel" : 2,
+      "sources" : [
+         {
+            "pages" : "",
+            "title" : "Naruto d20"
+         }
+      ],
+      "subType" : "prestige",
+      "tag" : "",
+      "tags" : [],
+      "wealth" : "",
+      "weaponProf" : []
+   },
+   "type" : "class"
+}
