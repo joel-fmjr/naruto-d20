@@ -418,14 +418,14 @@ Antes de usar o gerador para um novo lote, revise no início do script:
 | Configuração | Finalidade |
 |---|---|
 | `%fixed_ids` | IDs que precisam ser preservados em vez de gerados pelo nome. |
-| `%advanced` | Classes que devem usar `system.subType: "base"`. |
 | `%icons` | Imagem específica de cada classe; ausências usam o livro roxo. |
 | `%associations` | Feats fixos concedidos automaticamente e seus níveis. |
 | `$template_path` | Item de classe usado como modelo estrutural. |
 | `$folder_id` | Pasta editorial de destino no compêndio. |
 
-Classes não listadas em `%advanced` são tratadas como `prestige`. Não adicione
-bonus feats escolhidos pelo jogador em `%associations`.
+O gerador lê a declaração `advanced class` ou `prestige class` do próprio
+Markdown e falha quando ela não está presente. Não adicione bonus feats
+escolhidos pelo jogador em `%associations`.
 
 Primeiro valide a conversão sem escrever:
 

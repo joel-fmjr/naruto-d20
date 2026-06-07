@@ -33,59 +33,69 @@ my %fixed_ids = (
   "Livewire" => "ywwhNtzs3fPtKfO5",
 );
 
-my %advanced = map { $_ => 1 } (
-  "Beastmaster",
-  "Medical Specialist",
-  "Ninja Police",
-  "Ninja Scout",
-  "Puppeteer",
-  "Sacred Fist",
-  "Shinobi Adept",
-  "Shinobi Bodyguard",
-  "Shinobi Swordsman",
-  "Shuriken Expert",
-  "Soul Edge",
-  "Squad Captain",
-  "Taijutsu Master",
-);
-
 my %icons = (
   "Beastlord" => "systems/pf1/icons/feats/animal-affinity.jpg",
   "Beastmaster" => "systems/pf1/icons/races/creature-types/animal.png",
+  "Berserker" => "systems/pf1/icons/feats/extra-rage.jpg",
   "Blinkstrike" => "systems/pf1/icons/spells/haste-fire-1.jpg",
+  "Commando" => "systems/pf1/icons/feats/leadership.jpg",
   "Devastator" => "systems/pf1/icons/spells/fireball-red-3.jpg",
   "Elementalist" => "systems/pf1/icons/races/creature-types/elemental.png",
   "Exalted One" => "systems/pf1/icons/feats/stunning-fist.jpg",
   "Exarch" => "systems/pf1/icons/spells/heal-royal-3.jpg",
   "Exemplar" => "systems/pf1/icons/items/inventory/badge-sword.jpg",
+  "Gadgeteer" => "systems/pf1/icons/skills/mech_7.jpg",
   "Genjutsu Master" => "systems/pf1/icons/spells/evil-eye-eerie-3.jpg",
+  "Grand Scholar" => "systems/pf1/icons/items/inventory/book-blue.jpg",
+  "Interrogator" => "systems/pf1/icons/spells/horror-eerie-3.jpg",
   "Livewire" => "systems/pf1/icons/items/inventory/net.jpg",
   "Living Puppeteer" => "systems/pf1/icons/items/inventory/monster-heart.jpg",
+  "Master Artisan" => "systems/pf1/icons/feats/master-craftsman.jpg",
+  "Master Infiltrator" => "systems/pf1/icons/items/inventory/lockpick.jpg",
   "Master Strategist" => "systems/pf1/icons/misc/brain.png",
   "Medical Specialist" => "systems/pf1/icons/actions/heart-plus.svg",
   "Ninja Hunter" => "systems/pf1/icons/items/inventory/monster-eye.jpg",
   "Ninja Police" => "systems/pf1/icons/items/inventory/badge-sword.jpg",
   "Ninja Scout" => "systems/pf1/icons/skills/shadow_08.jpg",
+  "Outlaw" => "systems/pf1/icons/items/inventory/badge-skull.jpg",
+  "Pain Engine" => "systems/pf1/icons/skills/blood_12.jpg",
+  "Poisoner" => "systems/pf1/icons/items/inventory/monster-venom.jpg",
   "Puppeteer" => "systems/pf1/icons/items/inventory/monster-brain.jpg",
+  "Reaver" => "systems/pf1/icons/feats/two-weapon-rend.jpg",
   "Rising Star" => "systems/pf1/icons/items/inventory/wand-star.jpg",
   "Sacred Fist" => "systems/pf1/icons/feats/gorgons-fist.jpg",
   "Sage" => "systems/pf1/icons/items/inventory/scroll-druid.jpg",
   "Shade" => "systems/pf1/icons/skills/shadow_01.jpg",
+  "Shadow Hand" => "systems/pf1/icons/feats/stealthy.jpg",
+  "Sharpshooter" => "systems/pf1/icons/feats/deadly-aim.jpg",
   "Shinobi Adept" => "systems/pf1/icons/items/inventory/scroll-magic.jpg",
   "Shinobi Bodyguard" => "systems/pf1/icons/items/inventory/badge-sword.jpg",
   "Shinobi Swordsman" => "systems/pf1/icons/items/weapons/longsword.png",
   "Shuriken Expert" => "systems/pf1/icons/items/weapons/shuriken.png",
+  "Skirmisher" => "systems/pf1/icons/feats/spring-attack.jpg",
+  "Sohei" => "systems/pf1/icons/feats/weapon-focus.jpg",
   "Soul Edge" => "systems/pf1/icons/items/weapons/sword-bastard.PNG",
+  "Specialist" => "systems/pf1/icons/items/inventory/bomb.jpg",
   "Squad Captain" => "systems/pf1/icons/items/inventory/badge-sword.jpg",
   "Summoner" => "systems/pf1/icons/feats/augument-summoning.jpg",
+  "Swarmwrecker" => "systems/pf1/icons/feats/whirlwind-attack.jpg",
   "Sword Savant" => "systems/pf1/icons/items/weapons/sword-dueling.png",
   "Taijutsu Master" => "systems/pf1/icons/feats/stunning-fist.jpg",
+  "Takedown Specialist" => "systems/pf1/icons/feats/greater-grapple.jpg",
   "Technique Analyst" => "systems/pf1/icons/items/inventory/scroll-secret.jpg",
+  "Technowarrior" => "systems/pf1/icons/skills/mech_12.jpg",
+  "Wild Technician" => "systems/pf1/icons/items/inventory/essence-void.jpg",
 );
 
 my %associations = (
+  "Master Artisan" => [
+    ["Compendium.naruto-d20.feats.Item.qYWo4SmcmgCSkQ28", 2],
+  ],
   "Ninja Scout" => [
     ["Compendium.naruto-d20.feats.Item.AkeCCqycM8ywq8MK", 1],
+  ],
+  "Sharpshooter" => [
+    ["Compendium.naruto-d20.feats.Item.SWcOsmAU86WMikKi", 2],
   ],
   "Shinobi Adept" => [
     ["Compendium.naruto-d20.feats.Item.M6g0s4Cw88AqUEQA", 1],
@@ -128,8 +138,12 @@ for my $path (@files) {
   my $skills_per_level = $printed_skill_points - 1;
 
   my ($skill_text) =
-    $markdown =~ /class skills are as follows\.(.*?)\*{0,2}Skill Points at Each Level/is;
+    $markdown =~ /class skills are as follows[.:](.*?)\*{0,2}Skill Points at Each Level/is;
   die "Missing class skill list for $name\n" unless defined $skill_text;
+
+  my ($class_kind) =
+    $markdown =~ /pertains to the \Q$name\E\s+(advanced|prestige)\s+class/i;
+  die "Missing advanced/prestige classification for $name\n" unless $class_kind;
 
   my $table = extract_main_table($markdown, $name);
   my $levels = scalar(@{$table->{bab}});
@@ -189,7 +203,7 @@ for my $path (@files) {
     dictionary => {},
   };
   $system->{scriptCalls} = [];
-  $system->{subType} = $advanced{$name} ? "base" : "prestige";
+  $system->{subType} = lc($class_kind) eq "advanced" ? "base" : "prestige";
   $system->{level} = 1;
   $system->{hd} = 0 + $hd;
   $system->{hp} = undef;
@@ -221,8 +235,6 @@ for my $path (@files) {
       level => $level,
     };
   }
-  $item->{flags} = {};
-
   my $encoded = $json->encode($item);
   if ($check_only) {
     if (!-f $output_path || read_file($output_path) ne $encoded) {
@@ -275,8 +287,26 @@ sub deep_clone {
 sub extract_main_table {
   my ($markdown, $name) = @_;
   my ($block) =
-    $markdown =~ /^(?:##\s+Table:|###\s+TABLE:).*?\n\s*(\|[^\n]*Base Attack Bonus[^\n]*\n(?:\|[^\n]*\n)+)/mi;
+    $markdown =~ /^(\|[^\n]*Base Attack Bonus[^\n]*\n(?:\|[^\n]*\n)+)/mi;
   die "Missing main table for $name\n" unless $block;
+
+  my @lines = split /\n/, $block;
+  my @headers = parse_table_cells(shift @lines);
+  shift @lines if @lines && $lines[0] =~ /^\|\s*:?-+/;
+  my %indexes;
+  for my $index (0 .. $#headers) {
+    my $header = lc $headers[$index];
+    $header =~ s/\s+/ /g;
+    $indexes{bab} = $index if $header eq "base attack bonus";
+    $indexes{fort} = $index if $header eq "fort save";
+    $indexes{ref} = $index if $header eq "ref save";
+    $indexes{will} = $index if $header eq "will save";
+    $indexes{defense} = $index if $header eq "defense bonus";
+  }
+  for my $column (qw(bab fort ref will defense)) {
+    die "Missing $column column in main table for $name\n"
+      unless defined $indexes{$column};
+  }
 
   my %columns = (
     bab => [],
@@ -285,24 +315,29 @@ sub extract_main_table {
     will => [],
     defense => [],
   );
-  for my $line (split /\n/, $block) {
+  for my $line (@lines) {
     next unless $line =~ /^\|\s*\d+(?:st|nd|rd|th)\s*\|/i;
-    my @cells = map {
-      my $cell = $_;
-      $cell =~ s/^\s+|\s+$//g;
-      $cell;
-    } split /\|/, $line;
-    shift @cells;
-    pop @cells if @cells && $cells[-1] eq "";
-    die "Malformed main table row for $name: $line\n" unless @cells >= 8;
-    push @{$columns{bab}}, numeric_cell($cells[1]);
-    push @{$columns{fort}}, numeric_cell($cells[2]);
-    push @{$columns{ref}}, numeric_cell($cells[3]);
-    push @{$columns{will}}, numeric_cell($cells[4]);
-    push @{$columns{defense}}, numeric_cell($cells[6]);
+    my @cells = parse_table_cells($line);
+    die "Malformed main table row for $name: $line\n"
+      unless @cells == @headers;
+    for my $column (qw(bab fort ref will defense)) {
+      push @{$columns{$column}}, numeric_cell($cells[$indexes{$column}]);
+    }
   }
   die "No main table levels for $name\n" unless @{$columns{bab}};
   return \%columns;
+}
+
+sub parse_table_cells {
+  my ($line) = @_;
+  my @cells = map {
+    my $cell = $_;
+    $cell =~ s/^\s+|\s+$//g;
+    $cell;
+  } split /\|/, $line;
+  shift @cells;
+  pop @cells if @cells && $cells[-1] eq "";
+  return @cells;
 }
 
 sub numeric_cell {
@@ -331,6 +366,7 @@ sub identify_save {
     ['2 + floor(@level / 2)', sub { 2 + int($_[0] / 2) }],
     ['floor((2 * @level + 6) / 5)', sub { int((2 * $_[0] + 6) / 5) }],
     ['floor(@level / 3)', sub { int($_[0] / 3) }],
+    ['floor((@level - 1) / 3)', sub { int(($_[0] - 1) / 3) }],
   );
   for my $pattern (@patterns) {
     my ($formula, $fn) = @$pattern;
@@ -348,6 +384,8 @@ sub identify_defense {
     ['floor((@item.level + 1) / 2)', sub { int(($_[0] + 1) / 2) }],
     ['floor((2 * @item.level + 2) / 3)', sub { int((2 * $_[0] + 2) / 3) }],
     ['floor((@item.level + 2) / 2)', sub { int(($_[0] + 2) / 2) }],
+    ['floor((@item.level + 1) / 3)', sub { int(($_[0] + 1) / 3) }],
+    ['floor((@item.level + 3) / 3)', sub { int(($_[0] + 3) / 3) }],
   );
   for my $pattern (@patterns) {
     my ($formula, $fn) = @$pattern;
@@ -368,7 +406,7 @@ sub extract_chakra {
   my ($markdown, $name) = @_;
   return undef unless $markdown =~ /^###\s+Bonus Chakra\s*$/mi;
   my ($block) =
-    $markdown =~ /^###\s+Bonus Chakra\s*\n.*?(\|[^\n]*Bonus Chakra[^\n]*Bonus Reserve[^\n]*\n(?:\|[^\n]*\n)+)/msi;
+    $markdown =~ /^###\s+Bonus Chakra\s*\n.*?(\|[^\n]*Bonus Chakra[^\n]*(?:Bonus )?Reserve[^\n]*\n(?:\|[^\n]*\n)+)/msi;
   die "Missing Bonus Chakra table for $name\n" unless $block;
 
   my (@pool, @reserve);
@@ -459,10 +497,10 @@ sub build_class_skills {
   $normalized =~ s/\s+/ /g;
 
   my %simple = (
-    acr => qr/\b(?:balance|jump|tumble)\b/,
+    acr => qr/\b(?:acrobatics|balance|jump|tumble)\b/,
     blf => qr/\bbluff\b/,
     clm => qr/\bclimb\b/,
-    crf => qr/\b(?:craft|repair)\b/,
+    crf => qr/\b(?:computer use|craft|repair)\b/,
     dip => qr/\b(?:diplomacy|gather information)\b/,
     dev => qr/\b(?:disable device|demolitions)\b/,
     dis => qr/\bdisguise\b/,
@@ -470,14 +508,14 @@ sub build_class_skills {
     han => qr/\bhandle animal\b/,
     hea => qr/\btreat injury\b/,
     int => qr/\bintimidate\b/,
-    lin => qr/\b(?:decipher script|forgery|read(?:\/write)? language|research|speak language)\b/,
-    per => qr/\b(?:investigate|listen|search|spot)\b/,
-    prf => qr/\bperform\b/,
-    pro => qr/\bprofession\b/,
+    lin => qr/\b(?:decipher script|forgery|linguistics?|read(?:\/write)? language|research|speak language)\b/,
+    per => qr/\b(?:investigate|listen|perception|search|spot)\b/,
+    prf => qr/\b(?:gamble|perform)\b/,
+    pro => qr/\b(?:gamble|profession)\b/,
     rid => qr/\b(?:drive|pilot|ride)\b/,
     sen => qr/\bsense motive\b/,
     slt => qr/\bsleight of hands?\b/,
-    ste => qr/\b(?:hide|move silently)\b/,
+    ste => qr/\b(?:hide|move silently|stealth)\b/,
     sur => qr/\b(?:navigate|survival)\b/,
     swm => qr/\bswim\b/,
     ckc => qr/\b(?:chakra control|concentration)\b/,
@@ -497,21 +535,24 @@ sub build_class_skills {
   $skills{dev} = JSON::PP::true, $skills{crf} = JSON::PP::true
     if $normalized =~ /\bdemolitions\b/;
 
-  if ($normalized =~ /knowledge\s*\(\s*all skills/) {
+  $skills{ken} = JSON::PP::true
+    if $normalized =~ /\bcomputer use\b/;
+
+  if ($normalized =~ /knowledge\s*\(\s*(?:all skills|any)\b/) {
     $skills{$_} = JSON::PP::true for qw(kar kdu ken khi klo kna kno sen pro);
   } else {
     $skills{kar} = JSON::PP::true
-      if $normalized =~ /knowledge\s*\([^)]*(?:\bninja lore\b|\barcane lore\b|\btactics\b)/;
+      if $normalized =~ /knowledge\s*\([^)]*(?:\barcana?\b|\barcane\b|\bninja lore\b|\btactics\b)/;
     $skills{kdu} = JSON::PP::true
       if $normalized =~ /knowledge\s*\([^)]*\bshadowlands\b/;
     $skills{ken} = JSON::PP::true
-      if $normalized =~ /knowledge\s*\([^)]*\bphysical sciences?\b/;
+      if $normalized =~ /knowledge\s*\([^)]*(?:\bengineering\b|\bphysical sciences?\b)/;
     $skills{khi} = JSON::PP::true
       if $normalized =~ /knowledge\s*\([^)]*(?:\bart\b|\bhistory\b)/;
     $skills{klo} = JSON::PP::true
-      if $normalized =~ /knowledge\s*\([^)]*(?:\bcurrent events\b|\bpopular culture\b|\bstreetwise\b)/;
+      if $normalized =~ /knowledge\s*\([^)]*(?:\bcurrent events\b|\blocal\b|\bpopular culture\b|\bstreetwise\b)/;
     $skills{kna} = JSON::PP::true
-      if $normalized =~ /knowledge\s*\([^)]*\bearth and life sciences?\b/;
+      if $normalized =~ /knowledge\s*\([^)]*(?:\bearth and life sciences?\b|\bnature\b)/;
     $skills{kno} = JSON::PP::true
       if $normalized =~ /knowledge\s*\([^)]*\bcivics\b/;
     $skills{sen} = JSON::PP::true
@@ -563,7 +604,7 @@ sub markdown_to_html {
       push @html, "<h$level>" . inline_markup($2) . "</h$level>";
       next;
     }
-    if ($line =~ /^\s*\*\s+(.+?)\s*$/) {
+    if ($line =~ /^\s*[*-]\s+(.+?)\s*$/) {
       $flush_paragraph->();
       if (!$in_list) {
         push @html, "<ul>";
