@@ -82,7 +82,8 @@
       "boolean": {},
       "dictionary": {
         "weaponAttack.mode": "selected",
-        "weaponAttack.filter": "unarmedOnly"
+        "weaponAttack.filter": "meleeOrUnarmed",
+        "weaponAttack.nonCritDamageBonus": "1d4[Igeki] + (1d6+1)[Nigeki]"
       }
     },
     "showInQuickbar": false,

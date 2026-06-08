@@ -62,14 +62,6 @@
         "duration": {
           "units": "inst"
         },
-        "damage": {
-          "parts": [
-            {
-              "formula": "1d6+1",
-              "types": []
-            }
-          ]
-        },
         "ability": {
           "attack": "dex",
           "damage": "str",
@@ -88,7 +80,11 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {}
+      "dictionary": {
+        "weaponAttack.mode": "selected",
+        "weaponAttack.filter": "meleeOrUnarmed",
+        "weaponAttack.nonCritDamageBonus": "1d4[Igeki] + (1d6+1)[Nigeki]"
+      }
     },
     "showInQuickbar": false,
     "showInCombat": false
