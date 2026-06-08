@@ -289,8 +289,65 @@ function cloneDamageAbility(ability) {
   };
 }
 
+/**
+ * Lowercased descriptors that mean the technique strikes with an unarmed/natural
+ * attack. `"Armed or Punch"` carries both an unarmed (punch) and an armed sense
+ * and is handled in deriveAttackCategories.
+ */
+const UNARMED_DESCRIPTORS = new Set(["kick", "punch", "kick or punch", "punch or kick"]);
+
+function normalizeDescriptorSet(descriptors) {
+  const out = new Set();
+  const add = (v) => {
+    if (typeof v === "string") out.add(v.trim().toLowerCase());
+  };
+  if (descriptors instanceof Set || Array.isArray(descriptors)) {
+    for (const d of descriptors) add(d);
+  } else if (descriptors && typeof descriptors === "object") {
+    for (const [k, v] of Object.entries(descriptors)) if (v === true) add(k);
+  }
+  return out;
+}
+
+/**
+ * Derive which attack categories a technique may roll from its descriptors.
+ * Unarmed descriptors (kick/punch variants) → natural attacks; `"Armed"` →
+ * weapon attacks; `"Armed or Punch"` → both. Returns `{ allowUnarmed, allowArmed }`;
+ * both false means the descriptors give no signal (caller falls back to filter).
+ */
+export function deriveAttackCategories(descriptors) {
+  const set = normalizeDescriptorSet(descriptors);
+  const hasArmedOrPunch = set.has("armed or punch");
+  let allowUnarmed = hasArmedOrPunch;
+  for (const d of UNARMED_DESCRIPTORS) {
+    if (set.has(d)) {
+      allowUnarmed = true;
+      break;
+    }
+  }
+  const allowArmed = set.has("armed") || hasArmedOrPunch;
+  return { allowUnarmed, allowArmed };
+}
+
+/** Map a weaponAttack.filter value to unarmed/armed categories (fallback when
+ *  descriptors give no signal). */
+function categoriesFromFilter(filter) {
+  if (filter === "unarmedOnly") return { allowUnarmed: true, allowArmed: false };
+  if (filter === "meleeOrUnarmed") return { allowUnarmed: true, allowArmed: true };
+  // meleeWeapon / rangedWeapon (and anything else) → armed weapons only
+  return { allowUnarmed: false, allowArmed: true };
+}
+
 async function selectTechniqueWeaponAttack(actor, technique, config) {
-  const choices = collectTechniqueWeaponAttackChoices(actor, config.filter);
+  let categories = deriveAttackCategories(technique.system?.descriptors);
+  if (!categories.allowUnarmed && !categories.allowArmed) {
+    categories = categoriesFromFilter(config.filter);
+  }
+  const choices = collectTechniqueWeaponAttackChoices(actor, {
+    allowUnarmed: categories.allowUnarmed,
+    allowArmed: categories.allowArmed,
+    weaponFilter: config.filter,
+  });
   if (!choices.length) {
     ui.notifications.warn(
       game.i18n.format("NarutoD20.Notifications.NoWeaponAttack", {
@@ -333,48 +390,42 @@ async function selectTechniqueWeaponAttack(actor, technique, config) {
   });
 }
 
-function collectTechniqueWeaponAttackChoices(actor, filter) {
+function collectTechniqueWeaponAttackChoices(actor, { allowUnarmed, allowArmed, weaponFilter }) {
   const choices = [];
+  const attackItems = actor.itemTypes?.attack ?? actor.items.filter((i) => i.type === "attack");
 
-  if (filter === "unarmedOnly") {
-    const attackItems = actor.itemTypes?.attack ?? actor.items.filter((i) => i.type === "attack");
+  // Unarmed: natural/unarmed attack items only (PF1e stamps subType "natural").
+  if (allowUnarmed) {
     for (const item of attackItems) {
-      addItemAttackChoices(choices, item, "attack", false);
+      if (item.system?.subType !== "natural") continue;
+      addItemAttackChoices(choices, item, "attack", "any");
     }
-    return choices;
   }
 
-  if (filter === "rangedWeapon") {
+  // Armed: equipped weapons + weapon-derived attack items (subType "weapon").
+  // Descriptors can't express melee vs ranged, so the weaponAttack.filter does.
+  if (allowArmed) {
+    const rangeMode = weaponFilter === "rangedWeapon" ? "ranged" : "melee";
     const weaponItems = actor.itemTypes?.weapon ?? actor.items.filter((i) => i.type === "weapon");
     for (const item of weaponItems) {
       if (item.system?.equipped !== true) continue;
-      addItemAttackChoices(choices, item, "weapon", true);
+      addItemAttackChoices(choices, item, "weapon", rangeMode);
     }
-    return choices;
-  }
-
-  // meleeWeapon (default) and meleeOrUnarmed
-  const weaponItems = actor.itemTypes?.weapon ?? actor.items.filter((i) => i.type === "weapon");
-  for (const item of weaponItems) {
-    if (item.system?.equipped !== true) continue;
-    addItemAttackChoices(choices, item, "weapon", false);
-  }
-
-  if (filter === "meleeOrUnarmed") {
-    const attackItems = actor.itemTypes?.attack ?? actor.items.filter((i) => i.type === "attack");
     for (const item of attackItems) {
-      addItemAttackChoices(choices, item, "attack", false);
+      if (item.system?.subType !== "weapon") continue;
+      addItemAttackChoices(choices, item, "attack", rangeMode);
     }
   }
 
   return choices;
 }
 
-function addItemAttackChoices(choices, item, kind, rangedOnly) {
+/** rangeMode: "melee" (exclude ranged) | "ranged" (only ranged) | "any". */
+function addItemAttackChoices(choices, item, kind, rangeMode) {
   for (const action of item.actions ?? []) {
     if (!action.hasAttack) continue;
-    if (rangedOnly && !action.isRanged) continue;
-    if (!rangedOnly && action.isRanged) continue;
+    if (rangeMode === "melee" && action.isRanged) continue;
+    if (rangeMode === "ranged" && !action.isRanged) continue;
     choices.push({ item, action, kind });
   }
 }

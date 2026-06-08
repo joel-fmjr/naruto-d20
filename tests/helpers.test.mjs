@@ -15,6 +15,7 @@ import {
   getLearningTargetProgress,
 } from "../scripts/learn-technique.mjs";
 import {
+  deriveAttackCategories,
   parseWeaponAttackConfig,
   readWeaponAttackRaw,
 } from "../scripts/ui/technique-weapon-attack.mjs";
@@ -182,6 +183,61 @@ describe("weaponAttack parsing", () => {
     assert.ok(warnings.some((w) => w.includes("unknown field")));
     assert.ok(warnings.some((w) => w.includes("unsupported")));
     assert.ok(warnings.some((w) => w.includes("should be")));
+  });
+});
+
+describe("descriptor-driven attack categories", () => {
+  it("treats kick/punch variants as unarmed only", () => {
+    for (const d of ["Kick or Punch", "Kick", "Punch", "Punch or Kick"]) {
+      assert.deepEqual(
+        deriveAttackCategories([d]),
+        { allowUnarmed: true, allowArmed: false },
+        `descriptor ${d}`,
+      );
+    }
+  });
+
+  it("treats Armed as weapon only", () => {
+    assert.deepEqual(deriveAttackCategories(["Armed"]), {
+      allowUnarmed: false,
+      allowArmed: true,
+    });
+  });
+
+  it("treats Armed or Punch as both", () => {
+    assert.deepEqual(deriveAttackCategories(["Armed or Punch"]), {
+      allowUnarmed: true,
+      allowArmed: true,
+    });
+  });
+
+  it("combines an unarmed descriptor with Armed", () => {
+    assert.deepEqual(deriveAttackCategories(new Set(["Punch", "Armed"])), {
+      allowUnarmed: true,
+      allowArmed: true,
+    });
+  });
+
+  it("is case-insensitive and ignores unrelated descriptors", () => {
+    assert.deepEqual(deriveAttackCategories(["fire", "kick or punch"]), {
+      allowUnarmed: true,
+      allowArmed: false,
+    });
+  });
+
+  it("gives no signal when no attack descriptor is present", () => {
+    assert.deepEqual(deriveAttackCategories(["Fire", "Wind"]), {
+      allowUnarmed: false,
+      allowArmed: false,
+    });
+    assert.deepEqual(deriveAttackCategories([]), {
+      allowUnarmed: false,
+      allowArmed: false,
+    });
+    assert.deepEqual(deriveAttackCategories(undefined), {
+      allowUnarmed: false,
+      allowArmed: false,
+    });
   });
 });
 

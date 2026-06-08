@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.15 - 2026-06-07
+
+- Fixed the technique weapon/attack selector so it honors each technique's descriptors. Techniques with an unarmed descriptor (Kick, Punch, Kick or Punch, Punch or Kick) now offer only unarmed natural attacks; Armed techniques offer only weapons; techniques carrying both offer both. Previously an unarmed technique such as Gouken: Konoha Reppuu also listed equipped weapons (Kunai, Daikunai) alongside the unarmed strikes.
+- Kept `weaponAttack.filter` as the melee/ranged refinement for armed weapons, and as the fallback for techniques that have no attack descriptor.
+- Fixed Ryuutsuki (Dragon Thrust) so it offers unarmed attacks in addition to melee weapons.
+
 ## v1.0.14 - 2026-06-07
 
 - Fixed the Community Compendium class descriptions where OCR conversion had mashed talent-tree options into single run-on paragraphs. Each talent, mastery, and feral power now reads as its own entry across Deft Skirmisher, Beast Tamer, Elemental Master, Master Thrower, Ninja Crafter, Shadow Adept, Shunjutsu Master, Space-Time Specialist, and Shinobi Squad Leader.
