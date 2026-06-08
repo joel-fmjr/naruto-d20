@@ -13,6 +13,7 @@ const KNOWN_KEYS = new Set([
   "attackBonus",
   "damageBonus",
   "nonCritDamageBonus",
+  "extraAttacks",
   "held",
   "charge",
 ]);
@@ -131,6 +132,17 @@ export function parseWeaponAttackConfig({ values, keys, malformed }) {
     );
   }
 
+  const rawExtra = str("extraAttacks");
+  const extraAttacks = rawExtra
+    ? rawExtra
+        .split(";")
+        .map((entry) => {
+          const [formula, name] = entry.split("|").map((s) => s.trim());
+          return { formula, name: name ?? "" };
+        })
+        .filter((e) => e.formula)
+    : [];
+
   return {
     config: {
       mode,
@@ -139,6 +151,7 @@ export function parseWeaponAttackConfig({ values, keys, malformed }) {
       attackBonus: str("attackBonus"),
       damageBonus: str("damageBonus"),
       nonCritDamageBonus: str("nonCritDamageBonus"),
+      extraAttacks,
       held: str("held"),
       charge: chargeRaw === "true",
     },
@@ -192,6 +205,20 @@ export async function rollSelectedWeaponAttackWithTechnique({
       const originalLength = nonCritParts.length;
       nonCritParts.push({ formula: config.nonCritDamageBonus, types: [] });
       cleanup.push(() => nonCritParts.splice(originalLength, 1));
+    }
+
+    if (config.extraAttacks?.length) {
+      const exAtk = actionUse.shared.action.extraAttacks;
+      const supportsManual = pf1.config.extraAttacks[exAtk?.type]?.manual === true;
+      const originalType = exAtk?.type;
+      if (!supportsManual) exAtk.type = "advanced";
+      const manual = (exAtk.manual ??= []);
+      const originalLength = manual.length;
+      for (const atk of config.extraAttacks) manual.push(atk);
+      cleanup.push(() => {
+        exAtk.type = originalType;
+        manual.splice(originalLength);
+      });
     }
   };
 
