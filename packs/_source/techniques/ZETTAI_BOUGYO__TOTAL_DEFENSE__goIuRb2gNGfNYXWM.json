@@ -23,7 +23,7 @@
     "rank": 1,
     "complexity": "D-Class",
     "chakraCost": 1,
-    "activation": "standard",
+    "activation": "move",
     "range": "",
     "target": "",
     "area": "",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "other",
         "activation": {
-          "type": "standard",
+          "type": "move",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {
