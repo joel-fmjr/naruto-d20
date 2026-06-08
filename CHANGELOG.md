@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.17 - 2026-06-08
+
+- Added Chakra Resistance field to technique items, mirroring PF1e's Spell Resistance mechanic. Techniques that apply Chakra Resistance now show a "Chakra Resistance" pill in the expanded item summary row and a checkbox on the Details tab of the technique sheet.
+- Synced Chakra Resistance data from the source DB: 429 of 1053 techniques are now marked as chakra-resistant.
+- Added `tools/sync-technique-cr-from-db.mjs` for future re-sync from the external DB.
+
 ## v1.0.16 - 2026-06-08
 
 - Changed activation cost for all Speed Rank (Kousoku) and Strength Rank (Jouryoku) techniques (Ranks 1–5) from Standard Action to Free Action.
