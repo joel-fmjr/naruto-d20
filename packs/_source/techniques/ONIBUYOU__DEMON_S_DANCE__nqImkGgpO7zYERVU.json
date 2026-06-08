@@ -23,7 +23,7 @@
     "rank": 5,
     "complexity": "C-Class",
     "chakraCost": 4,
-    "activation": "standard",
+    "activation": "attack",
     "range": "10 ft",
     "target": "One held, unanimated weapon",
     "area": "",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "other",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

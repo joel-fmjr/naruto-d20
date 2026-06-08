@@ -23,7 +23,7 @@
     "rank": 3,
     "complexity": "D-Class",
     "chakraCost": 1,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Medium (20 ft. + 10 ft./2 levels)",
     "target": "",
     "area": "",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "other",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

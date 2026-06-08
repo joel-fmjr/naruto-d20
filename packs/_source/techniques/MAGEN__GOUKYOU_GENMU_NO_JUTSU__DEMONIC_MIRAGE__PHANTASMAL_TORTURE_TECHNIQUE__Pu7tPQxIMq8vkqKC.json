@@ -28,7 +28,7 @@
     "rank": 7,
     "complexity": "A-Class",
     "chakraCost": 8,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Touch",
     "target": "One creature",
     "area": "",
@@ -55,10 +55,10 @@
         "name": "Use",
         "actionType": "spellsave",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

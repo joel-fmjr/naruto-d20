@@ -23,7 +23,7 @@
     "rank": 5,
     "complexity": "C-Class",
     "chakraCost": 4,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Melee touch",
     "target": "One living creature",
     "area": "",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "spellsave",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

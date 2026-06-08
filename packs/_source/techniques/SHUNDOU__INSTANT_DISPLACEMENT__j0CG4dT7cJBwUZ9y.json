@@ -23,7 +23,7 @@
     "rank": 4,
     "complexity": "C-Class",
     "chakraCost": 4,
-    "activation": "standard",
+    "activation": "move",
     "range": "40 ft",
     "target": "",
     "area": "",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "mwak",
         "activation": {
-          "type": "standard",
+          "type": "move",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

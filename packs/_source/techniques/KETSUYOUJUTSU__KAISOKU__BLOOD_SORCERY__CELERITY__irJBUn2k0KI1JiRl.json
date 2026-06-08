@@ -26,7 +26,7 @@
     "rank": 4,
     "complexity": "C-Class",
     "chakraCost": 5,
-    "activation": "standard",
+    "activation": "round",
     "range": "Personal",
     "target": "",
     "area": "",
@@ -53,9 +53,10 @@
         "name": "Use",
         "actionType": "other",
         "activation": {
-          "type": "standard",
+          "type": "round",
+          "cost": 2,
           "unchained": {
-            "type": "action",
+            "type": "round",
             "cost": 2
           }
         },

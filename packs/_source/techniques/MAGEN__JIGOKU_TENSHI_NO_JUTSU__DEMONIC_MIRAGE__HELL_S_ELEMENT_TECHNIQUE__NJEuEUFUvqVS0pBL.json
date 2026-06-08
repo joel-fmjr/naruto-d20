@@ -25,7 +25,7 @@
     "rank": 2,
     "complexity": "C-Class",
     "chakraCost": 4,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Will negates",
     "target": "",
     "area": "20 ft. Spread",
@@ -52,10 +52,10 @@
         "name": "Use",
         "actionType": "other",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

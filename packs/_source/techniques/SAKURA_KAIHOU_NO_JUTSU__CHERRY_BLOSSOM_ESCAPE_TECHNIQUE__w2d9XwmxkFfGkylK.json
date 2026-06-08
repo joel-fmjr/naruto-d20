@@ -26,7 +26,7 @@
     "rank": 6,
     "complexity": "S-Class",
     "chakraCost": 5,
-    "activation": "standard",
+    "activation": "attack",
     "range": "",
     "target": "",
     "area": "15 ft Spread centered on you *",
@@ -53,10 +53,10 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

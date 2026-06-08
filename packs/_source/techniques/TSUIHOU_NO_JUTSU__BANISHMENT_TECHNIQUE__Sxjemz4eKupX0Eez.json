@@ -23,7 +23,7 @@
     "rank": 7,
     "complexity": "S-Class",
     "chakraCost": 8,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Melee Touch",
     "target": "One summoned creature or object",
     "area": "",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

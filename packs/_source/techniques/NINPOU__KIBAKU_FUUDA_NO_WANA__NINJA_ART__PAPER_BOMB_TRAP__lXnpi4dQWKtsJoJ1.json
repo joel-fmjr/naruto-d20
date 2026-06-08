@@ -25,7 +25,7 @@
     "rank": 8,
     "complexity": "B-Class",
     "chakraCost": 10,
-    "activation": "standard",
+    "activation": "round",
     "range": "0 ft",
     "target": "",
     "area": "Four adjacent squares",
@@ -52,10 +52,11 @@
         "name": "Use",
         "actionType": "spellsave",
         "activation": {
-          "type": "standard",
+          "type": "round",
+          "cost": 5,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "round",
+            "cost": 5
           }
         },
         "duration": {

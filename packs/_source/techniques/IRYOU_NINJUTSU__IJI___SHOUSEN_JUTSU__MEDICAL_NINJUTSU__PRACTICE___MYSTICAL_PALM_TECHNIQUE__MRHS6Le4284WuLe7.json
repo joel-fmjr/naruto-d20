@@ -23,7 +23,7 @@
     "rank": 2,
     "complexity": "D-Class",
     "chakraCost": 3,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Touch",
     "target": "One living creature",
     "area": "",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

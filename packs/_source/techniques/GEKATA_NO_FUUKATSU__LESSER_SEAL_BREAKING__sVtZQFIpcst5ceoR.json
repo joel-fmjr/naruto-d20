@@ -25,7 +25,7 @@
     "rank": 6,
     "complexity": "B-Class",
     "chakraCost": 15,
-    "activation": "standard",
+    "activation": "minute",
     "range": "10 ft",
     "target": "One willing or helpless living creature",
     "area": "",
@@ -52,10 +52,11 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "minute",
+          "cost": 1,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "minute",
+            "cost": 1
           }
         },
         "duration": {

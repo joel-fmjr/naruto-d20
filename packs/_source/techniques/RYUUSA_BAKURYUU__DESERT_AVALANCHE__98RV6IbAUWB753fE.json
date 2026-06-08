@@ -23,7 +23,7 @@
     "rank": 8,
     "complexity": "A-Class",
     "chakraCost": 10,
-    "activation": "standard",
+    "activation": "attack",
     "range": "10 ft/level",
     "target": "",
     "area": "*",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

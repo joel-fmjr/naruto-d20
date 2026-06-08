@@ -27,7 +27,7 @@
     "rank": 14,
     "complexity": "SS-Class",
     "chakraCost": 30,
-    "activation": "standard",
+    "activation": "attack",
     "range": "10 ft",
     "target": "",
     "area": "5ft wide Line",
@@ -54,10 +54,10 @@
         "name": "Use",
         "actionType": "spellsave",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

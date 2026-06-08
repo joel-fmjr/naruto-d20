@@ -23,7 +23,7 @@
     "rank": 3,
     "complexity": "C-Class",
     "chakraCost": 1,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Personal",
     "target": "",
     "area": "",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

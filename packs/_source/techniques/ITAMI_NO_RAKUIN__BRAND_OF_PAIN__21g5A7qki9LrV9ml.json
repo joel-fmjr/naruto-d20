@@ -25,7 +25,7 @@
     "rank": 12,
     "complexity": "S-Class",
     "chakraCost": 22,
-    "activation": "standard",
+    "activation": "hour",
     "range": "5 ft",
     "target": "One willing creature",
     "area": "",
@@ -52,10 +52,11 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "hour",
+          "cost": 1,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "hour",
+            "cost": 1
           }
         },
         "duration": {

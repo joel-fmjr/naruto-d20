@@ -25,7 +25,7 @@
     "rank": 5,
     "complexity": "C-Class",
     "chakraCost": 6,
-    "activation": "standard",
+    "activation": "attack",
     "range": "",
     "target": "",
     "area": "30 ft wide, 10 ft high Burst, centered on you *",
@@ -52,10 +52,10 @@
         "name": "Use",
         "actionType": "spellsave",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

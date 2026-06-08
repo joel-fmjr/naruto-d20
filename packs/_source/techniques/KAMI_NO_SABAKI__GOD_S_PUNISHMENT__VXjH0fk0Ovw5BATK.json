@@ -25,7 +25,7 @@
     "rank": 10,
     "complexity": "S-Class",
     "chakraCost": 30,
-    "activation": "standard",
+    "activation": "round",
     "range": "100 ft",
     "target": "One living creature",
     "area": "",
@@ -52,10 +52,11 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "round",
+          "cost": 1,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "round",
+            "cost": 1
           }
         },
         "duration": {

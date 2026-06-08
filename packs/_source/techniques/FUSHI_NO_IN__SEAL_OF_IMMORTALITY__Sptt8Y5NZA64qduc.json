@@ -26,7 +26,7 @@
     "rank": 14,
     "complexity": "SS-Class",
     "chakraCost": 50,
-    "activation": "standard",
+    "activation": "hour",
     "range": "Melee touch",
     "target": "One willing creature *",
     "area": "",
@@ -53,10 +53,11 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "hour",
+          "cost": 4,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "hour",
+            "cost": 4
           }
         },
         "duration": {

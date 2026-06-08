@@ -26,7 +26,7 @@
     "rank": 6,
     "complexity": "B-Class",
     "chakraCost": 4,
-    "activation": "standard",
+    "activation": "attack",
     "range": "",
     "target": "One adjacent creature *",
     "area": "",
@@ -53,10 +53,10 @@
         "name": "Use",
         "actionType": "mwak",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

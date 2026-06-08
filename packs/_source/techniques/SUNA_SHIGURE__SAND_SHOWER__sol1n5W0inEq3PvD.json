@@ -25,7 +25,7 @@
     "rank": 5,
     "complexity": "B-Class",
     "chakraCost": 12,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Medium (20 ft. + 10 ft./2 levels)",
     "target": "",
     "area": "20ft wide, 40ft high Cylinder (S)",
@@ -52,10 +52,10 @@
         "name": "Use",
         "actionType": "rwak",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

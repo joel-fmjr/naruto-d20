@@ -26,7 +26,7 @@
     "rank": 6,
     "complexity": "A-Class",
     "chakraCost": 9,
-    "activation": "standard",
+    "activation": "round",
     "range": "Medium (20 ft. + 10 ft./2 levels)",
     "target": "",
     "area": "40 ft. Emanation (S)",
@@ -53,10 +53,11 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "round",
+          "cost": 1,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "round",
+            "cost": 1
           }
         },
         "duration": {

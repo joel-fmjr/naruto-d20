@@ -25,7 +25,7 @@
     "rank": 10,
     "complexity": "A-Class",
     "chakraCost": 15,
-    "activation": "standard",
+    "activation": "minute",
     "range": "Touch",
     "target": "One humanoid creature",
     "area": "",
@@ -52,10 +52,11 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "minute",
+          "cost": 5,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "minute",
+            "cost": 5
           }
         },
         "duration": {

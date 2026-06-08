@@ -25,7 +25,7 @@
     "rank": 7,
     "complexity": "B-Class",
     "chakraCost": 3,
-    "activation": "standard",
+    "activation": "round",
     "range": "Touch",
     "target": "One creature with Int 3+",
     "area": "",
@@ -52,10 +52,11 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "round",
+          "cost": 1,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "round",
+            "cost": 1
           }
         },
         "duration": {

@@ -26,7 +26,7 @@
     "rank": 7,
     "complexity": "B-Class",
     "chakraCost": 8,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Medium (20 ft. + 10 ft./2 levels)",
     "target": "",
     "area": "10 ft Burst",
@@ -53,10 +53,10 @@
         "name": "Use",
         "actionType": "spellsave",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

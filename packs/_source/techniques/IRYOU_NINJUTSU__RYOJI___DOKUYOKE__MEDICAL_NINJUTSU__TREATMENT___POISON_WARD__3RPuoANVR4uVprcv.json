@@ -23,7 +23,7 @@
     "rank": 8,
     "complexity": "S-Class",
     "chakraCost": 4,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Melee touch",
     "target": "One creature",
     "area": "",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "mwak",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

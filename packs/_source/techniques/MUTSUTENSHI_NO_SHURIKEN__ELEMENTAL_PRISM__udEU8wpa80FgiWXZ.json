@@ -25,7 +25,7 @@
     "rank": 2,
     "complexity": "D-Class",
     "chakraCost": 1,
-    "activation": "standard",
+    "activation": "move",
     "range": "Touch",
     "target": "One shuriken",
     "area": "",
@@ -52,10 +52,10 @@
         "name": "Use",
         "actionType": "mwak",
         "activation": {
-          "type": "standard",
+          "type": "move",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {
