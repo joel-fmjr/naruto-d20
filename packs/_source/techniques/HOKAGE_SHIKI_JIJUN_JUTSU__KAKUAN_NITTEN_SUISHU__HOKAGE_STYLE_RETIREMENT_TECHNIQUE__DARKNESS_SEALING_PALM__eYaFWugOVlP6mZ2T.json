@@ -25,7 +25,7 @@
     "rank": 13,
     "complexity": "SS-Class",
     "chakraCost": 24,
-    "activation": "standard",
+    "activation": "round",
     "range": "Close (10 ft. + 5 ft./2 levels)",
     "target": "One Demonic creature",
     "area": "",
@@ -52,10 +52,11 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "round",
+          "cost": 1,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "round",
+            "cost": 1
           }
         },
         "duration": {

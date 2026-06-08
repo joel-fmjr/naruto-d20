@@ -23,7 +23,7 @@
     "rank": 1,
     "complexity": "C-Class",
     "chakraCost": 3,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Medium (20 ft. + 10 ft./2 levels)",
     "target": "One creature",
     "area": "",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

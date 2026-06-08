@@ -25,7 +25,7 @@
     "rank": 5,
     "complexity": "C-Class",
     "chakraCost": 4,
-    "activation": "standard",
+    "activation": "minute",
     "range": "Close (10 ft. + 5 ft./2 levels)",
     "target": "",
     "area": "",
@@ -52,10 +52,11 @@
         "name": "Use",
         "actionType": "rwak",
         "activation": {
-          "type": "standard",
+          "type": "minute",
+          "cost": 1,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "minute",
+            "cost": 1
           }
         },
         "duration": {

@@ -26,7 +26,7 @@
     "rank": 14,
     "complexity": "S-Class",
     "chakraCost": 30,
-    "activation": "standard",
+    "activation": "round",
     "range": "Long (30 ft. + 15 ft./2 levels)",
     "target": "",
     "area": "400 ft tall, 60 ft radius Cylinder *",
@@ -53,10 +53,11 @@
         "name": "Use",
         "actionType": "rwak",
         "activation": {
-          "type": "standard",
+          "type": "round",
+          "cost": 1,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "round",
+            "cost": 1
           }
         },
         "duration": {

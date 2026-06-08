@@ -23,7 +23,7 @@
     "rank": 10,
     "complexity": "A-Class",
     "chakraCost": 20,
-    "activation": "standard",
+    "activation": "round",
     "range": "Touch",
     "target": "",
     "area": "",
@@ -50,10 +50,11 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "round",
+          "cost": 1,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "round",
+            "cost": 1
           }
         },
         "duration": {

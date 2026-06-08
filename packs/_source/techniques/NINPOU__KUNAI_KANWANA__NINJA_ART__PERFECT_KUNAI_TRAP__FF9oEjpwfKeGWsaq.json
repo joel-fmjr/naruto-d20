@@ -23,7 +23,7 @@
     "rank": 9,
     "complexity": "A-Class",
     "chakraCost": 0,
-    "activation": "standard",
+    "activation": "minute",
     "range": "",
     "target": "",
     "area": "",
@@ -50,10 +50,11 @@
         "name": "Use",
         "actionType": "other",
         "activation": {
-          "type": "standard",
+          "type": "minute",
+          "cost": 10,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "minute",
+            "cost": 10
           }
         },
         "duration": {

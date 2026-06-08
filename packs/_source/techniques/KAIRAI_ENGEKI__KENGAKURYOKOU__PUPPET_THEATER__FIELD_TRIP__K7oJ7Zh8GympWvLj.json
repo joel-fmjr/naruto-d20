@@ -23,7 +23,7 @@
     "rank": 6,
     "complexity": "B-Class",
     "chakraCost": 0,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Melee touch",
     "target": "One puppet",
     "area": "",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "mwak",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

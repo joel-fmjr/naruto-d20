@@ -23,7 +23,7 @@
     "rank": 14,
     "complexity": "SS-Class",
     "chakraCost": 0,
-    "activation": "standard",
+    "activation": "hour",
     "range": "Personal",
     "target": "",
     "area": "",
@@ -50,10 +50,11 @@
         "name": "Use",
         "actionType": "other",
         "activation": {
-          "type": "standard",
+          "type": "hour",
+          "cost": 1,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "hour",
+            "cost": 1
           }
         },
         "duration": {

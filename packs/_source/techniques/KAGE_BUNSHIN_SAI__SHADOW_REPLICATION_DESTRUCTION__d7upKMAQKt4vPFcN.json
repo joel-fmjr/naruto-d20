@@ -25,7 +25,7 @@
     "rank": 6,
     "complexity": "A-Class",
     "chakraCost": 6,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Medium (20 ft. + 10 ft./2 levels)",
     "target": "One Kage Bunshin",
     "area": "30 ft Burst centered on the target",
@@ -52,10 +52,10 @@
         "name": "Use",
         "actionType": "spellsave",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

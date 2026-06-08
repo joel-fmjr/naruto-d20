@@ -25,7 +25,7 @@
     "rank": 3,
     "complexity": "C-Class",
     "chakraCost": 0,
-    "activation": "standard",
+    "activation": "move",
     "range": "Close (10 ft. + 5 ft./2 levels)",
     "target": "",
     "area": "",
@@ -52,10 +52,10 @@
         "name": "Use",
         "actionType": "other",
         "activation": {
-          "type": "standard",
+          "type": "move",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

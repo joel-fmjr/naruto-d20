@@ -26,7 +26,7 @@
     "rank": 5,
     "complexity": "C-Class",
     "chakraCost": 4,
-    "activation": "standard",
+    "activation": "attack",
     "range": "0 ft.",
     "target": "",
     "area": "30 ft. Burst",
@@ -53,10 +53,10 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

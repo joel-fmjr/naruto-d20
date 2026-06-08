@@ -25,7 +25,7 @@
     "rank": 6,
     "complexity": "B-Class",
     "chakraCost": 6,
-    "activation": "standard",
+    "activation": "round",
     "range": "20 ft/level",
     "target": "",
     "area": "10 ft Spread",
@@ -52,10 +52,11 @@
         "name": "Use",
         "actionType": "other",
         "activation": {
-          "type": "standard",
+          "type": "round",
+          "cost": 1,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "round",
+            "cost": 1
           }
         },
         "duration": {

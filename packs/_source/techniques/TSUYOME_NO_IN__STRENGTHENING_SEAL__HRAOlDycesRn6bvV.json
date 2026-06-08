@@ -23,7 +23,7 @@
     "rank": 5,
     "complexity": "C-Class",
     "chakraCost": 6,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Melee Touch",
     "target": "One object of Small or larger size",
     "area": "",
@@ -50,10 +50,10 @@
         "name": "Use",
         "actionType": "mwak",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

@@ -28,7 +28,7 @@
     "rank": 8,
     "complexity": "SS-Class",
     "chakraCost": 12,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Melee attack",
     "target": "One creature",
     "area": "",
@@ -55,10 +55,10 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

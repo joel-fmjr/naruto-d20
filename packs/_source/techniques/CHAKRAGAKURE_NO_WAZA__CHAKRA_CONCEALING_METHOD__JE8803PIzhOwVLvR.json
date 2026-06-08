@@ -23,7 +23,7 @@
     "rank": 7,
     "complexity": "C-Class",
     "chakraCost": 2,
-    "activation": "standard",
+    "activation": "round",
     "range": "Touch",
     "target": "",
     "area": "5 ft. Emanation",
@@ -50,10 +50,11 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "round",
+          "cost": 5,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "round",
+            "cost": 5
           }
         },
         "duration": {

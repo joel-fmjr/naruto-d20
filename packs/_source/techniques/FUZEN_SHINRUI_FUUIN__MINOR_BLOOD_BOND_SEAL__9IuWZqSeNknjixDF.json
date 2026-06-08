@@ -26,7 +26,7 @@
     "rank": 9,
     "complexity": "A-Class",
     "chakraCost": 15,
-    "activation": "standard",
+    "activation": "round",
     "range": "Touch",
     "target": "One clone *",
     "area": "",
@@ -53,10 +53,11 @@
         "name": "Use",
         "actionType": "mwak",
         "activation": {
-          "type": "standard",
+          "type": "round",
+          "cost": 1,
           "unchained": {
-            "type": "action",
-            "cost": 2
+            "type": "round",
+            "cost": 1
           }
         },
         "duration": {

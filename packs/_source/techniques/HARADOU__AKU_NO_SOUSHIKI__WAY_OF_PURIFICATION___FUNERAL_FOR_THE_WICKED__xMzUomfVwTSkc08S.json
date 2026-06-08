@@ -28,7 +28,7 @@
     "rank": 9,
     "complexity": "S-Class",
     "chakraCost": 16,
-    "activation": "standard",
+    "activation": "attack",
     "range": "Melee touch",
     "target": "One evil or non-human, nonanimal creature",
     "area": "",
@@ -55,10 +55,10 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {

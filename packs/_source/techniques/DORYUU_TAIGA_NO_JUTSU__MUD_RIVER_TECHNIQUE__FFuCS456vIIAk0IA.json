@@ -25,7 +25,7 @@
     "rank": 7,
     "complexity": "B-Class",
     "chakraCost": 6,
-    "activation": "standard",
+    "activation": "attack",
     "range": "10 ft./level (up to 150 ft.)",
     "target": "",
     "area": "10 ft. wide Line *",
@@ -52,10 +52,10 @@
         "name": "Use",
         "actionType": "save",
         "activation": {
-          "type": "standard",
+          "type": "attack",
           "unchained": {
             "type": "action",
-            "cost": 2
+            "cost": 1
           }
         },
         "duration": {
