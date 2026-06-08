@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.18 - 2026-06-08
+
+- Reroll cards now show which keep option was chosen: "Kept new result", "Kept lower result", or "Kept higher result" instead of the generic "Kept result" label. Localized in both English and pt-BR.
+
 ## v1.0.17 - 2026-06-08
 
 - Added Chakra Resistance field to technique items, mirroring PF1e's Spell Resistance mechanic. Techniques that apply Chakra Resistance now show a "Chakra Resistance" pill in the expanded item summary row and a checkbox on the Details tab of the technique sheet.
