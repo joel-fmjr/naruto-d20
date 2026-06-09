@@ -1,70 +1,40 @@
 import { getRankBuffFlag, isRankBuffItem } from "./rank-buffs.mjs";
 
-const IMMOBILIZING_CONDITIONS = ["helpless", "paralyzed", "immobilized", "grappled", "pinned"];
+// "immobilized" excluded — not a native PF1e 11.11 condition; would only work
+// if a module registers a custom ActiveEffect status with that exact ID.
+const IMMOBILIZING_CONDITIONS = ["helpless", "paralyzed", "grappled", "pinned"];
 
 export function registerSpeedRankPenalties() {
-  // Conditions in PF1e are ActiveEffects — updateActor does NOT fire for them
-  Hooks.on("createActiveEffect", (effect, _o, userId) =>
-    _onEffectChanged(effect, userId),
-  );
-  Hooks.on("deleteActiveEffect", (effect, _o, userId) =>
-    _onEffectChanged(effect, userId),
-  );
-  // Armor equip/unequip fires updateItem; buff creation fires createItem
-  Hooks.on("updateItem", (item, _c, _o, userId) =>
-    _onActorItemChanged(item.actor, userId),
-  );
-  Hooks.on("createItem", (item, _o, userId) =>
-    _onActorItemChanged(item.actor, userId),
-  );
+  Hooks.on("pf1GetRollData", _onGetRollData);
 }
 
-async function _onEffectChanged(effect, userId) {
-  if (game.user.id !== userId) return;
-  const actor = effect.parent;
-  if (!(actor instanceof Actor)) return;
-  await _syncSpeedRankLevel(actor);
+function _onGetRollData(item, data) {
+  if (!isRankBuffItem(item) || getRankBuffFlag(item)?.key !== "KOUSOKU") return;
+  const actor = item.actor;
+  if (!actor) return;
+
+  const flag = getRankBuffFlag(item);
+  const baseLevel = flag?.level ?? item.system?.level ?? 0;
+  const effectiveLevel = _computeEffectiveLevel(actor, data, baseLevel);
+
+  // Table caps: Jump and Hide cap at +10 (rank 10 → +10, not +11)
+  data.item.speedRank = {
+    level:  effectiveLevel,
+    jump:   effectiveLevel > 0 ? Math.min(effectiveLevel + 1, 10) : 0,
+    dodge:  effectiveLevel,
+    attack: Math.floor(effectiveLevel / 2),
+    speed:  effectiveLevel > 0 ? effectiveLevel * 5 + 5 : 0,
+    hide:   effectiveLevel > 0 ? Math.min(effectiveLevel + 1, 10) : 0,
+    cmb:    -Math.floor(effectiveLevel / 2),
+  };
 }
 
-async function _onActorItemChanged(actor, userId) {
-  if (game.user.id !== userId) return;
-  await _syncSpeedRankLevel(actor);
-}
-
-async function _syncSpeedRankLevel(actor) {
-  if (!actor?.isOwner) return;
-  if (!["character", "npc"].includes(actor.type)) return;
-
-  const speedBuff = actor.items.find(
-    (item) => isRankBuffItem(item) && getRankBuffFlag(item)?.key === "KOUSOKU",
-  );
-  if (!speedBuff?.system?.active) return;
-
-  const flag = getRankBuffFlag(speedBuff);
-  const baseLevel = flag?.level ?? speedBuff.system.level;
-  const effectiveLevel = _computeEffectiveLevel(actor, baseLevel);
-
-  if (speedBuff.system.level !== effectiveLevel) {
-    await speedBuff.update({ "system.level": effectiveLevel });
-  }
-}
-
-function _computeEffectiveLevel(actor, baseLevel) {
+function _computeEffectiveLevel(actor, data, baseLevel) {
   for (const cond of IMMOBILIZING_CONDITIONS) {
     if (actor.statuses?.has(cond)) return 0;
   }
-  return Math.max(0, baseLevel - _armorPenalty(actor));
-}
-
-function _armorPenalty(actor) {
-  // PF1e armor items have type:"equipment", subType:"armor", and weight in equipmentSubtype
-  const equipment = actor.itemTypes?.equipment ?? actor.items.filter((i) => i.type === "equipment");
-  for (const item of equipment) {
-    if (!item.system?.equipped) continue;
-    if (item.system?.subType !== "armor") continue;
-    const sub = item.system?.equipmentSubtype;
-    if (sub === "heavyArmor") return 3;
-    if (sub === "mediumArmor") return 1;
-  }
-  return 0;
+  // Use PF1e's consolidated armor type (accounts for isActive, containers, HP, quantity)
+  const armorType = data.armor?.type ?? 0;
+  const armorPenalty = armorType >= 3 ? 3 : armorType >= 2 ? 1 : 0;
+  return Math.max(0, baseLevel - armorPenalty);
 }
