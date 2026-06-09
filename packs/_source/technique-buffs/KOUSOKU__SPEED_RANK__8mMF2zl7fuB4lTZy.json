@@ -14,7 +14,7 @@
         "operator": "add",
         "priority": 0,
         "target": "skill.acr",
-        "formula": "@item.level+1"
+        "formula": "@item.speedRank.jump"
       },
       {
         "type": "dodge",
@@ -22,7 +22,7 @@
         "operator": "add",
         "priority": 0,
         "target": "ac",
-        "formula": "@item.level"
+        "formula": "@item.speedRank.dodge"
       },
       {
         "type": "untyped",
@@ -30,7 +30,7 @@
         "operator": "add",
         "priority": 0,
         "target": "attack",
-        "formula": "floor(@item.level/2)"
+        "formula": "@item.speedRank.attack"
       },
       {
         "type": "untyped",
@@ -38,14 +38,14 @@
         "operator": "add",
         "priority": 0,
         "target": "allSpeeds",
-        "formula": "@item.level*5 + 5"
+        "formula": "@item.speedRank.speed"
       },
       {
         "type": "untyped",
         "operator": "add",
         "priority": 0,
         "target": "skill.ste",
-        "formula": "@item.level+1",
+        "formula": "@item.speedRank.hide",
         "_id": "RjMHVqgN"
       },
       {
@@ -53,7 +53,7 @@
         "operator": "add",
         "priority": 0,
         "target": "ref",
-        "formula": "@item.level",
+        "formula": "@item.speedRank.dodge",
         "_id": "17OhbWVn"
       },
       {
@@ -62,7 +62,7 @@
         "operator": "add",
         "priority": 0,
         "target": "cmb",
-        "formula": "-floor(@item.level/2)"
+        "formula": "@item.speedRank.cmb"
       }
     ],
     "changeFlags": {

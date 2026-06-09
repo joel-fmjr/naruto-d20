@@ -35,11 +35,12 @@ import { registerFeatListListeners } from "./ui/feat-list.mjs";
 import { registerFeatGrantDeletion } from "./automation/feat-grants.mjs";
 import { registerChargeDefensePenalty } from "./automation/charge-defense.mjs";
 import { registerExpiredBuffCleanup } from "./automation/buff-expiry.mjs";
+import { registerSpeedRankPenalties } from "./automation/speed-rank-penalties.mjs";
 import { registerTapReservesListener } from "./ui/tap-reserves.mjs";
 import { onActorRest } from "./data/rest-recovery.mjs";
 import { registerChakraConditions } from "./data/chakra-conditions.mjs";
 
-const FLAG_MIGRATION_VERSION = 5;
+const FLAG_MIGRATION_VERSION = 6;
 
 // ── [1] init ──────────────────────────────────────────────────────────────
 Hooks.once("init", () => {
@@ -204,6 +205,7 @@ Hooks.once("setup", () => {
   registerFeatGrantDeletion(); // cascade-delete feat supplements on feat removal
   registerChargeDefensePenalty(); // PF1e charge attack AC penalty until next turn
   registerExpiredBuffCleanup(); // delete module automation buffs when their duration expires
+  registerSpeedRankPenalties(); // KOUSOKU armor/condition level correction
   registerTapReservesListener(); // Chakra Reserve header → Tap Reserves dialog
 });
 
@@ -227,6 +229,7 @@ Hooks.once("ready", async () => {
   await _migrateActorFlags();
   await _migrateTechniqueActionIds();
   await _migrateExistingTechniquesLearned();
+  await _migrateKousokuBuffFormulas();
   await game.settings.set(MODULE_ID, "flagMigrationVersion", FLAG_MIGRATION_VERSION);
 });
 
@@ -304,6 +307,55 @@ async function _migrateTechniqueActionIds() {
   for (const scene of game.scenes) {
     for (const token of scene.tokens) {
       if (token.actor && !token.actorLink) await migrateActorItems(token.actor);
+    }
+  }
+}
+
+async function _migrateKousokuBuffFormulas() {
+  const { isRankBuffItem, getRankBuffFlag } = await import("./automation/rank-buffs.mjs");
+
+  const FORMULA_MAP = {
+    "B5YddrZI": "@item.speedRank.jump",
+    "JfNd3IDk": "@item.speedRank.dodge",
+    "vkK43M8p": "@item.speedRank.attack",
+    "PDR8lbWh": "@item.speedRank.speed",
+    "RjMHVqgN": "@item.speedRank.hide",
+    "17OhbWVn": "@item.speedRank.dodge",
+    "YfxaAt5D": "@item.speedRank.cmb",
+  };
+
+  const migrateActor = async (actor) => {
+    if (!["character", "npc"].includes(actor.type)) return;
+    const buff = actor.items.find(
+      (i) => isRankBuffItem(i) && getRankBuffFlag(i)?.key === "KOUSOKU",
+    );
+    if (!buff) return;
+
+    const flag = getRankBuffFlag(buff);
+    const changes = buff.system.changes ?? [];
+    const needsFormulaFix = changes.some(
+      (c) => FORMULA_MAP[c._id] && c.formula !== FORMULA_MAP[c._id],
+    );
+    // Restore system.level to base — old event-driven code may have persisted a
+    // penalized value; new design reads from the flag and ignores system.level.
+    const needsLevelFix = flag?.level !== undefined && buff.system.level !== flag.level;
+    if (!needsFormulaFix && !needsLevelFix) return;
+
+    const update = {};
+    if (needsFormulaFix) {
+      update["system.changes"] = changes.map((c) =>
+        FORMULA_MAP[c._id] ? { ...c, formula: FORMULA_MAP[c._id] } : c,
+      );
+    }
+    if (needsLevelFix) update["system.level"] = flag.level;
+
+    await buff.update(update);
+  };
+
+  for (const actor of game.actors) await migrateActor(actor);
+  for (const scene of game.scenes) {
+    for (const token of scene.tokens) {
+      if (token.actor && !token.actorLink) await migrateActor(token.actor);
     }
   }
 }
