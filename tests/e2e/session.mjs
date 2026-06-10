@@ -4,9 +4,12 @@
  * source of truth for "get this page into the running world, ready".
  */
 export const BASE_URL = process.env.FOUNDRY_URL ?? "http://localhost:30000";
-export const USER = process.env.FOUNDRY_USER ?? "Chicó";
-export const PASSWORD = process.env.FOUNDRY_PASSWORD ?? "esquecademimhomi";
-export const ACTOR = process.env.FOUNDRY_ACTOR ?? "Ikazuchi";
+export const USER = process.env.FOUNDRY_USER ?? "";
+export const PASSWORD = process.env.FOUNDRY_PASSWORD ?? "";
+export const ACTOR = process.env.FOUNDRY_ACTOR ?? "Dattoumaru Ikazuchi (test)";
+export const PERFORM_TECHNIQUE =
+  process.env.FOUNDRY_PERFORM_TECHNIQUE ??
+  "YOUTON: KAIMON NO JUTSU (DEMONIC RELEASE: DESTRUCTION GATE TECHNIQUE)";
 export const STORAGE_STATE = "tests/e2e/.auth/state.json";
 export const READY_TIMEOUT = 120_000;
 
@@ -20,6 +23,9 @@ async function isInGame(page) {
 
 /** Fill + submit Foundry's /join form for the configured user. */
 export async function joinWorld(page) {
+  if (!USER) {
+    throw new Error("FOUNDRY_USER is required to log into the Foundry test world");
+  }
   await page.waitForSelector("form#join-game, form.join-form, select[name='userid']", {
     timeout: READY_TIMEOUT,
   });

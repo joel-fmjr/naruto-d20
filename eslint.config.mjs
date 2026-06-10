@@ -38,6 +38,7 @@ const foundryGlobals = {
   expandObject: "readonly",
   flattenObject: "readonly",
   Items: "readonly",
+  CompendiumCollection: "readonly",
   // jQuery — Foundry bundles and exposes it globally
   $: "readonly",
   jQuery: "readonly",
@@ -48,14 +49,7 @@ const foundryGlobals = {
 
 export default [
   {
-    ignores: [
-      "node_modules/**",
-      "packs/**",
-      "dist/**",
-      "public/**",
-      "pf1/**",
-      "pf1-source/**",
-    ],
+    ignores: ["node_modules/**", "packs/**", "dist/**", "public/**", "pf1/**", "pf1-source/**"],
   },
   js.configs.recommended,
   // Module runtime — runs inside Foundry (browser + Foundry/PF1 globals).
@@ -70,10 +64,7 @@ export default [
       },
     },
     rules: {
-      "no-unused-vars": [
-        "warn",
-        { argsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" },
-      ],
+      "no-unused-vars": ["warn", { argsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" }],
       "no-undef": "error",
       eqeqeq: ["warn", "smart"],
       "prefer-const": "warn",
@@ -95,14 +86,18 @@ export default [
         ui: "readonly",
         CONFIG: "readonly",
         pf1: "readonly",
+        Actor: "readonly",
+        Item: "readonly",
+        ChatMessage: "readonly",
+        CompendiumCollection: "readonly",
+        Hooks: "readonly",
+        foundry: "readonly",
+        canvas: "readonly",
         $: "readonly",
       },
     },
     rules: {
-      "no-unused-vars": [
-        "warn",
-        { argsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" },
-      ],
+      "no-unused-vars": ["warn", { argsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" }],
       "prefer-const": "warn",
       "no-var": "error",
     },
@@ -118,10 +113,7 @@ export default [
       },
     },
     rules: {
-      "no-unused-vars": [
-        "warn",
-        { argsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" },
-      ],
+      "no-unused-vars": ["warn", { argsIgnorePattern: "^_", caughtErrorsIgnorePattern: "^_" }],
       "prefer-const": "warn",
       "no-var": "error",
     },

@@ -1,33 +1,25 @@
 /**
- * Naruto D20 — Test API (the "test switch")
+ * Playwright-only API for driving a live Foundry world.
  *
- * This module is loaded ONLY when the hidden world setting `testMode` is on
- * (see main.mjs, `ready` hook). It publishes the module's internal rule
- * functions plus fixture/reset/determinism helpers on
- *   game.modules.get("naruto-d20").api
- * so the Playwright E2E suite (tests/e2e/) can drive the real rules headlessly
- * and assert on the resulting actor flags / conditions / chat — instead of
- * clicking fragile DOM.
- *
- * IMPORTANT: this file contains NO rule logic of its own. It only re-exports
- * the existing functions and adds thin orchestration (reset state, force a
- * roll, read snapshots). The single source of truth stays in the feature
- * modules.
+ * This module is not imported by the runtime entry point. The E2E harness loads
+ * it explicitly after `game.ready`, then creates disposable actor clones for
+ * every test. Rule logic remains in the production modules.
  */
 
 import {
-  MODULE_ID,
-  LOW_RESERVES_CONDITION_ID,
   CHAKRA_DEPLETION_CONDITION_ID,
+  LOW_RESERVES_CONDITION_ID,
+  MODULE_ID,
   TECHNIQUE_ITEM_TYPE,
 } from "../constants.mjs";
 import {
-  chakraPoolValuePath,
   chakraPoolTempPath,
+  chakraPoolValuePath,
   chakraReserveValuePath,
-  conditionAppliedFatiguedPath,
   conditionAppliedExhaustedPath,
+  conditionAppliedFatiguedPath,
 } from "../flag-paths.mjs";
+import { DISCIPLINE_SKILL_MAP } from "../data/skills.mjs";
 import { performTechnique, canAffordTechnique } from "../use-technique.mjs";
 import {
   availableChakra,
@@ -37,121 +29,253 @@ import {
 } from "../data/chakra-spend.mjs";
 import { checkAndUpdateConditions } from "../data/chakra-conditions.mjs";
 import {
-  applyTechniqueBuff,
-  findBuffByName,
   applyBuffToTarget,
+  applyTechniqueBuff,
   clearBuffLookupCache,
+  findBuffByName,
 } from "../automation/buff-application.mjs";
 import { isTechniqueEffectivelyLearned } from "../learn-technique.mjs";
-import { TapReservesDialog } from "../ui/tap-reserves.mjs";
 
-// ── Determinism ────────────────────────────────────────────────────────────
+const FIXTURE_FLAG = "e2eFixture";
+const DEFAULT_TECHNIQUE_PACK = "naruto-d20.techniques";
+const DEFAULT_BUFF_PACK = "naruto-d20.technique-buffs";
 
-/**
- * Foundry maps a uniform sample to a die face as `ceil((1 - randomUniform()) * faces)`
- * — i.e. a LOW sample yields a HIGH face (verified empirically: 0.025 → 20,
- * 0.975 → 1). To pin a d20 to `face`, sample the midpoint of its inverted band.
- */
-function d20FaceToUniform(face) {
-  return 1 - (face - 0.5) / 20;
+let activeFixture = null;
+let pendingRollCleanup = null;
+
+function moduleRecord() {
+  const mod = game.modules.get(MODULE_ID);
+  if (!mod) throw new Error(`Module "${MODULE_ID}" is not active`);
+  return mod;
 }
 
-/**
- * Run `fn` with the RNG pinned so every d20 rolled inside resolves to
- * `d20Face` (20 → guaranteed success, 1 → guaranteed failure for the QA's
- * "force success/failure" steps). When `actor` is given, its `rollSkill` is
- * temporarily forced to skipDialog so the perform check never opens the PF1e
- * skill-roll dialog. State is always restored in `finally`.
- */
-export async function withForcedRoll(d20Face, fn, { actor = null } = {}) {
-  const origRandom = CONFIG.Dice.randomUniform;
-  CONFIG.Dice.randomUniform = () => d20FaceToUniform(d20Face);
-
-  let restoreSkill = null;
-  if (actor && typeof actor.rollSkill === "function") {
-    const orig = actor.rollSkill.bind(actor);
-    actor.rollSkill = (id, opts = {}) => orig(id, { ...opts, skipDialog: true });
-    restoreSkill = () => {
-      delete actor.rollSkill;
-    };
-  }
-
-  try {
-    return await fn();
-  } finally {
-    CONFIG.Dice.randomUniform = origRandom;
-    if (restoreSkill) restoreSkill();
-  }
-}
-
-// ── Notification spy ─────────────────────────────────────────────────────────
-
-/**
- * Capture ui.notifications.{warn,error,info} calls during a test. Returns a
- * handle with the captured messages and a restore(). Used to assert the QA's
- * "aparece warning e nenhum valor muda" expectations without scraping the UI.
- */
-export function spyNotifications() {
-  const captured = { warn: [], error: [], info: [], all: [] };
-  const methods = ["warn", "error", "info"];
-  const originals = {};
-
-  for (const m of methods) {
-    originals[m] = ui.notifications[m].bind(ui.notifications);
-    ui.notifications[m] = (msg, ...rest) => {
-      captured[m].push(msg);
-      captured.all.push({ type: m, msg });
-      return originals[m](msg, ...rest);
-    };
-  }
-
-  return {
-    captured,
-    warnings: captured.warn,
-    restore() {
-      for (const m of methods) ui.notifications[m] = originals[m];
-    },
-  };
-}
-
-// ── Actor / fixture helpers ──────────────────────────────────────────────────
-
-function getActor(name = "Ikazuchi") {
-  // Exact match first, then a tolerant substring match so a short alias like
-  // "Ikazuchi" resolves "Dattoumaru Ikazuchi".
-  const actor =
-    game.actors.getName(name) ??
-    game.actors.find((a) => a.name.toLowerCase().includes(name.toLowerCase()));
-  if (!actor) throw new Error(`naruto-d20 test-api: actor "${name}" not found`);
+function exactActor(name) {
+  const actor = game.actors.getName(name);
+  if (!actor) throw new Error(`Test actor "${name}" was not found by exact name`);
   return actor;
 }
 
+function getActor(name = null) {
+  if (name) return exactActor(name);
+  const actor = activeFixture?.actorId ? game.actors.get(activeFixture.actorId) : null;
+  if (!actor) throw new Error("No active E2E actor fixture");
+  return actor;
+}
+
+function fixtureActorIds() {
+  return new Set([activeFixture?.actorId, ...(activeFixture?.extraActorIds ?? [])].filter(Boolean));
+}
+
+function cloneData(source, { name, runId }) {
+  const data = source.toObject();
+  delete data._id;
+  data.name = name;
+  data.folder = null;
+  data.flags ??= {};
+  data.flags.pf1 ??= {};
+  data.flags.pf1.forTesting = true;
+  data.flags[MODULE_ID] ??= {};
+  data.flags[MODULE_ID][FIXTURE_FLAG] = { runId, sourceActorId: source.id };
+  return data;
+}
+
+async function removeStaleFixtures() {
+  for (const scene of game.scenes) {
+    const ids = scene.tokens
+      .filter((token) => token.flags?.[MODULE_ID]?.[FIXTURE_FLAG]?.runId)
+      .map((token) => token.id);
+    if (ids.length) await scene.deleteEmbeddedDocuments("Token", ids);
+  }
+
+  const worldItemIds = game.items
+    .filter((item) => item.flags?.[MODULE_ID]?.[FIXTURE_FLAG]?.runId)
+    .map((item) => item.id);
+  if (worldItemIds.length) await Item.implementation.deleteDocuments(worldItemIds);
+
+  const stalePacks = game.packs.filter(
+    (pack) => pack.metadata.package === "world" && pack.metadata.name.startsWith("naruto-e2e-"),
+  );
+  for (const pack of stalePacks) {
+    await pack.deleteCompendium();
+  }
+
+  const stale = game.actors.filter((actor) => actor.flags?.[MODULE_ID]?.[FIXTURE_FLAG]?.runId);
+  for (const actor of stale) {
+    await actor.delete();
+  }
+}
+
+async function beginTestFixture({ sourceActorName, requiredTechnique }) {
+  if (activeFixture) await endTestFixture();
+  await removeStaleFixtures();
+
+  const source = exactActor(sourceActorName);
+  const technique = source.items.find(
+    (item) => item.type === TECHNIQUE_ITEM_TYPE && item.name === requiredTechnique,
+  );
+  if (!technique) {
+    throw new Error(`"${sourceActorName}" must contain technique "${requiredTechnique}"`);
+  }
+
+  const runId = foundry.utils.randomID(16);
+  const actor = await Actor.implementation.create(
+    cloneData(source, { name: `${source.name} [E2E ${runId.slice(0, 6)}]`, runId }),
+    { renderSheet: false },
+  );
+
+  activeFixture = {
+    runId,
+    sourceActorId: source.id,
+    sourceSnapshot: JSON.stringify(source.toObject()),
+    actorId: actor.id,
+    extraActorIds: [],
+    tokenRefs: [],
+    worldItemIds: [],
+    packIds: [],
+    settingValues: new Map(),
+    initialTargetIds: [...(game.user.targets ?? [])].map((token) => token.id),
+  };
+
+  return {
+    runId,
+    sourceActorId: source.id,
+    actorId: actor.id,
+    actorName: actor.name,
+    techniqueId: actor.items.find((item) => item.name === requiredTechnique)?.id ?? null,
+  };
+}
+
+async function closeFixtureApplications() {
+  const actorIds = fixtureActorIds();
+  const applications = new Set([
+    ...Object.values(ui.windows ?? {}),
+    ...Array.from(foundry.applications.instances?.values?.() ?? []),
+  ]);
+
+  for (const app of applications) {
+    const actorId = app.actor?.id ?? app.object?.actor?.id ?? app.object?.id;
+    if (actorIds.has(actorId) || app.id === "tap-reserves-dialog") {
+      await app.close({ force: true }).catch(() => {});
+    }
+  }
+}
+
+async function restoreSettings() {
+  if (!activeFixture) return;
+  for (const [key, value] of activeFixture.settingValues) {
+    await game.settings.set(MODULE_ID, key, value);
+  }
+}
+
+async function restoreTargets() {
+  if (!activeFixture) return;
+  for (const target of [...(game.user.targets ?? [])]) {
+    target.setTarget(false, { releaseOthers: false });
+  }
+  for (const id of activeFixture.initialTargetIds) {
+    canvas.tokens?.get(id)?.setTarget(true, { releaseOthers: false });
+  }
+}
+
+async function deleteFixtureMessages() {
+  const actorIds = fixtureActorIds();
+  const ids = game.messages.contents
+    .filter((message) => actorIds.has(message.speaker?.actor))
+    .map((message) => message.id);
+  if (ids.length) await ChatMessage.implementation.deleteDocuments(ids);
+}
+
+async function deleteFixtureTokens() {
+  if (!activeFixture) return;
+  for (const { sceneId, tokenId } of activeFixture.tokenRefs) {
+    const scene = game.scenes.get(sceneId);
+    if (scene?.tokens.has(tokenId)) {
+      await scene.deleteEmbeddedDocuments("Token", [tokenId]);
+    }
+  }
+}
+
+async function deleteFixtureItemsAndPacks() {
+  if (!activeFixture) return;
+  if (activeFixture.worldItemIds.length) {
+    await Item.implementation.deleteDocuments(activeFixture.worldItemIds);
+  }
+  for (const packId of activeFixture.packIds) {
+    const pack = game.packs.get(packId);
+    if (pack) await pack.deleteCompendium();
+  }
+}
+
+async function endTestFixture() {
+  if (!activeFixture) return;
+  clearForcedRoll();
+  const errors = [];
+  const attempt = async (operation) => {
+    try {
+      await operation();
+    } catch (error) {
+      errors.push(error);
+    }
+  };
+  try {
+    await attempt(closeFixtureApplications);
+    await attempt(deleteFixtureMessages);
+    await attempt(restoreTargets);
+    await attempt(restoreSettings);
+    await attempt(deleteFixtureTokens);
+    await attempt(deleteFixtureItemsAndPacks);
+
+    for (const actorId of [...activeFixture.extraActorIds, activeFixture.actorId]) {
+      await attempt(async () => {
+        const actor = game.actors.get(actorId);
+        if (actor) await actor.delete();
+      });
+    }
+
+    const source = game.actors.get(activeFixture.sourceActorId);
+    if (!source || JSON.stringify(source.toObject()) !== activeFixture.sourceSnapshot) {
+      errors.push(new Error("The source E2E actor changed during the test run"));
+    }
+  } finally {
+    activeFixture = null;
+    clearBuffLookupCache();
+  }
+  if (errors.length) {
+    throw new AggregateError(errors, "One or more E2E fixture cleanup operations failed");
+  }
+}
+
 function getChakra(actor) {
-  const c = actor.flags?.[MODULE_ID]?.chakra ?? {};
+  const chakra = actor.flags?.[MODULE_ID]?.chakra ?? {};
   return {
     pool: {
-      value: c.pool?.value ?? 0,
-      temp: c.pool?.temp ?? 0,
-      max: c.pool?.max ?? 0,
-      maxBonus: c.pool?.maxBonus ?? 0,
+      value: chakra.pool?.value ?? 0,
+      temp: chakra.pool?.temp ?? 0,
+      max: chakra.pool?.max ?? 0,
+      maxBonus: chakra.pool?.maxBonus ?? 0,
     },
     reserve: {
-      value: c.reserve?.value ?? 0,
-      max: c.reserve?.max ?? 0,
-      maxBonus: c.reserve?.maxBonus ?? 0,
+      value: chakra.reserve?.value ?? 0,
+      max: chakra.reserve?.max ?? 0,
+      maxBonus: chakra.reserve?.maxBonus ?? 0,
     },
-    nature: c.nature ?? { primary: "", secondary: [] },
+    nature: chakra.nature ?? { primary: "", secondary: [] },
     available: availableChakra(actor),
   };
 }
 
 function getLearn(actor) {
   const learn = actor.flags?.[MODULE_ID]?.learn ?? {};
-  const out = {};
-  for (const [k, v] of Object.entries(learn)) {
-    out[k] = { total: v?.total ?? 0, base: v?.base ?? 0, buffBonus: v?.buffBonus ?? 0 };
-  }
-  return out;
+  return Object.fromEntries(
+    Object.entries(learn).map(([key, value]) => [
+      key,
+      {
+        total: value?.total ?? 0,
+        base: value?.base ?? 0,
+        buffBonus: value?.buffBonus ?? 0,
+      },
+    ]),
+  );
 }
 
 function getConditions(actor) {
@@ -168,13 +292,6 @@ function getConditions(actor) {
   };
 }
 
-/**
- * Put an actor in a known chakra state and clear any condition the module may
- * have left behind, so each test starts isolated regardless of run order.
- *
- * state: { pool, temp, reserve } — omitted fields default to the derived max
- * (pool/reserve) or 0 (temp).
- */
 async function resetActor(actor, state = {}) {
   const chakra = actor.flags?.[MODULE_ID]?.chakra ?? {};
   await actor.update({
@@ -184,22 +301,16 @@ async function resetActor(actor, state = {}) {
     [conditionAppliedFatiguedPath]: false,
     [conditionAppliedExhaustedPath]: false,
   });
-
-  // Force-clear both module conditions and their implied PF1e conditions so a
-  // leftover from a previous test never poisons the next one.
   await actor.setConditions({
     [LOW_RESERVES_CONDITION_ID]: false,
     [CHAKRA_DEPLETION_CONDITION_ID]: false,
     fatigued: false,
     exhausted: false,
   });
-
-  // Re-derive conditions from the freshly written reserve value.
   await checkAndUpdateConditions(actor);
   return getChakra(actor);
 }
 
-/** Directly set a condition's tracking + presence (for the "we didn't apply it" QA case). */
 async function setCondition(actor, id, active) {
   await actor.setConditions({ [id]: active });
 }
@@ -209,104 +320,268 @@ async function setAbility(actor, key, value) {
   return { mod: actor.system.abilities?.[key]?.mod ?? 0 };
 }
 
-// ── Technique helpers ────────────────────────────────────────────────────────
-
 function getTechnique(actor, name) {
-  return actor.items.find((i) => i.type === TECHNIQUE_ITEM_TYPE && i.name === name) ?? null;
+  return (
+    actor.items.find((item) => item.type === TECHNIQUE_ITEM_TYPE && item.name === name) ?? null
+  );
+}
+
+async function ensureTechnique(
+  actor,
+  name,
+  { packId = DEFAULT_TECHNIQUE_PACK, update = null } = {},
+) {
+  let item = getTechnique(actor, name);
+  if (!item) {
+    const pack = game.packs.get(packId);
+    if (!pack) throw new Error(`Technique pack "${packId}" is unavailable`);
+    const index = await pack.getIndex();
+    const entry = index.find((candidate) => candidate.name === name);
+    if (!entry) throw new Error(`Technique "${name}" is not in ${packId}`);
+    const source = (await pack.getDocument(entry._id)).toObject();
+    delete source._id;
+    [item] = await actor.createEmbeddedDocuments("Item", [source]);
+  }
+  if (update) {
+    await item.update(update);
+    item = actor.items.get(item.id);
+  }
+  return item;
 }
 
 function listTechniques(actor) {
   return actor.items
-    .filter((i) => i.type === TECHNIQUE_ITEM_TYPE)
-    .map((i) => ({
-      id: i.id,
-      name: i.name,
-      learned: isTechniqueEffectivelyLearned(i),
-      chakraCost: i.system?.chakraCost ?? 0,
-      automation: i.system?.automation ?? null,
-      firstActionId: firstActionId(i),
+    .filter((item) => item.type === TECHNIQUE_ITEM_TYPE)
+    .map((item) => ({
+      id: item.id,
+      name: item.name,
+      learned: isTechniqueEffectivelyLearned(item),
+      chakraCost: item.system?.chakraCost ?? 0,
+      automation: item.system?.automation ?? null,
+      firstActionId: firstActionId(item),
     }));
 }
 
 function firstActionId(item) {
-  const actions = item?.actions;
-  if (!actions) return null;
-  const first = actions.contents?.[0] ?? Array.from(actions)[0];
+  const first = item?.actions?.contents?.[0] ?? Array.from(item?.actions ?? [])[0];
   return first?.id ?? null;
 }
 
-/**
- * Perform a technique by actor + technique name. Forces the perform-check
- * d20 to `forceRoll` (default 20 = success) and skips the skill dialog. The
- * action itself is used with PF1e's own skipDialog path, so this is safe only
- * for techniques without an attack/damage dialog (the core QA set).
- */
-async function performByName(actor, techniqueName, { forceRoll = 20, actionId } = {}) {
-  const item = getTechnique(actor, techniqueName);
-  if (!item) throw new Error(`Technique "${techniqueName}" not on ${actor.name}`);
-  const aId = actionId ?? firstActionId(item);
-  const spy = spyNotifications();
-  try {
-    await withForcedRoll(forceRoll, () => performTechnique(item, aId), { actor });
-  } finally {
-    spy.restore();
+function validateD20Face(face) {
+  const value = Number(face);
+  if (!Number.isInteger(value) || value < 1 || value > 20) {
+    throw new Error(`Static d20 result must be an integer from 1 to 20; received ${face}`);
   }
-  return { chakra: getChakra(actor), conditions: getConditions(actor), warnings: spy.warnings };
+  return value;
 }
 
-// ── Tap Reserves ─────────────────────────────────────────────────────────────
+function clearForcedRoll() {
+  if (pendingRollCleanup) pendingRollCleanup();
+  pendingRollCleanup = null;
+}
 
-/**
- * Drive the real TapReservesDialog headlessly: render it, fill the amount +
- * seal into its live DOM, pin the d20, then click its Roll button. This keeps
- * the dialog's own validation + rule logic as the single source of truth.
- */
-async function tapReserves(actor, { amount, seal = "none", forceRoll = 20 } = {}) {
-  const spy = spyNotifications();
-  const dialog = new TapReservesDialog(actor);
-  await dialog._render(true);
-  const html = dialog.element;
+function forceNextRoll(actor, face, bonus = 0) {
+  clearForcedRoll();
+  const staticRoll = validateD20Face(face);
+  const forcedBonus = Number(bonus) || 0;
+  let skillHookId = null;
+  let d20HookId = null;
 
+  const cleanup = () => {
+    if (skillHookId !== null) Hooks.off("pf1PreActorRollSkill", skillHookId);
+    if (d20HookId !== null) Hooks.off("pf1PreD20Roll", d20HookId);
+    skillHookId = null;
+    d20HookId = null;
+    if (pendingRollCleanup === cleanup) pendingRollCleanup = null;
+  };
+
+  skillHookId = Hooks.on("pf1PreActorRollSkill", (rolledActor, options) => {
+    if (rolledActor.id !== actor.id) return;
+    options.skipDialog = true;
+    options.staticRoll = staticRoll;
+  });
+
+  d20HookId = Hooks.on("pf1PreD20Roll", (roll, options) => {
+    if (options?.speaker?.actor !== actor.id) return;
+    roll.options.staticRoll = staticRoll;
+    if (forcedBonus) roll.addBonus(`${forcedBonus}[E2E]`);
+    cleanup();
+  });
+
+  pendingRollCleanup = cleanup;
+}
+
+async function withForcedRoll(face, fn, { actor, bonus = 0 }) {
+  forceNextRoll(actor, face, bonus);
   try {
-    html.find(".tap-amount").val(String(amount)).trigger("change");
-    if (seal !== "none") {
-      html.find(`[name='seal-type'][value='${seal}']`).prop("checked", true).trigger("change");
-    }
-    await withForcedRoll(forceRoll, async () => {
-      await dialog._onRoll(html);
+    return await fn();
+  } finally {
+    clearForcedRoll();
+  }
+}
+
+function spyNotifications() {
+  const captured = { warn: [], error: [], info: [], all: [] };
+  const methods = ["warn", "error", "info"];
+  const originals = {};
+
+  for (const method of methods) {
+    originals[method] = ui.notifications[method].bind(ui.notifications);
+    ui.notifications[method] = (message, ...rest) => {
+      captured[method].push(message);
+      captured.all.push({ type: method, message });
+      return originals[method](message, ...rest);
+    };
+  }
+
+  return {
+    captured,
+    warnings: captured.warn,
+    restore() {
+      for (const method of methods) ui.notifications[method] = originals[method];
+    },
+  };
+}
+
+async function performByName(
+  actor,
+  techniqueName,
+  { forceRoll = 20, rollBonus = 0, actionId } = {},
+) {
+  const item = getTechnique(actor, techniqueName);
+  if (!item) throw new Error(`Technique "${techniqueName}" is not on ${actor.name}`);
+  const resolvedActionId = actionId ?? firstActionId(item);
+  const startedAt = Date.now();
+  const spy = spyNotifications();
+  try {
+    await withForcedRoll(forceRoll, () => performTechnique(item, resolvedActionId), {
+      actor,
+      bonus: rollBonus,
     });
   } finally {
     spy.restore();
-    if (!dialog._state || dialog.rendered) await dialog.close({ force: true }).catch(() => {});
   }
-
-  return { chakra: getChakra(actor), conditions: getConditions(actor), warnings: spy.warnings };
+  return {
+    chakra: getChakra(actor),
+    conditions: getConditions(actor),
+    warnings: spy.warnings,
+    messages: chatSince(startedAt),
+  };
 }
 
-// ── Buffs ────────────────────────────────────────────────────────────────────
+function techniquePerformState(actor, item) {
+  const skillKey = DISCIPLINE_SKILL_MAP[item.system?.discipline];
+  const ranks = skillKey ? (actor.system.skills?.[skillKey]?.rank ?? 0) : null;
+  const threshold = item.system?.derived?.skillThreshold ?? null;
+  const mastery = item.system?.derived?.masteryPerform ?? 0;
+  return {
+    skillKey,
+    ranks,
+    threshold,
+    mastery,
+    bypasses: !skillKey || ranks + mastery >= threshold,
+  };
+}
 
 function listBuffs(actor) {
   return actor.items
-    .filter((i) => i.type === "buff")
-    .map((i) => ({
-      id: i.id,
-      name: i.name,
-      active: i.system?.active ?? false,
-      sourceId: i.flags?.[MODULE_ID]?.sourceId ?? null,
-      duration: i.system?.duration ?? null,
+    .filter((item) => item.type === "buff")
+    .map((item) => ({
+      id: item.id,
+      name: item.name,
+      active: item.system?.active ?? false,
+      sourceId: item.flags?.[MODULE_ID]?.sourceId ?? null,
+      duration: item.system?.duration ?? null,
     }));
 }
 
-/** Remove every buff this module's automation created on the actor (test cleanup). */
 async function clearAutomationBuffs(actor) {
   const ids = actor.items
-    .filter((i) => i.type === "buff" && i.flags?.[MODULE_ID]?.sourceId)
-    .map((i) => i.id);
+    .filter((item) => item.type === "buff" && item.flags?.[MODULE_ID]?.sourceId)
+    .map((item) => item.id);
   if (ids.length) await actor.deleteEmbeddedDocuments("Item", ids);
   return ids.length;
 }
 
-/** Target a token by the actor it represents (best-effort; needs a token on the canvas). */
+async function buffTemplateData() {
+  const pack = game.packs.get(DEFAULT_BUFF_PACK);
+  if (!pack) throw new Error(`Buff pack "${DEFAULT_BUFF_PACK}" is unavailable`);
+  const index = await pack.getIndex();
+  const entry = index.contents?.[0] ?? index[0];
+  if (!entry) throw new Error(`Buff pack "${DEFAULT_BUFF_PACK}" is empty`);
+  const data = (await pack.getDocument(entry._id)).toObject();
+  delete data._id;
+  return data;
+}
+
+async function createBuffLookupFixture({ packNames = [], worldNames = [] } = {}) {
+  if (!activeFixture) throw new Error("No active E2E fixture");
+  const template = await buffTemplateData();
+  const result = { packId: null, pack: [], world: [] };
+
+  if (packNames.length) {
+    const name = `naruto-e2e-${activeFixture.runId.toLowerCase()}`;
+    const pack = await CompendiumCollection.createCompendium({
+      label: `Naruto E2E ${activeFixture.runId}`,
+      name,
+      type: "Item",
+    });
+    activeFixture.packIds.push(pack.collection);
+    result.packId = pack.collection;
+
+    for (const itemName of packNames) {
+      const data = foundry.utils.deepClone(template);
+      data.name = itemName;
+      const document = await Item.implementation.create(data, { pack: pack.collection });
+      result.pack.push({ name: itemName, uuid: document.uuid });
+    }
+  }
+
+  for (const itemName of worldNames) {
+    const data = foundry.utils.deepClone(template);
+    data.name = itemName;
+    data.flags ??= {};
+    data.flags[MODULE_ID] ??= {};
+    data.flags[MODULE_ID][FIXTURE_FLAG] = { runId: activeFixture.runId };
+    const document = await Item.implementation.create(data);
+    activeFixture.worldItemIds.push(document.id);
+    result.world.push({ name: itemName, uuid: document.uuid });
+  }
+
+  return result;
+}
+
+async function createTargetActor() {
+  if (!activeFixture) throw new Error("No active E2E fixture");
+  const source = game.actors.get(activeFixture.sourceActorId);
+  const actor = await Actor.implementation.create(
+    cloneData(source, {
+      name: `${source.name} [E2E target ${activeFixture.runId.slice(0, 6)}]`,
+      runId: activeFixture.runId,
+    }),
+    { renderSheet: false },
+  );
+  activeFixture.extraActorIds.push(actor.id);
+  return actor;
+}
+
+async function createToken(actor, { x = 0, y = 0 } = {}) {
+  if (!activeFixture) throw new Error("No active E2E fixture");
+  const scene = canvas.scene;
+  if (!scene) throw new Error("An active scene is required for target tests");
+
+  const tokenDocument = await actor.getTokenDocument({ x, y });
+  const data = tokenDocument.toObject();
+  delete data._id;
+  data.flags ??= {};
+  data.flags[MODULE_ID] ??= {};
+  data.flags[MODULE_ID][FIXTURE_FLAG] = { runId: activeFixture.runId };
+
+  const [created] = await scene.createEmbeddedDocuments("Token", [data]);
+  activeFixture.tokenRefs.push({ sceneId: scene.id, tokenId: created.id });
+  return created;
+}
+
 function setTargetByActor(actor) {
   const token = actor.getActiveTokens?.()[0];
   if (!token) return false;
@@ -315,38 +590,52 @@ function setTargetByActor(actor) {
 }
 
 function clearTargets() {
-  for (const t of [...(game.user?.targets ?? [])]) t.setTarget(false, { releaseOthers: false });
+  for (const target of [...(game.user?.targets ?? [])]) {
+    target.setTarget(false, { releaseOthers: false });
+  }
 }
 
-// ── Settings / chat ──────────────────────────────────────────────────────────
-
 const getSetting = (key) => game.settings.get(MODULE_ID, key);
-const setSetting = (key, value) => game.settings.set(MODULE_ID, key, value);
+
+async function setSetting(key, value) {
+  if (activeFixture && !activeFixture.settingValues.has(key)) {
+    activeFixture.settingValues.set(key, game.settings.get(MODULE_ID, key));
+  }
+  return game.settings.set(MODULE_ID, key, value);
+}
 
 function chatSince(timestamp) {
   return game.messages.contents
-    .filter((m) => m.timestamp >= timestamp)
-    .map((m) => ({ content: m.content, flavor: m.flavor, speaker: m.speaker }));
+    .filter((message) => message.timestamp >= timestamp)
+    .map((message) => ({
+      id: message.id,
+      content: message.content,
+      flavor: message.flavor,
+      speaker: message.speaker,
+      total: message.rolls?.[0]?.total ?? null,
+      rerollSource: message.flags?.[MODULE_ID]?.reroll?.source ?? null,
+    }));
 }
 
-const now = () => Date.now();
+function clearNotifications() {
+  ui.notifications.clear();
+}
 
-// ── Public surface ───────────────────────────────────────────────────────────
+async function expireActorEffects(actor, seconds = 86_400) {
+  await actor.expireActiveEffects({
+    worldTime: game.time.worldTime + seconds,
+    event: "turnStart",
+  });
+  await new Promise((resolve) => window.setTimeout(resolve, 25));
+}
 
-/**
- * Install the test API onto the module record. Idempotent. Called from the
- * `ready` hook in main.mjs only when `testMode` is enabled.
- */
 export function installTestApi() {
-  const mod = game.modules.get(MODULE_ID);
-  if (!mod) return;
-
+  const mod = moduleRecord();
   mod.api = {
-    // marker so the harness can wait for readiness
     ready: true,
     MODULE_ID,
-
-    // fixtures / state
+    beginTestFixture,
+    endTestFixture,
     getActor,
     resetActor,
     getChakra,
@@ -354,44 +643,40 @@ export function installTestApi() {
     getConditions,
     setCondition,
     setAbility,
-
-    // techniques
     getTechnique,
+    ensureTechnique,
     listTechniques,
     firstActionId,
+    techniquePerformState,
     performByName,
     performTechnique,
     canAffordTechnique,
     isTechniqueEffectivelyLearned,
-
-    // chakra rules (pure)
     availableChakra,
     calculateChakraSpend,
     canPayChakra,
     payChakra,
     checkAndUpdateConditions,
-
-    // tap reserves
-    tapReserves,
-
-    // buffs
     applyTechniqueBuff,
     findBuffByName,
     applyBuffToTarget,
     clearBuffLookupCache,
     listBuffs,
     clearAutomationBuffs,
+    createBuffLookupFixture,
+    createTargetActor,
+    createToken,
     setTargetByActor,
     clearTargets,
-
-    // settings / chat / determinism
     getSetting,
     setSetting,
     chatSince,
-    now,
+    now: () => Date.now(),
+    forceNextRoll,
     withForcedRoll,
     spyNotifications,
+    clearNotifications,
+    expireActorEffects,
   };
-
-  console.log("naruto-d20 | Test API installed on game.modules.get('naruto-d20').api");
+  return mod.api;
 }

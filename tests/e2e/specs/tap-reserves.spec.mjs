@@ -1,85 +1,142 @@
 import { test, expect } from "../fixtures.mjs";
 
-/**
- * manual-qa.md → "Tap Reserves" (passos 2–6).
- *
- * api.tapReserves() renders the real TapReservesDialog, fills its inputs, pins
- * the d20, and clicks Roll — so the dialog's own validation + rule logic is
- * exercised, not a reimplementation. Warnings are captured via the API's
- * ui.notifications spy.
- */
+async function openTapReserves(page, state) {
+  const appId = await page.evaluate(async (chakraState) => {
+    const api = game.modules.get("naruto-d20").api;
+    const actor = api.getActor();
+    await api.resetActor(actor, chakraState);
+    await actor.sheet.render(true);
+    return actor.sheet.id;
+  }, state);
+
+  const sheet = page.locator(`#${appId}`);
+  await sheet.locator("a[data-tab='chakra']").click();
+  await sheet.locator(".tap-reserve-roll").click();
+  const dialog = page.locator("#tap-reserves-dialog");
+  await expect(dialog).toBeVisible();
+  return dialog;
+}
+
 test.describe("Tap Reserves", () => {
-  test("2 — draining 0 warns and changes nothing", async ({ page }) => {
-    const r = await page.evaluate(async () => {
-      const api = game.modules.get("naruto-d20").api;
-      const actor = api.getActor();
-      await api.resetActor(actor, { reserve: 6, temp: 0 });
-      const before = api.getChakra(actor);
-      const res = await api.tapReserves(actor, { amount: 0 });
-      return { before, after: res.chakra, warnings: res.warnings };
-    });
+  test("opens from Chakra and calculates DC for every seal", async ({ page }) => {
+    const dialog = await openTapReserves(page, { reserve: 8, temp: 0 });
+    const amount = dialog.locator(".tap-amount");
+    const dc = dialog.locator(".tap-dc-value");
 
-    expect(r.warnings.length).toBeGreaterThan(0);
-    expect(r.after.reserve.value).toBe(r.before.reserve.value);
-    expect(r.after.pool.temp).toBe(r.before.pool.temp);
+    await amount.fill("3");
+    await expect(dc).toHaveText("13");
+
+    await dialog.locator("[name='seal-type'][value='half']").check();
+    await expect(dc).toHaveText("11");
+
+    await dialog.locator("[name='seal-type'][value='hand']").check();
+    await expect(dc).toHaveText("8");
   });
 
-  test("3 — draining more than the reserve warns and changes nothing", async ({ page }) => {
-    const r = await page.evaluate(async () => {
+  test("draining zero warns and changes nothing", async ({ page }) => {
+    const dialog = await openTapReserves(page, { reserve: 6, temp: 0 });
+    const before = await page.evaluate(() => {
       const api = game.modules.get("naruto-d20").api;
-      const actor = api.getActor();
-      await api.resetActor(actor, { reserve: 3, temp: 0 });
-      const before = api.getChakra(actor);
-      const res = await api.tapReserves(actor, { amount: 99 });
-      return { before, after: res.chakra, warnings: res.warnings };
+      api.clearNotifications();
+      return api.getChakra(api.getActor());
     });
 
-    expect(r.warnings.length).toBeGreaterThan(0);
-    expect(r.after.reserve.value).toBe(r.before.reserve.value);
-    expect(r.after.pool.temp).toBe(r.before.pool.temp);
+    await dialog.locator(".tap-amount").fill("0");
+    await dialog.locator(".roll-btn").click();
+    await expect(page.locator(".notification.warning").last()).toBeVisible();
+
+    const after = await page.evaluate(() => {
+      const api = game.modules.get("naruto-d20").api;
+      return api.getChakra(api.getActor());
+    });
+    expect(after).toEqual(before);
   });
 
-  test("4/5 — a successful tap moves chakra from Reserve to Temp", async ({ page }) => {
-    const r = await page.evaluate(async () => {
+  test("draining more than Reserve warns and changes nothing", async ({ page }) => {
+    const dialog = await openTapReserves(page, { reserve: 3, temp: 0 });
+    const before = await page.evaluate(() => {
       const api = game.modules.get("naruto-d20").api;
-      const actor = api.getActor();
-      await api.resetActor(actor, { reserve: 8, temp: 1 });
-      const before = api.getChakra(actor);
-      // nat 20 → DC (10 + amount) is comfortably beaten
-      const res = await api.tapReserves(actor, { amount: 3, seal: "none", forceRoll: 20 });
-      return { before, after: res.chakra, warnings: res.warnings };
+      api.clearNotifications();
+      return api.getChakra(api.getActor());
     });
 
-    expect(r.warnings.length).toBe(0);
-    expect(r.after.reserve.value).toBe(r.before.reserve.value - 3);
-    expect(r.after.pool.temp).toBe(r.before.pool.temp + 3);
+    await dialog.locator(".tap-amount").fill("99");
+    await dialog.locator(".roll-btn").click();
+    await expect(page.locator(".notification.warning").last()).toBeVisible();
+
+    const after = await page.evaluate(() => {
+      const api = game.modules.get("naruto-d20").api;
+      return api.getChakra(api.getActor());
+    });
+    expect(after).toEqual(before);
   });
 
-  test("6 — a failed tap leaves Reserve and Temp unchanged", async ({ page }) => {
-    const r = await page.evaluate(async () => {
+  test("successful roll moves Reserve to Temp and posts the PF1e card", async ({ page }) => {
+    const dialog = await openTapReserves(page, { reserve: 8, temp: 1 });
+    const startedAt = await page.evaluate(() => {
       const api = game.modules.get("naruto-d20").api;
       const actor = api.getActor();
-      await api.resetActor(actor, { reserve: 8, temp: 1 });
-      const before = api.getChakra(actor);
-      // nat 1 → fails the DC
-      const res = await api.tapReserves(actor, { amount: 5, seal: "none", forceRoll: 1 });
-      return { before, after: res.chakra };
+      api.forceNextRoll(actor, 20, 100);
+      return api.now();
     });
 
-    expect(r.after.reserve.value).toBe(r.before.reserve.value);
-    expect(r.after.pool.temp).toBe(r.before.pool.temp);
+    await dialog.locator(".tap-amount").fill("3");
+    await dialog.locator(".roll-btn").click();
+    await expect(dialog).toBeHidden();
+
+    const result = await page.evaluate((timestamp) => {
+      const api = game.modules.get("naruto-d20").api;
+      const actor = api.getActor();
+      return {
+        chakra: api.getChakra(actor),
+        messages: api.chatSince(timestamp),
+      };
+    }, startedAt);
+
+    expect(result.chakra.reserve.value).toBe(5);
+    expect(result.chakra.pool.temp).toBe(4);
+    expect(result.messages.some((message) => message.total !== null)).toBe(true);
+    expect(result.messages.some((message) => message.rerollSource === "tap-reserves")).toBe(true);
   });
 
-  test("5 — draining the reserve to 0 triggers Chakra Depletion", async ({ page }) => {
-    const r = await page.evaluate(async () => {
+  test("failed roll leaves Reserve and Temp unchanged", async ({ page }) => {
+    const dialog = await openTapReserves(page, { reserve: 8, temp: 1 });
+    const before = await page.evaluate(() => {
       const api = game.modules.get("naruto-d20").api;
       const actor = api.getActor();
-      await api.resetActor(actor, { reserve: 3, temp: 0 });
-      const res = await api.tapReserves(actor, { amount: 3, seal: "hand", forceRoll: 20 });
-      return { after: res.chakra, conditions: api.getConditions(actor) };
+      api.forceNextRoll(actor, 1, -100);
+      return api.getChakra(actor);
     });
 
-    expect(r.after.reserve.value).toBe(0);
-    expect(r.conditions.chakraDepletion).toBe(true);
+    await dialog.locator(".tap-amount").fill("5");
+    await dialog.locator(".roll-btn").click();
+    await expect(dialog).toBeHidden();
+
+    const after = await page.evaluate(() => {
+      const api = game.modules.get("naruto-d20").api;
+      return api.getChakra(api.getActor());
+    });
+    expect(after).toEqual(before);
+  });
+
+  test("draining Reserve to zero recalculates Chakra Depletion", async ({ page }) => {
+    const dialog = await openTapReserves(page, { reserve: 3, temp: 0 });
+    await page.evaluate(() => {
+      const api = game.modules.get("naruto-d20").api;
+      api.forceNextRoll(api.getActor(), 20, 100);
+    });
+
+    await dialog.locator(".tap-amount").fill("3");
+    await dialog.locator("[name='seal-type'][value='hand']").check();
+    await dialog.locator(".roll-btn").click();
+    await expect(dialog).toBeHidden();
+
+    const result = await page.evaluate(() => {
+      const api = game.modules.get("naruto-d20").api;
+      const actor = api.getActor();
+      return { chakra: api.getChakra(actor), conditions: api.getConditions(actor) };
+    });
+    expect(result.chakra.reserve.value).toBe(0);
+    expect(result.conditions.chakraDepletion).toBe(true);
   });
 });

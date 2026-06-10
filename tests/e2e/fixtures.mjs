@@ -1,5 +1,5 @@
 import { test as base, expect } from "@playwright/test";
-import { STORAGE_STATE, ensureReady } from "./session.mjs";
+import { ACTOR, PERFORM_TECHNIQUE, STORAGE_STATE, ensureReady } from "./session.mjs";
 
 /**
  * Fixtures for the naruto-d20 E2E suite.
@@ -12,9 +12,9 @@ import { STORAGE_STATE, ensureReady } from "./session.mjs";
  *
  * Tests drive the rules through `page.evaluate`, resolving the API in-browser:
  *   const api = game.modules.get("naruto-d20").api;
- *   const actor = api.getActor();          // "Ikazuchi" by default
+ *   const actor = api.getActor();          // disposable clone for this test
  * All API methods return plain serializable snapshots so results cross the
- * evaluate boundary cleanly. Isolation between tests comes from api.resetActor.
+ * evaluate boundary cleanly. Isolation comes from a disposable actor clone.
  */
 export const test = base.extend({
   // Worker-scoped: one logged-in, ready Foundry page reused by all tests.
@@ -22,8 +22,15 @@ export const test = base.extend({
     async ({ browser }, use) => {
       const context = await browser.newContext({ storageState: STORAGE_STATE });
       const page = await context.newPage();
-      await ensureReady(page);
+      await ensureReady(page, { requireApi: false });
+      await page.evaluate(async () => {
+        const { installTestApi } = await import("/modules/naruto-d20/scripts/testing/test-api.mjs");
+        installTestApi();
+      });
       await use(page);
+      await page
+        .evaluate(() => game.modules.get("naruto-d20")?.api?.endTestFixture())
+        .catch(() => {});
       await context.close();
     },
     { scope: "worker" },
@@ -34,6 +41,44 @@ export const test = base.extend({
   page: async ({ worldPage }, use) => {
     await use(worldPage);
   },
+
+  e2eFixture: [
+    async ({ worldPage, runtimeErrors: _runtimeErrors }, use) => {
+      const fixture = await worldPage.evaluate(
+        ({ sourceActorName, requiredTechnique }) =>
+          game.modules
+            .get("naruto-d20")
+            .api.beginTestFixture({ sourceActorName, requiredTechnique }),
+        { sourceActorName: ACTOR, requiredTechnique: PERFORM_TECHNIQUE },
+      );
+      try {
+        await use(fixture);
+      } finally {
+        await worldPage.evaluate(() => game.modules.get("naruto-d20").api.endTestFixture());
+      }
+    },
+    { auto: true },
+  ],
+
+  runtimeErrors: [
+    async ({ worldPage }, use) => {
+      const errors = [];
+      const onPageError = (error) => errors.push(`pageerror: ${error.stack ?? error.message}`);
+      const onConsole = (message) => {
+        if (message.type() === "error") errors.push(`console.error: ${message.text()}`);
+      };
+      worldPage.on("pageerror", onPageError);
+      worldPage.on("console", onConsole);
+      try {
+        await use(errors);
+      } finally {
+        worldPage.off("pageerror", onPageError);
+        worldPage.off("console", onConsole);
+      }
+      expect(errors, errors.join("\n")).toEqual([]);
+    },
+    { auto: true },
+  ],
 });
 
 export { expect };

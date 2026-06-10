@@ -1,142 +1,198 @@
 import { test, expect } from "../fixtures.mjs";
 
-/**
- * manual-qa.md → "Auto-buffs".
- *
- * The lookup + apply + refresh-not-duplicate behaviour is tested directly
- * against the `naruto-d20.technique-buffs` pack (guaranteed present). The
- * end-to-end performTechnique→buff steps (self / selected / no-target) are
- * discovery-based and skip cleanly when the actor has no technique whose name
- * resolves to a buff.
- */
 const BUFF_PACK = "naruto-d20.technique-buffs";
+const BUFF_TECHNIQUE = "BUNSHIN NO JUTSU (DUPLICATION TECHNIQUE)";
 
-test.describe("Auto-buff lookup & application", () => {
-  test("6 — findBuffByName returns an exact match for a pack entry", async ({ page }) => {
-    const r = await page.evaluate(async (BUFF_PACK) => {
+async function prepareBuffTechnique(page, targetMode = "self", name = BUFF_TECHNIQUE) {
+  return page.evaluate(
+    async ({ techniqueName, mode }) => {
       const api = game.modules.get("naruto-d20").api;
-      const pack = game.packs.get(BUFF_PACK);
+      const actor = api.getActor();
+      const item = await api.ensureTechnique(actor, techniqueName, {
+        update: {
+          "system.learning.learned": true,
+          "system.mastery": 1,
+          "system.automation.enabled": true,
+          "system.automation.targetMode": mode,
+        },
+      });
+      await api.setSetting("automaticBuffs", true);
+      await api.setSetting("buffTargetFiltering", "respectTechnique");
+      await api.resetActor(actor);
+      await api.clearAutomationBuffs(actor);
+      api.clearBuffLookupCache();
+      return {
+        id: item.id,
+        cost: item.system.chakraCost,
+        perform: api.techniquePerformState(actor, item),
+      };
+    },
+    { techniqueName: name, mode: targetMode },
+  );
+}
+
+test.describe("Auto-buff lookup and application", () => {
+  test("findBuffByName returns a non-empty exact match", async ({ page }) => {
+    const result = await page.evaluate(async (packId) => {
+      const api = game.modules.get("naruto-d20").api;
+      const pack = game.packs.get(packId);
       const index = await pack.getIndex();
-      // Pick an entry with a plain name (no " (variant)" suffix) for an exact hit.
-      const entry = index.contents.find((e) => !e.name.includes("(")) ?? index.contents[0];
+      const entry =
+        index.contents.find((candidate) => !candidate.name.includes("(")) ?? index.contents[0];
       const match = await api.findBuffByName(entry.name);
-      return { name: entry.name, hasExact: Boolean(match?.exact) };
+      return { name: entry.name, exactCount: match.exact.length };
     }, BUFF_PACK);
 
-    expect(r.hasExact).toBe(true);
+    expect(result.name).toBeTruthy();
+    expect(result.exactCount).toBeGreaterThan(0);
   });
 
-  test("1/5 — applying a buff stamps sourceId and re-applying refreshes (no duplicate)", async ({
+  test("performing a self-target technique applies its buff after chakra spend", async ({
     page,
   }) => {
-    const r = await page.evaluate(async (BUFF_PACK) => {
+    const fixture = await prepareBuffTechnique(page);
+    expect(fixture.perform.bypasses).toBe(true);
+
+    const result = await page.evaluate(async (name) => {
       const api = game.modules.get("naruto-d20").api;
       const actor = api.getActor();
-      await api.clearAutomationBuffs(actor);
-
-      const pack = game.packs.get(BUFF_PACK);
-      const index = await pack.getIndex();
-      const entry = index.contents.find((e) => !e.name.includes("(")) ?? index.contents[0];
-      const buffDoc = await pack.getDocument(entry._id);
-
-      await api.applyBuffToTarget(buffDoc, actor, {});
-      const afterFirst = api.listBuffs(actor).filter((b) => b.sourceId === buffDoc.uuid);
-
-      // Re-apply the same source → should refresh in place, not stack.
-      await api.applyBuffToTarget(buffDoc, actor, {});
-      const afterSecond = api.listBuffs(actor).filter((b) => b.sourceId === buffDoc.uuid);
-
-      const cleaned = await api.clearAutomationBuffs(actor);
+      const before = api.getChakra(actor);
+      const performed = await api.performByName(actor, name);
       return {
-        firstCount: afterFirst.length,
-        secondCount: afterSecond.length,
-        active: afterSecond[0]?.active ?? false,
-        cleaned,
+        before,
+        performed,
+        buffs: api.listBuffs(actor).filter((buff) => buff.sourceId),
       };
-    }, BUFF_PACK);
+    }, BUFF_TECHNIQUE);
 
-    expect(r.firstCount).toBe(1);
-    expect(r.secondCount).toBe(1); // refreshed, not duplicated
-    expect(r.active).toBe(true);
-  });
-});
-
-test.describe("Auto-buff end-to-end (discovery)", () => {
-  test("2 — targetMode 'self' applies the buff to the caster", async ({ page }) => {
-    const r = await page.evaluate(async () => {
-      const api = game.modules.get("naruto-d20").api;
-      const actor = api.getActor();
-
-      // A technique with automation enabled whose name resolves to a buff.
-      let pick = null;
-      for (const i of actor.items) {
-        if (i.type !== "naruto-d20.technique") continue;
-        if (!i.system?.automation?.enabled) continue;
-        const match = await api.findBuffByName(i.name);
-        if (match?.exact?.length || match?.variants?.length) {
-          pick = i;
-          break;
-        }
-      }
-      if (!pick) return { skip: true };
-
-      await api.setSetting("automaticBuffs", true);
-      await api.setSetting("buffTargetFiltering", "respectTechnique");
-      await api.clearAutomationBuffs(actor);
-      const prevMode = pick.system.automation.targetMode;
-      await pick.update({ "system.automation.targetMode": "self" });
-
-      const firstAction = pick.actions?.contents?.[0] ?? Array.from(pick.actions ?? [])[0];
-      await api.applyTechniqueBuff(pick, actor, firstAction);
-      const buffs = api.listBuffs(actor).filter((b) => b.sourceId);
-
-      // restore + cleanup
-      await pick.update({ "system.automation.targetMode": prevMode });
-      await api.clearAutomationBuffs(actor);
-      return { skip: false, applied: buffs.length };
-    });
-
-    test.skip(r.skip, "No automation technique with a matching buff on the actor");
-    expect(r.applied).toBeGreaterThan(0);
+    expect(result.performed.chakra.available).toBe(result.before.available - fixture.cost);
+    expect(result.buffs).toHaveLength(1);
+    expect(result.buffs[0].name).toBe(BUFF_TECHNIQUE);
+    expect(result.buffs[0].active).toBe(true);
   });
 
-  test("4 — targetMode 'selected' with no target warns and applies nothing", async ({ page }) => {
-    const r = await page.evaluate(async () => {
+  test("selected targeting applies the buff to the selected actor", async ({ page }) => {
+    await prepareBuffTechnique(page, "selected");
+    const result = await page.evaluate(async (name) => {
       const api = game.modules.get("naruto-d20").api;
       const actor = api.getActor();
+      const target = await api.createTargetActor();
+      await api.createToken(target, { x: 0, y: 0 });
+      if (!api.setTargetByActor(target)) throw new Error("Target token was not created");
 
-      let pick = null;
-      for (const i of actor.items) {
-        if (i.type !== "naruto-d20.technique") continue;
-        if (!i.system?.automation?.enabled) continue;
-        const match = await api.findBuffByName(i.name);
-        if (match?.exact?.length || match?.variants?.length) {
-          pick = i;
-          break;
-        }
-      }
-      if (!pick) return { skip: true };
+      await api.performByName(actor, name);
+      return {
+        casterBuffs: api.listBuffs(actor).filter((buff) => buff.sourceId),
+        targetBuffs: api.listBuffs(target).filter((buff) => buff.sourceId),
+      };
+    }, BUFF_TECHNIQUE);
 
-      await api.setSetting("automaticBuffs", true);
-      await api.setSetting("buffTargetFiltering", "respectTechnique");
-      await api.clearAutomationBuffs(actor);
+    expect(result.casterBuffs).toHaveLength(0);
+    expect(result.targetBuffs).toHaveLength(1);
+    expect(result.targetBuffs[0].name).toBe(BUFF_TECHNIQUE);
+  });
+
+  test("selected targeting without a target warns and applies nothing", async ({ page }) => {
+    await prepareBuffTechnique(page, "selected");
+    const result = await page.evaluate(async (name) => {
+      const api = game.modules.get("naruto-d20").api;
+      const actor = api.getActor();
       api.clearTargets();
-      const prevMode = pick.system.automation.targetMode;
-      await pick.update({ "system.automation.targetMode": "selected" });
+      const performed = await api.performByName(actor, name);
+      return {
+        warnings: performed.warnings,
+        buffs: api.listBuffs(actor).filter((buff) => buff.sourceId),
+      };
+    }, BUFF_TECHNIQUE);
 
-      const spy = api.spyNotifications();
-      const firstAction = pick.actions?.contents?.[0] ?? Array.from(pick.actions ?? [])[0];
-      await api.applyTechniqueBuff(pick, actor, firstAction);
-      spy.restore();
-      const buffs = api.listBuffs(actor).filter((b) => b.sourceId);
+    expect(result.warnings.length).toBeGreaterThan(0);
+    expect(result.buffs).toHaveLength(0);
+  });
 
-      await pick.update({ "system.automation.targetMode": prevMode });
-      await api.clearAutomationBuffs(actor);
-      return { skip: false, warnings: spy.warnings.length, applied: buffs.length };
-    });
+  test("re-performing refreshes the existing buff instead of duplicating it", async ({ page }) => {
+    await prepareBuffTechnique(page);
+    const result = await page.evaluate(async (name) => {
+      const api = game.modules.get("naruto-d20").api;
+      const actor = api.getActor();
+      await api.performByName(actor, name);
+      const first = api.listBuffs(actor).filter((buff) => buff.sourceId);
+      await api.performByName(actor, name);
+      const second = api.listBuffs(actor).filter((buff) => buff.sourceId);
+      return { first, second };
+    }, BUFF_TECHNIQUE);
 
-    test.skip(r.skip, "No automation technique with a matching buff on the actor");
-    expect(r.warnings).toBeGreaterThan(0);
-    expect(r.applied).toBe(0);
+    expect(result.first).toHaveLength(1);
+    expect(result.second).toHaveLength(1);
+    expect(result.second[0].id).toBe(result.first[0].id);
+    expect(result.second[0].active).toBe(true);
+  });
+
+  test("exact module and custom pack matches beat lower-priority duplicates", async ({ page }) => {
+    const result = await page.evaluate(
+      async ({ defaultName }) => {
+        const api = game.modules.get("naruto-d20").api;
+        const actor = api.getActor();
+        const uniqueName = `E2E LOOKUP ${Date.now()}`;
+        const sources = await api.createBuffLookupFixture({
+          packNames: [defaultName, uniqueName, `${uniqueName} (Variant)`],
+          worldNames: [defaultName, uniqueName],
+        });
+        await api.setSetting("automaticBuffs", true);
+        await api.setSetting("buffTargetFiltering", "respectTechnique");
+        await api.setSetting("customBuffCompendia", sources.packId);
+        api.clearBuffLookupCache();
+
+        const defaultTechnique = await api.ensureTechnique(actor, defaultName, {
+          update: {
+            "system.learning.learned": true,
+            "system.mastery": 1,
+            "system.automation.enabled": true,
+            "system.automation.targetMode": "self",
+          },
+        });
+        const source = defaultTechnique.toObject();
+        delete source._id;
+        source.name = uniqueName;
+        const [uniqueTechnique] = await actor.createEmbeddedDocuments("Item", [source]);
+
+        await api.resetActor(actor);
+        await api.performByName(actor, defaultName);
+        const defaultApplied = api.listBuffs(actor).find((buff) => buff.name === defaultName);
+
+        await api.performByName(actor, uniqueTechnique.name);
+        const uniqueApplied = api.listBuffs(actor).find((buff) => buff.name === uniqueName);
+
+        const defaultMatch = await api.findBuffByName(defaultName);
+        const moduleEntry = defaultMatch.exact[0];
+        const moduleUuid = game.packs.get(moduleEntry.packId).getUuid(moduleEntry._id);
+        const customUuid = sources.pack.find((entry) => entry.name === uniqueName).uuid;
+        return {
+          defaultSourceId: defaultApplied?.sourceId ?? null,
+          uniqueSourceId: uniqueApplied?.sourceId ?? null,
+          moduleUuid,
+          customUuid,
+        };
+      },
+      { defaultName: BUFF_TECHNIQUE },
+    );
+
+    expect(result.defaultSourceId).toBe(result.moduleUuid);
+    expect(result.uniqueSourceId).toBe(result.customUuid);
+  });
+
+  test("PF1e duration expiry removes an automation-created buff", async ({ page }) => {
+    await prepareBuffTechnique(page);
+    const result = await page.evaluate(async (name) => {
+      const api = game.modules.get("naruto-d20").api;
+      const actor = api.getActor();
+      await api.performByName(actor, name);
+      const before = api.listBuffs(actor).filter((buff) => buff.sourceId);
+      await api.expireActorEffects(actor);
+      const after = api.listBuffs(actor).filter((buff) => buff.sourceId);
+      return { before, after };
+    }, BUFF_TECHNIQUE);
+
+    expect(result.before).toHaveLength(1);
+    expect(result.after).toHaveLength(0);
   });
 });

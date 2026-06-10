@@ -25,11 +25,11 @@
     "test:e2e:headed": "playwright test --headed",
     "test:e2e:ui": "playwright test --ui",
     "test:all": "npm test && npm run test:e2e",
-    "lint:js": "eslint scripts tools eslint.config.mjs",
+    "lint:js": "eslint scripts tools tests/e2e eslint.config.mjs playwright.config.mjs",
     "lint:css": "node node_modules/stylelint/bin/stylelint.mjs \"styles/**/*.css\"",
-    "lint:format": "prettier --check \"scripts/**/*.mjs\" \"tools/**/*.mjs\" \"styles/**/*.css\" \"lang/**/*.json\"",
+    "lint:format": "prettier --check \"scripts/**/*.mjs\" \"tools/**/*.mjs\" \"tests/e2e/**/*.mjs\" \"*.config.mjs\" \"styles/**/*.css\" \"lang/**/*.json\" \"docs/automated-qa.md\"",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:format",
-    "lint:fix": "eslint --fix scripts tools eslint.config.mjs && node node_modules/stylelint/bin/stylelint.mjs --fix \"styles/**/*.css\" && prettier --write \"scripts/**/*.mjs\" \"tools/**/*.mjs\" \"styles/**/*.css\" \"lang/**/*.json\""
+    "lint:fix": "eslint --fix scripts tools tests/e2e eslint.config.mjs playwright.config.mjs && node node_modules/stylelint/bin/stylelint.mjs --fix \"styles/**/*.css\" && prettier --write \"scripts/**/*.mjs\" \"tools/**/*.mjs\" \"tests/e2e/**/*.mjs\" \"*.config.mjs\" \"styles/**/*.css\" \"lang/**/*.json\" \"docs/automated-qa.md\""
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

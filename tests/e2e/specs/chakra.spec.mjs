@@ -46,9 +46,6 @@ test.describe("Chakra", () => {
       const after = api.getChakra(actor);
       const conMod = actor.system.abilities?.con?.mod ?? 0;
 
-      // restore Con so the world is left as found
-      await api.setAbility(actor, "con", origCon);
-
       return {
         level,
         conMod,
@@ -63,18 +60,53 @@ test.describe("Chakra", () => {
     expect(r.poolValueAfter).toBe(3);
   });
 
-  test("3 — manual Pool/Temp/Reserve edits persist", async ({ page }) => {
-    const r = await page.evaluate(async () => {
+  test("3 — Pool, Temp, and Reserve edits persist after closing the sheet", async ({ page }) => {
+    const appId = await page.evaluate(async () => {
       const api = game.modules.get("naruto-d20").api;
       const actor = api.getActor();
-      await api.resetActor(actor, { pool: 5, temp: 4, reserve: 6 });
-      // Re-read from flags as the sheet would on reopen.
-      return api.getChakra(actor);
+      await api.resetActor(actor);
+      await actor.sheet.render(true);
+      return actor.sheet.id;
     });
 
-    expect(r.pool.value).toBe(5);
-    expect(r.pool.temp).toBe(4);
-    expect(r.reserve.value).toBe(6);
+    const sheet = page.locator(`#${appId}`);
+    await sheet.locator("a[data-tab='chakra']").click();
+    const pool = sheet.locator("[name='flags.naruto-d20.chakra.pool.value']");
+    const temp = sheet.locator("[name='flags.naruto-d20.chakra.pool.temp']");
+    const reserve = sheet.locator("[name='flags.naruto-d20.chakra.reserve.value']");
+
+    await pool.fill("5");
+    await pool.press("Tab");
+    await temp.fill("4");
+    await temp.press("Tab");
+    await reserve.fill("6");
+    await reserve.press("Tab");
+
+    await expect
+      .poll(() =>
+        page.evaluate(() => {
+          const api = game.modules.get("naruto-d20").api;
+          return api.getChakra(api.getActor());
+        }),
+      )
+      .toMatchObject({
+        pool: { value: 5, temp: 4 },
+        reserve: { value: 6 },
+      });
+
+    await page.evaluate(async () => {
+      const actor = game.modules.get("naruto-d20").api.getActor();
+      await actor.sheet.close({ force: true });
+      await actor.sheet.render(true);
+    });
+
+    const reopened = page.locator(`#${appId}`);
+    await reopened.locator("a[data-tab='chakra']").click();
+    await expect(reopened.locator("[name='flags.naruto-d20.chakra.pool.value']")).toHaveValue("5");
+    await expect(reopened.locator("[name='flags.naruto-d20.chakra.pool.temp']")).toHaveValue("4");
+    await expect(reopened.locator("[name='flags.naruto-d20.chakra.reserve.value']")).toHaveValue(
+      "6",
+    );
   });
 
   test("4 — Reserve below 50% (but >0) triggers Low Reserves + fatigued", async ({ page }) => {
@@ -135,7 +167,7 @@ test.describe("Chakra", () => {
     expect(r.appliedFatigued).toBe(false);
   });
 
-  test("UI — the Chakra tab renders on the actor sheet", async ({ page }) => {
+  test("UI — the Chakra tab renders its core controls", async ({ page }) => {
     // Open the actor sheet via the API, then assert the tab content exists.
     await page.evaluate(async () => {
       const api = game.modules.get("naruto-d20").api;
@@ -147,10 +179,10 @@ test.describe("Chakra", () => {
       ".app.sheet .tab[data-tab='chakra'], .application .tab[data-tab='chakra']",
     );
     await expect(chakraTab.first()).toBeAttached({ timeout: 15_000 });
-
-    await page.evaluate(() => {
-      const api = game.modules.get("naruto-d20").api;
-      api.getActor().sheet.close();
-    });
+    await expect(chakraTab.first().locator(".tap-reserve-roll")).toBeAttached();
+    await expect(
+      chakraTab.first().locator("[name='flags.naruto-d20.chakra.nature.primary']"),
+    ).toBeAttached();
+    await expect(chakraTab.first().locator(".naruto-techniques")).toBeAttached();
   });
 });

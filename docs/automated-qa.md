@@ -1,64 +1,75 @@
-# QA automatizado (E2E)
+# Automated QA (E2E)
 
-Suite Playwright que executa, de forma automática, os cenários do
-[`manual-qa.md`](manual-qa.md) contra um Foundry real. Substitui o clique manual
-nas seções de **regra** de maior risco; o checklist manual continua valendo para
-o que ainda não foi automatizado.
+The Playwright suite exercises the highest-risk rules against a live Foundry
+VTT 13 world running PF1e v11.11. The manual checklist remains authoritative
+for features not listed below.
 
-## Como funciona
+## Required world fixture
 
-- **A "switch":** um setting de mundo oculto `naruto-d20.testMode` (default
-  `false`, `config:false`). Quando ligado, o módulo publica suas funções internas
-  de regra + helpers de fixture/determinismo em
-  `game.modules.get("naruto-d20").api` (ver `scripts/testing/test-api.mjs`,
-  instalado no hook `ready`). Sem o switch, nada disso existe — zero impacto em
-  produção.
-- **O runner:** `@playwright/test` (`tests/e2e/`). O `global-setup` faz login uma
-  vez, liga o `testMode`, recarrega e salva a sessão. Cada spec dirige as regras
-  via `page.evaluate` chamando a API e faz asserts em flags/condições/chat — não
-  em DOM frágil.
-- **Determinismo:** `api.withForcedRoll(face, fn, { actor })` fixa o d20
-  (`20` = sucesso, `1` = falha) e força `skipDialog` no perform check; restaura
-  tudo no `finally`.
+The world must contain an actor named exactly:
 
-## Pré-requisitos
+`Dattoumaru Ikazuchi (test)`
 
-1. **Foundry rodando** em `http://localhost:30000` (ou defina `FOUNDRY_URL`).
-2. Um **mundo de teste já aberto** com o módulo `naruto-d20` ativo.
-3. Um ator chamado **`Ikazuchi`** com técnicas (algumas aprendidas, com custo de
-   chakra) — é o alvo das fixtures.
-4. O usuário de login precisa ser **GM** (necessário para gravar o setting de
-   mundo). Default: `Chicó` / `esquecademimhomi` (sobrescreva com
-   `FOUNDRY_USER` / `FOUNDRY_PASSWORD`).
+That actor is the canonical template because its PF1e class and derived setup
+cannot be reproduced by creating a generic PF1e actor. It must contain:
 
-## Rodando
+`YOUTON: KAIMON NO JUTSU (DEMONIC RELEASE: DESTRUCTION GATE TECHNIQUE)`
+
+The YOUTON technique must remain below its auto-perform threshold. The suite
+clones the actor before every test and never intentionally updates the original.
+Additional techniques, target actors, tokens, buffs, messages, world items, and
+test compendia are created temporarily and deleted during teardown.
+
+## Environment
 
 ```bash
-npm install                 # puxa @playwright/test
-npx playwright install chromium
-npm run test:e2e            # headless
-npm run test:e2e:headed     # com browser visível (primeira vez recomendado)
-npm run test:e2e:ui         # modo UI interativo do Playwright
+export FOUNDRY_USER="Your GM user"
+export FOUNDRY_PASSWORD="Your password" # omit or leave empty for a passwordless user
+
+# Optional overrides
+export FOUNDRY_URL="http://localhost:30000"
+export FOUNDRY_ACTOR="Dattoumaru Ikazuchi (test)"
+export FOUNDRY_PERFORM_TECHNIQUE="YOUTON: KAIMON NO JUTSU (DEMONIC RELEASE: DESTRUCTION GATE TECHNIQUE)"
 ```
 
-Relatório HTML em `playwright-report/`. Artefatos de auth/relatório são
-gitignored.
+No credentials are stored in the repository. The login user must be a GM
+because the suite temporarily changes world settings and creates documents.
 
-## Cobertura atual (núcleo)
+## Running
 
-| Spec | manual-qa | Observação |
-|---|---|---|
-| `chakra.spec.mjs` | Chakra 1–6 | Inclui 1 check de DOM (aba Chakra renderiza). |
-| `tap-reserves.spec.mjs` | Tap Reserves 2–6 | Dirige o `TapReservesDialog` real. |
-| `use-technique.spec.mjs` | Uso 1–3, 5, 6 | Steps de perform descobrem técnicas no ator e dão `skip` se faltarem. |
-| `auto-buffs.spec.mjs` | Auto-buffs 1, 2, 4, 5, 6 | Lookup/refresh contra o pack; end-to-end por descoberta. |
+```bash
+npm install
+npx playwright install chromium
+npm run test:e2e
+npm run test:e2e:headed
+npm run test:e2e:ui
+```
 
-Steps que abrem o diálogo de ataque do PF1e, `weaponAttack`/`charge`, e as
-seções _Aprendizado_, _Ranks temporários_, _Synckit_, _Browsers_, _Descanso_,
-_Compêndios_ e _sweep PT-BR_ ficam para a próxima fase, reusando o mesmo harness.
+The Foundry world must already be running. Playwright installs the test API
+directly in its browser page; there is no persistent test-mode setting.
 
-## Isolamento
+## Current coverage
 
-Cada teste começa com `api.resetActor(actor, state)` (reseta chakra + limpa
-condições do módulo), então a ordem de execução não importa e a suite é
-idempotente — rode duas vezes seguidas e o resultado é o mesmo.
+| Spec                     | Coverage                                                                                |
+| ------------------------ | --------------------------------------------------------------------------------------- |
+| `chakra.spec.mjs`        | Derived values, sheet editing/persistence, conditions, Chakra UI                        |
+| `tap-reserves.spec.mjs`  | Real dialog UI, seal DCs, validation, success/failure, PF1e roll card                   |
+| `use-technique.spec.mjs` | YOUTON perform failure/success, mastery bypass, insufficient chakra, Emergency Transfer |
+| `auto-buffs.spec.mjs`    | Full technique-to-buff flow, targeting, refresh, lookup priority, PF1e expiry           |
+
+Tests run serially because they share one Foundry world and browser page. A
+test fails if required fixture data is missing; core scenarios do not skip.
+Console errors and uncaught page errors also fail the active test.
+
+## Isolation guarantees
+
+Every test:
+
+1. Clones the template actor.
+2. Records changed module settings and selected targets.
+3. Runs only against disposable documents.
+4. Restores settings and targets.
+5. Deletes generated messages, tokens, actors, items, and packs.
+6. Verifies that the template actor's serialized data did not change.
+
+The next run also removes stale E2E documents left by an interrupted process.

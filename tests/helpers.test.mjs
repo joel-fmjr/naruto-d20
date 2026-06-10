@@ -166,6 +166,7 @@ describe("weaponAttack parsing", () => {
       damageBonus: "",
       nonCritDamageBonus: "",
       damageMode: "add",
+      extraAttacks: [],
       held: "",
       charge: true,
     });

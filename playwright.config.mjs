@@ -4,9 +4,9 @@ import { defineConfig, devices } from "@playwright/test";
  * Playwright config for the naruto-d20 automated QA suite.
  *
  * The suite drives a LIVE Foundry instance (default http://localhost:30000)
- * running a test world with the `naruto-d20` module active and an actor named
- * `Ikazuchi`. It logs in once (global-setup), flips on the hidden `testMode`
- * setting so the module exposes its test API, and reuses that session.
+ * running a test world with the `naruto-d20` module active and the configured
+ * template actor. The harness installs its API explicitly and clones that actor
+ * for every test, leaving the original world data untouched.
  *
  * Foundry is a single shared, stateful world — tests MUST NOT run in parallel.
  */

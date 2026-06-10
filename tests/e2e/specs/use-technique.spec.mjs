@@ -1,158 +1,186 @@
 import { test, expect } from "../fixtures.mjs";
+import { PERFORM_TECHNIQUE } from "../session.mjs";
 
-/**
- * manual-qa.md → "Uso de tecnicas" (núcleo: passos 1–3, 5, 6).
- *
- * Steps 5 & 6 exercise the chakra-spend engine directly (deterministic, no
- * inventory needed). Steps 1–3 drive performTechnique with a pinned d20; they
- * discover a suitable learned technique on the actor and skip with a clear
- * message if none exists. weaponAttack / PF1e-attack-dialog steps (4, 7–10)
- * are deferred to phase 2.
- */
+async function prepareYouton(page) {
+  return page.evaluate(async (name) => {
+    const api = game.modules.get("naruto-d20").api;
+    const actor = api.getActor();
+    const item = api.getTechnique(actor, name);
+    if (!item) throw new Error(`Required technique "${name}" is missing from the fixture clone`);
 
-const DISCIPLINE_SKILL = {
-  "Chakra Control": "ckc",
-  Fuinjutsu: "fui",
-  Genjutsu: "gnj",
-  Ninjutsu: "nin",
-  Taijutsu: "tai",
-};
-
-test.describe("Chakra spend engine", () => {
-  test("5 — cost above Temp+Pool (but below +Reserve) is unaffordable; Reserve excluded", async ({
-    page,
-  }) => {
-    const r = await page.evaluate(async () => {
-      const api = game.modules.get("naruto-d20").api;
-      const actor = api.getActor();
-      await api.resetActor(actor, { temp: 2, pool: 3, reserve: 10 });
-      const cost = 6; // Temp+Pool = 5 < 6 ≤ Temp+Pool+Reserve = 15
-      return {
-        available: api.availableChakra(actor),
-        canPay: api.canPayChakra(actor, cost),
-      };
+    await item.update({
+      "system.learning.learned": true,
+      "system.mastery": 0,
+      "system.automation.enabled": false,
     });
+    await api.setSetting("enforceLearning", true);
+    await api.resetActor(actor);
 
-    expect(r.available).toBe(5); // reserve does NOT count toward available
-    expect(r.canPay).toBe(false);
+    const current = actor.items.get(item.id);
+    return {
+      state: api.techniquePerformState(actor, current),
+      cost: current.system.chakraCost,
+    };
+  }, PERFORM_TECHNIQUE);
+}
+
+test.describe("Technique perform", () => {
+  test("YOUTON fixture requires a perform roll", async ({ page }) => {
+    const fixture = await prepareYouton(page);
+
+    expect(fixture.state.skillKey).toBe("gnj");
+    expect(fixture.state.bypasses).toBe(false);
+    expect(fixture.cost).toBeGreaterThan(0);
   });
 
-  test("6 — Emergency Transfer: pool hits 0 with reserve left → pool=1, reserve=0, depletion", async ({
+  test("forced perform failure posts a failure card and spends no chakra", async ({ page }) => {
+    await prepareYouton(page);
+    const result = await page.evaluate(
+      async ({ name }) => {
+        const api = game.modules.get("naruto-d20").api;
+        const actor = api.getActor();
+        const before = api.getChakra(actor);
+        const performed = await api.performByName(actor, name, {
+          forceRoll: 1,
+          rollBonus: -100,
+        });
+        return { before, performed };
+      },
+      { name: PERFORM_TECHNIQUE },
+    );
+
+    expect(result.performed.chakra.available).toBe(result.before.available);
+    expect(
+      result.performed.messages.some((message) =>
+        message.content.includes("naruto-technique-card failed"),
+      ),
+    ).toBe(true);
+    expect(
+      result.performed.messages.some((message) =>
+        message.content.includes("naruto-technique-card success"),
+      ),
+    ).toBe(false);
+  });
+
+  test("forced perform success runs the PF1e action and spends chakra afterward", async ({
     page,
   }) => {
-    const r = await page.evaluate(async () => {
-      const api = game.modules.get("naruto-d20").api;
-      const actor = api.getActor();
-      await api.resetActor(actor, { temp: 0, pool: 4, reserve: 10 });
-      const spend = api.calculateChakraSpend(actor, 4); // drains pool to 0
-      const res = await api.payChakra(actor, 4);
-      return { spend, res, chakra: api.getChakra(actor), conditions: api.getConditions(actor) };
-    });
+    const fixture = await prepareYouton(page);
+    const result = await page.evaluate(
+      async ({ name }) => {
+        const api = game.modules.get("naruto-d20").api;
+        const actor = api.getActor();
+        const before = api.getChakra(actor);
+        const performed = await api.performByName(actor, name, {
+          forceRoll: 20,
+          rollBonus: 100,
+        });
+        return { before, performed };
+      },
+      { name: PERFORM_TECHNIQUE },
+    );
 
-    expect(r.spend.pool).toBe(1);
-    expect(r.spend.reserve).toBe(0);
-    expect(r.res.paid).toBe(true);
-    expect(r.chakra.pool.value).toBe(1);
-    expect(r.chakra.reserve.value).toBe(0);
-    expect(r.conditions.chakraDepletion).toBe(true);
+    expect(result.performed.warnings).toEqual([]);
+    expect(result.performed.chakra.available).toBe(result.before.available - fixture.cost);
+    expect(result.performed.messages.some((message) => message.total !== null)).toBe(true);
+    expect(
+      result.performed.messages.some((message) =>
+        message.content.includes("naruto-technique-card success"),
+      ),
+    ).toBe(true);
+    expect(
+      result.performed.messages.some((message) => message.content.includes(PERFORM_TECHNIQUE)),
+    ).toBe(true);
+  });
+
+  test("mastery threshold bypasses the perform roll but still runs the action", async ({
+    page,
+  }) => {
+    await prepareYouton(page);
+    const result = await page.evaluate(
+      async ({ name }) => {
+        const api = game.modules.get("naruto-d20").api;
+        const actor = api.getActor();
+        const item = api.getTechnique(actor, name);
+        const stateBefore = api.techniquePerformState(actor, item);
+
+        let mastery = 0;
+        while (mastery < 5) {
+          mastery += 1;
+          await item.update({ "system.mastery": mastery });
+          if (api.techniquePerformState(actor, actor.items.get(item.id)).bypasses) break;
+        }
+
+        const current = actor.items.get(item.id);
+        const stateAfter = api.techniquePerformState(actor, current);
+        const before = api.getChakra(actor);
+        const performed = await api.performByName(actor, name);
+        return { stateBefore, stateAfter, before, performed };
+      },
+      { name: PERFORM_TECHNIQUE },
+    );
+
+    expect(result.stateBefore.bypasses).toBe(false);
+    expect(result.stateAfter.bypasses).toBe(true);
+    expect(result.performed.chakra.available).toBeLessThan(result.before.available);
+    expect(result.performed.messages.some((message) => message.total !== null)).toBe(false);
+    expect(
+      result.performed.messages.some((message) =>
+        message.content.includes("naruto-technique-card"),
+      ),
+    ).toBe(false);
+    expect(
+      result.performed.messages.some((message) => message.content.includes(PERFORM_TECHNIQUE)),
+    ).toBe(true);
   });
 });
 
-test.describe("Technique perform", () => {
-  test("1 — auto-perform technique runs and spends chakra after use", async ({ page }) => {
-    const r = await page.evaluate(async (DISCIPLINE_SKILL) => {
-      const api = game.modules.get("naruto-d20").api;
-      const actor = api.getActor();
+test.describe("Technique chakra rules", () => {
+  test("Reserve does not make an otherwise unaffordable technique usable", async ({ page }) => {
+    await prepareYouton(page);
+    const result = await page.evaluate(
+      async ({ name }) => {
+        const api = game.modules.get("naruto-d20").api;
+        const actor = api.getActor();
+        const item = api.getTechnique(actor, name);
+        const cost = item.system.chakraCost;
+        await api.resetActor(actor, { temp: 0, pool: Math.max(0, cost - 1), reserve: 10 });
+        const before = api.getChakra(actor);
+        const performed = await api.performByName(actor, name, {
+          forceRoll: 20,
+          rollBonus: 100,
+        });
+        return { cost, before, performed };
+      },
+      { name: PERFORM_TECHNIQUE },
+    );
 
-      // Pick a learned technique with cost > 0 that auto-bypasses the perform
-      // check (skillRanks + masteryPerform >= skillThreshold).
-      const pick = actor.items.find((i) => {
-        if (i.type !== "naruto-d20.technique") return false;
-        if (!api.isTechniqueEffectivelyLearned(i)) return false;
-        const cost = i.system?.chakraCost ?? 0;
-        if (cost <= 0) return false;
-        const d = i.system?.derived;
-        const skillKey = DISCIPLINE_SKILL[i.system?.discipline];
-        if (!skillKey || !d) return false;
-        const ranks = actor.system.skills?.[skillKey]?.rank ?? 0;
-        return ranks + (d.masteryPerform ?? 0) >= d.skillThreshold;
-      });
-      if (!pick) return { skip: true };
-
-      await api.setSetting("enforceLearning", true);
-      await api.resetActor(actor); // full pool/reserve so it can afford
-      const before = api.getChakra(actor);
-      const res = await api.performByName(actor, pick.name, { forceRoll: 20 });
-      return {
-        skip: false,
-        name: pick.name,
-        cost: pick.system.chakraCost,
-        before,
-        after: res.chakra,
-        warnings: res.warnings,
-      };
-    }, DISCIPLINE_SKILL);
-
-    test.skip(r.skip, "No learned, auto-perform technique with chakra cost on the actor");
-    expect(r.warnings).toEqual([]);
-    // Chakra was spent (available dropped by the cost).
-    expect(r.after.available).toBe(r.before.available - r.cost);
+    expect(result.before.available).toBeLessThan(result.cost);
+    expect(result.performed.warnings.length).toBeGreaterThan(0);
+    expect(result.performed.chakra).toEqual(result.before);
+    expect(result.performed.messages).toEqual([]);
   });
 
-  test("2 — a perform technique forced to fail spends no chakra", async ({ page }) => {
-    const r = await page.evaluate(async (DISCIPLINE_SKILL) => {
-      const api = game.modules.get("naruto-d20").api;
-      const actor = api.getActor();
+  test("Emergency Transfer is triggered by the complete technique-use flow", async ({ page }) => {
+    await prepareYouton(page);
+    const result = await page.evaluate(
+      async ({ name }) => {
+        const api = game.modules.get("naruto-d20").api;
+        const actor = api.getActor();
+        const item = api.getTechnique(actor, name);
+        const cost = item.system.chakraCost;
+        await api.resetActor(actor, { temp: 0, pool: cost, reserve: 10 });
+        const performed = await api.performByName(actor, name, {
+          forceRoll: 20,
+          rollBonus: 100,
+        });
+        return { cost, performed };
+      },
+      { name: PERFORM_TECHNIQUE },
+    );
 
-      // Need a technique that actually rolls (ranks + mastery < threshold).
-      const pick = actor.items.find((i) => {
-        if (i.type !== "naruto-d20.technique") return false;
-        if (!api.isTechniqueEffectivelyLearned(i)) return false;
-        if ((i.system?.chakraCost ?? 0) <= 0) return false;
-        const d = i.system?.derived;
-        const skillKey = DISCIPLINE_SKILL[i.system?.discipline];
-        if (!skillKey || !d) return false;
-        const ranks = actor.system.skills?.[skillKey]?.rank ?? 0;
-        return ranks + (d.masteryPerform ?? 0) < d.skillThreshold;
-      });
-      if (!pick) return { skip: true };
-
-      await api.setSetting("enforceLearning", true);
-      await api.resetActor(actor);
-      const before = api.getChakra(actor);
-      const res = await api.performByName(actor, pick.name, { forceRoll: 1 });
-      return { skip: false, name: pick.name, before, after: res.chakra };
-    }, DISCIPLINE_SKILL);
-
-    test.skip(r.skip, "No learned technique that requires a perform roll on the actor");
-    expect(r.after.available).toBe(r.before.available);
-  });
-
-  test("3 — a perform technique forced to succeed spends chakra", async ({ page }) => {
-    const r = await page.evaluate(async (DISCIPLINE_SKILL) => {
-      const api = game.modules.get("naruto-d20").api;
-      const actor = api.getActor();
-
-      const pick = actor.items.find((i) => {
-        if (i.type !== "naruto-d20.technique") return false;
-        if (!api.isTechniqueEffectivelyLearned(i)) return false;
-        if ((i.system?.chakraCost ?? 0) <= 0) return false;
-        const d = i.system?.derived;
-        const skillKey = DISCIPLINE_SKILL[i.system?.discipline];
-        if (!skillKey || !d) return false;
-        const ranks = actor.system.skills?.[skillKey]?.rank ?? 0;
-        return ranks + (d.masteryPerform ?? 0) < d.skillThreshold;
-      });
-      if (!pick) return { skip: true };
-
-      await api.setSetting("enforceLearning", true);
-      await api.resetActor(actor);
-      const before = api.getChakra(actor);
-      const res = await api.performByName(actor, pick.name, { forceRoll: 20 });
-      return { skip: false, cost: pick.system.chakraCost, before, after: res.chakra };
-    }, DISCIPLINE_SKILL);
-
-    test.skip(r.skip, "No learned technique that requires a perform roll on the actor");
-    expect(r.after.available).toBeLessThan(r.before.available);
+    expect(result.performed.chakra.pool.value).toBe(1);
+    expect(result.performed.chakra.reserve.value).toBe(0);
+    expect(result.performed.conditions.chakraDepletion).toBe(true);
   });
 });
