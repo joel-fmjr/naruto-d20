@@ -32,7 +32,9 @@ export default defineConfig({
   projects: [
     {
       name: "foundry",
-      use: { ...devices["Desktop Chrome"] },
+      // Desktop Chrome defaults to 1280x720, below Foundry's 1366x768 minimum;
+      // the permanent "screen resolution" notification then intercepts clicks.
+      use: { ...devices["Desktop Chrome"], viewport: { width: 1920, height: 1080 } },
     },
   ],
 });

@@ -621,12 +621,49 @@ function clearNotifications() {
   ui.notifications.clear();
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => window.setTimeout(resolve, ms));
+}
+
+async function waitFor(condition, { timeout = 5_000, interval = 25, label = "condition" } = {}) {
+  const deadline = Date.now() + timeout;
+  while (!condition()) {
+    if (Date.now() > deadline) throw new Error(`Timed out waiting for ${label}`);
+    await sleep(interval);
+  }
+}
+
 async function expireActorEffects(actor, seconds = 86_400) {
+  // PF1e creates a buff's duration-tracking ActiveEffect asynchronously after
+  // the buff document itself (fire-and-forget in ItemBuffPF._onCreate), and
+  // Actor#expireActiveEffects only looks at those effects. Wait for the
+  // trackers of the module's automation buffs before advancing time.
+  const untracked = () =>
+    actor.items.filter(
+      (item) =>
+        item.type === "buff" &&
+        item.system?.active &&
+        item.flags?.[MODULE_ID]?.sourceId &&
+        !item.effects.some((effect) => effect.getFlag("pf1", "tracker")),
+    );
+  await waitFor(() => untracked().length === 0, {
+    label: `duration trackers on ${untracked()
+      .map((item) => item.name)
+      .join(", ")}`,
+  });
+
   await actor.expireActiveEffects({
     worldTime: game.time.worldTime + seconds,
     event: "turnStart",
   });
-  await new Promise((resolve) => window.setTimeout(resolve, 25));
+
+  // buff-expiry.mjs deletes expired automation buffs in a deferred task
+  // (setTimeout 0 + async delete); wait until none linger deactivated.
+  const lingering = () =>
+    actor.items.some(
+      (item) => item.type === "buff" && !item.system?.active && item.flags?.[MODULE_ID]?.sourceId,
+    );
+  await waitFor(() => !lingering(), { label: "expired automation buff deletion" });
 }
 
 export function installTestApi() {
