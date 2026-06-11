@@ -379,6 +379,15 @@ export function createTechniqueDataModel() {
           },
           opt,
         ),
+
+        // ── Content Source ─────────────────────────────────────
+        // PF1e-compatible content-source array. Each entry is a
+        // freeform object with optional title, pages, edition, id,
+        // publisher, date, errata fields.
+        sources: new fields.ArrayField(
+          new fields.ObjectField(),
+          { ...opt, initial: [] },
+        ),
       };
     }
 
