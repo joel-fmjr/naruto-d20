@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.24 - 2026-06-11
+
+- Added **content source** support to technique items: the technique sheet now shows PF1e's standard source editor (title + page fields) and the `sources` ArrayField was added to `TechniqueDataModel` so Foundry's schema validation preserves the data at runtime.
+- Populated `system.sources` on all 1053 techniques in the `naruto-d20.techniques` compendium, referencing **NarutoD20 Redux v1.3** with the canonical page number from the narutod20_db database.
+- Synced page numbers across 436 techniques whose page references had drifted from the canonical narutod20_db source.
+
 ## v1.0.23 - 2026-06-10
 
 - Added support for **temporary** and **bonus** rank grants alongside the existing paid (technique-created) grants for Speed Rank (KOUSOKU) and Strength Rank (JOURYOKU). Temp grants do not stack with paid ranks (max wins); bonus grants add on top. The effective rank is computed once per key and only the designated carrier buff item applies it — all other active rank buffs of the same key zero out to prevent double-application.
