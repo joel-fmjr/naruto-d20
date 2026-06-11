@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.25 - 2026-06-11
+
+- Added **238 Community Compendium techniques** to the `naruto-d20.techniques` compendium, covering every technique from the Community Compendium source in narutod20_db. Includes a new `tools/import-community-compendium.mjs` converter and auto-generated actions for all new entries. 7 techniques already present under the same name were skipped.
+- Fixed icon paths on the 238 Community Compendium techniques: icons now point to `systems/pf1/icons/` (matching all pre-existing Redux techniques) instead of the non-existent `modules/naruto-d20/icons/` path.
+
 ## v1.0.24 - 2026-06-11
 
 - Added **content source** support to technique items: the technique sheet now shows PF1e's standard source editor (title + page fields) and the `sources` ArrayField was added to `TechniqueDataModel` so Foundry's schema validation preserves the data at runtime.
