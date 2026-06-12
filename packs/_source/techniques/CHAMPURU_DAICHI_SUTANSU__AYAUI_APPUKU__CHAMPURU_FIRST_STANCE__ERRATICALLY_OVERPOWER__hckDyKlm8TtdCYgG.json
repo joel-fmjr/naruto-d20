@@ -45,6 +45,11 @@
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,
+    "automation": {
+      "enabled": true,
+      "targetMode": "auto",
+      "stanceMode": true
+    },
     "changes": [],
     "actions": [
       {

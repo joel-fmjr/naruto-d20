@@ -376,6 +376,10 @@ export function createTechniqueDataModel() {
               initial: "auto",
               choices: ["auto", "self", "selected"],
             }),
+            // Marks a per-round Dex/Str mode-choice stance (Champuru). When on,
+            // performing applies a self-buff that expires at turn start and
+            // prompts the user to keep/switch the mode or break the stance.
+            stanceMode: new fields.BooleanField({ ...opt, initial: false }),
           },
           opt,
         ),
