@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.26 - 2026-06-12
+
+- Added **per-round Dex/Str mode-choice** for Champuru stances. Performing a mode-choice stance (e.g. `CHAMPURU DAICHI SUTANSU -AYAUI APPUKU`) applies a self-buff that expires at the start of the user's turn and prompts to keep the mode, switch between **Dexterity** (+2 attack / Acrobatics) and **Strength** (+2 damage / CMB), or break the stance. Maintenance is free — only the initial perform pays chakra. Both mode buffs carry a context note for the +2 dodge vs attacks of opportunity. Stances opt in via a new `system.automation.stanceMode` toggle on the technique's Automation tab.
+- Added `stance-buffs.mjs` + `stance-buff-maintenance.mjs` mirroring the rank-buff maintenance lifecycle, and two variant buffs (`(Dexterity)` / `(Strength)`) to the `technique-buffs` compendium.
+
 ## v1.0.25 - 2026-06-11
 
 - Added **238 Community Compendium techniques** to the `naruto-d20.techniques` compendium, covering every technique from the Community Compendium source in narutod20_db. Includes a new `tools/import-community-compendium.mjs` converter and auto-generated actions for all new entries. 7 techniques already present under the same name were skipped.
