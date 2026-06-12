@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.27 - 2026-06-12
+
+- Added **Homebrew** compendium folder with 5 player-character techniques for Dattoumaru Ikazuchi: **Kanigakure Hiden: Raiton - Denki Shokku** (Ninjutsu Rank 1 B-Class Hijutsu — lightning aura buff), **Kanigakure Hiden Ougi: Amateraasu no Namida** (Chakra Control Rank 2 D-Class Hijutsu/Ougi swift action — jade DR-bypass), **Kanigakure Hiden Taijutsu: Yuki Yama** (Taijutsu Rank 3 B-Class Hijutsu — momentum counter + prone), **Kanigakure Hiden Taijutsu: Kani Giri** (Taijutsu Rank 4 B-Class Hijutsu — melee + bull rush + prone), and **Rokugan Kinjutsu: Gisei** (Chakra Control Rank 4 C-Class Kinjutsu immediate action — sacrifice chakra to boost failed Fortitude saves).
+
 ## v1.0.26 - 2026-06-12
 
 - Added **per-round Dex/Str mode-choice** for Champuru stances. Performing a mode-choice stance (e.g. `CHAMPURU DAICHI SUTANSU -AYAUI APPUKU`) applies a self-buff that expires at the start of the user's turn and prompts to keep the mode, switch between **Dexterity** (+2 attack / Acrobatics) and **Strength** (+2 damage / CMB), or break the stance. Maintenance is free — only the initial perform pays chakra. Both mode buffs carry a context note for the +2 dodge vs attacks of opportunity. Stances opt in via a new `system.automation.stanceMode` toggle on the technique's Automation tab.
