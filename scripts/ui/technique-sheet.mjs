@@ -73,6 +73,36 @@ export function createTechniqueItemSheet() {
         async: true,
         rollData,
       });
+
+      // Build component abbreviation string (e.g. "H, C, M")
+      const compAbbr = [];
+      if (system.compHandSeals)    compAbbr.push(loc("NarutoD20.Technique.Components.HandSeals.Label"));
+      if (system.compHalfSeals)    compAbbr.push(loc("NarutoD20.Technique.Components.HalfSeals.Label"));
+      if (system.compConcentration) compAbbr.push(loc("NarutoD20.Technique.Components.Concentration.Label"));
+      if (system.compMobility)     compAbbr.push(loc("NarutoD20.Technique.Components.Mobility.Label"));
+      if (system.compFocus)        compAbbr.push(loc("NarutoD20.Technique.Components.MaterialFocus.Label"));
+      if (system.compEmpower)      compAbbr.push(loc("NarutoD20.Technique.Components.Empower.Label"));
+      if (system.compMastery)      compAbbr.push(loc("NarutoD20.Technique.Components.Mastery.Label"));
+      if (system.compExpendable)   compAbbr.push(loc("NarutoD20.Technique.Components.Expendable.Label"));
+      if (system.compPhysical)     compAbbr.push(loc("NarutoD20.Technique.Components.PhysicalHealth.Label"));
+      if (system.compXpCost)       compAbbr.push(loc("NarutoD20.Technique.Components.XpCost.Label"));
+
+      const headerData = {
+        discipline: system.discipline || "—",
+        rank: system.rank,
+        complexity: system.complexity || "—",
+        chakraCost: system.chakraCost ?? 0,
+        learnDC: derived.learnDC,
+        successes: derived.successes,
+        hasPerform: !!DISCIPLINE_SKILL_MAP[system.discipline],
+        threshold: derived.skillThreshold,
+        performDC: derived.performDC,
+        components: compAbbr.join(", "),
+      };
+      context.topDescription = await foundry.applications.handlebars.renderTemplate(
+        `modules/${MODULE_ID}/templates/item/technique-header.hbs`,
+        headerData,
+      );
       context.instructionsHTML = await TextEditor.enrichHTML(
         system.description?.instructions ?? "",
         { async: true, rollData },

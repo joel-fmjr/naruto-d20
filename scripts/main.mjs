@@ -64,6 +64,7 @@ Hooks.once("init", () => {
     `modules/${MODULE_ID}/templates/actor/summary-stats.hbs`,
     `modules/${MODULE_ID}/templates/actor/tap-reserves-dialog.hbs`,
     `modules/${MODULE_ID}/templates/item/technique-sheet.hbs`,
+    `modules/${MODULE_ID}/templates/item/technique-header.hbs`,
     `modules/${MODULE_ID}/templates/item/rank-grant-config.hbs`,
     `modules/${MODULE_ID}/templates/actor/technique-synckit.hbs`,
     `modules/${MODULE_ID}/templates/apps/technique-browser.hbs`,
