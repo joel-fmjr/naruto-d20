@@ -12,11 +12,17 @@ import { maintenanceMigrationPatch } from "../scripts/data/maintenance-migration
 import { computeTechniqueDerived } from "../scripts/data/technique-model.mjs";
 import { calculateChakraSpend, canPayChakra } from "../scripts/data/chakra-spend.mjs";
 import {
+  getRankMaintenanceFlag,
   maintenanceBuffFlagData,
   maintenanceFacets,
   maintenanceModeBuffName,
   maintenanceModeById,
 } from "../scripts/automation/maintenance-buffs.mjs";
+import { getRankGrantType, rankGrantLevel } from "../scripts/automation/rank-buffs.mjs";
+import {
+  legacyRankBuffToMaintenance,
+  rankMaintenanceFromContext,
+} from "../scripts/data/maintenance-migration.mjs";
 import { elementCount } from "../scripts/automation/maintenance-element-damage.mjs";
 import { diffTechnique, normalizeSystem } from "../scripts/automation/technique-sync.mjs";
 import {
@@ -611,6 +617,60 @@ describe("maintenance migration", () => {
         "system.automation.-=upkeepMode": null,
         "system.automation.-=upkeepWaiverStep": null,
         "system.automation.-=elementDoubleStep": null,
+      },
+    );
+  });
+});
+
+describe("unified rank maintenance metadata", () => {
+  const buff = {
+    flags: {
+      "naruto-d20": {
+        maintenanceBuff: { key: "KOUSOKU", grantType: "bonus" },
+      },
+    },
+    system: { level: 2 },
+  };
+
+  it("reads rank type and granted level from the unified flag", () => {
+    assert.equal(getRankMaintenanceFlag(buff).key, "KOUSOKU");
+    assert.equal(getRankGrantType(buff), "bonus");
+    assert.equal(rankGrantLevel(buff), 2);
+  });
+
+  it("maps a legacy rankBuff payload without storing level/cost/interval", () => {
+    assert.deepEqual(
+      legacyRankBuffToMaintenance({
+        key: "JOURYOKU",
+        grantType: "paid",
+        level: 3,
+        cost: 3,
+        interval: 5,
+        sourceTechniqueId: "tech1",
+      }),
+      {
+        key: "JOURYOKU",
+        grantType: "paid",
+        sourceTechniqueId: "tech1",
+      },
+    );
+  });
+
+  it("builds actor-owned rank maintenance from name-derived context", () => {
+    assert.deepEqual(
+      rankMaintenanceFromContext({ cost: 4, interval: 5 }),
+      {
+        enabled: true,
+        resource: "chakra",
+        cost: "4",
+        policy: "prompt",
+        interval: 5,
+        waiver: "freeUse",
+        waiverStep: 5,
+        freeRounds: 5,
+        choice: "",
+        element: false,
+        elementDoubleStep: 5,
       },
     );
   });

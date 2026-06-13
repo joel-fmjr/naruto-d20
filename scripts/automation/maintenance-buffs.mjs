@@ -88,3 +88,10 @@ export function findMaintenanceBuffForTechnique(actor, techniqueId) {
     null
   );
 }
+
+export const RANK_MAINTENANCE_KEYS = ["KOUSOKU", "JOURYOKU"];
+
+export function getRankMaintenanceFlag(item) {
+  const flag = getMaintenanceBuffFlag(item);
+  return flag && RANK_MAINTENANCE_KEYS.includes(flag.key) ? flag : null;
+}

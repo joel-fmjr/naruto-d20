@@ -1,11 +1,5 @@
 import { MODULE_ID } from "../constants.mjs";
-import {
-  RANK_BUFF_FLAG,
-  RANK_BUFF_FLAG_PATH,
-  rankBuffDuration,
-  rankBuffFlagData,
-  resolveRankTechnique,
-} from "./rank-buffs.mjs";
+import { resolveRankTechnique } from "./rank-buffs.mjs";
 import {
   MAINTENANCE_BUFF_FLAG,
   MAINTENANCE_BUFF_FLAG_PATH,
@@ -66,7 +60,7 @@ export async function applyTechniqueBuff(item, actor, action) {
     await applyBuffToTarget(buffDoc, targetActor, {
       duration,
       level: context.level,
-      rankBuff: context.rankBuff,
+      maintenanceBuff: context.maintenanceBuff,
     });
   }
 }
@@ -213,13 +207,17 @@ export function promptModeChoice(
  * require an explicit canvas target so debuffs are not accidentally self-applied.
  */
 function resolveTechniqueBuffContext(item) {
-  const rankBuff = resolveRankTechnique(item.name);
-  if (rankBuff) {
+  const rank = resolveRankTechnique(item.name);
+  if (rank) {
     return {
-      ...rankBuff,
+      ...rank,
       sourceTechniqueId: item.id,
-      duration: rankBuffDuration(rankBuff.interval),
-      rankBuff: rankBuffFlagData({ ...rankBuff, sourceTechniqueId: item.id }),
+      duration: maintenanceBuffDuration(rank.interval),
+      maintenanceBuff: maintenanceBuffFlagData({
+        sourceTechniqueId: item.id,
+        grantType: "paid",
+        key: rank.key,
+      }),
     };
   }
 
@@ -227,7 +225,7 @@ function resolveTechniqueBuffContext(item) {
     buffName: item.name,
     level: null,
     duration: null,
-    rankBuff: null,
+    maintenanceBuff: null,
     selfTarget: false,
   };
 }
@@ -421,17 +419,16 @@ export async function applyBuffToTarget(buffDoc, targetActor, options = null) {
     return;
   }
 
-  const { duration, level, rankBuff, maintenanceBuff } = normalizeBuffApplyOptions(options);
+  const { duration, level, maintenanceBuff } = normalizeBuffApplyOptions(options);
   const sourceId = buffDoc.uuid;
   const existing = findExistingAppliedBuff(targetActor, sourceId);
 
   if (existing) {
-    await refreshExistingBuff(existing, { duration, level, rankBuff, maintenanceBuff });
+    await refreshExistingBuff(existing, { duration, level, maintenanceBuff });
   } else {
     await createBuffOnTarget(buffDoc, targetActor, sourceId, {
       duration,
       level,
-      rankBuff,
       maintenanceBuff,
     });
   }
@@ -442,15 +439,13 @@ function normalizeBuffApplyOptions(options) {
     !options ||
     (!("duration" in Object(options)) &&
       !("level" in Object(options)) &&
-      !("rankBuff" in Object(options)) &&
       !("maintenanceBuff" in Object(options)))
   ) {
-    return { duration: options ?? null, level: null, rankBuff: null, maintenanceBuff: null };
+    return { duration: options ?? null, level: null, maintenanceBuff: null };
   }
   return {
     duration: options.duration ?? null,
     level: Number.isInteger(options.level) ? options.level : null,
-    rankBuff: options.rankBuff ?? null,
     maintenanceBuff: options.maintenanceBuff ?? null,
   };
 }
@@ -459,7 +454,7 @@ function findExistingAppliedBuff(targetActor, sourceId) {
   return targetActor.items.find((i) => i.flags?.[SOURCE_FLAG]?.sourceId === sourceId);
 }
 
-async function refreshExistingBuff(existing, { duration, level, rankBuff, maintenanceBuff }) {
+async function refreshExistingBuff(existing, { duration, level, maintenanceBuff }) {
   const updates = { "system.active": true };
   if (duration) {
     updates["system.duration.units"] = duration.units;
@@ -469,9 +464,6 @@ async function refreshExistingBuff(existing, { duration, level, rankBuff, mainte
   }
   if (level != null) {
     updates["system.level"] = level;
-  }
-  if (rankBuff) {
-    updates[RANK_BUFF_FLAG_PATH] = rankBuff;
   }
   if (maintenanceBuff) {
     updates[MAINTENANCE_BUFF_FLAG_PATH] = maintenanceBuff;
@@ -483,7 +475,7 @@ async function createBuffOnTarget(
   buffDoc,
   targetActor,
   sourceId,
-  { duration, level, rankBuff, maintenanceBuff },
+  { duration, level, maintenanceBuff },
 ) {
   const itemData = buffDoc.toObject();
   delete itemData._id;
@@ -491,7 +483,6 @@ async function createBuffOnTarget(
   itemData.flags ??= {};
   itemData.flags[SOURCE_FLAG] ??= {};
   itemData.flags[SOURCE_FLAG].sourceId = sourceId;
-  if (rankBuff) itemData.flags[SOURCE_FLAG][RANK_BUFF_FLAG] = rankBuff;
   if (maintenanceBuff) itemData.flags[SOURCE_FLAG][MAINTENANCE_BUFF_FLAG] = maintenanceBuff;
 
   itemData.system ??= {};

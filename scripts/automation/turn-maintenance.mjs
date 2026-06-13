@@ -6,7 +6,12 @@ import {
   maintenanceFacets,
 } from "./maintenance-buffs.mjs";
 import { applyModeBuff, applyUpkeepBuff, promptModeChoice } from "./buff-application.mjs";
-import { isRankMaintenanceBuff, maintainRankBuff } from "./rank-buff-maintenance.mjs";
+import { availableChakra, canPayChakra, payChakra } from "../data/chakra-spend.mjs";
+import {
+  consumeRankMasteryFreeUse,
+  ensureRankMasteryDailyUse,
+  hasRankMasteryFreeUseAvailable,
+} from "./rank-buffs.mjs";
 
 const pending = new Set();
 
@@ -21,12 +26,6 @@ export function registerTurnMaintenance() {
     const actor = item.actor;
     if (!actor?.isOwner) return;
 
-    // Phase 1: rank cost resolution remains name-driven, but this engine owns
-    // the only listener and dedup queue.
-    if (isRankMaintenanceBuff(item)) {
-      queueDeferred(item, () => maintainRankBuff(actor, item.id));
-      return;
-    }
     if (queueMaintenance(item)) return;
 
     // No maintenance descriptor → delete the spent buff (deferred past the
@@ -49,6 +48,8 @@ export function registerTurnMaintenance() {
 function queueMaintenance(item) {
   const flag = getMaintenanceBuffFlag(item);
   if (!flag?.sourceTechniqueId) return false;
+  // bonus/temp rank grants don't pay maintenance — let the generic delete handle them.
+  if (flag?.key && (flag.grantType ?? "paid") !== "paid") return false;
   const actor = item.actor;
   const technique = actor.items.get(flag.sourceTechniqueId);
   if (!technique || !maintenanceFacets(technique)) {
@@ -84,9 +85,12 @@ async function runMaintenance(actor, itemId) {
   const facets = maintenanceFacets(technique);
   if (!facets) return deleteMaintenanceBuff(actor, itemId);
 
-  // Cost facet. HP only in Phase 1 (chakra-cost ranks go through the rank handler).
   if (facets.resource === "hp") {
     return maintainHpUpkeep(actor, itemId, technique, facets, flag);
+  }
+
+  if (facets.resource === "chakra") {
+    return maintainChakraUpkeep(actor, itemId, technique, facets, flag);
   }
 
   // No-cost choice (Champuru), or a maintained buff with no cost/choice.
@@ -124,6 +128,128 @@ async function maintainHpUpkeep(actor, itemId, technique, facets, flag) {
   if (choice !== "pay") return deleteMaintenanceBuff(actor, itemId);
   await applyHpCost(actor, formula);
   await completeMaintenance(actor, itemId, technique, facets, flag);
+}
+
+async function maintainChakraUpkeep(actor, itemId, technique, facets, flag) {
+  const cost = Math.max(0, Number(facets.cost) || 0);
+
+  if (facets.policy === "forced") {
+    if (!canPayChakra(actor, cost)) {
+      warnInsufficientChakra(actor, technique, cost);
+      await deleteMaintenanceBuff(actor, itemId);
+      return;
+    }
+    const payment = await payChakra(actor, cost);
+    if (!payment.paid) return deleteMaintenanceBuff(actor, itemId);
+    await completeMaintenance(actor, itemId, technique, facets, flag);
+    return;
+  }
+
+  const source =
+    facets.waiver === "freeUse" ? await ensureRankMasteryDailyUse(technique) : technique;
+  const canUseFree =
+    facets.waiver === "freeUse" &&
+    Number(source.system?.mastery ?? 0) >= facets.waiverStep &&
+    hasRankMasteryFreeUseAvailable(source);
+  const choice = await promptChakraUpkeep(actor, source, cost, facets.interval, {
+    canUseFree,
+    freeRounds: facets.freeRounds,
+  });
+
+  if (choice === "deactivate") {
+    await deleteMaintenanceBuff(actor, itemId);
+    return;
+  }
+
+  if (choice === "free") {
+    if (!(await consumeRankMasteryFreeUse(source))) {
+      ui.notifications.warn(
+        game.i18n.format("NarutoD20.Notifications.RankMasteryFreeUseUnavailable", {
+          name: source.name,
+        }),
+      );
+      await deleteMaintenanceBuff(actor, itemId);
+      return;
+    }
+    await completeMaintenance(actor, itemId, technique, facets, flag, facets.freeRounds);
+    return;
+  }
+
+  if (!canPayChakra(actor, cost)) {
+    warnInsufficientChakra(actor, source, cost);
+    await deleteMaintenanceBuff(actor, itemId);
+    return;
+  }
+  const payment = await payChakra(actor, cost);
+  if (!payment.paid) return deleteMaintenanceBuff(actor, itemId);
+  await completeMaintenance(actor, itemId, technique, facets, flag);
+}
+
+function warnInsufficientChakra(actor, technique, cost) {
+  ui.notifications.warn(
+    game.i18n.format("NarutoD20.Notifications.RankBuffMaintenanceNotEnoughChakra", {
+      actor: actor.name,
+      name: technique.name,
+      cost,
+      available: availableChakra(actor),
+    }),
+  );
+}
+
+function promptChakraUpkeep(
+  actor,
+  technique,
+  cost,
+  interval,
+  { canUseFree = false, freeRounds = 5 } = {},
+) {
+  return new Promise((resolve) => {
+    let done = false;
+    const finish = (value) => {
+      if (done) return;
+      done = true;
+      resolve(value);
+    };
+    const buttons = {};
+    if (canUseFree) {
+      buttons.free = {
+        icon: '<i class="fas fa-certificate"></i>',
+        label: game.i18n.localize("NarutoD20.RankMasteryFreeUse.UseFree"),
+        callback: () => finish("free"),
+      };
+    }
+    buttons.maintain = {
+      icon: '<i class="fas fa-fire"></i>',
+      label: game.i18n.localize("NarutoD20.RankBuffMaintenance.Maintain"),
+      callback: () => finish("maintain"),
+    };
+    buttons.deactivate = {
+      icon: '<i class="fas fa-times"></i>',
+      label: game.i18n.localize("NarutoD20.RankBuffMaintenance.Deactivate"),
+      callback: () => finish("deactivate"),
+    };
+
+    new Dialog({
+      title: game.i18n.format("NarutoD20.RankBuffMaintenance.Title", {
+        name: technique.name,
+      }),
+      content: `<p>${game.i18n.format("NarutoD20.RankBuffMaintenance.Message", {
+        actor: actor.name,
+        name: technique.name,
+        cost,
+        interval,
+      })}</p>${
+        canUseFree
+          ? `<p>${game.i18n.format("NarutoD20.RankMasteryFreeUse.MaintenanceMessage", {
+              rounds: freeRounds,
+            })}</p>`
+          : ""
+      }`,
+      buttons,
+      default: canUseFree ? "free" : "maintain",
+      close: () => finish("deactivate"),
+    }).render(true);
+  });
 }
 
 async function completeMaintenance(

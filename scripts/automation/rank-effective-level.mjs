@@ -1,4 +1,5 @@
-import { getRankBuffFlag, getRankGrantType, rankGrantLevel } from "./rank-buffs.mjs";
+import { getRankGrantType, rankGrantLevel } from "./rank-buffs.mjs";
+import { getRankMaintenanceFlag } from "./maintenance-buffs.mjs";
 
 // "immobilized" excluded — not a native PF1e 11.11 condition; would only work
 // if a module registers a custom ActiveEffect status with that exact ID.
@@ -42,7 +43,7 @@ export function computeEffectiveRank(actor, key, { rollData } = {}) {
 
   for (const item of actor?.items ?? []) {
     if (item.type !== "buff" || !item.system?.active) continue;
-    if (getRankBuffFlag(item)?.key !== key) continue;
+    if (getRankMaintenanceFlag(item)?.key !== key) continue;
 
     const level = rankGrantLevel(item);
     switch (getRankGrantType(item)) {
