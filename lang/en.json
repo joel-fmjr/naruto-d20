@@ -487,7 +487,7 @@
       "DexHint": "Dexterity: +2 attack and Acrobatics (tumble) this round.",
       "StrHint": "Strength: +2 damage and CMB (trip) this round.",
       "UpkeepTitle": "{name} — upkeep",
-      "UpkeepMessage": "{name} is active. Pay {formula} HP to maintain the stance, or break it.",
+      "UpkeepMessage": "{name} is active. Pay {formula} HP to maintain it, or end it.",
       "PayHp": "Pay {formula} HP",
       "HpCostFlavor": "Upkeep: {amount} HP lost.",
       "UpkeepEnded": "{name} ends — the upkeep cost would have dropped you below 1 HP."
