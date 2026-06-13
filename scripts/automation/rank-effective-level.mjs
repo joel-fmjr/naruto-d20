@@ -5,16 +5,16 @@ import { getRankBuffFlag, getRankGrantType, rankGrantLevel } from "./rank-buffs.
 export const IMMOBILIZING_CONDITIONS = ["helpless", "paralyzed", "grappled", "pinned"];
 
 const STR_RANK_TABLE = {
-  1:  { combat: 1, actions: 0,  carryMult: 1   },
-  2:  { combat: 1, actions: 2,  carryMult: 1.5 },
-  3:  { combat: 2, actions: 4,  carryMult: 2   },
-  4:  { combat: 2, actions: 6,  carryMult: 2   },
-  5:  { combat: 3, actions: 8,  carryMult: 2.5 },
-  6:  { combat: 4, actions: 10, carryMult: 2.5 },
-  7:  { combat: 4, actions: 10, carryMult: 3   },
-  8:  { combat: 5, actions: 11, carryMult: 3   },
-  9:  { combat: 5, actions: 11, carryMult: 3.5 },
-  10: { combat: 6, actions: 12, carryMult: 4   },
+  1: { combat: 1, actions: 0, carryMult: 1 },
+  2: { combat: 1, actions: 2, carryMult: 1.5 },
+  3: { combat: 2, actions: 4, carryMult: 2 },
+  4: { combat: 2, actions: 6, carryMult: 2 },
+  5: { combat: 3, actions: 8, carryMult: 2.5 },
+  6: { combat: 4, actions: 10, carryMult: 2.5 },
+  7: { combat: 4, actions: 10, carryMult: 3 },
+  8: { combat: 5, actions: 11, carryMult: 3 },
+  9: { combat: 5, actions: 11, carryMult: 3.5 },
+  10: { combat: 6, actions: 12, carryMult: 4 },
 };
 
 /**
@@ -95,12 +95,12 @@ export function speedRankPenalty(actor, rollData) {
 export function speedRankValues(level) {
   return {
     level,
-    jump:   level > 0 ? Math.min(level + 1, 10) : 0,
-    dodge:  level,
+    jump: level > 0 ? Math.min(level + 1, 10) : 0,
+    dodge: level,
     attack: Math.floor(level / 2),
-    speed:  level > 0 ? (level === 10 ? 60 : level * 5 + 5) : 0,
-    hide:   level > 0 ? Math.min(level + 1, 10) : 0,
-    cmb:    -Math.floor(level / 2),
+    speed: level > 0 ? (level === 10 ? 60 : level * 5 + 5) : 0,
+    hide: level > 0 ? Math.min(level + 1, 10) : 0,
+    cmb: -Math.floor(level / 2),
   };
 }
 

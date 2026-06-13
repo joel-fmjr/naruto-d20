@@ -150,7 +150,7 @@ export function rankGrantLevel(item) {
   if (!flag) return 0;
   const level =
     getRankGrantType(item) === "paid"
-      ? flag.level ?? item.system?.level ?? 0
-      : item.system?.level ?? 0;
+      ? (flag.level ?? item.system?.level ?? 0)
+      : (item.system?.level ?? 0);
   return Math.max(0, Number(level) || 0);
 }
