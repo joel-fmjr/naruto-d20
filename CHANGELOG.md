@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.0.28 - 2026-06-13
+
+- Normalized the **Kanigakure Hiden: Raiton - Denki Shokku** technique/buff name to ALL CAPS so it matches the casing of every other technique-buff (it was the only Title-Case entry).
+- Shortened the bonus-source label shown in **damage/attack roll breakdowns** to the **Japanese name only** (e.g. `CHAMPURU DAICHI SUTANSU -AYAUI APPUKU` instead of the full `JAPANESE (ENGLISH)` string). Done purely in data by setting an explicit `flavor` on every technique-buff change — PF1e labels each roll-breakdown change with `change.flavor`. Buff names themselves (both languages) are unchanged. Already-applied buffs pick up the short label when re-applied.
+- Added `tools/normalize-buff-display-names.mjs`.
+
 ## v1.0.27 - 2026-06-12
 
 - Added **Homebrew** compendium folder with 5 player-character techniques for Dattoumaru Ikazuchi: **Kanigakure Hiden: Raiton - Denki Shokku** (Ninjutsu Rank 1 B-Class Hijutsu — lightning aura buff), **Kanigakure Hiden Ougi: Amateraasu no Namida** (Chakra Control Rank 2 D-Class Hijutsu/Ougi swift action — jade DR-bypass), **Kanigakure Hiden Taijutsu: Yuki Yama** (Taijutsu Rank 3 B-Class Hijutsu — momentum counter + prone), **Kanigakure Hiden Taijutsu: Kani Giri** (Taijutsu Rank 4 B-Class Hijutsu — melee + bull rush + prone), and **Rokugan Kinjutsu: Gisei** (Chakra Control Rank 4 C-Class Kinjutsu immediate action — sacrifice chakra to boost failed Fortitude saves).
