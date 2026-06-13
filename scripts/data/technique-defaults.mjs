@@ -40,10 +40,20 @@ export function applyTechniqueSystemDefaults(system, { collectionType = "array" 
   system.learning.actionPointBonus ??= 0;
   system.learning.selectedDiscipline ??= "";
 
+  // Keep these in sync with the automation schema in technique-model.mjs. The
+  // synckit normalizer fills missing keys on both sides of the diff, so an
+  // unedited sheet open/close (which persists the full cleaned automation block)
+  // does not falsely flag a technique whose source JSON predates a field.
   system.automation ??= {};
   system.automation.enabled ??= true;
   system.automation.targetMode ??= "auto";
   system.automation.stanceMode ??= false;
+  system.automation.stanceUpkeep ??= false;
+  system.automation.elementChoice ??= false;
+  system.automation.upkeepFormula ??= "1d4";
+  system.automation.upkeepMode ??= "prompt";
+  system.automation.upkeepWaiverStep ??= 2;
+  system.automation.elementDoubleStep ??= 5;
 
   return system;
 }

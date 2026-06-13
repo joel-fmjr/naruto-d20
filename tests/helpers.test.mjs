@@ -372,6 +372,36 @@ describe("synckit normalization", () => {
     assert.equal(diffTechnique(embedded, source), true);
   });
 
+  it("treats a no-op sheet open/close as up-to-date for non-stance techniques", () => {
+    // Opening a technique sheet submits the whole form on close: the DataModel
+    // cleans `system.automation` and persists every schema field. A non-stance
+    // technique's compendium source JSON predates the upkeep/element fields and
+    // only carries the original three. The normalizer must backfill the new
+    // fields on both sides so the diff stays equal.
+    const embedded = {
+      description: { value: "" },
+      descriptors: [],
+      automation: {
+        enabled: true,
+        targetMode: "auto",
+        stanceMode: false,
+        stanceUpkeep: false,
+        elementChoice: false,
+        upkeepFormula: "1d4",
+        upkeepMode: "prompt",
+        upkeepWaiverStep: 2,
+        elementDoubleStep: 5,
+      },
+    };
+    const source = {
+      description: { value: "" },
+      descriptors: [],
+      automation: { enabled: true, targetMode: "auto", stanceMode: false },
+    };
+
+    assert.equal(diffTechnique(embedded, source), true);
+  });
+
   it("still detects limited-use configuration changes", () => {
     const embedded = {
       description: { value: "" },
