@@ -43,6 +43,7 @@ export function applyTechniqueSystemDefaults(system, { collectionType = "array" 
   system.automation ??= {};
   system.automation.enabled ??= true;
   system.automation.targetMode ??= "auto";
+  system.automation.stanceMode ??= false;
 
   return system;
 }
