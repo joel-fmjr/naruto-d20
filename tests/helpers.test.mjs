@@ -10,6 +10,12 @@ import {
 } from "../scripts/data/technique-defaults.mjs";
 import { computeTechniqueDerived } from "../scripts/data/technique-model.mjs";
 import { calculateChakraSpend, canPayChakra } from "../scripts/data/chakra-spend.mjs";
+import {
+  maintenanceBuffFlagData,
+  maintenanceFacets,
+  maintenanceModeBuffName,
+  maintenanceModeById,
+} from "../scripts/automation/maintenance-buffs.mjs";
 import { diffTechnique, normalizeSystem } from "../scripts/automation/technique-sync.mjs";
 import {
   LEARNING_MODES,
@@ -137,6 +143,78 @@ describe("technique defaults", () => {
       },
     );
     assert.equal(legacyAutomationToMaintenance({ enabled: true, targetMode: "auto" }), null);
+  });
+});
+
+describe("maintenance facets", () => {
+  const tech = (maintenance) => ({ name: "T", system: { automation: { maintenance } } });
+
+  it("returns null when maintenance is disabled", () => {
+    assert.equal(maintenanceFacets(tech({ enabled: false })), null);
+  });
+
+  it("reads a forced HP upkeep with no waiver/choice (Kai-Mon)", () => {
+    const f = maintenanceFacets(
+      tech({
+        enabled: true,
+        resource: "hp",
+        cost: "2",
+        policy: "forced",
+        interval: 1,
+        waiver: "",
+        choice: "",
+      }),
+    );
+    assert.deepEqual(f, {
+      resource: "hp",
+      cost: "2",
+      policy: "forced",
+      interval: 1,
+      waiver: "",
+      waiverStep: 2,
+      freeRounds: 5,
+      choice: "",
+    });
+  });
+
+  it("reads a prompt HP upkeep with step waiver (Amatsu)", () => {
+    const f = maintenanceFacets(
+      tech({
+        enabled: true,
+        resource: "hp",
+        cost: "1d4",
+        policy: "prompt",
+        interval: 1,
+        waiver: "step",
+        waiverStep: 2,
+        choice: "",
+      }),
+    );
+    assert.equal(f.waiver, "step");
+    assert.equal(f.waiverStep, 2);
+  });
+
+  it("reads a no-cost mode choice (Champuru)", () => {
+    const f = maintenanceFacets(tech({ enabled: true, resource: "", choice: "mode", interval: 1 }));
+    assert.equal(f.resource, "");
+    assert.equal(f.choice, "mode");
+  });
+
+  it("builds mode-variant buff names and resolves mode ids", () => {
+    assert.equal(maintenanceModeBuffName({ name: "Champuru" }, "dex"), "Champuru (Dexterity)");
+    assert.equal(maintenanceModeById("str").suffix, "Strength");
+    assert.equal(maintenanceModeById("nope"), null);
+  });
+
+  it("builds a unified rank maintenance flag without storing the rank level", () => {
+    assert.deepEqual(
+      maintenanceBuffFlagData({
+        sourceTechniqueId: "tech1",
+        grantType: "paid",
+        key: "KOUSOKU",
+      }),
+      { sourceTechniqueId: "tech1", grantType: "paid", key: "KOUSOKU" },
+    );
   });
 });
 
