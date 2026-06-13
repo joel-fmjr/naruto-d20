@@ -516,6 +516,7 @@
         "Spent": "Gastou {cost} de chakra ({summary}).",
         "FreeUse": "Usou rounds grátis de maestria ({rounds} rounds, nenhum chakra gasto).",
         "StanceFree": "Stance já ativa — nenhum chakra gasto.",
+        "UpkeepFree": "Manutenção ativa — nenhum chakra gasto.",
         "MasteryNote": " (+{value} maestria)",
         "AutoBypass": "Ranks {ranks}{mastery} ≥ limiar {threshold} — execução automática.",
         "NoCheckRequired": "Nenhum teste de execução necessário."
