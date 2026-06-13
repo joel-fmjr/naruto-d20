@@ -4,7 +4,10 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, it } from "node:test";
 
-import { applyTechniqueSystemDefaults } from "../scripts/data/technique-defaults.mjs";
+import {
+  applyTechniqueSystemDefaults,
+  legacyAutomationToMaintenance,
+} from "../scripts/data/technique-defaults.mjs";
 import { computeTechniqueDerived } from "../scripts/data/technique-model.mjs";
 import { calculateChakraSpend, canPayChakra } from "../scripts/data/chakra-spend.mjs";
 import { diffTechnique, normalizeSystem } from "../scripts/automation/technique-sync.mjs";
@@ -80,6 +83,19 @@ describe("technique defaults", () => {
     assert.equal(system.learning.learned, false);
     assert.equal(system.automation.enabled, true);
     assert.equal(system.automation.targetMode, "auto");
+    assert.deepEqual(system.automation.maintenance, {
+      enabled: false,
+      resource: "",
+      cost: "1d4",
+      policy: "prompt",
+      interval: 1,
+      waiver: "",
+      waiverStep: 2,
+      freeRounds: 5,
+      choice: "",
+      element: false,
+      elementDoubleStep: 5,
+    });
     assert.deepEqual(system.links.prerequisites, []);
     assert.deepEqual(system.tags, ["combat"]);
     assert.deepEqual(system.descriptors, ["Fire", "Hijutsu", "Combination"]);
@@ -93,6 +109,34 @@ describe("technique defaults", () => {
 
     assert.ok(system.descriptors instanceof Set);
     assert.deepEqual([...system.descriptors], ["Kinjutsu"]);
+  });
+
+  it("maps legacy stance automation to maintenance without changing behavior", () => {
+    assert.deepEqual(
+      legacyAutomationToMaintenance({
+        stanceMode: false,
+        stanceUpkeep: true,
+        elementChoice: true,
+        upkeepFormula: "1d4",
+        upkeepMode: "prompt",
+        upkeepWaiverStep: 2,
+        elementDoubleStep: 5,
+      }),
+      {
+        enabled: true,
+        resource: "hp",
+        cost: "1d4",
+        policy: "prompt",
+        interval: 1,
+        waiver: "step",
+        waiverStep: 2,
+        freeRounds: 5,
+        choice: "",
+        element: true,
+        elementDoubleStep: 5,
+      },
+    );
+    assert.equal(legacyAutomationToMaintenance({ enabled: true, targetMode: "auto" }), null);
   });
 });
 
@@ -372,31 +416,38 @@ describe("synckit normalization", () => {
     assert.equal(diffTechnique(embedded, source), true);
   });
 
-  it("treats a no-op sheet open/close as up-to-date for non-stance techniques", () => {
+  it("treats a no-op sheet open/close as up-to-date for techniques without maintenance automation", () => {
     // Opening a technique sheet submits the whole form on close: the DataModel
-    // cleans `system.automation` and persists every schema field. A non-stance
-    // technique's compendium source JSON predates the upkeep/element fields and
-    // only carries the original three. The normalizer must backfill the new
-    // fields on both sides so the diff stays equal.
+    // cleans `system.automation` and persists every schema field. A technique's
+    // compendium source JSON predates the `maintenance` block and
+    // only carries the top-level automation fields. The normalizer must
+    // backfill the nested maintenance defaults on both sides so the diff stays
+    // equal.
     const embedded = {
       description: { value: "" },
       descriptors: [],
       automation: {
         enabled: true,
         targetMode: "auto",
-        stanceMode: false,
-        stanceUpkeep: false,
-        elementChoice: false,
-        upkeepFormula: "1d4",
-        upkeepMode: "prompt",
-        upkeepWaiverStep: 2,
-        elementDoubleStep: 5,
+        maintenance: {
+          enabled: false,
+          resource: "",
+          cost: "1d4",
+          policy: "prompt",
+          interval: 1,
+          waiver: "",
+          waiverStep: 2,
+          freeRounds: 5,
+          choice: "",
+          element: false,
+          elementDoubleStep: 5,
+        },
       },
     };
     const source = {
       description: { value: "" },
       descriptors: [],
-      automation: { enabled: true, targetMode: "auto", stanceMode: false },
+      automation: { enabled: true, targetMode: "auto" },
     };
 
     assert.equal(diffTechnique(embedded, source), true);
