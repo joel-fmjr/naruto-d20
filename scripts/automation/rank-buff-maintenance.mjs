@@ -13,6 +13,10 @@ import {
 
 const pendingMaintenance = new Set();
 
+export function isRankMaintenanceBuff(item) {
+  return Boolean(item?.actor?.isOwner) && getRankGrantType(item) === "paid";
+}
+
 export function queueRankBuffMaintenance(item) {
   const actor = item.actor;
   if (!actor?.isOwner) return false;
@@ -36,7 +40,7 @@ export function queueRankBuffMaintenance(item) {
   return true;
 }
 
-async function maintainRankBuff(actor, itemId) {
+export async function maintainRankBuff(actor, itemId) {
   const item = actor.items.get(itemId);
   if (!item) return;
   if (item.system?.active) return;
