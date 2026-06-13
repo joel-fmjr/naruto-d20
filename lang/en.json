@@ -120,6 +120,9 @@
       "SkillThreshold": {
         "Label": "Skill Threshold"
       },
+      "LearnDC": "Learn DC",
+      "Successes": "Successes",
+      "Threshold": "Threshold",
       "LearnedViaEmpathy": "via Empathy",
       "MasteryStep": {
         "Label": "Mastery",

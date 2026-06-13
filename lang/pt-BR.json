@@ -120,6 +120,9 @@
       "SkillThreshold": {
         "Label": "Limiar de Perícia"
       },
+      "LearnDC": "DC de Aprendizado",
+      "Successes": "Sucessos",
+      "Threshold": "Limiar",
       "LearnedViaEmpathy": "via Empatia",
       "MasteryStep": {
         "Label": "Maestria",
