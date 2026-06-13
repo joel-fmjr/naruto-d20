@@ -327,7 +327,62 @@ git commit -m "docs: name v11.11 source as API ground truth; wire real pf1e-api-
 
 ---
 
-### Task 5: End-to-end verification
+### Task 5: Align the parent `modules/CLAUDE.md`
+
+**Files:**
+- Modify: `../CLAUDE.md` (parent `modules/CLAUDE.md`) — "Documentation via Context7" section (lines 14–19).
+
+- [ ] **Step 1: Confirm the section text**
+
+Run:
+```bash
+grep -n "Documentation via Context7\|query Context7 MCP before reading source\|PF1 system API" ../CLAUDE.md
+```
+Expected: the heading at line 14, the instruction at line 16, and the PF1 library-ID bullet.
+
+- [ ] **Step 2: Replace the section so PF1 API points at the source mirror**
+
+Replace this block:
+```
+## Documentation via Context7
+
+When working with Foundry or pf1 APIs, query Context7 MCP before reading source:
+
+- **PF1 system API** — library ID `foundryvtt_pathfinder1e_gitlab_io_foundryvtt-pathfinder1`
+- **Foundry VTT API v13** — library ID `foundryvtt_api_v13`
+```
+with:
+```
+## API references
+
+- **PF1 system API (v11.11)** — ground truth is the unbuilt source mirror
+  `modules/foundryvtt-pathfinder1-v11.11/` (exactly the installed version). In
+  `naruto-d20`, use the `pf1e-api-check` skill, which reads it and caches facts.
+  Do **not** treat context7 (`foundryvtt_pathfinder1e_gitlab_io_foundryvtt-pathfinder1`)
+  as a v11.11 spec — it tracks a newer branch; use it for concepts/cookbook only.
+- **Foundry VTT API v13** — context7 library ID `foundryvtt_api_v13` (core Foundry,
+  still authoritative).
+```
+
+- [ ] **Step 3: Verify the edit landed**
+
+Run:
+```bash
+grep -n "ground truth is the unbuilt source mirror\|API references" ../CLAUDE.md
+grep -c "query Context7 MCP before reading source" ../CLAUDE.md
+```
+Expected: the new heading/line present; old instruction count is `0`.
+
+- [ ] **Step 4: No commit (file is outside version control)**
+
+`modules/CLAUDE.md` lives outside the naruto-d20 git repo and `modules/` is not a git
+repo, so there is nothing to commit — the edited file is the deliverable. Do **not**
+run `git add ../CLAUDE.md` (it errors: "outside repository"). The edit takes effect as
+soon as the file is saved.
+
+---
+
+### Task 6: End-to-end verification
 
 **Files:** none (verification only)
 
