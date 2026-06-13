@@ -69,7 +69,7 @@
 - Modify: `scripts/data/technique-defaults.mjs:47-56`
 - Test: `tests/helpers.test.mjs` (the `applyTechniqueSystemDefaults` + synckit tests)
 
-- [ ] **Step 1: Update the failing unit test for defaults**
+- [x] **Step 1: Update the failing unit test for defaults**
 
 In `tests/helpers.test.mjs`, import `legacyAutomationToMaintenance` beside `applyTechniqueSystemDefaults`, replace the synckit no-op test's `automation` objects, and add these assertions in the `"technique defaults"` describe block:
 
@@ -134,12 +134,12 @@ automation: {
 automation: { enabled: true, targetMode: "auto" },
 ```
 
-- [ ] **Step 2: Run tests to verify failure**
+- [x] **Step 2: Run tests to verify failure**
 
 Run: `npm test`
 Expected: FAIL — `system.automation.maintenance` is `undefined` and the synckit diff is not equal.
 
-- [ ] **Step 3: Replace the schema fields**
+- [x] **Step 3: Replace the schema fields**
 
 In `scripts/data/technique-model.mjs`, replace the six stance/upkeep fields (`stanceMode`, `stanceUpkeep`, `elementChoice`, `upkeepFormula`, `upkeepMode`, `upkeepWaiverStep`, `elementDoubleStep`) inside the `automation` SchemaField with one nested `maintenance` SchemaField (keep `enabled` and `targetMode` siblings):
 
@@ -180,7 +180,7 @@ maintenance: new fields.SchemaField(
 ),
 ```
 
-- [ ] **Step 4: Update the defaults backfill**
+- [x] **Step 4: Update the defaults backfill**
 
 In `scripts/data/technique-defaults.mjs`, add the pure legacy mapper before `applyTechniqueSystemDefaults`:
 
@@ -237,7 +237,7 @@ m.element ??= false;
 m.elementDoubleStep ??= 5;
 ```
 
-- [ ] **Step 5: Translate legacy source data before schema cleaning**
+- [x] **Step 5: Translate legacy source data before schema cleaning**
 
 In `scripts/data/technique-model.mjs`, import `legacyAutomationToMaintenance` beside `applyTechniqueSystemDefaults`. At the start of `static migrateData(source)`, before the description migration, add:
 
@@ -261,12 +261,12 @@ source.automation = automation;
 
 This preserves actor-owned legacy values when the new schema first loads; the persistent one-shot migration is added in Task 9.
 
-- [ ] **Step 6: Run tests to verify pass**
+- [x] **Step 6: Run tests to verify pass**
 
 Run: `npm test && npm run lint`
 Expected: PASS.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add scripts/data/technique-model.mjs scripts/data/technique-defaults.mjs tests/helpers.test.mjs
@@ -283,7 +283,7 @@ Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
 - Create: `scripts/automation/maintenance-buffs.mjs`
 - Test: `tests/helpers.test.mjs`
 
-- [ ] **Step 1: Write failing unit tests**
+- [x] **Step 1: Write failing unit tests**
 
 Add to `tests/helpers.test.mjs` (and add the import at top):
 
@@ -347,12 +347,12 @@ describe("maintenance facets", () => {
 });
 ```
 
-- [ ] **Step 2: Run to verify failure**
+- [x] **Step 2: Run to verify failure**
 
 Run: `npm test`
 Expected: FAIL — module/exports do not exist.
 
-- [ ] **Step 3: Add the replacement module**
+- [x] **Step 3: Add the replacement module**
 
 Create `scripts/automation/maintenance-buffs.mjs` while leaving `stance-buffs.mjs` in place until Task 6. This keeps the runtime imports valid between commits. Start the file with:
 
@@ -459,12 +459,12 @@ Do not copy the old `stanceBuffFlagData`/`stanceBuffKind`/`isStanceBuffItem`/
 `isModeChoiceStance`/`isUpkeepStance`/`isElementStance` kind discriminator; schema
 facets replace it.
 
-- [ ] **Step 4: Run tests to verify pass**
+- [x] **Step 4: Run tests to verify pass**
 
 Run: `npm test && npm run lint`
 Expected: PASS. Existing runtime modules still import `stance-buffs.mjs`, which has deliberately not been removed yet.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scripts/automation/maintenance-buffs.mjs tests/helpers.test.mjs
@@ -481,7 +481,7 @@ Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
 - Create: `scripts/automation/maintenance-element-damage.mjs`
 - Test: `tests/helpers.test.mjs`
 
-- [ ] **Step 1: Write failing unit test for the element count**
+- [x] **Step 1: Write failing unit test for the element count**
 
 ```js
 import { elementCount } from "../scripts/automation/maintenance-element-damage.mjs";
@@ -497,12 +497,12 @@ describe("maintenance element count", () => {
 });
 ```
 
-- [ ] **Step 2: Run to verify failure**
+- [x] **Step 2: Run to verify failure**
 
 Run: `npm test`
 Expected: FAIL — module/export not found.
 
-- [ ] **Step 3: Add the replacement module**
+- [x] **Step 3: Add the replacement module**
 
 Copy the behavior of `stance-element-damage.mjs` into a new `maintenance-element-damage.mjs`; leave the old file until Task 6. Apply this exact export and reference map:
 
@@ -540,12 +540,12 @@ export function elementCount(item) {
 }
 ```
 
-- [ ] **Step 4: Run tests + check imports**
+- [x] **Step 4: Run tests + check imports**
 
 Run: `npm test && npm run lint`
 Expected: PASS. The old runtime module remains in place until all consumers switch in Task 6.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add scripts/automation/maintenance-element-damage.mjs tests/helpers.test.mjs
