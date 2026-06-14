@@ -353,3 +353,17 @@ feature.
 3. Abra uma ficha, uma tecnica, um browser e o Synckit.
    Resultado esperado: nenhuma janela fica com template faltando ou layout
    quebrado.
+
+### Kyu-Mon Kai (Heal Gate Release) — chakra-damage upkeep
+
+Prereq: a character actor with the Heal Gate technique and chakra pool > 0.
+
+- [ ] Perform Heal Gate → the buff applies with Kai-Mon bonuses (+2 Str/Dex, +10 ft speed) and `system.active = true`.
+- [ ] On the performer's next turn start, 3 chakra leaves the pool and a chat card reads "… 3 Chakra damage (pool X→Y)".
+- [ ] HP is healed +2 the same turn; a "Fast Healing 2 (+2 HP)" card posts; the defenses card shows Fast Healing 2.
+- [ ] With an empty pool (temp+pool = 0), the turn deals 6 HP of overflow instead.
+- [ ] When the doubled overflow would drop HP below 1, the gate ends with an "upkeep ended" notification (no HP applied).
+- [ ] fatigued / exhausted applied from another source are cleared at the performer's turn start while the gate is open.
+- [ ] At mastery step 5: chakra damage is 2/round and Fast Healing is 5.
+- [ ] Removing the buff (manually or via the lethal guard) clears `system.traits.fastHealing` (defenses card no longer lists it).
+- [ ] The reserve total is never reduced by the chakra damage.
