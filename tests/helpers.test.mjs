@@ -37,6 +37,7 @@ import {
   readWeaponAttackRaw,
 } from "../scripts/ui/technique-weapon-attack.mjs";
 import { validateCompendia } from "../tools/validate-compendia.mjs";
+import { calculateChakraDamage } from "../scripts/data/chakra-damage.mjs";
 
 globalThis.foundry = {
   utils: {
@@ -458,6 +459,55 @@ describe("chakra spending", () => {
       pool: 1,
       reserve: 0,
       summary: "2 temp, 3 pool",
+    });
+  });
+});
+
+describe("chakra damage", () => {
+  const make = (temp, value) => ({
+    flags: { "naruto-d20": { chakra: { pool: { temp, value }, reserve: { value: 9 } } } },
+  });
+
+  it("absorbs from temp before pool with no HP overflow", () => {
+    assert.deepEqual(calculateChakraDamage(make(2, 3), 4), {
+      temp: 0,
+      pool: 1,
+      absorbed: 4,
+      hpOverflow: 0,
+    });
+  });
+
+  it("doubles the unabsorbed remainder into HP overflow", () => {
+    // pool 1 absorbs 1 of 3; remainder 2 * 2 = 4 HP
+    assert.deepEqual(calculateChakraDamage(make(0, 1), 3), {
+      temp: 0,
+      pool: 0,
+      absorbed: 1,
+      hpOverflow: 4,
+    });
+  });
+
+  it("doubles the full amount against an empty pool", () => {
+    assert.deepEqual(calculateChakraDamage(make(0, 0), 3), {
+      temp: 0,
+      pool: 0,
+      absorbed: 0,
+      hpOverflow: 6,
+    });
+  });
+
+  it("never reads or writes the reserve", () => {
+    const result = calculateChakraDamage(make(0, 0), 2);
+    assert.equal("reserve" in result, false);
+    assert.equal(result.hpOverflow, 4);
+  });
+
+  it("treats a zero / negative amount as no damage", () => {
+    assert.deepEqual(calculateChakraDamage(make(0, 5), 0), {
+      temp: 0,
+      pool: 5,
+      absorbed: 0,
+      hpOverflow: 0,
     });
   });
 });
