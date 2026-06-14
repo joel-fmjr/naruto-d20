@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.29 - 2026-06-13
+
+- Added **Amatsu no Karada** stance machinery (#114): a new stance archetype where a technique enters for chakra once and then each turn prompts to pay an HP cost or break it. Mastery waiver at the configured step silences the prompt from that point on. Element stances built on this archetype allow picking the attack's damage element(s) on entry — single element or two elements (1d6+1d6) at the double-element mastery step — injected at roll time via `pf1PreDamageRoll`.
+- Added **forced HP upkeep** variant for Kai-Mon Kai (Initial Gate Release) (#116): a `upkeepMode: "forced"` discriminator on `automation.maintenance` that auto-applies the HP cost each turn with no prompt and ends the stance if the cost would drop HP to 0 or below. Never waivable by mastery. Splits `applyHpCost` into `rollHpCost` + `commitHpCost` so the guard check runs before the deduct.
+- Replaced the separate stance, HP-upkeep, and rank-cost maintenance paths with a **unified turn-maintenance engine** (#118): a single `processTurnMaintenance(actor)` entry point resolves every active maintenance contract (mode-choice, HP-upkeep prompt, HP-upkeep forced, rank cost) for an actor at start-of-turn. Legacy `automation.stance*` fields are migrated to the nested `automation.maintenance` schema by `TechniqueDataModel`; compendium techniques are repacked with the new block. The Automation tab now exposes a unified Maintenance section in place of the old per-type controls.
+- Fixed a **Synckit false positive** for techniques with the new maintenance fields (#117): `applyTechniqueSystemDefaults` now backfills `stanceUpkeep`, `elementChoice`, `upkeepFormula`, `upkeepMode`, `upkeepWaiverStep`, and `elementDoubleStep` so the diff normalizer fills both sides and a no-op sheet open/close no longer reports out-of-date.
+
 ## v1.0.28 - 2026-06-13
 
 - Added an **auto-generated technique stat block** above the description: discipline, rank, complexity, chakra cost, learn DC, successes, threshold, perform DC and components now render automatically from the technique's structured fields (mirroring PF1e's spell header), so descriptions no longer need those values typed by hand. Stripped the hand-typed Type/Rank/Chakra Cost/Learn DC/Perform DC/Components block from all 1297 technique descriptions accordingly.
