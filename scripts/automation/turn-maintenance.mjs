@@ -12,6 +12,7 @@ import {
   ensureRankMasteryDailyUse,
   hasRankMasteryFreeUseAvailable,
 } from "./rank-buffs.mjs";
+import { calculateChakraDamage, commitChakraDamage } from "../data/chakra-damage.mjs";
 
 const pending = new Set();
 
@@ -41,6 +42,22 @@ export function registerTurnMaintenance() {
           console.error(`naruto-d20 | failed to delete expired buff "${current.name}":`, err);
         }
       }
+    }, 0);
+  });
+
+  Hooks.on("deleteItem", (item, options, userId) => {
+    if (userId !== game.user.id) return;
+    if (item.type !== "buff") return;
+    const flag = getMaintenanceBuffFlag(item);
+    if (!flag?.sourceTechniqueId) return;
+    const actor = item.actor;
+    if (!actor?.isOwner) return;
+    if (!flag.hasHeal) return;
+    if (!actor.system?.traits?.fastHealing) return;
+    window.setTimeout(() => {
+      actor.update({ "system.traits.fastHealing": "" }).catch((err) => {
+        console.error(`naruto-d20 | failed to clear fastHealing for "${actor.name}":`, err);
+      });
     }, 0);
   });
 }
@@ -93,6 +110,10 @@ async function runMaintenance(actor, itemId) {
     return maintainChakraUpkeep(actor, itemId, technique, facets, flag);
   }
 
+  if (facets.resource === "chakraDamage") {
+    return maintainChakraDamageUpkeep(actor, itemId, technique, facets, flag);
+  }
+
   // No-cost choice (Champuru), or a maintained buff with no cost/choice.
   await completeMaintenance(actor, itemId, technique, facets, flag);
 }
@@ -127,6 +148,32 @@ async function maintainHpUpkeep(actor, itemId, technique, facets, flag) {
   const choice = await promptHpUpkeep(technique, formula);
   if (choice !== "pay") return deleteMaintenanceBuff(actor, itemId);
   await applyHpCost(actor, formula);
+  await completeMaintenance(actor, itemId, technique, facets, flag);
+}
+
+function masteryRollData(actor, technique) {
+  const step = Number(technique.system?.mastery) || 0;
+  return { ...(actor.getRollData?.() ?? {}), mastery: step };
+}
+
+async function maintainChakraDamageUpkeep(actor, itemId, technique, facets, flag) {
+  const roll = await RollPF.safeRoll(String(facets.cost || "0"), masteryRollData(actor, technique));
+  const amount = Math.max(0, Math.floor(Number(roll?.total) || 0));
+
+  const calc = calculateChakraDamage(actor, amount);
+
+  if (calc.hpOverflow > 0) {
+    const hp = Number(actor.system?.attributes?.hp?.value ?? 0) || 0;
+    if (hp - calc.hpOverflow < 1) {
+      await deleteMaintenanceBuff(actor, itemId);
+      ui.notifications.info(
+        game.i18n.format("NarutoD20.Maintenance.UpkeepEnded", { name: technique.name }),
+      );
+      return;
+    }
+  }
+
+  await commitChakraDamage(actor, technique, calc, amount);
   await completeMaintenance(actor, itemId, technique, facets, flag);
 }
 
@@ -260,6 +307,8 @@ async function completeMaintenance(
   flag,
   interval = facets.interval,
 ) {
+  await applyTurnBenefits(actor, technique, facets);
+
   if (facets.choice === "mode") {
     const choice = await promptModeChoice(technique, {
       current: flag.modeId,
@@ -273,12 +322,49 @@ async function completeMaintenance(
     return;
   }
 
-  if (facets.resource === "hp" || technique.system?.automation?.maintenance?.element) {
+  if (
+    facets.resource === "hp" ||
+    facets.resource === "chakraDamage" ||
+    technique.system?.automation?.maintenance?.element
+  ) {
     await applyUpkeepBuff(technique, actor, interval);
     return;
   }
 
   await refreshMaintenanceBuff(actor, itemId, interval);
+}
+
+async function applyTurnBenefits(actor, technique, facets) {
+  if (facets.heal) {
+    const roll = await RollPF.safeRoll(String(facets.heal), masteryRollData(actor, technique));
+    const amount = Math.max(0, Math.floor(Number(roll?.total) || 0));
+    const hp = actor.system?.attributes?.hp ?? {};
+    const cur = Number(hp.value ?? 0) || 0;
+    const max = Number(hp.max ?? cur) || cur;
+    const healed = Math.min(amount, Math.max(0, max - cur));
+
+    // Always stamp fastHealing each turn so the defenses card stays current; the teardown hook clears it.
+    const updates = { "system.traits.fastHealing": String(amount) };
+    if (healed > 0) updates["system.attributes.hp.value"] = cur + healed;
+    await actor.update(updates);
+
+    if (healed > 0) {
+      await ChatMessage.implementation.create({
+        speaker: ChatMessage.implementation.getSpeaker({ actor }),
+        content: `<p>${game.i18n.format("NarutoD20.Maintenance.FastHealingFlavor", {
+          name: technique.name,
+          amount,
+          hp: healed,
+        })}</p>`,
+      });
+    }
+  }
+
+  if (facets.clearConditions?.length) {
+    const payload = {};
+    for (const id of facets.clearConditions) payload[id] = false;
+    await actor.setConditions(payload);
+  }
 }
 
 function promptHpUpkeep(technique, formula) {

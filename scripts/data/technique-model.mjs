@@ -389,7 +389,7 @@ export function createTechniqueDataModel() {
                   ...opt,
                   blank: true,
                   initial: "",
-                  choices: ["", "chakra", "hp"],
+                  choices: ["", "chakra", "hp", "chakraDamage"],
                 }),
                 // Cost amount: an HP roll formula ("1d4", "2") or a flat chakra amount ("1").
                 cost: new fields.StringField({ ...opt, blank: true, initial: "1d4" }),
@@ -420,6 +420,8 @@ export function createTechniqueDataModel() {
                   initial: "",
                   choices: ["", "mode"],
                 }),
+                heal: new fields.StringField({ ...opt, blank: true, initial: "" }),
+                clearConditions: new fields.StringField({ ...opt, blank: true, initial: "" }),
                 // Entry-time element selection (chosen once on entry, reused while active).
                 element: new fields.BooleanField({ ...opt, initial: false }),
                 // Mastery step at/above which two elements are chosen (1d6 + 1d6).

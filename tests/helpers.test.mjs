@@ -37,6 +37,7 @@ import {
   readWeaponAttackRaw,
 } from "../scripts/ui/technique-weapon-attack.mjs";
 import { validateCompendia } from "../tools/validate-compendia.mjs";
+import { calculateChakraDamage } from "../scripts/data/chakra-damage.mjs";
 
 globalThis.foundry = {
   utils: {
@@ -182,6 +183,8 @@ describe("maintenance facets", () => {
       waiverStep: 2,
       freeRounds: 5,
       choice: "",
+      heal: "",
+      clearConditions: [],
     });
   });
 
@@ -223,6 +226,53 @@ describe("maintenance facets", () => {
       }),
       { sourceTechniqueId: "tech1", grantType: "paid", key: "KOUSOKU" },
     );
+  });
+});
+
+describe("maintenanceFacets chakraDamage", () => {
+  it("surfaces resource, heal formula, and parsed clearConditions", () => {
+    const technique = {
+      system: {
+        automation: {
+          maintenance: {
+            enabled: true,
+            resource: "chakraDamage",
+            cost: "3 - floor(@mastery / 5)",
+            policy: "forced",
+            interval: 1,
+            heal: "2 + ceil(@mastery / 2)",
+            clearConditions: "fatigued, exhausted",
+          },
+        },
+      },
+    };
+    const facets = maintenanceFacets(technique);
+    assert.equal(facets.resource, "chakraDamage");
+    assert.equal(facets.heal, "2 + ceil(@mastery / 2)");
+    assert.deepEqual(facets.clearConditions, ["fatigued", "exhausted"]);
+  });
+
+  it("defaults heal to empty and clearConditions to an empty array", () => {
+    const technique = {
+      system: { automation: { maintenance: { enabled: true, resource: "hp" } } },
+    };
+    const facets = maintenanceFacets(technique);
+    assert.equal(facets.heal, "");
+    assert.deepEqual(facets.clearConditions, []);
+  });
+});
+
+describe("gate mastery formulas", () => {
+  // Mirrors the formula strings stored on the Heal Gate technique.
+  const chakraDamage = (m) => Math.max(0, 3 - Math.floor(m / 5));
+  const fastHealing = (m) => 2 + Math.ceil(m / 2);
+
+  it("chakra damage is 3 below mastery 5 and 2 at mastery 5", () => {
+    assert.deepEqual([0, 1, 2, 3, 4, 5].map(chakraDamage), [3, 3, 3, 3, 3, 2]);
+  });
+
+  it("fast healing scales 2/3/4/5 across mastery steps 0/1/3/5", () => {
+    assert.deepEqual([0, 1, 2, 3, 4, 5].map(fastHealing), [2, 3, 3, 4, 4, 5]);
   });
 });
 
@@ -458,6 +508,55 @@ describe("chakra spending", () => {
       pool: 1,
       reserve: 0,
       summary: "2 temp, 3 pool",
+    });
+  });
+});
+
+describe("chakra damage", () => {
+  const make = (temp, value) => ({
+    flags: { "naruto-d20": { chakra: { pool: { temp, value }, reserve: { value: 9 } } } },
+  });
+
+  it("absorbs from temp before pool with no HP overflow", () => {
+    assert.deepEqual(calculateChakraDamage(make(2, 3), 4), {
+      temp: 0,
+      pool: 1,
+      absorbed: 4,
+      hpOverflow: 0,
+    });
+  });
+
+  it("doubles the unabsorbed remainder into HP overflow", () => {
+    // pool 1 absorbs 1 of 3; remainder 2 * 2 = 4 HP
+    assert.deepEqual(calculateChakraDamage(make(0, 1), 3), {
+      temp: 0,
+      pool: 0,
+      absorbed: 1,
+      hpOverflow: 4,
+    });
+  });
+
+  it("doubles the full amount against an empty pool", () => {
+    assert.deepEqual(calculateChakraDamage(make(0, 0), 3), {
+      temp: 0,
+      pool: 0,
+      absorbed: 0,
+      hpOverflow: 6,
+    });
+  });
+
+  it("never reads or writes the reserve", () => {
+    const result = calculateChakraDamage(make(0, 0), 2);
+    assert.equal("reserve" in result, false);
+    assert.equal(result.hpOverflow, 4);
+  });
+
+  it("treats a zero / negative amount as no damage", () => {
+    assert.deepEqual(calculateChakraDamage(make(0, 5), 0), {
+      temp: 0,
+      pool: 5,
+      absorbed: 0,
+      hpOverflow: 0,
     });
   });
 });
