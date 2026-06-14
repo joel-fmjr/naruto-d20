@@ -54,6 +54,11 @@ export function maintenanceFacets(item) {
     waiverStep: Number(m.waiverStep ?? 2) || 0,
     freeRounds: Math.max(1, Number(m.freeRounds) || 5),
     choice: m.choice ?? "",
+    heal: m.heal ?? "",
+    clearConditions: String(m.clearConditions ?? "")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean),
   };
 }
 

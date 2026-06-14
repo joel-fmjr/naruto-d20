@@ -183,6 +183,8 @@ describe("maintenance facets", () => {
       waiverStep: 2,
       freeRounds: 5,
       choice: "",
+      heal: "",
+      clearConditions: [],
     });
   });
 
@@ -224,6 +226,39 @@ describe("maintenance facets", () => {
       }),
       { sourceTechniqueId: "tech1", grantType: "paid", key: "KOUSOKU" },
     );
+  });
+});
+
+describe("maintenanceFacets chakraDamage", () => {
+  it("surfaces resource, heal formula, and parsed clearConditions", () => {
+    const technique = {
+      system: {
+        automation: {
+          maintenance: {
+            enabled: true,
+            resource: "chakraDamage",
+            cost: "3 - floor(@mastery / 5)",
+            policy: "forced",
+            interval: 1,
+            heal: "2 + ceil(@mastery / 2)",
+            clearConditions: "fatigued, exhausted",
+          },
+        },
+      },
+    };
+    const facets = maintenanceFacets(technique);
+    assert.equal(facets.resource, "chakraDamage");
+    assert.equal(facets.heal, "2 + ceil(@mastery / 2)");
+    assert.deepEqual(facets.clearConditions, ["fatigued", "exhausted"]);
+  });
+
+  it("defaults heal to empty and clearConditions to an empty array", () => {
+    const technique = {
+      system: { automation: { maintenance: { enabled: true, resource: "hp" } } },
+    };
+    const facets = maintenanceFacets(technique);
+    assert.equal(facets.heal, "");
+    assert.deepEqual(facets.clearConditions, []);
   });
 });
 
