@@ -657,7 +657,7 @@ async function expireActorEffects(actor, seconds = 86_400) {
     event: "turnStart",
   });
 
-  // buff-expiry.mjs deletes expired automation buffs in a deferred task
+  // turn-maintenance.mjs deletes expired automation buffs in a deferred task
   // (setTimeout 0 + async delete); wait until none linger deactivated.
   const lingering = () =>
     actor.items.some(
