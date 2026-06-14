@@ -262,6 +262,20 @@ describe("maintenanceFacets chakraDamage", () => {
   });
 });
 
+describe("gate mastery formulas", () => {
+  // Mirrors the formula strings stored on the Heal Gate technique.
+  const chakraDamage = (m) => Math.max(0, 3 - Math.floor(m / 5));
+  const fastHealing = (m) => 2 + Math.ceil(m / 2);
+
+  it("chakra damage is 3 below mastery 5 and 2 at mastery 5", () => {
+    assert.deepEqual([0, 1, 2, 3, 4, 5].map(chakraDamage), [3, 3, 3, 3, 3, 2]);
+  });
+
+  it("fast healing scales 2/3/4/5 across mastery steps 0/1/3/5", () => {
+    assert.deepEqual([0, 1, 2, 3, 4, 5].map(fastHealing), [2, 3, 3, 4, 4, 5]);
+  });
+});
+
 describe("maintenance element count", () => {
   const tech = (mastery, elementDoubleStep) => ({
     system: { mastery, automation: { maintenance: { element: true, elementDoubleStep } } },
