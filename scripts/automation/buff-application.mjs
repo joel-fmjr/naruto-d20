@@ -33,7 +33,11 @@ export async function applyTechniqueBuff(item, actor, action) {
       await applyModeBuff(item, actor, null, facets.interval);
       return;
     }
-    if (facets.resource === "hp" || item.system.automation.maintenance.element) {
+    if (
+      facets.resource === "hp" ||
+      facets.resource === "chakraDamage" ||
+      item.system.automation.maintenance.element
+    ) {
       await applyUpkeepBuff(item, actor, facets.interval);
       return;
     }
