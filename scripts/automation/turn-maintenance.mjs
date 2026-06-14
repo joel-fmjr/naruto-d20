@@ -132,9 +132,10 @@ async function runMaintenance(actor, itemId) {
 
 async function maintainHpUpkeep(actor, itemId, technique, facets, flag) {
   const formula = facets.cost || "0";
+  const rollData = masteryRollData(actor, technique);
 
   if (facets.policy === "forced") {
-    const { roll, amount } = await rollHpCost(actor, formula);
+    const { roll, amount } = await rollHpCost(actor, formula, rollData);
     const hp = Number(actor.system?.attributes?.hp?.value ?? 0) || 0;
     if (hp - amount < 1) {
       await deleteMaintenanceBuff(actor, itemId);
@@ -159,7 +160,7 @@ async function maintainHpUpkeep(actor, itemId, technique, facets, flag) {
 
   const choice = await promptHpUpkeep(technique, formula);
   if (choice !== "pay") return deleteMaintenanceBuff(actor, itemId);
-  await applyHpCost(actor, formula);
+  await applyHpCost(actor, formula, rollData);
   await completeMaintenance(actor, itemId, technique, facets, flag);
 }
 

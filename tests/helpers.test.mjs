@@ -44,6 +44,7 @@ import {
 import { validateCompendia } from "../tools/validate-compendia.mjs";
 import { calculateChakraDamage } from "../scripts/data/chakra-damage.mjs";
 import { BUFF_TARGETS } from "../scripts/flag-paths.mjs";
+import { rollHpCost } from "../scripts/data/hp-cost.mjs";
 
 globalThis.foundry = {
   utils: {
@@ -54,6 +55,16 @@ globalThis.foundry = {
 globalThis.game = {
   settings: {
     get: () => false,
+  },
+};
+
+globalThis.RollPF = {
+  safeRoll: async (formula, data = {}) => {
+    const normalized = String(formula)
+      .replaceAll("@mastery", String(data.mastery ?? 0))
+      .replace(/floor\(([^)]+)\)/g, (_, expr) => String(Math.floor(Function(`return (${expr})`)())))
+      .replace(/ceil\(([^)]+)\)/g, (_, expr) => String(Math.ceil(Function(`return (${expr})`)())));
+    return { total: Function(`return (${normalized})`)() };
   },
 };
 
@@ -656,6 +667,14 @@ describe("Life Gate source data", () => {
           change.formula === "8",
       ),
     );
+  });
+});
+
+describe("hp upkeep formulas", () => {
+  it("evaluates hp upkeep formulas with injected mastery roll data", async () => {
+    const actor = { getRollData: () => ({}) };
+    const { amount } = await rollHpCost(actor, "4 - floor(@mastery / 5)", { mastery: 5 });
+    assert.equal(amount, 3);
   });
 });
 
