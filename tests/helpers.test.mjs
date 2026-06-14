@@ -17,10 +17,14 @@ import {
 } from "../scripts/data/chakra-spend.mjs";
 import {
   getRankMaintenanceFlag,
+  isFiniteRoundDuration,
   maintenanceBuffFlagData,
   maintenanceFacets,
   maintenanceModeBuffName,
   maintenanceModeById,
+  maintenanceRoundsRemaining,
+  resolveMaintenanceModel,
+  shouldChargeUpkeep,
 } from "../scripts/automation/maintenance-buffs.mjs";
 import { extractTemporaryChakraGrant } from "../scripts/automation/buff-application.mjs";
 import { getRankGrantType, rankGrantLevel } from "../scripts/automation/rank-buffs.mjs";
@@ -957,5 +961,90 @@ describe("source JSON validation", () => {
     assert.ok(messages.some((m) => m.includes("unsupported weaponAttack.mode")));
     assert.ok(messages.some((m) => m.includes("unsupported weaponAttack.filter")));
     assert.ok(messages.some((m) => m.includes("weaponAttack.charge")));
+  });
+});
+
+describe("maintenance duration model", () => {
+  it("treats finite round durations as finite", () => {
+    assert.equal(isFiniteRoundDuration({ units: "round", value: "5" }), true);
+    assert.equal(isFiniteRoundDuration({ units: "round", value: 5 }), true);
+  });
+
+  it("rejects non-round, zero, missing, or non-finite durations", () => {
+    assert.equal(isFiniteRoundDuration(null), false);
+    assert.equal(isFiniteRoundDuration({ units: "inst" }), false);
+    assert.equal(isFiniteRoundDuration({ units: "round", value: "0" }), false);
+    assert.equal(isFiniteRoundDuration({ units: "round", value: "" }), false);
+    assert.equal(isFiniteRoundDuration({ units: "minute", value: "5" }), false);
+  });
+
+  it("resolves model from facets + duration", () => {
+    const facets = { resource: "hp" };
+    assert.equal(resolveMaintenanceModel(facets, { units: "round", value: "5" }), "duration");
+    assert.equal(resolveMaintenanceModel(facets, { units: "inst" }), "toggle");
+    assert.equal(resolveMaintenanceModel(facets, null), "toggle");
+    assert.equal(resolveMaintenanceModel(null, { units: "round", value: "5" }), null);
+  });
+
+  it("computes rounds remaining as total - (current - start)", () => {
+    assert.equal(maintenanceRoundsRemaining({ totalRounds: 5, startRound: 1, currentRound: 1 }), 5);
+    assert.equal(maintenanceRoundsRemaining({ totalRounds: 5, startRound: 1, currentRound: 2 }), 4);
+    assert.equal(maintenanceRoundsRemaining({ totalRounds: 5, startRound: 1, currentRound: 6 }), 0);
+    assert.equal(maintenanceRoundsRemaining({ totalRounds: 5, startRound: 1, currentRound: 7 }), -1);
+  });
+
+  it("treats a null startRound as not-yet-started (full duration remaining)", () => {
+    assert.equal(maintenanceRoundsRemaining({ totalRounds: 5, startRound: null, currentRound: 3 }), 5);
+  });
+
+  it("charges upkeep only while rounds remain, on interval, once per round", () => {
+    // round 2, interval 1, not yet charged this round -> charge
+    assert.equal(
+      shouldChargeUpkeep({ remaining: 4, currentRound: 2, startRound: 1, interval: 1, lastUpkeepRound: 1 }),
+      true,
+    );
+    // already charged this round -> skip
+    assert.equal(
+      shouldChargeUpkeep({ remaining: 4, currentRound: 2, startRound: 1, interval: 1, lastUpkeepRound: 2 }),
+      false,
+    );
+    // ending turn (remaining 0) -> skip (teardown handles it)
+    assert.equal(
+      shouldChargeUpkeep({ remaining: 0, currentRound: 6, startRound: 1, interval: 1, lastUpkeepRound: 5 }),
+      false,
+    );
+    // interval 2: charged at round 1, next charge at round 3 (since (3-1) % 2 === 0)
+    assert.equal(
+      shouldChargeUpkeep({ remaining: 3, currentRound: 3, startRound: 1, interval: 2, lastUpkeepRound: 1 }),
+      true,
+    );
+    // interval 2: charged at round -1, next charge at round 1 (since (1-0) % 2 !== 0), then round 2 (since (2-0) % 2 === 0)
+    assert.equal(
+      shouldChargeUpkeep({ remaining: 4, currentRound: 2, startRound: 0, interval: 2, lastUpkeepRound: -1 }),
+      true,
+    );
+  });
+
+  it("stamps the duration model fields into the flag payload", () => {
+    const flag = maintenanceBuffFlagData({
+      sourceTechniqueId: "abc",
+      model: "duration",
+      totalRounds: 5,
+      startRound: 1,
+      interval: 1,
+    });
+    assert.deepEqual(flag, {
+      sourceTechniqueId: "abc",
+      model: "duration",
+      totalRounds: 5,
+      startRound: 1,
+      interval: 1,
+      lastUpkeepRound: 1,
+    });
+  });
+
+  it("omits duration-model fields for toggle buffs", () => {
+    const flag = maintenanceBuffFlagData({ sourceTechniqueId: "abc", modeId: "dex" });
+    assert.deepEqual(flag, { sourceTechniqueId: "abc", modeId: "dex" });
   });
 });
