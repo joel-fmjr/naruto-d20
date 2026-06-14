@@ -132,9 +132,15 @@ async function chargeDurationUpkeep(actor, itemId, currentRound) {
 
   const flag = getMaintenanceBuffFlag(item);
   const technique = flag?.sourceTechniqueId ? actor.items.get(flag.sourceTechniqueId) : null;
-  if (!technique) return;
+  if (!technique) {
+    await deleteMaintenanceBuff(actor, itemId);
+    return;
+  }
   const facets = maintenanceFacets(technique);
-  if (!facets) return;
+  if (!facets) {
+    await deleteMaintenanceBuff(actor, itemId);
+    return;
+  }
 
   if (flag.startRound === null || flag.startRound === undefined) {
     await item.update({ [`flags.${MODULE_ID}.maintenanceBuff.startRound`]: currentRound });
@@ -183,9 +189,7 @@ async function tearDownDurationBuff(actor, itemId) {
     console.error(`naruto-d20 | failed to set fatigued on "${actor.name}":`, err);
   }
 
-  ui.notifications.info(
-    game.i18n.format("NarutoD20.Maintenance.UpkeepEnded", { name }),
-  );
+  ui.notifications.info(game.i18n.format("NarutoD20.Maintenance.UpkeepEnded", { name }));
 }
 
 function queueMaintenance(item) {
