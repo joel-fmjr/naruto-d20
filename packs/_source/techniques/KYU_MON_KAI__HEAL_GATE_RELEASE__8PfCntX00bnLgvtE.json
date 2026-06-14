@@ -43,6 +43,25 @@
     "isCombination": false,
     "performMiscBonus": 0,
     "active": false,
+    "automation": {
+      "enabled": true,
+      "targetMode": "self",
+      "maintenance": {
+        "enabled": true,
+        "resource": "chakraDamage",
+        "cost": "3 - floor(@mastery / 5)",
+        "policy": "forced",
+        "interval": 1,
+        "waiver": "",
+        "waiverStep": 2,
+        "freeRounds": 5,
+        "choice": "",
+        "heal": "2 + ceil(@mastery / 2)",
+        "clearConditions": "fatigued,exhausted",
+        "element": false,
+        "elementDoubleStep": 5
+      }
+    },
     "changes": [],
     "actions": [
       {
