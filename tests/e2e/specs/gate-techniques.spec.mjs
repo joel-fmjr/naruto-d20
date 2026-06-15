@@ -187,3 +187,25 @@ test.describe("Gate techniques — Sei-Mon Kai", () => {
     expect(result.buffs[0].active).toBe(true);
   });
 });
+
+test.describe("Gate techniques — expiry", () => {
+  test("duration expiry deletes the gate buff and sets fatigued", async ({ page }) => {
+    await prepareGate(page, KAI);
+    const result = await page.evaluate(async (name) => {
+      const api = game.modules.get("naruto-d20").api;
+      const actor = api.getActor();
+      await api.performByName(actor, name, { forceRoll: 20, rollBonus: 100 });
+      const before = api.listBuffs(actor).filter((buff) => buff.sourceId);
+      await api.expireActorEffects(actor);
+      return {
+        before,
+        after: api.listBuffs(actor).filter((buff) => buff.sourceId),
+        fatigued: api.getConditions(actor).fatigued,
+      };
+    }, KAI);
+
+    expect(result.before).toHaveLength(1);
+    expect(result.after).toHaveLength(0);
+    expect(result.fatigued).toBe(true);
+  });
+});
