@@ -80,4 +80,27 @@ test.describe("Gate techniques — Kai-Mon Kai", () => {
     expect(result.buffs[0].active).toBe(true);
     expect(result.fatigued).toBe(false);
   });
+
+  test("lethal upkeep tears the buff down and fatigues instead of dropping below 1 HP", async ({
+    page,
+  }) => {
+    await prepareGate(page, KAI);
+    const result = await page.evaluate(async (name) => {
+      const api = game.modules.get("naruto-d20").api;
+      const actor = api.getActor();
+      await api.performByName(actor, name, { forceRoll: 20, rollBonus: 100 });
+      await api.startCombatForActor(actor);
+      await actor.update({ "system.attributes.hp.value": 2 }); // next 2-HP tick would hit 0
+      await api.advanceCombatTurn(actor);
+      return {
+        hp: actor.system.attributes.hp.value,
+        buffs: api.listBuffs(actor).filter((buff) => buff.sourceId),
+        fatigued: api.getConditions(actor).fatigued,
+      };
+    }, KAI);
+
+    expect(result.buffs).toHaveLength(0);
+    expect(result.fatigued).toBe(true);
+    expect(result.hp).toBe(2); // teardown skips the lethal subtraction
+  });
 });
