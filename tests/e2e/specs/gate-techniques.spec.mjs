@@ -76,6 +76,7 @@ test.describe("Gate techniques — Kai-Mon Kai", () => {
 
     expect(result.hpAfter).toBe(result.hpBefore - 2);
     expect(result.buffs).toHaveLength(1);
+    expect(result.buffs[0].name).toBe(KAI);
     expect(result.buffs[0].active).toBe(true);
     expect(result.fatigued).toBe(false);
   });

@@ -613,12 +613,14 @@ async function startCombatForActor(actor, { x = 100, y = 100 } = {}) {
 }
 
 async function advanceCombatTurn(actor) {
-  const combat = game.combats.get(activeFixture?.combatIds.at(-1)) ?? game.combat;
+  if (!activeFixture) throw new Error("No active E2E fixture");
+  const combat = game.combats.get(activeFixture.combatIds.at(-1)) ?? game.combat;
   if (!combat) throw new Error("No active combat to advance");
   const ids = durationBuffIds(actor);
   await combat.nextRound();
-  await waitForUpkeepSettle(actor, ids, combat.round);
-  return { round: combat.round, turn: combat.turn };
+  const live = game.combats.get(combat.id) ?? combat;
+  await waitForUpkeepSettle(actor, ids, live.round);
+  return { round: live.round, turn: live.turn };
 }
 
 function durationBuffIds(actor) {
