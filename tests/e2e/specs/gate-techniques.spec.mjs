@@ -104,3 +104,41 @@ test.describe("Gate techniques — Kai-Mon Kai", () => {
     expect(result.hp).toBe(2); // teardown skips the lethal subtraction
   });
 });
+
+test.describe("Gate techniques — Kyu-Mon Kai", () => {
+  test("upkeep spends chakra, fast-heals, and clears fatigued/exhausted each turn", async ({
+    page,
+  }) => {
+    await prepareGate(page, KYU);
+    const result = await page.evaluate(async (name) => {
+      const api = game.modules.get("naruto-d20").api;
+      const actor = api.getActor();
+      await api.performByName(actor, name, { forceRoll: 20, rollBonus: 100 });
+
+      const hpMax = actor.system.attributes.hp.max;
+      await actor.update({ "system.attributes.hp.value": hpMax - 10 });
+      await api.setCondition(actor, "fatigued", true);
+      await api.setCondition(actor, "exhausted", true);
+
+      const poolBefore = api.getChakra(actor).pool.value;
+      const hpBefore = actor.system.attributes.hp.value;
+      await api.startCombatForActor(actor); // one upkeep tick
+      const conditions = api.getConditions(actor);
+      return {
+        poolBefore,
+        poolAfter: api.getChakra(actor).pool.value,
+        hpBefore,
+        hpAfter: actor.system.attributes.hp.value,
+        fastHealing: actor.system.traits?.fastHealing ?? "",
+        fatigued: conditions.fatigued,
+        exhausted: conditions.exhausted,
+      };
+    }, KYU);
+
+    expect(result.poolAfter).toBe(result.poolBefore - 3); // chakra-damage cost at mastery 0
+    expect(result.hpAfter).toBe(result.hpBefore + 2); // fast-healing at mastery 0
+    expect(String(result.fastHealing)).toBe("2");
+    expect(result.fatigued).toBe(false);
+    expect(result.exhausted).toBe(false);
+  });
+});
