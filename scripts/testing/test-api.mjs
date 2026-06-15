@@ -132,6 +132,7 @@ async function beginTestFixture({ sourceActorName, requiredTechnique }) {
     tokenRefs: [],
     worldItemIds: [],
     packIds: [],
+    combatIds: [],
     settingValues: new Map(),
     initialTargetIds: [...(game.user.targets ?? [])].map((token) => token.id),
   };
@@ -185,6 +186,14 @@ async function deleteFixtureMessages() {
   if (ids.length) await ChatMessage.implementation.deleteDocuments(ids);
 }
 
+async function deleteFixtureCombats() {
+  if (!activeFixture) return;
+  for (const id of activeFixture.combatIds) {
+    const combat = game.combats.get(id);
+    if (combat) await combat.delete();
+  }
+}
+
 async function deleteFixtureTokens() {
   if (!activeFixture) return;
   for (const { sceneId, tokenId } of activeFixture.tokenRefs) {
@@ -222,6 +231,7 @@ async function endTestFixture() {
     await attempt(deleteFixtureMessages);
     await attempt(restoreTargets);
     await attempt(restoreSettings);
+    await attempt(deleteFixtureCombats);
     await attempt(deleteFixtureTokens);
     await attempt(deleteFixtureItemsAndPacks);
 
@@ -582,6 +592,58 @@ async function createToken(actor, { x = 0, y = 0 } = {}) {
   return created;
 }
 
+async function startCombatForActor(actor, { x = 100, y = 100 } = {}) {
+  if (!activeFixture) throw new Error("No active E2E fixture");
+  const scene = canvas.scene;
+  if (!scene) throw new Error("An active scene is required for combat tests");
+
+  let token = actor.getActiveTokens?.()[0]?.document ?? null;
+  if (!token) token = await createToken(actor, { x, y });
+
+  const ids = durationBuffIds(actor);
+  const combat = await Combat.implementation.create({ scene: scene.id });
+  activeFixture.combatIds.push(combat.id);
+  await combat.createEmbeddedDocuments("Combatant", [
+    { tokenId: token.id, sceneId: scene.id, actorId: actor.id },
+  ]);
+  await combat.activate();
+  await combat.startCombat();
+  await waitForUpkeepSettle(actor, ids, combat.round);
+  return { combatId: combat.id, round: combat.round, turn: combat.turn };
+}
+
+async function advanceCombatTurn(actor) {
+  const combat = game.combats.get(activeFixture?.combatIds.at(-1)) ?? game.combat;
+  if (!combat) throw new Error("No active combat to advance");
+  const ids = durationBuffIds(actor);
+  await combat.nextRound();
+  await waitForUpkeepSettle(actor, ids, combat.round);
+  return { round: combat.round, turn: combat.turn };
+}
+
+function durationBuffIds(actor) {
+  return actor.items
+    .filter(
+      (item) =>
+        item.type === "buff" &&
+        item.flags?.[MODULE_ID]?.maintenanceBuff?.model === "duration",
+    )
+    .map((item) => item.id);
+}
+
+async function waitForUpkeepSettle(actor, ids, round) {
+  if (!ids.length) return;
+  await waitFor(
+    () =>
+      ids.every((id) => {
+        const item = actor.items.get(id);
+        if (!item) return true; // torn down by lethal guard / expiry
+        return Number(item.flags?.[MODULE_ID]?.maintenanceBuff?.lastUpkeepRound) === round;
+      }),
+    { label: `gate upkeep settle at round ${round}` },
+  );
+}
+
 function setTargetByActor(actor) {
   const token = actor.getActiveTokens?.()[0];
   if (!token) return false;
@@ -703,6 +765,8 @@ export function installTestApi() {
     createBuffLookupFixture,
     createTargetActor,
     createToken,
+    startCombatForActor,
+    advanceCombatTurn,
     setTargetByActor,
     clearTargets,
     getSetting,

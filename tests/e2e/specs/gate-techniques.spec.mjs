@@ -56,4 +56,27 @@ test.describe("Gate techniques — Kai-Mon Kai", () => {
     expect(result.duration.units).toBe("round");
     expect(Number(result.duration.value)).toBeGreaterThan(0);
   });
+
+  test("forced HP upkeep drains 2 HP per combat turn", async ({ page }) => {
+    await prepareGate(page, KAI);
+    const result = await page.evaluate(async (name) => {
+      const api = game.modules.get("naruto-d20").api;
+      const actor = api.getActor();
+      await api.performByName(actor, name, { forceRoll: 20, rollBonus: 100 });
+      await api.startCombatForActor(actor); // first upkeep tick happens here
+      const hpBefore = actor.system.attributes.hp.value;
+      await api.advanceCombatTurn(actor); // exactly one more tick
+      return {
+        hpBefore,
+        hpAfter: actor.system.attributes.hp.value,
+        buffs: api.listBuffs(actor).filter((buff) => buff.sourceId),
+        fatigued: api.getConditions(actor).fatigued,
+      };
+    }, KAI);
+
+    expect(result.hpAfter).toBe(result.hpBefore - 2);
+    expect(result.buffs).toHaveLength(1);
+    expect(result.buffs[0].active).toBe(true);
+    expect(result.fatigued).toBe(false);
+  });
 });

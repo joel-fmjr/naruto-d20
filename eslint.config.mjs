@@ -19,6 +19,7 @@ const foundryGlobals = {
   ChatMessage: "readonly",
   Actor: "readonly",
   Item: "readonly",
+  Combat: "readonly",
   Folder: "readonly",
   Application: "readonly",
   FormApplication: "readonly",
