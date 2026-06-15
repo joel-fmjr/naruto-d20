@@ -181,13 +181,13 @@ async function tearDownDurationBuff(actor, itemId, reason = "cost") {
   const technique = flag?.sourceTechniqueId ? actor.items.get(flag.sourceTechniqueId) : null;
   const name = technique?.name ?? item.name;
 
-  await deleteMaintenanceBuff(actor, itemId);
-
   try {
     await actor.setConditions({ fatigued: true });
   } catch (err) {
     console.error(`naruto-d20 | failed to set fatigued on "${actor.name}":`, err);
   }
+
+  await deleteMaintenanceBuff(actor, itemId);
 
   ui.notifications.info(
     game.i18n.format(
