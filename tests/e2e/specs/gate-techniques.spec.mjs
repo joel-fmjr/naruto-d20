@@ -130,6 +130,7 @@ test.describe("Gate techniques — Kyu-Mon Kai", () => {
         hpBefore,
         hpAfter: actor.system.attributes.hp.value,
         fastHealing: actor.system.traits?.fastHealing ?? "",
+        buffs: api.listBuffs(actor).filter((buff) => buff.sourceId),
         fatigued: conditions.fatigued,
         exhausted: conditions.exhausted,
       };
@@ -138,6 +139,9 @@ test.describe("Gate techniques — Kyu-Mon Kai", () => {
     expect(result.poolAfter).toBe(result.poolBefore - 3); // chakra-damage cost at mastery 0
     expect(result.hpAfter).toBe(result.hpBefore + 2); // fast-healing at mastery 0
     expect(String(result.fastHealing)).toBe("2");
+    expect(result.buffs).toHaveLength(1);
+    expect(result.buffs[0].name).toBe(KYU);
+    expect(result.buffs[0].active).toBe(true);
     expect(result.fatigued).toBe(false);
     expect(result.exhausted).toBe(false);
   });
