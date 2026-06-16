@@ -50,6 +50,7 @@ import { validateCompendia } from "../tools/validate-compendia.mjs";
 import { calculateChakraDamage } from "../scripts/data/chakra-damage.mjs";
 import {
   checkAndUpdateConditions,
+  registerChakraConditionCombatHooks,
   resolveChakraConditionState,
 } from "../scripts/data/chakra-conditions.mjs";
 import { BUFF_TARGETS } from "../scripts/flag-paths.mjs";
@@ -758,6 +759,111 @@ describe("chakra condition state", () => {
     assert.deepEqual(deletedEffectIds, []);
     assert.equal(actorUpdates.length, 1);
     assert.equal(actorUpdates[0]["flags.naruto-d20.conditions.appliedFatigued"], false);
+  });
+
+  it("clears stale fatigue ownership after recovery without deleting a sole external fatigue effect", async () => {
+    const deletedEffectIds = [];
+    const actorUpdates = [];
+    const actor = {
+      type: "character",
+      flags: {
+        "naruto-d20": {
+          chakra: {
+            pool: { value: 20, max: 20 },
+            reserve: { value: 20, max: 20 },
+          },
+          conditions: {
+            appliedFatigued: true,
+          },
+        },
+      },
+      statuses: new Set(["fatigued"]),
+      effects: [
+        {
+          id: "external-fatigued",
+          statuses: new Set(["fatigued"]),
+          flags: {},
+        },
+      ],
+      getCombatants: () => [],
+      async setConditions(updates) {
+        assert.equal(Object.hasOwn(updates, "fatigued"), false);
+        return updates;
+      },
+      async update(update) {
+        actorUpdates.push(update);
+      },
+      async deleteEmbeddedDocuments(type, ids) {
+        assert.equal(type, "ActiveEffect");
+        deletedEffectIds.push(...ids);
+      },
+    };
+
+    await checkAndUpdateConditions(actor);
+
+    assert.deepEqual(deletedEffectIds, []);
+    assert.equal(actorUpdates.length, 1);
+    assert.equal(actorUpdates[0]["flags.naruto-d20.conditions.appliedFatigued"], false);
+  });
+
+  it("registers deleteCombat and reruns condition checks once per unique owned actor", async () => {
+    const originalHooks = globalThis.Hooks;
+    const registered = [];
+    globalThis.Hooks = {
+      on(event, handler) {
+        registered.push({ event, handler });
+      },
+    };
+
+    try {
+      registerChakraConditionCombatHooks();
+
+      assert.equal(registered.length, 1);
+      assert.equal(registered[0].event, "deleteCombat");
+
+      const calls = [];
+      const makeActor = (id, isSelf) => ({
+        id,
+        type: "character",
+        activeOwner: { isSelf },
+        flags: {
+          "naruto-d20": {
+            chakra: {
+              pool: { value: 20, max: 20 },
+              reserve: { value: 20, max: 20 },
+            },
+            conditions: {},
+          },
+        },
+        effects: [],
+        getCombatants: () => [],
+        async setConditions() {
+          calls.push(id);
+          return {};
+        },
+        async update() {},
+        async deleteEmbeddedDocuments() {},
+      });
+
+      const actorA = makeActor("actor-a", true);
+      const actorB = makeActor("actor-b", true);
+      const actorC = makeActor("actor-c", false);
+
+      await registered[0].handler({
+        combatants: [
+          { actor: actorA },
+          { actor: actorA },
+          { actor: actorB },
+          { actor: actorC },
+          { actor: null },
+          {},
+        ],
+      });
+
+      assert.deepEqual(calls, ["actor-a", "actor-b"]);
+    } finally {
+      globalThis.Hooks = originalHooks;
+    }
   });
 });
 

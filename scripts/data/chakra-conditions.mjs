@@ -182,18 +182,14 @@ export async function checkAndUpdateConditions(actor) {
   if (state.wantsExhausted) {
     condUpdates.exhausted = moduleOwnedConditionData("exhausted");
   } else if (hadExhausted) {
-    pf1ConditionEffectIdsToDelete.push(
-      ...moduleOwnedConditionEffectIds(actor, "exhausted", { allowSingleTrackedFallback: true }),
-    );
+    pf1ConditionEffectIdsToDelete.push(...moduleOwnedConditionEffectIds(actor, "exhausted"));
     newAppliedExhausted = false;
   }
 
   if (state.wantsFatigued) {
     condUpdates.fatigued = moduleOwnedConditionData("fatigued");
   } else if (hadFatigued) {
-    pf1ConditionEffectIdsToDelete.push(
-      ...moduleOwnedConditionEffectIds(actor, "fatigued", { allowSingleTrackedFallback: true }),
-    );
+    pf1ConditionEffectIdsToDelete.push(...moduleOwnedConditionEffectIds(actor, "fatigued"));
     newAppliedFatigued = false;
   }
 
@@ -248,18 +244,13 @@ function moduleOwnedConditionData(status) {
   };
 }
 
-function moduleOwnedConditionEffectIds(
-  actor,
-  status,
-  { allowSingleTrackedFallback = false } = {},
-) {
+function moduleOwnedConditionEffectIds(actor, status) {
   const statusEffects = (actor.effects ?? []).filter((effect) => effect.statuses?.has(status));
   const ownedEffectIds = statusEffects
     .filter((effect) => isModuleOwnedConditionEffect(effect, status))
     .map((effect) => effect.id);
 
   if (ownedEffectIds.length) return ownedEffectIds;
-  if (allowSingleTrackedFallback && statusEffects.length === 1) return [statusEffects[0].id];
   return [];
 }
 
