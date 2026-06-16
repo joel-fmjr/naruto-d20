@@ -28,6 +28,7 @@ import {
   shouldChargeUpkeep,
 } from "../scripts/automation/maintenance-buffs.mjs";
 import { extractTemporaryChakraGrant } from "../scripts/automation/buff-application.mjs";
+import { computeEffectiveRank } from "../scripts/automation/rank-effective-level.mjs";
 import { getRankGrantType, rankGrantLevel } from "../scripts/automation/rank-buffs.mjs";
 import {
   legacyRankBuffToMaintenance,
@@ -64,6 +65,8 @@ import { onActorRest } from "../scripts/data/rest-recovery.mjs";
 import { BUFF_TARGETS } from "../scripts/flag-paths.mjs";
 import { rollHpCost } from "../scripts/data/hp-cost.mjs";
 import { applyConditionBenefits } from "../scripts/automation/condition-benefits.mjs";
+
+globalThis.Math.clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
 globalThis.foundry = {
   utils: {
@@ -1791,6 +1794,69 @@ describe("training weight learn breakdown", () => {
       buildLearnCheckBreakdown(actor, "tai", { item: ineligible, includeConditional: true }).parts.at(-1),
       "3[Str]",
     );
+  });
+});
+
+describe("training weight rank penalties", () => {
+  const activeRankBuff = ({ id, key, level }) => ({
+    id,
+    type: "buff",
+    system: { active: true, level },
+    flags: {
+      "naruto-d20": {
+        maintenanceBuff: { key, grantType: "paid" },
+      },
+    },
+  });
+
+  const weight = ({ id, slot, type, rankPenalty }) => ({
+    id,
+    type: "loot",
+    system: {
+      subType: "gear",
+      quantity: 1,
+      carried: true,
+      equipped: true,
+      weight: { total: 25 },
+    },
+    isPhysical: true,
+    isActive: true,
+    inContainer: false,
+    flags: {
+      "naruto-d20": {
+        trainingWeightItem: { slot, type, rankPenalty, learnBonus: Math.min(type, 5) },
+      },
+    },
+  });
+
+  it("subtracts wrist penalties from effective JOURYOKU and ankle penalties from effective KOUSOKU", () => {
+    const actor = {
+      items: [
+        activeRankBuff({ id: "jr5", key: "JOURYOKU", level: 5 }),
+        activeRankBuff({ id: "kr4", key: "KOUSOKU", level: 4 }),
+        weight({ id: "w2", slot: "wrist", type: 2, rankPenalty: 2 }),
+        weight({ id: "a3", slot: "ankle", type: 3, rankPenalty: 3 }),
+      ],
+      statuses: new Set(),
+    };
+
+    assert.deepEqual(computeEffectiveRank(actor, "JOURYOKU", { rollData: { armor: { type: 0 } } }), {
+      paid: 5,
+      temp: 0,
+      bonus: 0,
+      penalty: 2,
+      effective: 3,
+      carrierId: "jr5",
+    });
+
+    assert.deepEqual(computeEffectiveRank(actor, "KOUSOKU", { rollData: { armor: { type: 0 } } }), {
+      paid: 4,
+      temp: 0,
+      bonus: 0,
+      penalty: 3,
+      effective: 1,
+      carrierId: "kr4",
+    });
   });
 });
 

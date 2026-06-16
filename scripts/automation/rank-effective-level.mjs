@@ -1,5 +1,6 @@
 import { getRankGrantType, rankGrantLevel } from "./rank-buffs.mjs";
 import { getRankMaintenanceFlag } from "./maintenance-buffs.mjs";
+import { getTrainingWeightState } from "../data/training-weights.mjs";
 
 // "immobilized" excluded — not a native PF1e 11.11 condition; would only work
 // if a module registers a custom ActiveEffect status with that exact ID.
@@ -65,7 +66,15 @@ export function computeEffectiveRank(actor, key, { rollData } = {}) {
   // A paid buff always carries; otherwise lowest item id (deterministic across clients)
   if (paidCarrier) carrier = paidCarrier;
 
-  const penalty = key === "KOUSOKU" ? speedRankPenalty(actor, rollData) : 0;
+  const trainingWeight = getTrainingWeightState(actor);
+  const extraPenalty =
+    key === "KOUSOKU"
+      ? trainingWeight.speedRankPenalty
+      : key === "JOURYOKU"
+        ? trainingWeight.strengthRankPenalty
+        : 0;
+  const basePenalty = key === "KOUSOKU" ? speedRankPenalty(actor, rollData) : 0;
+  const penalty = basePenalty === Infinity ? Infinity : basePenalty + extraPenalty;
   const effective =
     penalty === Infinity ? 0 : Math.clamp(Math.max(paid, temp) + bonus - penalty, 0, 10);
 
