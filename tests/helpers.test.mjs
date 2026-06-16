@@ -1428,6 +1428,23 @@ describe("source JSON validation", () => {
             },
           },
         },
+        "wrong-table.json": {
+          type: "loot",
+          _id: "wrongtbl",
+          _key: "!items!wrongtbl",
+          name: "Wrong Table Weight",
+          system: { subType: "gear", weight: { value: 25 } },
+          flags: {
+            "naruto-d20": {
+              trainingWeightItem: {
+                slot: "ankle",
+                type: 2,
+                rankPenalty: 1,
+                learnBonus: 1,
+              },
+            },
+          },
+        },
       },
     });
 
@@ -1438,6 +1455,13 @@ describe("source JSON validation", () => {
     assert.ok(messages.some((m) => m.includes("trainingWeightItem.type must be 1..8")));
     assert.ok(
       messages.some((m) => m.includes("training weight must define numeric system.weight.value")),
+    );
+    assert.ok(messages.some((m) => m.includes("training weight type 2 must weigh 37.5")));
+    assert.ok(
+      messages.some((m) => m.includes("trainingWeightItem.rankPenalty for type 2 must be 2")),
+    );
+    assert.ok(
+      messages.some((m) => m.includes("trainingWeightItem.learnBonus for type 2 must be 2")),
     );
   });
 });
