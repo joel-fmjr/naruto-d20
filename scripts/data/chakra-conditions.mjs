@@ -10,6 +10,9 @@ import {
   conditionLowReserveFatiguePendingPath,
 } from "../flag-paths.mjs";
 
+const MODULE_CONDITION_OWNER_FLAG = "conditionOwner";
+const MODULE_CONDITION_STATUS_FLAG = "conditionStatus";
+
 /**
  * Naruto D20 — Chakra Condition System
  *
@@ -159,28 +162,42 @@ export async function checkAndUpdateConditions(actor) {
 
   let newAppliedFatigued = hadFatigued;
   let newAppliedExhausted = hadExhausted;
+  const pf1ConditionEffectIdsToDelete = [];
 
   await _removeLegacyNamespacedConditions(actor);
 
   if (state.wantsExhausted) {
-    const exhaustedAlreadyActive = actor.statuses?.has("exhausted") ?? false;
-    condUpdates.exhausted = true;
-    newAppliedExhausted = hadExhausted || !exhaustedAlreadyActive;
+    condUpdates.exhausted = moduleOwnedConditionData("exhausted");
   } else if (hadExhausted) {
-    condUpdates.exhausted = false;
+    pf1ConditionEffectIdsToDelete.push(
+      ...moduleOwnedConditionEffectIds(actor, "exhausted", { allowSingleTrackedFallback: true }),
+    );
     newAppliedExhausted = false;
   }
 
   if (state.wantsFatigued) {
-    const fatiguedAlreadyActive = actor.statuses?.has("fatigued") ?? false;
-    condUpdates.fatigued = true;
-    newAppliedFatigued = hadFatigued || !fatiguedAlreadyActive;
+    condUpdates.fatigued = moduleOwnedConditionData("fatigued");
   } else if (hadFatigued) {
-    condUpdates.fatigued = false;
+    pf1ConditionEffectIdsToDelete.push(
+      ...moduleOwnedConditionEffectIds(actor, "fatigued", { allowSingleTrackedFallback: true }),
+    );
     newAppliedFatigued = false;
   }
 
-  await actor.setConditions(condUpdates);
+  if (pf1ConditionEffectIdsToDelete.length) {
+    await actor.deleteEmbeddedDocuments("ActiveEffect", pf1ConditionEffectIdsToDelete, {
+      pf1: { updateConditionTracks: false },
+    });
+  }
+
+  const appliedConditions = await actor.setConditions(condUpdates);
+  if (state.wantsExhausted) {
+    newAppliedExhausted =
+      hadExhausted || Object.hasOwn(appliedConditions ?? {}, "exhausted");
+  }
+  if (state.wantsFatigued) {
+    newAppliedFatigued = hadFatigued || Object.hasOwn(appliedConditions ?? {}, "fatigued");
+  }
 
   // Persist tracking flags — only if something changed to avoid an extra round-trip
   if (
@@ -200,6 +217,40 @@ export async function checkAndUpdateConditions(actor) {
 
 function actorIsInStartedCombat(actor) {
   return actor.getCombatants?.().some((combatant) => combatant.combat?.started) ?? false;
+}
+
+function moduleOwnedConditionData(status) {
+  return {
+    flags: {
+      [MODULE_ID]: {
+        [MODULE_CONDITION_OWNER_FLAG]: true,
+        [MODULE_CONDITION_STATUS_FLAG]: status,
+      },
+    },
+  };
+}
+
+function moduleOwnedConditionEffectIds(
+  actor,
+  status,
+  { allowSingleTrackedFallback = false } = {},
+) {
+  const statusEffects = (actor.effects ?? []).filter((effect) => effect.statuses?.has(status));
+  const ownedEffectIds = statusEffects
+    .filter((effect) => isModuleOwnedConditionEffect(effect, status))
+    .map((effect) => effect.id);
+
+  if (ownedEffectIds.length) return ownedEffectIds;
+  if (allowSingleTrackedFallback && statusEffects.length === 1) return [statusEffects[0].id];
+  return [];
+}
+
+function isModuleOwnedConditionEffect(effect, status) {
+  const moduleFlags = effect.flags?.[MODULE_ID] ?? {};
+  return (
+    moduleFlags[MODULE_CONDITION_OWNER_FLAG] === true &&
+    (moduleFlags[MODULE_CONDITION_STATUS_FLAG] ?? status) === status
+  );
 }
 
 async function _removeLegacyNamespacedConditions(actor) {

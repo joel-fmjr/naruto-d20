@@ -48,7 +48,10 @@ import {
 } from "../scripts/ui/technique-weapon-attack.mjs";
 import { validateCompendia } from "../tools/validate-compendia.mjs";
 import { calculateChakraDamage } from "../scripts/data/chakra-damage.mjs";
-import { resolveChakraConditionState } from "../scripts/data/chakra-conditions.mjs";
+import {
+  checkAndUpdateConditions,
+  resolveChakraConditionState,
+} from "../scripts/data/chakra-conditions.mjs";
 import { BUFF_TARGETS } from "../scripts/flag-paths.mjs";
 import { rollHpCost } from "../scripts/data/hp-cost.mjs";
 
@@ -622,6 +625,87 @@ describe("chakra condition state", () => {
         lowReserveFatiguePending: false,
       },
     );
+  });
+
+  it("tags module-created PF1e fatigue effects", async () => {
+    let conditionUpdate = null;
+    let actor = null;
+    actor = {
+      type: "character",
+      flags: {
+        "naruto-d20": {
+          chakra: {
+            pool: { value: 20, max: 20 },
+            reserve: { value: 4, max: 20 },
+          },
+          conditions: {},
+        },
+      },
+      statuses: new Set(),
+      effects: [],
+      getCombatants: () => [],
+      async setConditions(updates) {
+        conditionUpdate = updates.fatigued;
+        return updates;
+      },
+      async update() {},
+      async deleteEmbeddedDocuments() {},
+    };
+
+    await checkAndUpdateConditions(actor);
+
+    assert.equal(conditionUpdate.flags["naruto-d20"].conditionOwner, true);
+    assert.equal(conditionUpdate.flags["naruto-d20"].conditionStatus, "fatigued");
+  });
+
+  it("removes only tagged module-owned PF1e fatigue effects", async () => {
+    const deletedEffectIds = [];
+    const actor = {
+      type: "character",
+      flags: {
+        "naruto-d20": {
+          chakra: {
+            pool: { value: 20, max: 20 },
+            reserve: { value: 20, max: 20 },
+          },
+          conditions: {
+            appliedFatigued: true,
+          },
+        },
+      },
+      statuses: new Set(["fatigued"]),
+      effects: [
+        {
+          id: "external-fatigued",
+          statuses: new Set(["fatigued"]),
+          flags: {},
+        },
+        {
+          id: "module-fatigued",
+          statuses: new Set(["fatigued"]),
+          flags: {
+            "naruto-d20": {
+              conditionOwner: true,
+              conditionStatus: "fatigued",
+            },
+          },
+        },
+      ],
+      getCombatants: () => [],
+      async setConditions(updates) {
+        assert.notEqual(updates.fatigued, false);
+        return updates;
+      },
+      async update() {},
+      async deleteEmbeddedDocuments(type, ids) {
+        assert.equal(type, "ActiveEffect");
+        deletedEffectIds.push(...ids);
+      },
+    };
+
+    await checkAndUpdateConditions(actor);
+
+    assert.deepEqual(deletedEffectIds, ["module-fatigued"]);
   });
 });
 
