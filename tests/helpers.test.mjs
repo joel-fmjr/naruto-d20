@@ -48,6 +48,7 @@ import {
 } from "../scripts/ui/technique-weapon-attack.mjs";
 import { validateCompendia } from "../tools/validate-compendia.mjs";
 import { calculateChakraDamage } from "../scripts/data/chakra-damage.mjs";
+import { resolveChakraConditionState } from "../scripts/data/chakra-conditions.mjs";
 import { BUFF_TARGETS } from "../scripts/flag-paths.mjs";
 import { rollHpCost } from "../scripts/data/hp-cost.mjs";
 
@@ -537,6 +538,89 @@ describe("chakra spending", () => {
       fromPool: 3,
       summary: "2 temp, 3 pool",
     });
+  });
+});
+
+describe("chakra condition state", () => {
+  const baseState = {
+    reserveValue: 10,
+    reserveMax: 20,
+    poolValue: 20,
+    poolMax: 20,
+    depletionActive: false,
+    lowReserveFatiguePending: false,
+  };
+
+  it("delays low-reserve fatigue during combat above the quarter threshold", () => {
+    assert.deepEqual(
+      resolveChakraConditionState({
+        ...baseState,
+        reserveValue: 8,
+        inCombat: true,
+      }),
+      {
+        wantsLowReserves: true,
+        wantsDepletion: false,
+        wantsFatigued: false,
+        wantsExhausted: false,
+        depletionActive: false,
+        lowReserveFatiguePending: true,
+      },
+    );
+  });
+
+  it("applies low-reserve fatigue immediately below the quarter threshold even in combat", () => {
+    assert.deepEqual(
+      resolveChakraConditionState({
+        ...baseState,
+        reserveValue: 4,
+        inCombat: true,
+      }),
+      {
+        wantsLowReserves: true,
+        wantsDepletion: false,
+        wantsFatigued: true,
+        wantsExhausted: false,
+        depletionActive: false,
+        lowReserveFatiguePending: false,
+      },
+    );
+  });
+
+  it("keeps depletion active until reserve and pool are fully recovered", () => {
+    assert.deepEqual(
+      resolveChakraConditionState({
+        ...baseState,
+        reserveValue: 12,
+        poolValue: 19,
+        depletionActive: true,
+      }),
+      {
+        wantsLowReserves: false,
+        wantsDepletion: true,
+        wantsFatigued: true,
+        wantsExhausted: false,
+        depletionActive: true,
+        lowReserveFatiguePending: false,
+      },
+    );
+  });
+
+  it("clears depletion only when reserve and pool are both full", () => {
+    assert.deepEqual(
+      resolveChakraConditionState({
+        ...baseState,
+        depletionActive: true,
+      }),
+      {
+        wantsLowReserves: false,
+        wantsDepletion: false,
+        wantsFatigued: false,
+        wantsExhausted: false,
+        depletionActive: false,
+        lowReserveFatiguePending: false,
+      },
+    );
   });
 });
 
