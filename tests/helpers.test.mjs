@@ -1407,6 +1407,39 @@ describe("source JSON validation", () => {
     assert.ok(messages.some((m) => m.includes("unsupported weaponAttack.filter")));
     assert.ok(messages.some((m) => m.includes("weaponAttack.charge")));
   });
+
+  it("reports Training Weight source mistakes", () => {
+    const { root, sourceRoot } = makeSourceRoot({
+      "training-weights": {
+        "bad-weight.json": {
+          type: "loot",
+          _id: "badweight",
+          _key: "!items!badweight",
+          name: "Bad Weight",
+          system: { subType: "gear", weight: { value: "25" } },
+          flags: {
+            "naruto-d20": {
+              trainingWeightItem: {
+                slot: "wrist",
+                type: "1",
+                rankPenalty: 1,
+                learnBonus: 1,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    const result = validateCompendia({ root, sourceRoot });
+    const messages = result.issues.map((i) => i.message);
+
+    assert.equal(result.failed, true);
+    assert.ok(messages.some((m) => m.includes("trainingWeightItem.type must be 1..8")));
+    assert.ok(
+      messages.some((m) => m.includes("training weight must define numeric system.weight.value")),
+    );
+  });
 });
 
 describe("maintenance duration model", () => {

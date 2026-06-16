@@ -430,10 +430,11 @@ function validateTrainingWeight(packName, filename, doc) {
   if (!["wrist", "ankle"].includes(flag.slot)) {
     error(packName, filename, `trainingWeightItem.slot must be "wrist" or "ankle"`);
   }
-  if (!isIntegerInRange(Number(flag.type), 1, 8)) {
+  if (!isIntegerInRange(flag.type, 1, 8)) {
     error(packName, filename, "trainingWeightItem.type must be 1..8");
   }
-  if (!Number.isFinite(Number(doc.system?.weight?.value ?? doc.system?.weight))) {
+  const weight = doc.system?.weight?.value ?? doc.system?.weight;
+  if (typeof weight !== "number" || !Number.isFinite(weight)) {
     error(packName, filename, "training weight must define numeric system.weight.value");
   }
 }
