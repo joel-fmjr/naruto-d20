@@ -1,9 +1,19 @@
 import { getIgnoredTrainingWeightTotal } from "../data/training-weights.mjs";
 
+let _patched = false;
+
 export function registerTrainingWeightCarryPatch() {
   const ActorPF = pf1?.documents?.actor?.ActorPF;
-  if (!ActorPF) return;
-  if (ActorPF.prototype.__nd20TrainingWeightCarryPatched) return;
+  if (!ActorPF) {
+    console.error("Naruto D20 | ActorPF not found — training weight carry patch skipped");
+    return;
+  }
+  if (_patched) return;
+
+  if (!ActorPF.prototype.getCarriedWeight) {
+    console.error("Naruto D20 | ActorPF.getCarriedWeight not found — training weight carry patch skipped");
+    return;
+  }
 
   const original = ActorPF.prototype.getCarriedWeight;
   ActorPF.prototype.getCarriedWeight = function patchedGetCarriedWeight(...args) {
@@ -13,10 +23,5 @@ export function registerTrainingWeightCarryPatch() {
     return Math.max(0, total - ignored);
   };
 
-  Object.defineProperty(ActorPF.prototype, "__nd20TrainingWeightCarryPatched", {
-    configurable: false,
-    enumerable: false,
-    writable: false,
-    value: true,
-  });
+  _patched = true;
 }
