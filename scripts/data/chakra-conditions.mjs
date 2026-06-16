@@ -69,6 +69,19 @@ export function registerChakraConditions() {
   console.log("naruto-d20 | Chakra conditions registered.");
 }
 
+export function registerChakraConditionCombatHooks() {
+  Hooks.on("deleteCombat", (combat) => {
+    const actors = new Set();
+    for (const combatant of combat.combatants ?? []) {
+      if (combatant.actor) actors.add(combatant.actor);
+    }
+    for (const actor of actors) {
+      if (!actor.activeOwner?.isSelf) continue;
+      checkAndUpdateConditions(actor);
+    }
+  });
+}
+
 // ── Condition evaluation ──────────────────────────────────────────────────
 
 export function resolveChakraConditionState({
