@@ -310,10 +310,12 @@ feature.
    Resultado esperado: Reserve recupera ate `HD total`, limitada ao maximo.
 
 5. Com Chakra Depletion ativo, faca descanso normal.
-   Resultado esperado: Pool recupera apenas `floor(max / 4)`.
+   Resultado esperado: Pool recupera `floor(max / 4)` do maximo, sem passar do
+   maximo.
 
 6. Com Chakra Depletion ativo e long-term care.
-   Resultado esperado: Pool recupera `floor(max / 2)`.
+   Resultado esperado: Pool recupera `floor(max / 2)` do maximo, sem passar do
+   maximo.
 
 7. Apos descanso que recupere Reserve para 50% ou mais.
    Resultado esperado: Low Reserves/Chakra Depletion saem e condicoes PF1e

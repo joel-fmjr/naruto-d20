@@ -13,8 +13,8 @@ import { checkAndUpdateConditions } from "./chakra-conditions.mjs";
  *
  * Chakra Pool recovery (gated on restoreDailyUses):
  *  - Normal rest:             pool restored to full max
- *  - Chakra Depletion active: pool restored to floor(max / 4) only
- *  - Chakra Depletion + longTermCare (absolute rest): floor(max / 2)
+ *  - Chakra Depletion active: pool recovers floor(max / 4), capped at max
+ *  - Chakra Depletion + longTermCare (absolute rest): recovers floor(max / 2), capped at max
  *
  * After the update, checkAndUpdateConditions re-evaluates whether the conditions
  * should be removed (e.g., if reserve was fully restored).
@@ -35,18 +35,20 @@ export function onActorRest(actor, options) {
 
   // Chakra Pool — recovery amount depends on whether Chakra Depletion is active
   if (options.restoreDailyUses !== false) {
+    const currentPool = chakra.pool.value ?? 0;
     const poolMax = chakra.pool.max ?? 0;
     const hasDepletion = actor.statuses?.has(CHAKRA_DEPLETION_CONDITION_ID) ?? false;
 
-    let poolRecovery;
+    let nextPoolValue;
     if (hasDepletion) {
-      // Depleted: partial recovery — doubled if the actor is under long-term care
-      poolRecovery = options.longTermCare ? Math.floor(poolMax / 2) : Math.floor(poolMax / 4);
+      // Depleted: partial recovery rate — doubled if the actor is under long-term care.
+      const recoveredPool = options.longTermCare ? Math.floor(poolMax / 2) : Math.floor(poolMax / 4);
+      nextPoolValue = Math.min(currentPool + recoveredPool, poolMax);
     } else {
-      poolRecovery = poolMax;
+      nextPoolValue = poolMax;
     }
 
-    updates[chakraPoolValuePath] = poolRecovery;
+    updates[chakraPoolValuePath] = nextPoolValue;
   }
 
   // Chakra Reserve — recovers 1 point per HD (same metric PF1e uses for HP recovery)
