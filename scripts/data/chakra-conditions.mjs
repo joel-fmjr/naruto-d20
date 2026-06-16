@@ -66,6 +66,20 @@ export function registerChakraConditions() {
     showInDefense: false,
   });
 
+  // PF1e builds CONFIG.statusEffects from the conditions registry during its own
+  // `init` hook, BEFORE firing `pf1PostInit` (where we register). Without this,
+  // our conditions live in the registry but are missing from CONFIG.statusEffects,
+  // and PF1e's TokenHUD crashes on any token that carries one
+  // (TokenHUDPF._getStatusEffectChoices → core[statusId] is undefined). Append
+  // them the same way PF1e does (Condition#toStatusEffect), de-duplicated, instead
+  // of re-running getConditions() which would duplicate every existing entry.
+  for (const id of [LOW_RESERVES_CONDITION_ID, CHAKRA_DEPLETION_CONDITION_ID]) {
+    const condition = pf1.registry.conditions.get(id);
+    if (condition && !CONFIG.statusEffects.some((status) => status.id === id)) {
+      CONFIG.statusEffects.push(condition.toStatusEffect());
+    }
+  }
+
   console.log("naruto-d20 | Chakra conditions registered.");
 }
 
