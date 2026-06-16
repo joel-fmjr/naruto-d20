@@ -49,6 +49,18 @@ function isEffectiveTrainingWeightItem(item) {
   return true;
 }
 
+function isCarriedTrainingWeightItem(item) {
+  const flag = getTrainingWeightItemFlag(item);
+  if (!flag) return false;
+  if (item?.type !== "loot") return false;
+  if (item?.system?.subType !== "gear") return false;
+  if (!item?.isPhysical) return false;
+  if (item?.inContainer) return false;
+  if ((Number(item?.system?.quantity ?? 0) || 0) <= 0) return false;
+  if (item?.system?.carried === false) return false;
+  return true;
+}
+
 function chooseSlotItem(actor, slot) {
   let chosen = null;
   for (const item of actor?.items ?? []) {
@@ -86,7 +98,7 @@ export function getIgnoredTrainingWeightTotal(actor) {
   const highest = getHighestLearnedStrengthRank(actor);
   let total = 0;
   for (const item of actor?.items ?? []) {
-    if (!isEffectiveTrainingWeightItem(item)) continue;
+    if (!isCarriedTrainingWeightItem(item)) continue;
     const flag = getTrainingWeightItemFlag(item);
     const row = TRAINING_WEIGHT_TABLE[flag.type];
     if (highest >= row.learnedStrengthRank) {

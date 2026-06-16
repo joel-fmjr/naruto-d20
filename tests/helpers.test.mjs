@@ -29,6 +29,7 @@ import {
 } from "../scripts/automation/maintenance-buffs.mjs";
 import { extractTemporaryChakraGrant } from "../scripts/automation/buff-application.mjs";
 import { computeEffectiveRank } from "../scripts/automation/rank-effective-level.mjs";
+import { registerTrainingWeightCarryPatch } from "../scripts/automation/training-weight-carry.mjs";
 import { getRankGrantType, rankGrantLevel } from "../scripts/automation/rank-buffs.mjs";
 import {
   legacyRankBuffToMaintenance,
@@ -1722,6 +1723,95 @@ describe("training weight state", () => {
     };
 
     assert.equal(getIgnoredTrainingWeightTotal(actor), 87.5);
+  });
+
+  it("ignores carried unequipped weight without applying effective automation", () => {
+    const actor = {
+      items: [
+        learned("SANDAN JOURYOKU", {
+          eligibleRankKey: "JOURYOKU",
+          learnedStrengthRank: 3,
+        }),
+        weight({
+          id: "w3",
+          slot: "wrist",
+          type: 3,
+          rankPenalty: 3,
+          learnBonus: 3,
+          weightValue: 50,
+          equipped: false,
+        }),
+        weight({
+          id: "a2",
+          slot: "ankle",
+          type: 2,
+          rankPenalty: 2,
+          learnBonus: 2,
+          weightValue: 37.5,
+          equipped: false,
+        }),
+      ],
+    };
+
+    assert.equal(getIgnoredTrainingWeightTotal(actor), 87.5);
+    assert.deepEqual(getTrainingWeightState(actor), {
+      wrist: null,
+      ankle: null,
+      hasFullSet: false,
+      fullSetType: null,
+      fullSetLearnBonus: 0,
+      strengthRankPenalty: 0,
+      speedRankPenalty: 0,
+      highestLearnedStrengthRank: 3,
+      ignoredCarryWeight: 87.5,
+    });
+  });
+
+  it("registers the carry patch safely when PF1 globals or converters are missing", () => {
+    const originalPf1 = globalThis.pf1;
+    const originalConsoleError = console.error;
+    const errors = [];
+    console.error = (message) => errors.push(message);
+
+    try {
+      delete globalThis.pf1;
+      assert.doesNotThrow(() => registerTrainingWeightCarryPatch());
+      assert.equal(errors.at(-1), "Naruto D20 | ActorPF not found — training weight carry patch skipped");
+
+      class ActorPF {
+        constructor(items) {
+          this.items = items;
+        }
+
+        getCarriedWeight() {
+          return 100;
+        }
+      }
+
+      globalThis.pf1 = { documents: { actor: { ActorPF } }, utils: {} };
+      registerTrainingWeightCarryPatch();
+      const actor = new ActorPF([
+        learned("SANDAN JOURYOKU", {
+          eligibleRankKey: "JOURYOKU",
+          learnedStrengthRank: 3,
+        }),
+        weight({
+          id: "w3",
+          slot: "wrist",
+          type: 3,
+          rankPenalty: 3,
+          learnBonus: 3,
+          weightValue: 50,
+          equipped: false,
+        }),
+      ]);
+
+      assert.equal(actor.getCarriedWeight(), 50);
+    } finally {
+      console.error = originalConsoleError;
+      if (originalPf1 === undefined) delete globalThis.pf1;
+      else globalThis.pf1 = originalPf1;
+    }
   });
 
   it("returns a learn bonus only for explicitly eligible full-set techniques", () => {
