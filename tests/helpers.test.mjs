@@ -610,6 +610,7 @@ describe("chakra condition state", () => {
     assert.deepEqual(
       resolveChakraConditionState({
         ...baseState,
+        reserveValue: 20,
         depletionActive: true,
       }),
       {
