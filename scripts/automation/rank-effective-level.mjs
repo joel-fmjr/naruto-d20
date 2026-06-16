@@ -74,9 +74,9 @@ export function computeEffectiveRank(actor, key, { rollData } = {}) {
         ? trainingWeight.strengthRankPenalty
         : 0;
   const basePenalty = key === "KOUSOKU" ? speedRankPenalty(actor, rollData) : 0;
+  const unpenalized = Math.clamp(Math.max(paid, temp) + bonus, 0, 10);
   const penalty = basePenalty === Infinity ? Infinity : basePenalty + extraPenalty;
-  const effective =
-    penalty === Infinity ? 0 : Math.clamp(Math.max(paid, temp) + bonus - penalty, 0, 10);
+  const effective = penalty === Infinity ? 0 : Math.clamp(unpenalized - penalty, 0, 10);
 
   return {
     paid,
@@ -84,6 +84,7 @@ export function computeEffectiveRank(actor, key, { rollData } = {}) {
     bonus,
     penalty: penalty === Infinity ? null : penalty,
     effective,
+    carryEffective: unpenalized,
     carrierId: carrier?.id ?? null,
   };
 }

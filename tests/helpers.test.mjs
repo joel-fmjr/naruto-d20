@@ -2013,6 +2013,7 @@ describe("training weight rank penalties", () => {
       bonus: 0,
       penalty: 2,
       effective: 3,
+      carryEffective: 5,
       carrierId: "jr5",
     });
 
@@ -2022,6 +2023,7 @@ describe("training weight rank penalties", () => {
       bonus: 0,
       penalty: 3,
       effective: 1,
+      carryEffective: 4,
       carrierId: "kr4",
     });
   });
