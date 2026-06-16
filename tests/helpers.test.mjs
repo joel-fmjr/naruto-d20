@@ -53,6 +53,7 @@ import {
   registerChakraConditionCombatHooks,
   resolveChakraConditionState,
 } from "../scripts/data/chakra-conditions.mjs";
+import { onActorRest } from "../scripts/data/rest-recovery.mjs";
 import { BUFF_TARGETS } from "../scripts/flag-paths.mjs";
 import { rollHpCost } from "../scripts/data/hp-cost.mjs";
 
@@ -864,6 +865,64 @@ describe("chakra condition state", () => {
     } finally {
       globalThis.Hooks = originalHooks;
     }
+  });
+});
+
+describe("chakra rest recovery", () => {
+  function makeRestActor({ poolValue, poolMax = 20, reserveValue = 0, reserveMax = 20, hdTotal = 6 }) {
+    const updates = [];
+    return {
+      actor: {
+        type: "character",
+        flags: {
+          "naruto-d20": {
+            chakra: {
+              pool: { value: poolValue, max: poolMax, temp: 3 },
+              reserve: { value: reserveValue, max: reserveMax },
+            },
+          },
+        },
+        statuses: new Set(["chakraDepletion"]),
+        system: {
+          attributes: {
+            hd: { total: hdTotal },
+          },
+        },
+        update(update) {
+          updates.push(update);
+          return new Promise(() => {});
+        },
+      },
+      updates,
+    };
+  }
+
+  it("adds one quarter of max pool during normal rest while depleted", () => {
+    const { actor, updates } = makeRestActor({ poolValue: 6 });
+
+    onActorRest(actor, { restoreDailyUses: true, restoreHealth: false, longTermCare: false });
+
+    assert.equal(updates.length, 1);
+    assert.equal(updates[0]["flags.naruto-d20.chakra.pool.temp"], 0);
+    assert.equal(updates[0]["flags.naruto-d20.chakra.pool.value"], 11);
+  });
+
+  it("adds half max pool during long-term care while depleted", () => {
+    const { actor, updates } = makeRestActor({ poolValue: 6 });
+
+    onActorRest(actor, { restoreDailyUses: true, restoreHealth: false, longTermCare: true });
+
+    assert.equal(updates.length, 1);
+    assert.equal(updates[0]["flags.naruto-d20.chakra.pool.value"], 16);
+  });
+
+  it("caps depleted recovery at pool max", () => {
+    const { actor, updates } = makeRestActor({ poolValue: 18 });
+
+    onActorRest(actor, { restoreDailyUses: true, restoreHealth: false, longTermCare: false });
+
+    assert.equal(updates.length, 1);
+    assert.equal(updates[0]["flags.naruto-d20.chakra.pool.value"], 20);
   });
 });
 
