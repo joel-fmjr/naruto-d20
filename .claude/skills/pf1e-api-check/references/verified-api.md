@@ -36,6 +36,40 @@ Append new verified facts under the matching section. Never add a guessed entry.
   (`action.mjs:1651-1659`). Mutate `parts` here to inject/retype damage at roll time without
   editing stored `item.system.actions`.
 
+## Roll-time change injection — `ItemChange.applyChange` & `changeOverrides`
+
+- `Hooks.call("pf1PreAttackRoll", action, config, rollData, rollOptions, parts, changes)` →
+  `module/components/action.mjs:1550`. Like the damage hook, `changes` is a mutable
+  `ItemChange[]`; after the hook PF1e runs `changes.filter(c => { c.applyChange(actor); return c.operator !== "set"; })`
+  then `getHighestChanges(..., { ignoreTarget: true })` and pushes `value[flavor]` parts
+  (`action.mjs:1552-1568` attack, `1706-1718` damage). Because of `ignoreTarget: true`, the
+  change's `target` is cosmetic at roll time — only its `value` matters.
+- **`ItemChange#applyChange` short-circuits when the actor has no `changeOverride` for the
+  target's flat path** → `module/components/change.mjs:355-370`: it does
+  `const override = overrides[t]; … if (!override) continue;` BEFORE computing the value, so
+  `this.value` stays at its prior/initial value (0 for a fresh change). `changeOverrides` is
+  only seeded during data-prep change application; **deferred** targets like `attack`
+  (→`system.attributes.attack.general`, `apply-changes.mjs:316`) and `damage`
+  (→`system.attributes.damage.general`, `:556`) get NO override unless some other change
+  already wrote there. ⇒ A change you build and inject at roll time will silently resolve to
+  **0** if you rely on `applyChange` to evaluate its `formula`.
+- **Fix / native pattern:** pre-compute the numeric value yourself and pass `value` in the
+  `ItemChange` data (PF1e does exactly this for the enhancement-bonus change,
+  `action.mjs:1684-1692`: `new ItemChange({ formula, operator:"add", target:"damage", type:"enh", value: this.enhancementBonus, … })`). Setting both a literal numeric `formula`
+  AND `value` is robust either way: if an override happens to exist, the literal formula
+  re-evaluates to the same number.
+- `applyChange(actor, targets, { rollData })` defaults `rollData` to
+  `this.parent?.getRollData({ refresh: true })` (`change.mjs:359`) — i.e. the change's
+  **parent item** roll data, NOT the action's. So `@item.*` in a change formula resolves
+  against the buff/item that owns the change; action-scoped vars like `@ablMult` are NOT
+  available there. `rollData.ablMult` is set on the action roll data before the damage hook
+  (`action.mjs:1642-1647`), so read it from the hook's `rollData` arg if you need it.
+- A custom buff target NOT in any attack/damage context stack is filtered OUT of the per-roll
+  `changes` array: `getContextChanges` does `actor.changes.filter(c => targets.has(c.target))`
+  (`module/documents/item/item-pf.mjs:1915-1919`), and `getContextStack` only adds
+  `attack`/`damage` for known sub-targets (`:1928-1951`). So read such changes directly off
+  `action.item.actor.changes` and push retargeted copies — no double-counting risk.
+
 ## Data models (`system.*`)
 
 - `system.changes` is an `ArrayField` in v11.11 (NOT a `TypedObjectField` record —

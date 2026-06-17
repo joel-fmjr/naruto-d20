@@ -30,6 +30,10 @@ import {
 import { extractTemporaryChakraGrant } from "../scripts/automation/buff-application.mjs";
 import { computeEffectiveRank } from "../scripts/automation/rank-effective-level.mjs";
 import { registerTrainingWeightCarryPatch } from "../scripts/automation/training-weight-carry.mjs";
+import {
+  applyStrengthRankCombatToAttack,
+  applyStrengthRankCombatToDamage,
+} from "../scripts/automation/strength-rank-combat.mjs";
 import { getRankGrantType, rankGrantLevel } from "../scripts/automation/rank-buffs.mjs";
 import {
   legacyRankBuffToMaintenance,
@@ -1585,6 +1589,98 @@ describe("maintenance duration model", () => {
   it("omits duration-model fields for toggle buffs", () => {
     const flag = maintenanceBuffFlagData({ sourceTechniqueId: "abc", modeId: "dex" });
     assert.deepEqual(flag, { sourceTechniqueId: "abc", modeId: "dex" });
+  });
+});
+
+describe("strength rank combat bonus", () => {
+  // `formula` is a pre-resolved numeric value here: in production resolveCombatValue
+  // evaluates @item.strRank.combat against the buff roll data via RollPF, which is
+  // unavailable in the Node test environment, so the helper falls back to Number(formula).
+  const change = ({ target, formula = 2, flavor = "JOURYOKU" }) => ({
+    target,
+    formula,
+    flavor,
+    type: "untyped",
+    operator: "add",
+  });
+
+  it("adds combat bonus to Strength-based attack rolls only", () => {
+    // actorChanges (source) and changes (per-roll output) are always distinct objects in
+    // production — the hook reads actor.changes and pushes retargeted copies into the roll array.
+    const actorChanges = [
+      change({ target: "strRankCombat" }),
+      change({ target: "strChecks", formula: 4 }),
+    ];
+
+    const changes = [];
+    applyStrengthRankCombatToAttack({ actionType: "mwak", ability: { attack: "str" } }, changes, actorChanges);
+    assert.deepEqual(changes.map((c) => c.target), ["attack"]);
+    assert.equal(changes[0].value, 2);
+    // source collection is left untouched
+    assert.equal(actorChanges.find((c) => c.target === "attack"), undefined);
+
+    const dexChanges = [];
+    applyStrengthRankCombatToAttack(
+      { actionType: "rwak", ability: { attack: "dex" } },
+      dexChanges,
+      [change({ target: "strRankCombat" })],
+    );
+    assert.equal(dexChanges.length, 0);
+
+    const cmbChanges = [];
+    applyStrengthRankCombatToAttack(
+      { actionType: "mcman", ability: { attack: "str" } },
+      cmbChanges,
+      [change({ target: "strRankCombat" })],
+    );
+    assert.equal(cmbChanges.length, 0);
+  });
+
+  it("reads Strength Rank combat changes from PF1e actor change collections", () => {
+    const changes = [];
+    const actorChanges = new Map([["buff-change-id", change({ target: "strRankCombat" })]]);
+
+    applyStrengthRankCombatToAttack(
+      { actionType: "mwak", ability: { attack: "str" } },
+      changes,
+      actorChanges,
+    );
+
+    assert.deepEqual(
+      changes.map((c) => c.target),
+      ["attack"],
+    );
+    assert.equal(changes[0].value, 2);
+  });
+
+  it("scales the combat bonus by the weapon ability-damage multiplier on damage only", () => {
+    const twoHanded = [];
+    applyStrengthRankCombatToDamage(
+      { actionType: "mwak", ability: { damage: "str" } },
+      twoHanded,
+      [change({ target: "strRankCombat" })],
+      { ablMult: 1.5 },
+    );
+    assert.deepEqual(twoHanded.map((c) => c.target), ["damage"]);
+    assert.equal(twoHanded[0].value, 3); // floor(2 * 1.5)
+    assert.equal(twoHanded[0].formula, "3");
+
+    const oneHanded = [];
+    applyStrengthRankCombatToDamage(
+      { actionType: "mwak", ability: { damage: "str" } },
+      oneHanded,
+      [change({ target: "strRankCombat" })],
+      { ablMult: 1 },
+    );
+    assert.equal(oneHanded[0].value, 2);
+
+    const spellChanges = [];
+    applyStrengthRankCombatToDamage(
+      { actionType: "msak", ability: { damage: "str" } },
+      spellChanges,
+      [change({ target: "strRankCombat" })],
+    );
+    assert.equal(spellChanges.length, 0);
   });
 });
 
