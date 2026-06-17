@@ -1605,30 +1605,35 @@ describe("strength rank combat bonus", () => {
   });
 
   it("adds combat bonus to Strength-based attack rolls only", () => {
-    const changes = [
+    // actorChanges (source) and changes (per-roll output) are always distinct objects in
+    // production — the hook reads actor.changes and pushes retargeted copies into the roll array.
+    const actorChanges = [
       change({ target: "strRankCombat" }),
       change({ target: "strChecks", formula: 4 }),
     ];
 
-    applyStrengthRankCombatToAttack({ actionType: "mwak", ability: { attack: "str" } }, changes);
-    const attackChanges = changes.filter((c) => c.target === "attack");
-    assert.equal(attackChanges.length, 1);
-    assert.equal(attackChanges[0].value, 2);
-    assert.equal(changes.find((c) => c.target === "strRankCombat"), undefined);
+    const changes = [];
+    applyStrengthRankCombatToAttack({ actionType: "mwak", ability: { attack: "str" } }, changes, actorChanges);
+    assert.deepEqual(changes.map((c) => c.target), ["attack"]);
+    assert.equal(changes[0].value, 2);
+    // source collection is left untouched
+    assert.equal(actorChanges.find((c) => c.target === "attack"), undefined);
 
-    const dexChanges = [change({ target: "strRankCombat" })];
-    applyStrengthRankCombatToAttack({ actionType: "rwak", ability: { attack: "dex" } }, dexChanges);
-    assert.deepEqual(
-      dexChanges.map((c) => c.target),
-      ["strRankCombat"],
+    const dexChanges = [];
+    applyStrengthRankCombatToAttack(
+      { actionType: "rwak", ability: { attack: "dex" } },
+      dexChanges,
+      [change({ target: "strRankCombat" })],
     );
+    assert.equal(dexChanges.length, 0);
 
-    const cmbChanges = [change({ target: "strRankCombat" })];
-    applyStrengthRankCombatToAttack({ actionType: "mcman", ability: { attack: "str" } }, cmbChanges);
-    assert.deepEqual(
-      cmbChanges.map((c) => c.target),
-      ["strRankCombat"],
+    const cmbChanges = [];
+    applyStrengthRankCombatToAttack(
+      { actionType: "mcman", ability: { attack: "str" } },
+      cmbChanges,
+      [change({ target: "strRankCombat" })],
     );
+    assert.equal(cmbChanges.length, 0);
   });
 
   it("reads Strength Rank combat changes from PF1e actor change collections", () => {
@@ -1649,35 +1654,33 @@ describe("strength rank combat bonus", () => {
   });
 
   it("scales the combat bonus by the weapon ability-damage multiplier on damage only", () => {
-    const changes = [change({ target: "strRankCombat" })];
-
+    const twoHanded = [];
     applyStrengthRankCombatToDamage(
       { actionType: "mwak", ability: { damage: "str" } },
-      changes,
-      changes,
+      twoHanded,
+      [change({ target: "strRankCombat" })],
       { ablMult: 1.5 },
     );
-    const damageChanges = changes.filter((c) => c.target === "damage");
-    assert.equal(damageChanges.length, 1);
-    assert.equal(damageChanges[0].value, 3); // floor(2 * 1.5)
-    assert.equal(damageChanges[0].formula, "3");
-    assert.equal(changes.find((c) => c.target === "strRankCombat"), undefined);
+    assert.deepEqual(twoHanded.map((c) => c.target), ["damage"]);
+    assert.equal(twoHanded[0].value, 3); // floor(2 * 1.5)
+    assert.equal(twoHanded[0].formula, "3");
 
-    const oneHanded = [change({ target: "strRankCombat" })];
+    const oneHanded = [];
     applyStrengthRankCombatToDamage(
       { actionType: "mwak", ability: { damage: "str" } },
       oneHanded,
-      oneHanded,
+      [change({ target: "strRankCombat" })],
       { ablMult: 1 },
     );
-    assert.equal(oneHanded.find((c) => c.target === "damage").value, 2);
+    assert.equal(oneHanded[0].value, 2);
 
-    const spellChanges = [change({ target: "strRankCombat" })];
-    applyStrengthRankCombatToDamage({ actionType: "msak", ability: { damage: "str" } }, spellChanges);
-    assert.deepEqual(
-      spellChanges.map((c) => c.target),
-      ["strRankCombat"],
+    const spellChanges = [];
+    applyStrengthRankCombatToDamage(
+      { actionType: "msak", ability: { damage: "str" } },
+      spellChanges,
+      [change({ target: "strRankCombat" })],
     );
+    assert.equal(spellChanges.length, 0);
   });
 });
 

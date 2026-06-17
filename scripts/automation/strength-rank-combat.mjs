@@ -1,7 +1,6 @@
 export const STRENGTH_RANK_COMBAT_TARGET = "strRankCombat";
 
-const STRENGTH_ATTACK_ACTIONS = new Set(["mwak", "rwak", "twak"]);
-const STRENGTH_DAMAGE_ACTIONS = new Set(["mwak", "rwak", "twak"]);
+const WEAPON_ACTION_TYPES = new Set(["mwak", "rwak", "twak"]);
 
 /**
  * Register Strength Rank combat as a roll-time-only PF1e change target.
@@ -42,13 +41,13 @@ export function applyStrengthRankCombatToDamage(action, changes, actorChanges = 
 }
 
 function usesStrengthAttack(action, rollData) {
-  if (!STRENGTH_ATTACK_ACTIONS.has(action?.actionType)) return false;
+  if (!WEAPON_ACTION_TYPES.has(action?.actionType)) return false;
   return (rollData?.action?.ability?.attack ?? action?.ability?.attack) === "str";
 }
 
 function usesStrengthWeaponDamage(action, rollData) {
   const isNatural = action?.item?.subType === "natural";
-  if (!isNatural && !STRENGTH_DAMAGE_ACTIONS.has(action?.actionType)) return false;
+  if (!isNatural && !WEAPON_ACTION_TYPES.has(action?.actionType)) return false;
   return (rollData?.action?.ability?.damage ?? action?.ability?.damage) === "str";
 }
 
@@ -67,11 +66,6 @@ function addStrengthRankCombatChanges(changes, actorChanges, target, { ablMult =
     const value = Math.floor(resolveCombatValue(change) * ablMult);
     if (!value) continue;
     changes.push(retargetChange(change, target, value));
-  }
-  if (actorChanges === changes) {
-    for (let i = changes.length - 1; i >= 0; i -= 1) {
-      if (changes[i]?.target === STRENGTH_RANK_COMBAT_TARGET) changes.splice(i, 1);
-    }
   }
 }
 
