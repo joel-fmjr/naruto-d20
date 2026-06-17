@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.33 - 2026-06-17
+
+- Fixed **toggle maintenance timing** (#128): stance and upkeep techniques (Champuru, Amatsu, Kai-Mon Kai, etc.) now always prompt on the **owning actor's turn** instead of at the round boundary, which could fire on the wrong combatant's turn. Toggle-model buffs now use a permanent PF1e duration and are expired by the module's own turn-start hook. Buffs applied outside of combat lazy-initialize on the owner's first in-combat turn and charge upkeep from the turn after that.
+- Fixed **Heal Gate condition clearing** (#129): fatigued and exhausted are now removed as soon as a maintenance buff is applied rather than waiting for the first upkeep tick.
+- Added **Training Weights** system (#130): 16 compendium items (8 Wrist Weight tiers + 8 Ankle Weight tiers). Wearing a full matching set while below the weight's tier penalizes the effective Speed Rank (KOUSOKU) or Strength Rank (JOURYOKU) used for action rolls, and unlocks a learn bonus on eligible speed/strength techniques. Techniques with a learned JOURYOKU rank at or above a wrist weight's tier are excluded from encumbrance calculations — wrist weight penalties do not reduce carry capacity.
+- Added **optional Chakra tab** (#131): a "Has Chakra" checkbox in the actor Settings tab controls whether a character uses chakra. When disabled, the Chakra tab is hidden and Chakra Depletion / Low Reserves conditions are never applied; any existing naruto conditions are cleared immediately. Existing actors default to enabled with no behavioral change.
+
 ## v1.0.32 - 2026-06-16
 
 - Added **persistent chakra condition recovery state** (#125): Chakra Depletion now persists until both Chakra Pool and Reserve are fully recovered, excluding temporary chakra. While in depletion, PF1e `exhausted` downgrades to module-owned `fatigued` once Reserve reaches 50%+, and Low Reserve fatigue above the 25% threshold can be delayed until combat ends instead of applying immediately mid-encounter.
