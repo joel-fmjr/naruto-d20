@@ -107,6 +107,20 @@
       "path": "packs/training-weights",
       "type": "Item",
       "system": "pf1"
+    },
+    {
+      "name":   "occupations",
+      "label":  "Naruto D20 — Starting Occupations",
+      "path":   "packs/occupations",
+      "type":   "Item",
+      "system": "pf1"
+    },
+    {
+      "name":   "occupations-community",
+      "label":  "Naruto D20 — Occupations (Community Compendium)",
+      "path":   "packs/occupations-community",
+      "type":   "Item",
+      "system": "pf1"
     }
   ],
   "packFolders": [
@@ -119,7 +133,9 @@
         "technique-buffs",
         "feats",
         "classes",
-        "training-weights"
+        "training-weights",
+        "occupations",
+        "occupations-community"
       ]
     }
   ]
