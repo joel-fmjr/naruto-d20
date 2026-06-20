@@ -190,6 +190,16 @@ describe("technique defaults", () => {
     assert.equal(system.learning.learned, false);
     assert.equal(system.automation.enabled, true);
     assert.equal(system.automation.targetMode, "auto");
+    assert.deepEqual(system.automation.empower, {
+      enabled: false,
+      mode: "damageBonus",
+      costPerStep: 1,
+      formulaPerStep: "1d6",
+      damageTypes: [],
+      maxStepsFormula: "",
+      performIncreaseEvery: 0,
+      performIncreaseAmount: 0,
+    });
     assert.deepEqual(system.automation.maintenance, {
       enabled: false,
       resource: "",
@@ -305,6 +315,55 @@ describe("technique defaults", () => {
       normalizerKeys,
       schemaKeys,
       "applyTechniqueSystemDefaults must default every automation.maintenance schema field " +
+        "(see scripts/data/technique-defaults.mjs) or synckit will flag unedited techniques out-of-date",
+    );
+  });
+
+  it("backfills every automation.empower field declared in the schema", () => {
+    const leaf = class {};
+    const prevData = globalThis.foundry.data;
+    const prevAbstract = globalThis.foundry.abstract;
+    globalThis.foundry.abstract = { TypeDataModel: class {} };
+    globalThis.foundry.data = {
+      fields: {
+        SchemaField: class {
+          constructor(schema) {
+            this.fields = schema;
+          }
+        },
+        ArrayField: class {
+          constructor(element) {
+            this.element = element;
+          }
+        },
+        SetField: class {
+          constructor(element) {
+            this.element = element;
+          }
+        },
+        StringField: leaf,
+        NumberField: leaf,
+        BooleanField: leaf,
+        HTMLField: leaf,
+        ObjectField: leaf,
+      },
+    };
+
+    let schemaKeys;
+    try {
+      const schema = createTechniqueDataModel().defineSchema();
+      schemaKeys = Object.keys(schema.automation.fields.empower.fields).sort();
+    } finally {
+      globalThis.foundry.data = prevData;
+      globalThis.foundry.abstract = prevAbstract;
+    }
+
+    const normalizerKeys = Object.keys(applyTechniqueSystemDefaults({}).automation.empower).sort();
+
+    assert.deepEqual(
+      normalizerKeys,
+      schemaKeys,
+      "applyTechniqueSystemDefaults must default every automation.empower schema field " +
         "(see scripts/data/technique-defaults.mjs) or synckit will flag unedited techniques out-of-date",
     );
   });
