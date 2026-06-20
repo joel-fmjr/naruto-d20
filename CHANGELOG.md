@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.38 - 2026-06-20
+
+- Renamed the visible compendium labels to drop redundant `Naruto` and `Naruto D20` prefixes from packs that already live inside the module sidebar, so the sidebar now shows `Techniques`, `Feats`, `Classes`, `Starting Occupations`, and `Occupations (Community Compendium)` instead of the longer prefixed names (#143).
+
 ## v1.0.37 - 2026-06-19
 
 - Renamed the **Training Weights compendium pack** to `equipments` and reorganized its items under a `General Equipments > Ninja Tools` folder hierarchy (#139).
