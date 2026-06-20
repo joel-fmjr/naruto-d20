@@ -40,6 +40,30 @@ export function empowerPerformIncrease({
   return Math.floor(Math.max(0, Number(steps) || 0) / every) * amount;
 }
 
+export function shouldPromptEmpowerBeforePerform(config) {
+  return Math.max(0, Number(config?.performIncreaseEvery) || 0) > 0;
+}
+
+export function resolveEmpowerUse({ config, steps, baseCost }) {
+  const count = Math.max(0, Number(steps) || 0);
+  const extraCost = count * Math.max(1, Number(config.costPerStep) || 1);
+  return {
+    steps: count,
+    extraCost,
+    totalCost: Math.max(0, Number(baseCost) || 0) + extraCost,
+    damageFormula: buildEmpowerDamageFormula({
+      steps: count,
+      formulaPerStep: config.formulaPerStep,
+    }),
+    damageTypes: [...(config.damageTypes ?? [])],
+    performIncrease: empowerPerformIncrease({
+      steps: count,
+      performIncreaseEvery: config.performIncreaseEvery,
+      performIncreaseAmount: config.performIncreaseAmount,
+    }),
+  };
+}
+
 export async function resolveEmpowerStepLimit({ config, rollData = {}, availableExtraChakra }) {
   const costPerStep = Math.max(1, Number(config?.costPerStep ?? 1) || 1);
   const chakraLimit = Math.floor(Math.max(0, Number(availableExtraChakra) || 0) / costPerStep);
@@ -80,8 +104,7 @@ function isSafeEmpowerFormula(formula) {
   }
 
   const identifierRe = /\b(min|max|floor|ceil)\b/g;
-  let match;
-  while ((match = identifierRe.exec(formula))) {
+  while (identifierRe.exec(formula)) {
     let index = identifierRe.lastIndex;
     while (index < formula.length && /\s/.test(formula[index])) index += 1;
     if (formula[index] !== "(") return false;

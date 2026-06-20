@@ -13,6 +13,8 @@ import {
   empowerPerformIncrease,
   normalizeEmpowerConfig,
   resolveEmpowerStepLimit,
+  resolveEmpowerUse,
+  shouldPromptEmpowerBeforePerform,
 } from "../scripts/automation/technique-empower.mjs";
 import { maintenanceMigrationPatch } from "../scripts/data/maintenance-migration.mjs";
 import {
@@ -425,6 +427,37 @@ describe("technique empower helpers", () => {
         performIncreaseAmount: 1,
       }),
       0,
+    );
+  });
+
+  it("knows when empower must be chosen before perform", () => {
+    assert.equal(shouldPromptEmpowerBeforePerform({ performIncreaseEvery: 2 }), true);
+    assert.equal(shouldPromptEmpowerBeforePerform({ performIncreaseEvery: 0 }), false);
+  });
+
+  it("builds a use context with total cost and damage formula", () => {
+    assert.deepEqual(
+      resolveEmpowerUse({
+        config: {
+          enabled: true,
+          mode: "damageBonus",
+          costPerStep: 1,
+          formulaPerStep: "1d8",
+          damageTypes: ["untyped"],
+          performIncreaseEvery: 2,
+          performIncreaseAmount: 1,
+        },
+        steps: 3,
+        baseCost: 11,
+      }),
+      {
+        steps: 3,
+        extraCost: 3,
+        totalCost: 14,
+        damageFormula: "3d8[Empower]",
+        damageTypes: ["untyped"],
+        performIncrease: 1,
+      },
     );
   });
 
