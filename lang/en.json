@@ -5,6 +5,16 @@
     }
   },
   "NarutoD20": {
+    "WeaponProficiency": {
+      "ninWeapons": "Nin Weapons",
+      "archaicWeapons": "Archaic Weapons",
+      "exoticWeapons": "Exotic Weapons"
+    },
+    "WeaponType": {
+      "ninWeapons": "Nin Weapons",
+      "archaicWeapons": "Archaic Weapons",
+      "exoticWeapons": "Exotic Weapons"
+    },
     "Skills": {
       "ckc": "Chakra Control",
       "fui": "Fuinjutsu",

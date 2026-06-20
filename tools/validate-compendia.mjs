@@ -24,7 +24,7 @@ const PACKS = [
   { name: "techniques", dir: "techniques", type: "naruto-d20.technique" },
   { name: "feats", dir: "feats", type: "feat" },
   { name: "technique-buffs", dir: "technique-buffs", type: "buff" },
-  { name: "training-weights", dir: "training-weights", type: "loot" },
+  { name: "equipments", dir: "equipments", type: null },
 ];
 
 const DISCIPLINES = new Set([
@@ -159,7 +159,7 @@ function isFolderDoc(doc) {
 }
 
 function validateCommon({ doc, filename, packName, expectedType }) {
-  if (doc.type !== expectedType) {
+  if (expectedType !== null && doc.type !== expectedType) {
     error(packName, filename, `expected type "${expectedType}", got "${doc.type ?? "<missing>"}"`);
   }
 
@@ -466,6 +466,17 @@ function validateTrainingWeight(packName, filename, doc) {
   }
 }
 
+const RANK_BUFF_NAMES = {
+  JOURYOKU: "JOURYOKU (STRENGTH RANK)",
+  KOUSOKU: "KOUSOKU (SPEED RANK)",
+};
+
+function resolveRankBuffName(techniqueName) {
+  const match = String(techniqueName ?? "").match(/^[A-Z]+\s+(JOURYOKU|KOUSOKU)\b/i);
+  if (!match) return null;
+  return RANK_BUFF_NAMES[match[1].toUpperCase()] ?? null;
+}
+
 function validateAutomationBuffMatches() {
   const techniques = docsByPack.get("techniques") ?? [];
   const buffs = docsByPack.get("technique-buffs") ?? [];
@@ -475,8 +486,10 @@ function validateAutomationBuffMatches() {
     if (doc.system?.automation?.enabled !== true) continue;
     if (buffNames.has(doc.name)) continue;
     const hasVariant = Array.from(buffNames).some((name) => name.startsWith(`${doc.name} (`));
-    if (!hasVariant)
-      warn(packName, filename, `automation.enabled is true but no matching buff source was found`);
+    if (hasVariant) continue;
+    const rankBuff = resolveRankBuffName(doc.name);
+    if (rankBuff && buffNames.has(rankBuff)) continue;
+    warn(packName, filename, `automation.enabled is true but no matching buff source was found`);
   }
 }
 
@@ -521,7 +534,7 @@ export function validateCompendia({
       if (pack.name === "techniques") validateTechnique(ctx);
       if (pack.name === "feats") validateFeat(ctx);
       if (pack.name === "technique-buffs") validateBuff(ctx);
-      if (pack.name === "training-weights")
+      if (ctx.doc.flags?.["naruto-d20"]?.trainingWeightItem)
         validateTrainingWeight(pack.name, ctx.filename, ctx.doc);
     }
   }

@@ -1,0 +1,67 @@
+{
+  "_id": "NnjWpnBtWr000001",
+  "_key": "!items!NnjWpnBtWr000001",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Battle Wire",
+  "img": "systems/pf1/icons/items/weapons/rope-gauntlets.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>A leather glove with a metal back plate and small holes near each knuckle. This is a ranged weapon with a maximum range of 30 ft., but it cannot be used as a weapon unless you are in the <em>Kousen Ryu</em> stance. Battle wire grants a +2 equipment bonus to enter the <em>Kousen Ryu</em> stance.</p>",
+      "unidentified": ""
+    },
+    "actions": [
+      {
+        "_id": "BtWireActRwak001",
+        "name": "Attack",
+        "actionType": "rwak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 4, @size)",
+              "types": ["slashing"]
+            }
+          ]
+        },
+        "range": {
+          "units": "ft",
+          "value": "10",
+          "maxIncrements": 3
+        },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      }
+    ],
+    "subType": "ninWeapons",
+    "weaponSubtype": "ranged",
+    "weaponGroups": ["ninWeapons", "thrown"],
+    "weight": { "value": 0.5 },
+    "price": 7,
+    "quantity": 1,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 5,
+    "hp": { "base": 2 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}
