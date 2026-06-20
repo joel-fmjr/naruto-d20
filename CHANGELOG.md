@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.37 - 2026-06-19
+
+- Renamed the **Training Weights compendium pack** to `equipments` and reorganized its items under a `General Equipments > Ninja Tools` folder hierarchy (#139).
+- Added **weapons compendium** (#141): four weapon categories — Simple Weapons (Quarterstaff, Throwing Spear), Nin Weapons (24 exotic shinobi weapons: Battle Wire, Battle Wire Long, Blowgun, Chakra Gauntlets, Chisa-gatana, Daikunai, Fuuma Shuriken, Garrote Wire, Hand Crossbow, Kama, Knuckle Blade, Kodachi, Kunai, Kunai Curved, Kusari-Gama, Ninja-to, Nunchaku, Shuriken, Sword-Cane, Tessen, Throwing Knife, Throwing Needle), Archaic Weapons (21 traditional weapons covering Tables 7-4/7-5), and Exotic Weapons (11 weapons from Table 7-6) — all nested under a `Weapons` folder in the equipments compendium. Registers three new proficiency types (`ninWeapons`, `archaicWeapons`, `exoticWeapons`) in `CONFIG.PF1.weaponProficiencies` and `CONFIG.PF1.weaponTypes` so PF1e's proficiency checkboxes and weapon-type labels work correctly for all new items.
+
 ## v1.0.36 - 2026-06-17
 
 - Fixed **technique sync false positives** (#137): opening a technique and closing it without editing no longer flags it as out-of-date in Synckit. The Heal Gate automation (#119) added `heal` and `clearConditions` to the `automation.maintenance` schema without mirroring them in the synckit normalizer, so a no-op sheet open/close persisted both fields onto the embedded item while the compendium source predated them — making the content diff differ on nearly every technique. Both fields are now backfilled on both sides of the diff. A regression guard introspects the live technique schema and fails the test suite if any future `automation.maintenance` field is added without a matching normalizer default, so this class of bug cannot silently return.
