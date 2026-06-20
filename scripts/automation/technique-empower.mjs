@@ -1,4 +1,6 @@
 const SUPPORTED_MODES = new Set(["damageBonus"]);
+const ALLOWED_FORMULA_IDENTIFIERS = new Set(["min", "max", "floor", "ceil"]);
+const SAFE_FORMULA_RE = /^[0-9+\-*/%().,\sA-Za-z]*$/;
 const SIMPLE_DIE_RE = /^1d(\d+)$/i;
 
 export function normalizeEmpowerConfig(raw = {}) {
@@ -53,10 +55,37 @@ function evaluateFormula(formula, rollData) {
     const value = path.split(".").reduce((obj, key) => obj?.[key], rollData);
     return Number(value ?? 0);
   });
-  return Function("min", "max", "floor", "ceil", `return (${normalized})`)(
-    Math.min,
-    Math.max,
-    Math.floor,
-    Math.ceil,
-  );
+
+  if (!isSafeEmpowerFormula(normalized)) return null;
+
+  try {
+    return Function(
+      "min",
+      "max",
+      "floor",
+      "ceil",
+      `"use strict"; return (${normalized});`,
+    )(Math.min, Math.max, Math.floor, Math.ceil);
+  } catch {
+    return null;
+  }
+}
+
+function isSafeEmpowerFormula(formula) {
+  if (!SAFE_FORMULA_RE.test(formula)) return false;
+
+  const identifiers = formula.match(/[A-Za-z_][A-Za-z0-9_]*/g) ?? [];
+  for (const identifier of identifiers) {
+    if (!ALLOWED_FORMULA_IDENTIFIERS.has(identifier)) return false;
+  }
+
+  const identifierRe = /\b(min|max|floor|ceil)\b/g;
+  let match;
+  while ((match = identifierRe.exec(formula))) {
+    let index = identifierRe.lastIndex;
+    while (index < formula.length && /\s/.test(formula[index])) index += 1;
+    if (formula[index] !== "(") return false;
+  }
+
+  return true;
 }

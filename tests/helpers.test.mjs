@@ -439,12 +439,51 @@ describe("technique empower helpers", () => {
     );
     assert.equal(
       await resolveEmpowerStepLimit({
+        config: { maxStepsFormula: "min(@cl, 18) - 7", costPerStep: 1 },
+        rollData: { cl: 11 },
+        availableExtraChakra: 10,
+      }),
+      4,
+    );
+    assert.equal(
+      await resolveEmpowerStepLimit({
         config: { maxStepsFormula: "", costPerStep: 2 },
         rollData: { cl: 20 },
         availableExtraChakra: 5,
       }),
       2,
     );
+  });
+
+  it("supports min/max/floor/ceil and rejects injected identifiers", async () => {
+    assert.equal(
+      await resolveEmpowerStepLimit({
+        config: { maxStepsFormula: "max(floor(@cl / 2), ceil(3.2))", costPerStep: 1 },
+        rollData: { cl: 11 },
+        availableExtraChakra: 10,
+      }),
+      5,
+    );
+
+    const previousFlag = globalThis.__empowerExploit;
+    globalThis.__empowerExploit = 0;
+    try {
+      assert.equal(
+        await resolveEmpowerStepLimit({
+          config: { maxStepsFormula: "@cl + globalThis.__empowerExploit = 1", costPerStep: 1 },
+          rollData: { cl: 11 },
+          availableExtraChakra: 10,
+        }),
+        0,
+      );
+      assert.equal(globalThis.__empowerExploit, 0);
+    } finally {
+      if (previousFlag === undefined) {
+        delete globalThis.__empowerExploit;
+      } else {
+        globalThis.__empowerExploit = previousFlag;
+      }
+    }
   });
 });
 
