@@ -458,6 +458,7 @@ async function useTechniqueAction(item, action, actor, event, options = {}) {
       actor,
       config: weaponAttackConfig,
       event,
+      empower: options.empower,
     });
   }
 
