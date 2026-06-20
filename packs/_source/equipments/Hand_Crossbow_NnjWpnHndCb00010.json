@@ -1,0 +1,67 @@
+{
+  "_id": "NnjWpnHndCb00010",
+  "_key": "!items!NnjWpnHndCb00010",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Hand Crossbow",
+  "img": "systems/pf1/icons/items/weapons/crossbow-hand.PNG",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>Loading this crossbow is a move action that provokes an attack of opportunity.</p>",
+      "unidentified": ""
+    },
+    "actions": [
+      {
+        "_id": "HndCbActRwak0001",
+        "name": "Attack",
+        "actionType": "rwak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 4, @size)",
+              "types": ["piercing"]
+            }
+          ]
+        },
+        "range": {
+          "units": "ft",
+          "value": "30",
+          "maxIncrements": 5
+        },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      }
+    ],
+    "subType": "ninWeapons",
+    "weaponSubtype": "ranged",
+    "weaponGroups": ["ninWeapons", "crossbows"],
+    "weight": { "value": 2 },
+    "price": 8,
+    "quantity": 1,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 5,
+    "hp": { "base": 5 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

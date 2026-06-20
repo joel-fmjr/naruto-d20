@@ -1,0 +1,38 @@
+{
+  "_id": "NnjWpnKnBld00013",
+  "_key": "!items!NnjWpnKnBld00013",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Knuckle Blade",
+  "img": "systems/pf1/icons/items/weapons/axe-knuckle.PNG",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>You may have your unarmed attacks deal slashing damage. You cannot use these weapons with the Brawl feat. Feats that improve unarmed attacks and those that improve attacks with the knuckle blades do not stack. Critical threat range or damage multiplier modifiers for unarmed attacks do not affect the knuckle blade.</p>",
+      "unidentified": ""
+    },
+    "actions": [],
+    "subType": "ninWeapons",
+    "weaponSubtype": "1h",
+    "weaponGroups": ["ninWeapons", "close"],
+    "weight": { "value": 0.5 },
+    "price": 3,
+    "quantity": 1,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 10,
+    "hp": { "base": 3 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

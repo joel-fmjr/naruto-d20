@@ -1,0 +1,94 @@
+{
+  "_id": "NnjWpnKsrGm00017",
+  "_key": "!items!NnjWpnKsrGm00017",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Kusari-Gama",
+  "img": "systems/pf1/icons/items/weapons/spiked-chain.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>This weapon is a kama and a weighted end, connected by a length of chain. You can wield it as a kama (1d6 slashing), a chain with a weighted end (1d6 bludgeoning), or as a double weapon, in which case you treat it as though wielding two light weapons. Weapon specific feats do not apply unless they specifically affect the kusari-gama, and weapon-specific feats you take for the kusari-gama do not affect attacks with a kama or a chain. The Kusari-Gama Style feat offers additional benefits.</p>",
+      "unidentified": ""
+    },
+    "actions": [
+      {
+        "_id": "KsrGmActMwak0001",
+        "name": "Attack (Kama)",
+        "actionType": "mwak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default",
+          "damage": "str"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 6, @size)",
+              "types": ["slashing"]
+            }
+          ]
+        },
+        "range": { "units": "melee", "value": "0" },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      },
+      {
+        "_id": "KsrGmActMwak0002",
+        "name": "Attack (Chain)",
+        "actionType": "mwak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default",
+          "damage": "str"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 6, @size)",
+              "types": ["bludgeoning"]
+            }
+          ]
+        },
+        "range": { "units": "melee", "value": "0" },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      }
+    ],
+    "subType": "ninWeapons",
+    "weaponSubtype": "2h",
+    "hands": 2,
+    "held": "2h",
+    "properties": {
+      "double": true
+    },
+    "weaponGroups": ["ninWeapons", "double", "flails", "close"],
+    "weight": { "value": 2 },
+    "price": 9,
+    "quantity": 1,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 10,
+    "hp": { "base": 5 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

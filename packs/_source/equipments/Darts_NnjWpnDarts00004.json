@@ -1,0 +1,38 @@
+{
+  "_id": "NnjWpnDarts00004",
+  "_key": "!items!NnjWpnDarts00004",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Darts",
+  "img": "systems/pf1/icons/items/weapons/blowgun-darts.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>Ammunition for the blowgun.</p>",
+      "unidentified": ""
+    },
+    "actions": [],
+    "subType": "ninWeapons",
+    "weaponSubtype": "1h",
+    "weaponGroups": ["ninWeapons"],
+    "weight": { "value": 1 },
+    "price": 2,
+    "quantity": 5,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 2,
+    "hp": { "base": 1 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}
