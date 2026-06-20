@@ -76,7 +76,7 @@
   "packs": [
     {
       "name":   "techniques",
-      "label":  "Naruto Techniques",
+      "label":  "Techniques",
       "path":   "packs/techniques",
       "type":   "Item",
       "system": "pf1"
@@ -90,14 +90,14 @@
     },
     {
       "name":   "feats",
-      "label":  "Naruto Feats",
+      "label":  "Feats",
       "path":   "packs/feats",
       "type":   "Item",
       "system": "pf1"
     },
     {
       "name":   "classes",
-      "label":  "Naruto Classes",
+      "label":  "Classes",
       "path":   "packs/classes",
       "type":   "Item",
       "system": "pf1"
@@ -111,14 +111,14 @@
     },
     {
       "name":   "occupations",
-      "label":  "Naruto D20 — Starting Occupations",
+      "label":  "Starting Occupations",
       "path":   "packs/occupations",
       "type":   "Item",
       "system": "pf1"
     },
     {
       "name":   "occupations-community",
-      "label":  "Naruto D20 — Occupations (Community Compendium)",
+      "label":  "Occupations (Community Compendium)",
       "path":   "packs/occupations-community",
       "type":   "Item",
       "system": "pf1"
