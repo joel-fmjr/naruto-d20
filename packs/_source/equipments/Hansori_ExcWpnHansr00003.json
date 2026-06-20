@@ -25,7 +25,9 @@
         "actionType": "mwak",
         "activation": {
           "type": "attack",
-          "unchained": { "type": "attack" }
+          "unchained": {
+            "type": "attack"
+          }
         },
         "ability": {
           "attack": "_default",
@@ -36,14 +38,25 @@
           "parts": [
             {
               "formula": "sizeRoll(1, 10, @size)",
-              "types": ["slashing"]
+              "types": [
+                "slashing"
+              ]
             }
           ]
         },
-        "range": { "units": "melee", "value": "0" },
-        "duration": { "units": "inst" },
-        "extraAttacks": { "type": "standard" },
-        "uses": { "autoDeductChargesCost": "0" }
+        "range": {
+          "units": "melee",
+          "value": "0"
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "extraAttacks": {
+          "type": "standard"
+        },
+        "uses": {
+          "autoDeductChargesCost": "0"
+        }
       },
       {
         "_id": "HansrActMwak0002",
@@ -51,7 +64,9 @@
         "actionType": "mwak",
         "activation": {
           "type": "attack",
-          "unchained": { "type": "attack" }
+          "unchained": {
+            "type": "attack"
+          }
         },
         "ability": {
           "attack": "_default",
@@ -62,35 +77,56 @@
           "parts": [
             {
               "formula": "sizeRoll(1, 4, @size)",
-              "types": ["slashing"]
+              "types": [
+                "slashing"
+              ]
             }
           ]
         },
-        "range": { "units": "melee", "value": "0" },
-        "duration": { "units": "inst" },
-        "extraAttacks": { "type": "standard" },
-        "uses": { "autoDeductChargesCost": "0" }
+        "range": {
+          "units": "melee",
+          "value": "0"
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "extraAttacks": {
+          "type": "standard"
+        },
+        "uses": {
+          "autoDeductChargesCost": "0"
+        }
       }
     ],
-    "subType": "exotic",
+    "subType": "exoticWeapons",
     "weaponSubtype": "2h",
     "hands": 2,
     "held": "2h",
     "properties": {
       "double": true
     },
-    "weaponGroups": ["bladesHeavy", "flails", "double"],
-    "weight": { "value": 7.5 },
+    "weaponGroups": [
+      "bladesHeavy",
+      "flails",
+      "double"
+    ],
+    "weight": {
+      "value": 7.5
+    },
     "price": 13,
     "quantity": 1,
     "identified": true,
     "carried": true,
     "equipped": false,
     "hardness": 10,
-    "hp": { "base": 10 }
+    "hp": {
+      "base": 10
+    }
   },
   "effects": [],
-  "ownership": { "default": 0 },
+  "ownership": {
+    "default": 0
+  },
   "sort": 0,
   "flags": {}
 }

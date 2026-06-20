@@ -25,7 +25,9 @@
         "actionType": "mwak",
         "activation": {
           "type": "attack",
-          "unchained": { "type": "attack" }
+          "unchained": {
+            "type": "attack"
+          }
         },
         "ability": {
           "attack": "_default",
@@ -36,35 +38,55 @@
           "parts": [
             {
               "formula": "sizeRoll(1, 10, @size)",
-              "types": ["piercing", "slashing"]
+              "types": [
+                "piercing",
+                "slashing"
+              ]
             }
           ]
         },
-        "range": { "units": "melee", "value": "0" },
-        "duration": { "units": "inst" },
-        "extraAttacks": { "type": "standard" },
-        "uses": { "autoDeductChargesCost": "0" }
+        "range": {
+          "units": "melee",
+          "value": "0"
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "extraAttacks": {
+          "type": "standard"
+        },
+        "uses": {
+          "autoDeductChargesCost": "0"
+        }
       }
     ],
-    "subType": "exotic",
+    "subType": "exoticWeapons",
     "weaponSubtype": "2h",
     "hands": 2,
     "held": "2h",
     "properties": {
       "trip": true
     },
-    "weaponGroups": ["spears"],
-    "weight": { "value": 5 },
+    "weaponGroups": [
+      "spears"
+    ],
+    "weight": {
+      "value": 5
+    },
     "price": 11,
     "quantity": 1,
     "identified": true,
     "carried": true,
     "equipped": false,
     "hardness": 10,
-    "hp": { "base": 10 }
+    "hp": {
+      "base": 10
+    }
   },
   "effects": [],
-  "ownership": { "default": 0 },
+  "ownership": {
+    "default": 0
+  },
   "sort": 0,
   "flags": {}
 }

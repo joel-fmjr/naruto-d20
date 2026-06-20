@@ -19,20 +19,28 @@
       "unidentified": ""
     },
     "actions": [],
-    "subType": "exotic",
+    "subType": "exoticWeapons",
     "weaponSubtype": "1h",
-    "weaponGroups": ["close"],
-    "weight": { "value": 1 },
+    "weaponGroups": [
+      "close"
+    ],
+    "weight": {
+      "value": 1
+    },
     "price": 7,
     "quantity": 1,
     "identified": true,
     "carried": true,
     "equipped": false,
     "hardness": 10,
-    "hp": { "base": 2 }
+    "hp": {
+      "base": 2
+    }
   },
   "effects": [],
-  "ownership": { "default": 0 },
+  "ownership": {
+    "default": 0
+  },
   "sort": 0,
   "flags": {}
 }

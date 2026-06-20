@@ -25,7 +25,9 @@
         "actionType": "rwak",
         "activation": {
           "type": "attack",
-          "unchained": { "type": "attack" }
+          "unchained": {
+            "type": "attack"
+          }
         },
         "ability": {
           "attack": "_default",
@@ -35,32 +37,52 @@
           "parts": [
             {
               "formula": "sizeRoll(1, 6, @size)",
-              "types": ["piercing"]
+              "types": [
+                "piercing"
+              ]
             }
           ]
         },
-        "range": { "units": "ft", "value": "100", "maxIncrements": 10 },
-        "duration": { "units": "inst" },
-        "extraAttacks": { "type": "standard" },
-        "uses": { "autoDeductChargesCost": "0" }
+        "range": {
+          "units": "ft",
+          "value": "100",
+          "maxIncrements": 10
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "extraAttacks": {
+          "type": "standard"
+        },
+        "uses": {
+          "autoDeductChargesCost": "0"
+        }
       }
     ],
-    "subType": "exotic",
+    "subType": "exoticWeapons",
     "weaponSubtype": "ranged",
     "hands": 2,
     "held": "2h",
-    "weaponGroups": ["bows"],
-    "weight": { "value": 2 },
+    "weaponGroups": [
+      "bows"
+    ],
+    "weight": {
+      "value": 2
+    },
     "price": 10,
     "quantity": 1,
     "identified": true,
     "carried": true,
     "equipped": false,
     "hardness": 5,
-    "hp": { "base": 5 }
+    "hp": {
+      "base": 5
+    }
   },
   "effects": [],
-  "ownership": { "default": 0 },
+  "ownership": {
+    "default": 0
+  },
   "sort": 0,
   "flags": {}
 }

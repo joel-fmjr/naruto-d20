@@ -25,7 +25,9 @@
         "actionType": "twak",
         "activation": {
           "type": "attack",
-          "unchained": { "type": "attack" }
+          "unchained": {
+            "type": "attack"
+          }
         },
         "ability": {
           "attack": "_default",
@@ -35,14 +37,26 @@
           "parts": [
             {
               "formula": "sizeRoll(1, 8, @size)",
-              "types": ["bludgeoning"]
+              "types": [
+                "bludgeoning"
+              ]
             }
           ]
         },
-        "range": { "units": "ft", "value": "10", "maxIncrements": 5 },
-        "duration": { "units": "inst" },
-        "extraAttacks": { "type": "standard" },
-        "uses": { "autoDeductChargesCost": "0" }
+        "range": {
+          "units": "ft",
+          "value": "10",
+          "maxIncrements": 5
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "extraAttacks": {
+          "type": "standard"
+        },
+        "uses": {
+          "autoDeductChargesCost": "0"
+        }
       },
       {
         "_id": "WarFnActMwak0002",
@@ -50,7 +64,9 @@
         "actionType": "mwak",
         "activation": {
           "type": "attack",
-          "unchained": { "type": "attack" }
+          "unchained": {
+            "type": "attack"
+          }
         },
         "ability": {
           "attack": "_default",
@@ -60,30 +76,50 @@
           "parts": [
             {
               "formula": "sizeRoll(1, 8, @size)",
-              "types": ["bludgeoning"]
+              "types": [
+                "bludgeoning"
+              ]
             }
           ]
         },
-        "range": { "units": "melee", "value": "0" },
-        "duration": { "units": "inst" },
-        "extraAttacks": { "type": "standard" },
-        "uses": { "autoDeductChargesCost": "0" }
+        "range": {
+          "units": "melee",
+          "value": "0"
+        },
+        "duration": {
+          "units": "inst"
+        },
+        "extraAttacks": {
+          "type": "standard"
+        },
+        "uses": {
+          "autoDeductChargesCost": "0"
+        }
       }
     ],
-    "subType": "exotic",
+    "subType": "exoticWeapons",
     "weaponSubtype": "1h",
-    "weaponGroups": ["close", "thrown"],
-    "weight": { "value": 6 },
+    "weaponGroups": [
+      "close",
+      "thrown"
+    ],
+    "weight": {
+      "value": 6
+    },
     "price": 7,
     "quantity": 1,
     "identified": true,
     "carried": true,
     "equipped": false,
     "hardness": 10,
-    "hp": { "base": 5 }
+    "hp": {
+      "base": 5
+    }
   },
   "effects": [],
-  "ownership": { "default": 0 },
+  "ownership": {
+    "default": 0
+  },
   "sort": 0,
   "flags": {}
 }
