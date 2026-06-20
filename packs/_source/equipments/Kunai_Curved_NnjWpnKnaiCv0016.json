@@ -1,0 +1,96 @@
+{
+  "_id": "NnjWpnKnaiCv0016",
+  "_key": "!items!NnjWpnKnaiCv0016",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Kunai, Curved",
+  "img": "systems/pf1/icons/items/weapons/kunai.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>As kunai, but when thrown, you suffer a −2 penalty to attacks with this weapon.</p>",
+      "unidentified": ""
+    },
+    "actions": [
+      {
+        "_id": "KnaiCvActTwak001",
+        "name": "Throw (−2)",
+        "actionType": "twak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default",
+          "damage": "str",
+          "critRange": 18
+        },
+        "attackBonus": "-2",
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 4, @size)",
+              "types": ["slashing"]
+            }
+          ]
+        },
+        "range": {
+          "units": "ft",
+          "value": "5",
+          "maxIncrements": 5
+        },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      },
+      {
+        "_id": "KnaiCvActMwak002",
+        "name": "Melee",
+        "actionType": "mwak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default",
+          "damage": "str",
+          "critRange": 18
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 4, @size)",
+              "types": ["slashing"]
+            }
+          ]
+        },
+        "range": { "units": "melee", "value": "0" },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      }
+    ],
+    "subType": "exotic",
+    "weaponSubtype": "1h",
+    "weaponGroups": ["ninWeapons", "thrown"],
+    "weight": { "value": 0.5 },
+    "price": 7,
+    "quantity": 1,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 10,
+    "hp": { "base": 2 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

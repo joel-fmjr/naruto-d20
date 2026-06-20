@@ -1,0 +1,67 @@
+{
+  "_id": "NnjWpnThrNd00024",
+  "_key": "!items!NnjWpnThrNd00024",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Throwing Needle",
+  "img": "systems/pf1/icons/items/weapons/dart.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>Tiny needles designed for throwing. Up to 5 can be concealed inside a ninja-to sheath without requiring a Sleight of Hand check (Spot DC 15).</p>",
+      "unidentified": ""
+    },
+    "actions": [
+      {
+        "_id": "ThrNdActTwak0001",
+        "name": "Throw",
+        "actionType": "twak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "1",
+              "types": ["piercing"]
+            }
+          ]
+        },
+        "range": {
+          "units": "ft",
+          "value": "10",
+          "maxIncrements": 5
+        },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      }
+    ],
+    "subType": "exotic",
+    "weaponSubtype": "1h",
+    "weaponGroups": ["ninWeapons", "thrown"],
+    "weight": { "value": 1 },
+    "price": 3,
+    "quantity": 10,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 5,
+    "hp": { "base": 1 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

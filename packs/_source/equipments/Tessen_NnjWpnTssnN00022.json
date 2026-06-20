@@ -1,0 +1,93 @@
+{
+  "_id": "NnjWpnTssnN00022",
+  "_key": "!items!NnjWpnTssnN00022",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Tessen",
+  "img": "systems/pf1/icons/items/weapons/chakram.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>A normal tessen can be collapsed to reduce its size by one category. Reduce its damage die accordingly when doing so. A non-collapsible tessen is called a gunbai, and is sometimes used for battlefield communications.</p>",
+      "unidentified": ""
+    },
+    "actions": [
+      {
+        "_id": "TssnActTwak00001",
+        "name": "Throw",
+        "actionType": "twak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default",
+          "damage": "str"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 4, @size)",
+              "types": ["bludgeoning"]
+            }
+          ]
+        },
+        "range": {
+          "units": "ft",
+          "value": "10",
+          "maxIncrements": 5
+        },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      },
+      {
+        "_id": "TssnActMwak00002",
+        "name": "Melee",
+        "actionType": "mwak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default",
+          "damage": "str"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 4, @size)",
+              "types": ["bludgeoning"]
+            }
+          ]
+        },
+        "range": { "units": "melee", "value": "0" },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      }
+    ],
+    "subType": "exotic",
+    "weaponSubtype": "1h",
+    "weaponGroups": ["ninWeapons", "close", "thrown"],
+    "weight": { "value": 1.5 },
+    "price": 4,
+    "quantity": 1,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 10,
+    "hp": { "base": 3 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

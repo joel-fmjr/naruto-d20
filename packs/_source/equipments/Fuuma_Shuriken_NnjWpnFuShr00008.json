@@ -1,0 +1,94 @@
+{
+  "_id": "NnjWpnFuShr00008",
+  "_key": "!items!NnjWpnFuShr00008",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Fuuma Shuriken",
+  "img": "systems/pf1/icons/items/weapons/shuriken.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>Can be collapsed, reducing its size by one step and allowing it to be used as a melee weapon. Doing so reduces its damage die accordingly, and incurs a −4 penalty to attack rolls made with it.</p>",
+      "unidentified": ""
+    },
+    "actions": [
+      {
+        "_id": "FuShrActTwak0001",
+        "name": "Throw",
+        "actionType": "twak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default",
+          "damage": "str"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 8, @size)",
+              "types": ["slashing"]
+            }
+          ]
+        },
+        "range": {
+          "units": "ft",
+          "value": "10",
+          "maxIncrements": 5
+        },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      },
+      {
+        "_id": "FuShrActMwak0002",
+        "name": "Melee (Collapsed, −4)",
+        "actionType": "mwak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default",
+          "damage": "str"
+        },
+        "attackBonus": "-4",
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 6, @size)",
+              "types": ["slashing"]
+            }
+          ]
+        },
+        "range": { "units": "melee", "value": "0" },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      }
+    ],
+    "subType": "exotic",
+    "weaponSubtype": "1h",
+    "weaponGroups": ["ninWeapons", "thrown"],
+    "weight": { "value": 2 },
+    "price": 5,
+    "quantity": 1,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 10,
+    "hp": { "base": 5 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

@@ -1,0 +1,68 @@
+{
+  "_id": "NnjWpnShrkn00020",
+  "_key": "!items!NnjWpnShrkn00020",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Shuriken",
+  "img": "systems/pf1/icons/items/weapons/shuriken.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>Shuriken is the name for any thin, bladed, throwing weapon, such as a throwing star or small throwing blades. Shuriken count as ammunition for the purpose of drawing them, crafting them or applying enhancement seals to them, as well as for what happens after they are thrown.</p>",
+      "unidentified": ""
+    },
+    "actions": [
+      {
+        "_id": "ShrkActTwak00001",
+        "name": "Throw",
+        "actionType": "twak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default",
+          "damage": "str"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 3, @size)",
+              "types": ["piercing"]
+            }
+          ]
+        },
+        "range": {
+          "units": "ft",
+          "value": "10",
+          "maxIncrements": 5
+        },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      }
+    ],
+    "subType": "exotic",
+    "weaponSubtype": "1h",
+    "weaponGroups": ["ninWeapons", "thrown"],
+    "weight": { "value": 1 },
+    "price": 3,
+    "quantity": 5,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 5,
+    "hp": { "base": 1 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

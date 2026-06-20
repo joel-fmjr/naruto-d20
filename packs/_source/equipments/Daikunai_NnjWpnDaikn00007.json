@@ -1,0 +1,65 @@
+{
+  "_id": "NnjWpnDaikn00007",
+  "_key": "!items!NnjWpnDaikn00007",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Daikunai",
+  "img": "systems/pf1/icons/items/weapons/kunai.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>You gain a +2 equipment bonus to resist being disarmed. Can be used as a melee weapon.</p>",
+      "unidentified": ""
+    },
+    "actions": [
+      {
+        "_id": "DaiknActMwak0001",
+        "name": "Attack",
+        "actionType": "mwak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default",
+          "damage": "str",
+          "critRange": 19
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 8, @size)",
+              "types": ["piercing"]
+            }
+          ]
+        },
+        "range": { "units": "melee", "value": "0" },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      }
+    ],
+    "subType": "exotic",
+    "weaponSubtype": "1h",
+    "weaponGroups": ["ninWeapons", "bladesHeavy"],
+    "weight": { "value": 4 },
+    "price": 11,
+    "quantity": 1,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 10,
+    "hp": { "base": 5 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

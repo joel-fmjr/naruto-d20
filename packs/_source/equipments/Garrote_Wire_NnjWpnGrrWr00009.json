@@ -1,0 +1,38 @@
+{
+  "_id": "NnjWpnGrrWr00009",
+  "_key": "!items!NnjWpnGrrWr00009",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Garrote Wire",
+  "img": "systems/pf1/icons/items/weapons/garrote.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>If you can catch a foe defenseless (when it is denied its Dexterity bonus to Defense), you can attempt a grapple check with a +4 equipment bonus to attempt to strangle them.</p>",
+      "unidentified": ""
+    },
+    "actions": [],
+    "subType": "exotic",
+    "weaponSubtype": "1h",
+    "weaponGroups": ["ninWeapons"],
+    "weight": { "value": 1 },
+    "price": 6,
+    "quantity": 1,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 5,
+    "hp": { "base": 2 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

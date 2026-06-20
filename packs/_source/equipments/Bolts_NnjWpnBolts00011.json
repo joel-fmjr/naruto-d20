@@ -1,0 +1,38 @@
+{
+  "_id": "NnjWpnBolts00011",
+  "_key": "!items!NnjWpnBolts00011",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Bolts",
+  "img": "systems/pf1/icons/items/weapons/bolt.PNG",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>Ammunition for the hand crossbow.</p>",
+      "unidentified": ""
+    },
+    "actions": [],
+    "subType": "exotic",
+    "weaponSubtype": "1h",
+    "weaponGroups": ["ninWeapons"],
+    "weight": { "value": 2 },
+    "price": 4,
+    "quantity": 20,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 2,
+    "hp": { "base": 1 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

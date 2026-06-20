@@ -1,0 +1,38 @@
+{
+  "_id": "NnjWpnChGntl0005",
+  "_key": "!items!NnjWpnChGntl0005",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Chakra Gauntlets",
+  "img": "systems/pf1/icons/items/weapons/gauntlet.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>These heavy, metal-plated gloves allow you to deal lethal damage with unarmed attacks, but cannot be worn with knuckles, knuckle blades, shuko and ashiko or similar weapons. You suffer a −2 penalty to meet the Perform Requirements of techniques with the Half Seals or Hand Seals Component.</p>",
+      "unidentified": ""
+    },
+    "actions": [],
+    "subType": "exotic",
+    "weaponSubtype": "1h",
+    "weaponGroups": ["ninWeapons", "close"],
+    "weight": { "value": 2 },
+    "price": 9,
+    "quantity": 1,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 10,
+    "hp": { "base": 5 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

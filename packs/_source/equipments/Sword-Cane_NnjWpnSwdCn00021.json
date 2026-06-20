@@ -1,0 +1,65 @@
+{
+  "_id": "NnjWpnSwdCn00021",
+  "_key": "!items!NnjWpnSwdCn00021",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Sword-Cane",
+  "img": "systems/pf1/icons/items/weapons/sword-cane.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>A light sword concealed inside the shaft of a cane or umbrella (for example). The blade is automatically concealed (Spot DC 18), though the object serving as its sheath is not.</p>",
+      "unidentified": ""
+    },
+    "actions": [
+      {
+        "_id": "SwdCnActMwak0001",
+        "name": "Attack",
+        "actionType": "mwak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default",
+          "damage": "str",
+          "critRange": 18
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 6, @size)",
+              "types": ["piercing"]
+            }
+          ]
+        },
+        "range": { "units": "melee", "value": "0" },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      }
+    ],
+    "subType": "exotic",
+    "weaponSubtype": "1h",
+    "weaponGroups": ["ninWeapons", "bladesLight"],
+    "weight": { "value": 2 },
+    "price": 9,
+    "quantity": 1,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 10,
+    "hp": { "base": 5 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

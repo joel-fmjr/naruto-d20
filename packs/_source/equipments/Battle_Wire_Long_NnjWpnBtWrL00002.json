@@ -1,0 +1,67 @@
+{
+  "_id": "NnjWpnBtWrL00002",
+  "_key": "!items!NnjWpnBtWrL00002",
+  "_stats": {
+    "coreVersion": "13.351",
+    "systemId": "pf1",
+    "systemVersion": "11.11",
+    "createdTime": null,
+    "modifiedTime": null,
+    "lastModifiedBy": null
+  },
+  "type": "weapon",
+  "name": "Battle Wire, Long",
+  "img": "systems/pf1/icons/items/weapons/rope-gauntlets.png",
+  "folder": "NnjWpnFolderC003",
+  "system": {
+    "description": {
+      "value": "<p>As battle wire, but its range is extended to 40 ft.</p>",
+      "unidentified": ""
+    },
+    "actions": [
+      {
+        "_id": "BtWireLActRwk001",
+        "name": "Attack",
+        "actionType": "rwak",
+        "activation": {
+          "type": "attack",
+          "unchained": { "type": "attack" }
+        },
+        "ability": {
+          "attack": "_default"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "sizeRoll(1, 4, @size)",
+              "types": ["slashing"]
+            }
+          ]
+        },
+        "range": {
+          "units": "ft",
+          "value": "10",
+          "maxIncrements": 4
+        },
+        "duration": { "units": "inst" },
+        "extraAttacks": { "type": "standard" },
+        "uses": { "autoDeductChargesCost": "0" }
+      }
+    ],
+    "subType": "exotic",
+    "weaponSubtype": "ranged",
+    "weaponGroups": ["ninWeapons", "thrown"],
+    "weight": { "value": 1 },
+    "price": 7,
+    "quantity": 1,
+    "identified": true,
+    "carried": true,
+    "equipped": false,
+    "hardness": 5,
+    "hp": { "base": 2 }
+  },
+  "effects": [],
+  "ownership": { "default": 0 },
+  "sort": 0,
+  "flags": {}
+}

@@ -10,9 +10,18 @@ equipments compendium
 │   └── Ninja Tools     [EqpNnjTlsFoldr02]
 │       └── (training weight items)
 └── Weapons             [WpnFolderAAA0001]
-    └── Simple Weapons  [SmpWpnFolderB002]
-        ├── Quarterstaff
-        └── Throwing Spear
+    ├── Simple Weapons  [SmpWpnFolderB002]
+    │   ├── Quarterstaff
+    │   └── Throwing Spear
+    └── Nin Weapons     [NnjWpnFolderC003]
+        ├── Battle Wire, Battle Wire (Long)
+        ├── Blowgun + Darts
+        ├── Chakra Gauntlets, Chisa-gatana, Daikunai
+        ├── Fuuma Shuriken, Garrote Wire, Hand Crossbow + Bolts
+        ├── Kama, Knuckle Blade, Kodachi
+        ├── Kunai, Kunai (Curved), Kusari-Gama
+        ├── Ninja-to / Chokuto, Nunchaku, Shuriken
+        └── Sword-Cane, Tessen, Throwing Knife, Throwing Needle
 ```
 
 ## Step 1 — Create Folder Documents
@@ -55,6 +64,7 @@ Key fields:
 | `EqpNnjTlsFoldr02` | Ninja Tools |
 | `WpnFolderAAA0001` | Weapons |
 | `SmpWpnFolderB002` | Simple Weapons |
+| `NnjWpnFolderC003` | Nin Weapons |
 
 Pick a new unique 16-char ID for each new folder. Format used here: descriptive prefix + zero-padded counter (e.g., `NnjWpnFolderC003`).
 
@@ -248,10 +258,41 @@ This rebuilds `packs/equipments/` (LevelDB) from all JSON files in `packs/_sourc
 
 ## Implemented Weapons Reference
 
-| Weapon | ID | Folder | Actions |
-|--------|----|--------|---------|
-| Quarterstaff | `QrtrstfSimpleA01` | Simple Weapons | mwak (main) + mwak (off-hand) |
-| Throwing Spear | `ThrSpearSimpleB2` | Simple Weapons | twak (30 ft) + mwak (−4) |
+### Simple Weapons
+
+| Weapon | ID | Actions |
+|--------|----|---------|
+| Quarterstaff | `QrtrstfSimpleA01` | mwak (main) + mwak (off-hand) |
+| Throwing Spear | `ThrSpearSimpleB2` | twak (30 ft) + mwak (−4) |
+
+### Nin Weapons (folder `NnjWpnFolderC003`, all `subType: "exotic"`, `weaponGroups: ["ninWeapons", ...]`)
+
+| Weapon | ID | Actions |
+|--------|----|---------|
+| Battle Wire | `NnjWpnBtWr000001` | rwak (10 ft, max 30 ft) |
+| Battle Wire, Long | `NnjWpnBtWrL00002` | rwak (10 ft, max 40 ft) |
+| Blowgun | `NnjWpnBlwgn00003` | rwak (10 ft, fixed 1 dmg) |
+| Darts | `NnjWpnDarts00004` | — (ammo, qty 5) |
+| Chakra Gauntlets | `NnjWpnChGntl0005` | — (modifies unarmed) |
+| Chisa-gatana | `NnjWpnChGtn00006` | mwak (1d6 S, 19–20) |
+| Daikunai | `NnjWpnDaikn00007` | mwak (1d8 P, 19–20) |
+| Fuuma Shuriken | `NnjWpnFuShr00008` | twak (10 ft) + mwak collapsed (−4) |
+| Garrote Wire | `NnjWpnGrrWr00009` | — (grapple only) |
+| Hand Crossbow | `NnjWpnHndCb00010` | rwak (30 ft) |
+| Bolts | `NnjWpnBolts00011` | — (ammo, qty 20) |
+| Kama | `NnjWpnKama000012` | mwak (1d6 S) |
+| Knuckle Blade | `NnjWpnKnBld00013` | — (modifies unarmed) |
+| Kodachi | `NnjWpnKodch00014` | mwak (1d6 S) |
+| Kunai | `NnjWpnKunai00015` | twak (10 ft) + mwak; qty 5 |
+| Kunai, Curved | `NnjWpnKnaiCv0016` | twak (5 ft, −2) + mwak; 18–20 |
+| Kusari-Gama | `NnjWpnKsrGm00017` | mwak kama (S) + mwak chain (B); double |
+| Ninja-to / Chokuto | `NnjWpnNnjTo00018` | mwak (1d8 S, 19–20) |
+| Nunchaku | `NnjWpnNnchk00019` | mwak (1d6 B) |
+| Shuriken | `NnjWpnShrkn00020` | twak (10 ft, 1d3); qty 5 |
+| Sword-Cane | `NnjWpnSwdCn00021` | mwak (1d6 P, 18–20) |
+| Tessen | `NnjWpnTssnN00022` | twak (10 ft) + mwak (1d4 B) |
+| Throwing Knife | `NnjWpnThrKn00023` | twak (10 ft) + mwak (−4); qty 5 |
+| Throwing Needle | `NnjWpnThrNd00024` | twak (10 ft, fixed 1 dmg); qty 10 |
 
 ## Weapon Icons
 

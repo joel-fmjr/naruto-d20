@@ -180,6 +180,7 @@ Hooks.once("init", () => {
 // ── [2] pf1PostInit ───────────────────────────────────────────────────────
 Hooks.once("pf1PostInit", () => {
   _registerBuffTargets();
+  CONFIG.PF1.weaponGroups.ninWeapons = { label: "Nin Weapons" };
   registerNarutoSkills();
   _registerScriptCallCategories();
   installTechniqueSaveDCPatch();
