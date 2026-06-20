@@ -466,6 +466,17 @@ function validateTrainingWeight(packName, filename, doc) {
   }
 }
 
+const RANK_BUFF_NAMES = {
+  JOURYOKU: "JOURYOKU (STRENGTH RANK)",
+  KOUSOKU: "KOUSOKU (SPEED RANK)",
+};
+
+function resolveRankBuffName(techniqueName) {
+  const match = String(techniqueName ?? "").match(/^[A-Z]+\s+(JOURYOKU|KOUSOKU)\b/i);
+  if (!match) return null;
+  return RANK_BUFF_NAMES[match[1].toUpperCase()] ?? null;
+}
+
 function validateAutomationBuffMatches() {
   const techniques = docsByPack.get("techniques") ?? [];
   const buffs = docsByPack.get("technique-buffs") ?? [];
@@ -475,8 +486,10 @@ function validateAutomationBuffMatches() {
     if (doc.system?.automation?.enabled !== true) continue;
     if (buffNames.has(doc.name)) continue;
     const hasVariant = Array.from(buffNames).some((name) => name.startsWith(`${doc.name} (`));
-    if (!hasVariant)
-      warn(packName, filename, `automation.enabled is true but no matching buff source was found`);
+    if (hasVariant) continue;
+    const rankBuff = resolveRankBuffName(doc.name);
+    if (rankBuff && buffNames.has(rankBuff)) continue;
+    warn(packName, filename, `automation.enabled is true but no matching buff source was found`);
   }
 }
 
