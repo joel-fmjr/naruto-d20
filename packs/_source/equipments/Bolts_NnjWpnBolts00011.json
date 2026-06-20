@@ -19,7 +19,7 @@
       "unidentified": ""
     },
     "actions": [],
-    "subType": "exotic",
+    "subType": "ninWeapons",
     "weaponSubtype": "1h",
     "weaponGroups": ["ninWeapons"],
     "weight": { "value": 2 },

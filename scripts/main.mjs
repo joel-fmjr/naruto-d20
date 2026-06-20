@@ -181,6 +181,14 @@ Hooks.once("init", () => {
 Hooks.once("pf1PostInit", () => {
   _registerBuffTargets();
   CONFIG.PF1.weaponGroups.ninWeapons = { label: "Nin Weapons" };
+  CONFIG.PF1.weaponProficiencies.ninWeapons = "NarutoD20.WeaponProficiency.ninWeapons";
+  CONFIG.PF1.weaponTypes.ninWeapons = {
+    _label: "NarutoD20.WeaponType.ninWeapons",
+    light: "PF1.WeaponSubtypeLight",
+    "1h": "PF1.WeaponSubtypeOneHanded",
+    "2h": "PF1.WeaponSubtypeTwoHanded",
+    ranged: "PF1.WeaponSubtypeRanged",
+  };
   registerNarutoSkills();
   _registerScriptCallCategories();
   installTechniqueSaveDCPatch();

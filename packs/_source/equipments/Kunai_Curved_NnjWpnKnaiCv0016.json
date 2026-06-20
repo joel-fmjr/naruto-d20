@@ -77,7 +77,7 @@
         "uses": { "autoDeductChargesCost": "0" }
       }
     ],
-    "subType": "exotic",
+    "subType": "ninWeapons",
     "weaponSubtype": "1h",
     "weaponGroups": ["ninWeapons", "thrown"],
     "weight": { "value": 0.5 },
