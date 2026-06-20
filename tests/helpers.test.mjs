@@ -8,6 +8,12 @@ import {
   applyTechniqueSystemDefaults,
   legacyAutomationToMaintenance,
 } from "../scripts/data/technique-defaults.mjs";
+import {
+  buildEmpowerDamageFormula,
+  empowerPerformIncrease,
+  normalizeEmpowerConfig,
+  resolveEmpowerStepLimit,
+} from "../scripts/automation/technique-empower.mjs";
 import { maintenanceMigrationPatch } from "../scripts/data/maintenance-migration.mjs";
 import {
   computeTechniqueDerived,
@@ -365,6 +371,79 @@ describe("technique defaults", () => {
       schemaKeys,
       "applyTechniqueSystemDefaults must default every automation.empower schema field " +
         "(see scripts/data/technique-defaults.mjs) or synckit will flag unedited techniques out-of-date",
+    );
+  });
+});
+
+describe("technique empower helpers", () => {
+  it("normalizes disabled and enabled config", () => {
+    assert.equal(normalizeEmpowerConfig({})?.enabled, false);
+    assert.deepEqual(
+      normalizeEmpowerConfig({
+        enabled: true,
+        mode: "damageBonus",
+        costPerStep: 2,
+        formulaPerStep: "1d8",
+        damageTypes: ["fire"],
+        maxStepsFormula: "@cl - 5",
+        performIncreaseEvery: 2,
+        performIncreaseAmount: 1,
+      }),
+      {
+        enabled: true,
+        mode: "damageBonus",
+        costPerStep: 2,
+        formulaPerStep: "1d8",
+        damageTypes: ["fire"],
+        maxStepsFormula: "@cl - 5",
+        performIncreaseEvery: 2,
+        performIncreaseAmount: 1,
+      },
+    );
+  });
+
+  it("builds readable damage formulas", () => {
+    assert.equal(buildEmpowerDamageFormula({ steps: 0, formulaPerStep: "1d6" }), "");
+    assert.equal(buildEmpowerDamageFormula({ steps: 3, formulaPerStep: "1d6" }), "3d6[Empower]");
+    assert.equal(buildEmpowerDamageFormula({ steps: 2, formulaPerStep: "1d8" }), "2d8[Empower]");
+    assert.equal(buildEmpowerDamageFormula({ steps: 2, formulaPerStep: "1d6+1" }), "2 * (1d6+1)[Empower]");
+  });
+
+  it("computes perform DC increases by complete groups", () => {
+    assert.equal(
+      empowerPerformIncrease({
+        steps: 5,
+        performIncreaseEvery: 2,
+        performIncreaseAmount: 1,
+      }),
+      2,
+    );
+    assert.equal(
+      empowerPerformIncrease({
+        steps: 5,
+        performIncreaseEvery: 0,
+        performIncreaseAmount: 1,
+      }),
+      0,
+    );
+  });
+
+  it("caps steps by formula, available chakra, and cost per step", async () => {
+    assert.equal(
+      await resolveEmpowerStepLimit({
+        config: { maxStepsFormula: "@cl - 7", costPerStep: 1 },
+        rollData: { cl: 11 },
+        availableExtraChakra: 10,
+      }),
+      4,
+    );
+    assert.equal(
+      await resolveEmpowerStepLimit({
+        config: { maxStepsFormula: "", costPerStep: 2 },
+        rollData: { cl: 20 },
+        availableExtraChakra: 5,
+      }),
+      2,
     );
   });
 });
