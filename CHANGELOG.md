@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.0 - 2026-06-21
+
+- **Repository transferred** to `joel-fmjr/naruto-d20`: updated all manifest, download, readme, and issues URLs in `module.json` to point to the new canonical location. The old `ezioaalves/naruto-d20` URL redirects automatically.
+
 ## v1.1.2 - 2026-06-21
 
 - Added **downtime public API** (#154): `game.modules.get("naruto-d20").api` now exposes a stable surface for external adapters (e.g. Kaihou). New helpers `listLearnable(actor)` and `listMasterable(actor)` return the filtered technique lists used by the learn/mastery flows; `TECHNIQUE_ITEM_TYPE` is also exported. Existing `attemptLearnTechnique`, `attemptMasterTechnique`, `buildLearningView`, `buildMasteryView`, and `isTechniqueEffectivelyLearned` remain available. Additive only — no existing behaviour changed.
