@@ -14,6 +14,7 @@
  *     modifiers; then mode-scaled exactly like learning.
  */
 
+import { MAX_MASTERY_STEP } from "./constants.mjs";
 import { actionPointsPath, masteryCurrentTechniqueIdPath } from "./flag-paths.mjs";
 import { chatVisibilityFrom } from "./chat-visibility.mjs";
 import { markNarutoRollRerollable } from "./chat-rerolls.mjs";
@@ -45,7 +46,6 @@ import {
   warnInsufficientTrainingChakra,
 } from "./data/training-progression.mjs";
 
-const MAX_MASTERY_STEP = 5;
 const TRAINING_INTERRUPTION_SECONDS = 30 * 24 * 60 * 60;
 
 /** Mastery-flow Action-Point card config for the shared progression engine. */

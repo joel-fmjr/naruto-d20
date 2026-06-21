@@ -12,7 +12,7 @@ import { listLearnable, listMasterable } from "./technique-queries.mjs";
  * Keep this surface small and additive; do not break existing keys.
  */
 export function buildPublicApi() {
-  return {
+  return Object.freeze({
     attemptLearnTechnique,
     attemptMasterTechnique,
     buildLearningView,
@@ -21,5 +21,5 @@ export function buildPublicApi() {
     listLearnable,
     listMasterable,
     TECHNIQUE_ITEM_TYPE,
-  };
+  });
 }

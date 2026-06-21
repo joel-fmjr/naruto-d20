@@ -1,7 +1,5 @@
-import { TECHNIQUE_ITEM_TYPE } from "./constants.mjs";
+import { MAX_MASTERY_STEP, TECHNIQUE_ITEM_TYPE } from "./constants.mjs";
 import { isTechniqueEffectivelyLearned } from "./learn-technique.mjs";
-
-const MAX_MASTERY = 5;
 
 function techniqueItems(actor) {
   const items = actor?.items;
@@ -18,6 +16,7 @@ export function listLearnable(actor) {
 export function listMasterable(actor) {
   return techniqueItems(actor).filter(
     (item) =>
-      isTechniqueEffectivelyLearned(item) && (Number(item.system?.mastery ?? 0) || 0) < MAX_MASTERY,
+      isTechniqueEffectivelyLearned(item) &&
+      (Number(item.system?.mastery ?? 0) || 0) < MAX_MASTERY_STEP,
   );
 }

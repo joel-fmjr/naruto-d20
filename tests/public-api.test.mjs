@@ -40,4 +40,9 @@ describe("buildPublicApi", () => {
     }
     assert.equal(api.TECHNIQUE_ITEM_TYPE, "naruto-d20.technique");
   });
+
+  it("returns an immutable public surface", () => {
+    const api = buildPublicApi();
+    assert.equal(Object.isFrozen(api), true);
+  });
 });
