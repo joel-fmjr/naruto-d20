@@ -46,6 +46,20 @@
     "performMiscBonus": 0,
     "active": false,
     "changes": [],
+    "automation": {
+      "enabled": false,
+      "targetMode": "auto",
+      "empower": {
+        "enabled": true,
+        "mode": "damageBonus",
+        "costPerStep": 1,
+        "formulaPerStep": "1d6",
+        "damageTypes": ["wind"],
+        "maxStepsFormula": "min(@cl, 11) - 3",
+        "performIncreaseEvery": 0,
+        "performIncreaseAmount": 0
+      }
+    },
     "actions": [
       {
         "_id": "kEPcrHX78H3RK097",
@@ -63,6 +77,14 @@
         },
         "range": {
           "units": "medium"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "3d6",
+              "types": ["wind"]
+            }
+          ]
         },
         "save": {
           "type": "ref",

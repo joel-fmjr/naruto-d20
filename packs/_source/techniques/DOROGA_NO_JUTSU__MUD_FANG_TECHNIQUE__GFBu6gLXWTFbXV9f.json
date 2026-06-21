@@ -46,6 +46,20 @@
     "performMiscBonus": 0,
     "active": false,
     "changes": [],
+    "automation": {
+      "enabled": false,
+      "targetMode": "auto",
+      "empower": {
+        "enabled": true,
+        "mode": "damageBonus",
+        "costPerStep": 1,
+        "formulaPerStep": "1d6",
+        "damageTypes": ["earth"],
+        "maxStepsFormula": "min(@cl, 9) - 3",
+        "performIncreaseEvery": 0,
+        "performIncreaseAmount": 0
+      }
+    },
     "actions": [
       {
         "_id": "c4d76582f7db4869",
@@ -63,6 +77,14 @@
         },
         "range": {
           "units": "medium"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "3d6",
+              "types": ["earth"]
+            }
+          ]
         },
         "save": {
           "type": "ref",
