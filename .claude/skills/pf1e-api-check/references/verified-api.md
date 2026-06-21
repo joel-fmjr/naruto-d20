@@ -154,3 +154,26 @@ Append new verified facts under the matching section. Never add a guessed entry.
   `return Number.isFinite(seconds ?? rounds ?? turns) && duration >= 0`. Without `seconds`/`rounds`
   this is `false` → perm-buff AEs are excluded from `_effectsWithDuration` entirely
   (`actor-base.mjs:143-148`) → PF1e never auto-expires them, regardless of `end` setting.
+
+## Change Flags (`system.changeFlags` on items / `actor.changeFlags`)
+
+- `CONFIG.PF1.changeFlags` → `module/config.mjs:2859` → keys: `loseDexToAC`, `immuneToMorale`,
+  `lowLightVision`, `seeInvisibility`, `seeInDarkness`, `noMediumEncumbrance`,
+  `noHeavyEncumbrance`, `mediumArmorFullSpeed`, `heavyArmorFullSpeed`.
+- `system.changeFlags` schema → `public/template.json:780` → plain `{ loseDexToAC: false, … }`
+  on every item that has a "changes" template (buff, feat, class, weapon, etc.).
+- **Two paths** that set `actor.changeFlags.loseDexToAC = true` during data prep:
+  1. **Active condition** with `mechanics.flags: ["loseDexToAC"]` → `base-character.mjs:929-931`;
+     fires before apply-changes.
+  2. **Active buff/item** with `system.changeFlags.loseDexToAC = true` → `apply-changes.mjs:40-60`;
+     also pushes sourceInfo entries to `system.attributes.ac.normal.total` and `system.attributes.ac.touch.total` (negative).
+- **Effect of `actor.changeFlags.loseDexToAC`:**
+  - `actor-pf.mjs:1509-1511`: `acAblMod = Math.min(acAblMod, 0)` — positive Dex bonus is
+    zeroed; negative penalties still apply. Applies to both normal AC and touch AC.
+  - Flat-footed AC is unaffected (already uses `Math.min(0, acAblMod)` regardless).
+  - `change.mjs:411`: Dodge bonuses to AC are skipped when `loseDexToAC` is true.
+  - `actor-pf.mjs:1889` / `getSourceDetails`: dodge bonus sources are hidden from AC breakdown.
+- **How to apply via technique automation** (naruto-d20): set `system.changeFlags.loseDexToAC = true`
+  on the buff item in the `naruto-d20.technique-buffs` compendium. The existing
+  `buff-application.mjs` pipeline copies the item to the target actor with `system.active = true`;
+  PF1e's apply-changes loop then picks up the flag. **No code changes required.**
