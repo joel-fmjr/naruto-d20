@@ -67,7 +67,7 @@
         "area": "Cone",
         "measureTemplate": {
           "type": "cone",
-          "size": "30"
+          "size": "floor(@cl / 2) * 5 + 10"
         },
         "damage": {
           "parts": [

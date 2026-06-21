@@ -28,7 +28,7 @@
     "activation": "attack",
     "range": "Medium (20 ft. + 10 ft./2 levels)",
     "target": "",
-    "area": "",
+    "area": "Cone",
     "duration": "Instant",
     "save": "Reflex halves",
     "compHandSeals": true,
@@ -46,6 +46,20 @@
     "performMiscBonus": 0,
     "active": false,
     "changes": [],
+    "automation": {
+      "enabled": false,
+      "targetMode": "auto",
+      "empower": {
+        "enabled": true,
+        "mode": "damageBonus",
+        "costPerStep": 1,
+        "formulaPerStep": "1d6",
+        "damageTypes": ["fire"],
+        "maxStepsFormula": "min(@cl, 11) - 3",
+        "performIncreaseEvery": 0,
+        "performIncreaseAmount": 0
+      }
+    },
     "actions": [
       {
         "_id": "W91ik1YhI5KJl4BJ",
@@ -63,6 +77,19 @@
         },
         "range": {
           "units": "medium"
+        },
+        "area": "Cone",
+        "measureTemplate": {
+          "type": "cone",
+          "size": "floor(@cl / 2) * 5 + 20"
+        },
+        "damage": {
+          "parts": [
+            {
+              "formula": "3d6",
+              "types": ["fire"]
+            }
+          ]
         },
         "save": {
           "type": "ref",
