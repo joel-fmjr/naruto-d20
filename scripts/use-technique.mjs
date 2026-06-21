@@ -37,6 +37,7 @@ import {
   resolveEmpowerUse,
   shouldPromptEmpowerBeforePerform,
 } from "./automation/technique-empower.mjs";
+import { getTechniqueCasterLevel } from "./data/technique-rolldata.mjs";
 
 export function canAffordTechnique(actor, item) {
   return canPayChakra(actor, item.system.chakraCost ?? 0);
@@ -296,6 +297,7 @@ async function resolveEmpowerChoice(item, actor, baseCost) {
   if (!config.enabled) return null;
 
   const rollData = item.getRollData?.() ?? {};
+  rollData.cl = getTechniqueCasterLevel(item);
   const availableExtraChakra = Math.max(
     0,
     availableChakra(actor) - Math.max(0, Number(baseCost) || 0),
