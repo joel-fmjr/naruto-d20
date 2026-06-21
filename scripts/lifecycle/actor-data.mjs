@@ -1,6 +1,6 @@
 import { BUFF_TARGETS } from "../flag-paths.mjs";
-import { prepareBaseActorData, prepareDerivedActorData } from "../data/derived-data.mjs";
-import { ensureActorSkillEntries } from "../data/skills.mjs";
+import { prepareBaseActorData, prepareDerivedActorData } from "../features/actor-stats/derived-data.mjs";
+import { ensureActorSkillEntries } from "../features/actor-stats/skills.mjs";
 
 export function registerActorDataHooks() {
   Hooks.on("pf1PrepareBaseActorData", (actor) => {

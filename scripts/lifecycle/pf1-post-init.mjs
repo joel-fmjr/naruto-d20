@@ -1,12 +1,12 @@
 import { MODULE_ID, TECHNIQUE_ITEM_TYPE } from "../constants.mjs";
 import { BUFF_TARGETS } from "../flag-paths.mjs";
-import { registerNarutoSkills } from "../data/skills.mjs";
+import { registerNarutoSkills } from "../features/actor-stats/skills.mjs";
 import { installTechniqueSaveDCPatch } from "../features/techniques/save-dc.mjs";
 import { installTechniqueRollDataPatch } from "../features/techniques/rolldata.mjs";
 import { registerStrengthRankCombat } from "../automation/strength-rank-combat.mjs";
 import { registerSpeedRankAttack } from "../automation/speed-rank-attack.mjs";
 import { registerAttackNoManeuver } from "../automation/attack-no-maneuver.mjs";
-import { registerChakraConditions } from "../data/chakra-conditions.mjs";
+import { registerChakraConditions } from "../features/chakra/conditions.mjs";
 
 function _registerScriptCallCategories() {
   if (!pf1.registry?.scriptCalls) return;

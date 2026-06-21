@@ -11,7 +11,7 @@ import { registerLearnCardContextMenu } from "../features/techniques/learn.mjs";
 import { registerMasterCardContextMenu } from "../features/techniques/master.mjs";
 import { registerNarutoRollContextMenu } from "../chat-rerolls.mjs";
 import { registerTechniqueListListeners } from "../features/techniques/list.mjs";
-import { registerSummaryStats, registerActorSettings } from "../ui/summary-stats.mjs";
+import { registerSummaryStats, registerActorSettings } from "../features/actor-stats/summary-stats.mjs";
 import { registerFeatListListeners } from "../ui/feat-list.mjs";
 import { registerFeatGrantDeletion } from "../automation/feat-grants.mjs";
 import {
@@ -24,8 +24,8 @@ import { registerElementDamage } from "../automation/maintenance-element-damage.
 import { registerRankRollData } from "../automation/rank-rolldata.mjs";
 import { registerTrainingWeightCarryPatch } from "../automation/training-weight-carry.mjs";
 import { registerRankGrantConfig } from "../ui/rank-grant-config.mjs";
-import { registerTapReservesListener } from "../ui/tap-reserves.mjs";
-import { registerChakraConditionCombatHooks } from "../data/chakra-conditions.mjs";
+import { registerTapReservesListener } from "../features/chakra/tap-reserves.mjs";
+import { registerChakraConditionCombatHooks } from "../features/chakra/conditions.mjs";
 
 export function registerSetupHook() {
   Hooks.once("setup", () => {
