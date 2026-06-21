@@ -32,7 +32,8 @@
     "lint:css": "node node_modules/stylelint/bin/stylelint.mjs \"styles/**/*.css\"",
     "lint:format": "prettier --check \"scripts/**/*.mjs\" \"tools/**/*.mjs\" \"styles/**/*.css\" \"lang/**/*.json\"",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:format",
-    "lint:fix": "eslint --fix scripts tools eslint.config.mjs && node node_modules/stylelint/bin/stylelint.mjs --fix \"styles/**/*.css\" && prettier --write \"scripts/**/*.mjs\" \"tools/**/*.mjs\" \"styles/**/*.css\" \"lang/**/*.json\""
+    "lint:fix": "eslint --fix scripts tools eslint.config.mjs && node node_modules/stylelint/bin/stylelint.mjs --fix \"styles/**/*.css\" && prettier --write \"scripts/**/*.mjs\" \"tools/**/*.mjs\" \"styles/**/*.css\" \"lang/**/*.json\"",
+    "validate:imports": "node scripts/dev/check-imports.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
