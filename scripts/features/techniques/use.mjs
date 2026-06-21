@@ -543,7 +543,7 @@ async function postTechniqueSuccessCard(actor, item, cost, spendSummary, perform
 async function applyPostUseAutomation(item, actor, action) {
   if (!game.settings.get(MODULE_ID, "automaticBuffs") || !item.system.automation?.enabled) return;
 
-  const { applyTechniqueBuff } = await import("./automation/buff-application.mjs");
+  const { applyTechniqueBuff } = await import("../../features/automation/buffs/application.mjs");
   try {
     await applyTechniqueBuff(item, actor, action);
   } catch (err) {

@@ -3,9 +3,9 @@ import { BUFF_TARGETS } from "../flag-paths.mjs";
 import { registerNarutoSkills } from "../features/actor-stats/skills.mjs";
 import { installTechniqueSaveDCPatch } from "../features/techniques/save-dc.mjs";
 import { installTechniqueRollDataPatch } from "../features/techniques/rolldata.mjs";
-import { registerStrengthRankCombat } from "../automation/strength-rank-combat.mjs";
-import { registerSpeedRankAttack } from "../automation/speed-rank-attack.mjs";
-import { registerAttackNoManeuver } from "../automation/attack-no-maneuver.mjs";
+import { registerStrengthRankCombat } from "../features/automation/combat/strength-rank-combat.mjs";
+import { registerSpeedRankAttack } from "../features/automation/combat/speed-rank-attack.mjs";
+import { registerAttackNoManeuver } from "../features/automation/combat/attack-no-maneuver.mjs";
 import { registerChakraConditions } from "../features/chakra/conditions.mjs";
 
 function _registerScriptCallCategories() {

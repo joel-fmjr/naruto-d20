@@ -17,12 +17,12 @@ import { registerFeatGrantDeletion } from "../automation/feat-grants.mjs";
 import {
   registerOccupationAutoApply,
   registerOccupationAutoRevert,
-} from "../automation/occupation-grants.mjs";
-import { registerChargeDefensePenalty } from "../automation/charge-defense.mjs";
-import { registerTurnMaintenance } from "../automation/turn-maintenance.mjs";
-import { registerElementDamage } from "../automation/maintenance-element-damage.mjs";
-import { registerRankRollData } from "../automation/rank-rolldata.mjs";
-import { registerTrainingWeightCarryPatch } from "../automation/training-weight-carry.mjs";
+} from "../features/automation/occupations/grants.mjs";
+import { registerChargeDefensePenalty } from "../features/automation/combat/charge-defense.mjs";
+import { registerTurnMaintenance } from "../features/automation/maintenance/turn-maintenance.mjs";
+import { registerElementDamage } from "../features/automation/maintenance/element-damage.mjs";
+import { registerRankRollData } from "../features/automation/ranks/rolldata.mjs";
+import { registerTrainingWeightCarryPatch } from "../features/automation/training/weight-carry.mjs";
 import { registerRankGrantConfig } from "../ui/rank-grant-config.mjs";
 import { registerTapReservesListener } from "../features/chakra/tap-reserves.mjs";
 import { registerChakraConditionCombatHooks } from "../features/chakra/conditions.mjs";
