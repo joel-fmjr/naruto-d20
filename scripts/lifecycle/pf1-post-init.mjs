@@ -1,4 +1,4 @@
-import { MODULE_ID, TECHNIQUE_ITEM_TYPE } from "../core/constants.mjs";
+import { TECHNIQUE_ITEM_TYPE } from "../core/constants.mjs";
 import { BUFF_TARGETS } from "../core/flag-paths.mjs";
 import { registerNarutoSkills } from "../features/actor-stats/skills.mjs";
 import { installTechniqueSaveDCPatch } from "../features/techniques/save-dc.mjs";

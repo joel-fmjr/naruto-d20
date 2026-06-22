@@ -11,7 +11,6 @@ import {
   findConflictingStanceBuffs,
   findMaintenanceBuffForTechnique,
   isStanceTechnique,
-  maintenanceBuffDuration,
   maintenanceBuffFlagData,
   maintenanceFacets,
   maintenanceModeBuffName,

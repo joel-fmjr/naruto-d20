@@ -82,7 +82,7 @@ export default [
   },
   // Node tooling — CLI scripts in tools/ run under Node.
   {
-    files: ["tools/**/*.mjs", "*.config.mjs"],
+    files: ["tools/**/*.mjs", "scripts/dev/**/*.mjs", "*.config.mjs"],
     languageOptions: {
       ecmaVersion: 2022,
       sourceType: "module",
