@@ -15,7 +15,7 @@ const {
   buildOccupationItemUpdate,
   buildGrantDeletionIds,
   findAppliedOccupationBySlug,
-} = await import("../scripts/automation/occupation-grants.mjs");
+} = await import("../scripts/features/automation/occupations/grants.mjs");
 
 test("fixedClassSkillKeys extracts keys", () => {
   assert.deepEqual(fixedClassSkillKeys({ fixedClassSkills: [{ key: "tai" }, { key: "nin" }] }), [
