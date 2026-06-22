@@ -34,10 +34,10 @@
     "compHandSeals": false,
     "compHalfSeals": false,
     "compConcentration": false,
-    "compMobility": false,
-    "compFocus": false,
+    "compMobility": true,
+    "compFocus": true,
     "compEmpower": false,
-    "compMastery": false,
+    "compMastery": true,
     "compPhysical": false,
     "compXpCost": false,
     "isHijutsu": false,
@@ -93,6 +93,13 @@
     },
     "showInQuickbar": false,
     "showInCombat": false,
+    "automation": {
+      "damageTransform": {
+        "enabled": true,
+        "multiplier": 2,
+        "damageType": "piercing"
+      }
+    },
     "sources": [
       {
         "title": "NarutoD20 Redux v1.3",
