@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { buildPublicApi } from "../scripts/public-api.mjs";
+import { buildPublicApi } from "../scripts/core/public-api.mjs";
 
 // Defensive Foundry-global stubs, matching tests/helpers.test.mjs convention.
 globalThis.foundry ??= { utils: { deepClone: (v) => structuredClone(v) } };

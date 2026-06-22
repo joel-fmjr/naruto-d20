@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
-import { listLearnable, listMasterable } from "../scripts/technique-queries.mjs";
+import { listLearnable, listMasterable } from "../scripts/features/techniques/queries.mjs";
 
 // Defensive Foundry-global stubs, matching tests/helpers.test.mjs convention.
 globalThis.foundry ??= { utils: { deepClone: (v) => structuredClone(v) } };

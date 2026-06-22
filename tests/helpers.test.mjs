@@ -7,7 +7,7 @@ import { describe, it } from "node:test";
 import {
   applyTechniqueSystemDefaults,
   legacyAutomationToMaintenance,
-} from "../scripts/data/technique-defaults.mjs";
+} from "../scripts/features/techniques/defaults.mjs";
 import {
   buildEmpowerDamageFormula,
   empowerPerformIncrease,
@@ -20,12 +20,12 @@ import { maintenanceMigrationPatch } from "../scripts/data/maintenance-migration
 import {
   computeTechniqueDerived,
   createTechniqueDataModel,
-} from "../scripts/data/technique-model.mjs";
+} from "../scripts/features/techniques/model.mjs";
 import {
   allocateTemporaryChakraGrantSpend,
   calculateChakraSpend,
   canPayChakra,
-} from "../scripts/data/chakra-spend.mjs";
+} from "../scripts/features/chakra/spend.mjs";
 import {
   getRankMaintenanceFlag,
   isFiniteRoundDuration,
@@ -37,52 +37,52 @@ import {
   realMaintenanceBuffDuration,
   resolveMaintenanceModel,
   shouldChargeUpkeep,
-} from "../scripts/automation/maintenance-buffs.mjs";
-import { extractTemporaryChakraGrant } from "../scripts/automation/buff-application.mjs";
-import { computeEffectiveRank } from "../scripts/automation/rank-effective-level.mjs";
-import { registerTrainingWeightCarryPatch } from "../scripts/automation/training-weight-carry.mjs";
+} from "../scripts/features/automation/maintenance/buffs.mjs";
+import { extractTemporaryChakraGrant } from "../scripts/features/automation/buffs/application.mjs";
+import { computeEffectiveRank } from "../scripts/features/automation/ranks/effective-level.mjs";
+import { registerTrainingWeightCarryPatch } from "../scripts/features/automation/training/weight-carry.mjs";
 import {
   applyStrengthRankCombatToAttack,
   applyStrengthRankCombatToDamage,
-} from "../scripts/automation/strength-rank-combat.mjs";
-import { applySpeedRankAttack } from "../scripts/automation/speed-rank-attack.mjs";
-import { applyAttackNoManeuver } from "../scripts/automation/attack-no-maneuver.mjs";
-import { getRankGrantType, rankGrantLevel } from "../scripts/automation/rank-buffs.mjs";
+} from "../scripts/features/automation/combat/strength-rank-combat.mjs";
+import { applySpeedRankAttack } from "../scripts/features/automation/combat/speed-rank-attack.mjs";
+import { applyAttackNoManeuver } from "../scripts/features/automation/combat/attack-no-maneuver.mjs";
+import { getRankGrantType, rankGrantLevel } from "../scripts/features/automation/ranks/buffs.mjs";
 import {
   legacyRankBuffToMaintenance,
   rankMaintenanceFromContext,
 } from "../scripts/data/maintenance-migration.mjs";
-import { elementCount } from "../scripts/automation/maintenance-element-damage.mjs";
-import { diffTechnique, normalizeSystem } from "../scripts/automation/technique-sync.mjs";
+import { elementCount } from "../scripts/features/automation/maintenance/element-damage.mjs";
+import { diffTechnique, normalizeSystem } from "../scripts/features/techniques/sync.mjs";
 import {
   LEARNING_MODES,
   buildLearnAttemptResult,
   getLearningMaxAttempts,
   getLearningTargetProgress,
-} from "../scripts/learn-technique.mjs";
+} from "../scripts/features/techniques/learn.mjs";
 import {
   deriveAttackCategories,
   parseWeaponAttackConfig,
   readWeaponAttackRaw,
-} from "../scripts/ui/technique-weapon-attack.mjs";
+} from "../scripts/features/techniques/weapon-attack.mjs";
 import {
   getHighestLearnedStrengthRank,
   getIgnoredTrainingWeightTotal,
   getTrainingWeightLearnBonus,
   getTrainingWeightState,
 } from "../scripts/data/training-weights.mjs";
-import { buildLearnCheckBreakdown } from "../scripts/data/bonus-sources.mjs";
+import { buildLearnCheckBreakdown } from "../scripts/features/chakra/bonus-sources.mjs";
 import { validateCompendia } from "../tools/validate-compendia.mjs";
-import { calculateChakraDamage } from "../scripts/data/chakra-damage.mjs";
+import { calculateChakraDamage } from "../scripts/features/chakra/damage.mjs";
 import {
   checkAndUpdateConditions,
   registerChakraConditionCombatHooks,
   resolveChakraConditionState,
-} from "../scripts/data/chakra-conditions.mjs";
-import { onActorRest } from "../scripts/data/rest-recovery.mjs";
-import { BUFF_TARGETS } from "../scripts/flag-paths.mjs";
+} from "../scripts/features/chakra/conditions.mjs";
+import { onActorRest } from "../scripts/features/chakra/rest-recovery.mjs";
+import { BUFF_TARGETS } from "../scripts/core/flag-paths.mjs";
 import { rollHpCost } from "../scripts/data/hp-cost.mjs";
-import { applyConditionBenefits } from "../scripts/automation/condition-benefits.mjs";
+import { applyConditionBenefits } from "../scripts/features/automation/buffs/condition-benefits.mjs";
 
 globalThis.Math.clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
@@ -218,6 +218,7 @@ describe("technique defaults", () => {
       waiverStep: 2,
       freeRounds: 5,
       choice: "",
+      allowStanceStacking: false,
       heal: "",
       clearConditions: "",
       element: false,
@@ -323,7 +324,7 @@ describe("technique defaults", () => {
       normalizerKeys,
       schemaKeys,
       "applyTechniqueSystemDefaults must default every automation.maintenance schema field " +
-        "(see scripts/data/technique-defaults.mjs) or synckit will flag unedited techniques out-of-date",
+        "(see scripts/features/techniques/defaults.mjs) or synckit will flag unedited techniques out-of-date",
     );
   });
 
@@ -372,7 +373,7 @@ describe("technique defaults", () => {
       normalizerKeys,
       schemaKeys,
       "applyTechniqueSystemDefaults must default every automation.empower schema field " +
-        "(see scripts/data/technique-defaults.mjs) or synckit will flag unedited techniques out-of-date",
+        "(see scripts/features/techniques/defaults.mjs) or synckit will flag unedited techniques out-of-date",
     );
   });
 });
@@ -548,6 +549,7 @@ describe("maintenance facets", () => {
       waiverStep: 2,
       freeRounds: 5,
       choice: "",
+      allowStanceStacking: false,
       heal: "",
       clearConditions: [],
     });
@@ -755,6 +757,7 @@ describe("weaponAttack parsing", () => {
       extraAttacks: [],
       held: "",
       charge: true,
+      suppressedBonuses: [],
     });
   });
 
