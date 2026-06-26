@@ -4,7 +4,7 @@ import { performTechnique } from "./use.mjs";
 const PATCH_KEY = Symbol.for("naruto-d20.techniqueUseRoutingPatched");
 
 export function resolveTechniqueUseActionId(item, requestedActionId = "") {
-  if (requestedActionId && item.actions?.get?.(requestedActionId)) return requestedActionId;
+  if (requestedActionId != null && requestedActionId !== "") return requestedActionId;
   if (item.defaultAction?.id) return item.defaultAction.id;
   return Array.from(item.actions?.values?.() ?? item.actions ?? [])[0]?.id ?? "";
 }

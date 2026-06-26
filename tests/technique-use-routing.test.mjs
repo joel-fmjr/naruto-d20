@@ -41,6 +41,11 @@ describe("resolveTechniqueUseActionId", () => {
     assert.equal(resolveTechniqueUseActionId(item, "second"), "second");
   });
 
+  it("keeps an unknown requested action id", () => {
+    const item = techniqueItem([action("first")]);
+    assert.equal(resolveTechniqueUseActionId(item, "missing"), "missing");
+  });
+
   it("falls back to the default action id", () => {
     const item = techniqueItem([action("first")], { defaultAction: action("default") });
     assert.equal(resolveTechniqueUseActionId(item, ""), "default");
