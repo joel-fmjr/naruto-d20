@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.3.2 - 2026-06-26
+
+- Added **buff change target category reorganization** (#168): the technique-buff automation UI and underlying data now group change targets by functional category, making large buff definitions easier to scan and configure without changing runtime behavior.
+- Added **generic static empower support** (#169): compendium techniques that describe fixed-value empower scaling can now be represented with the same automation path used by dice-based empower, instead of relying on hardcoded per-technique handling. Configured **KAEN SHURIKEN (BLAZING SHURIKEN)** and **RAISHURIKEN NO JUTSU (LIGHTNING SHURIKEN TECHNIQUE)** to use the new generic setup.
+- Added **Seishuku Ame Ryuu empower/template configuration**: **MABOROSHI SENBON AME** now ships with configured empower automation and its initial burst template, and **HARIKAKOU NO JUTSU** now ships with empower automation while preserving its existing burst template.
+
 ## v1.3.1 - 2026-06-25
 
 - Added **Hachimon Tonkou learn-check handling** (#164): Hachimon Tonkou learning now rolls against the actor's best base learn discipline instead of using an unmapped discipline. The special check keeps character level, the chosen ability modifier, and manual misc bonuses, while excluding normal learn-only bonuses such as synergy, affinity conditionals, buffs, and training weights.

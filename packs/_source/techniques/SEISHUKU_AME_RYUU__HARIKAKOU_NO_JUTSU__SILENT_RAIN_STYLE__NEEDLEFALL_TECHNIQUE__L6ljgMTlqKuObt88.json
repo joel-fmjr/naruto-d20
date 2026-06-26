@@ -35,7 +35,7 @@
     "compConcentration": false,
     "compMobility": false,
     "compFocus": true,
-    "compEmpower": false,
+    "compEmpower": true,
     "compMastery": false,
     "compExpendable": false,
     "compPhysical": false,
@@ -46,6 +46,20 @@
     "performMiscBonus": 0,
     "active": false,
     "changes": [],
+    "automation": {
+      "enabled": false,
+      "targetMode": "auto",
+      "empower": {
+        "enabled": true,
+        "mode": "damageBonus",
+        "costPerStep": 1,
+        "formulaPerStep": "1d6",
+        "damageTypes": [],
+        "maxStepsFormula": "4",
+        "performIncreaseEvery": 0,
+        "performIncreaseAmount": 0
+      }
+    },
     "actions": [
       {
         "_id": "70a7fc27ec8dc120",

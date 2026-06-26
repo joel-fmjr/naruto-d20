@@ -1,4 +1,1 @@
-2026/06/09-11:33:46.928106 16ee13000 Log #105: 0 ops saved to Table #106 OK
-2026/06/09-11:33:46.928590 16ee13000 Archiving /Users/joelfmjr/foundrydata/Data/modules/naruto-d20/packs/classes/000105.log: OK
-2026/06/09-11:33:46.930541 16ee13000 Table #102: 108 entries OK
-2026/06/09-11:33:46.930825 16ee13000 **** Repaired leveldb /Users/joelfmjr/foundrydata/Data/modules/naruto-d20/packs/classes; recovered 1 files; 536591 bytes. Some data may have been lost. ****
+2026/06/09-11:34:10.055311 16f2ef000 Delete type=3 #1
