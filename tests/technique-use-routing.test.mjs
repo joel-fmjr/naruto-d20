@@ -84,6 +84,18 @@ describe("routeTechniqueItemUse", () => {
     assert.deepEqual(calls[0][4], { token: "token" });
   });
 
+  it("passes null token context when no token option was provided", async () => {
+    const item = techniqueItem([action("first")]);
+    const result = await routeTechniqueItemUse(
+      item,
+      { ev: "event" },
+      async () => "native",
+      async (_item, _actionId, _event, context) => context,
+    );
+
+    assert.deepEqual(result, { token: null });
+  });
+
   it("passes non-technique item use through to native PF1e use", async () => {
     const item = { type: "weapon" };
     const result = await routeTechniqueItemUse(

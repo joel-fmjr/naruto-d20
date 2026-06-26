@@ -268,6 +268,7 @@ export async function rollSelectedWeaponAttackWithTechnique({
   actor,
   config,
   event,
+  token = null,
   empower = null,
 }) {
   const selection = await selectTechniqueWeaponAttack(actor, technique, config);
@@ -330,6 +331,7 @@ export async function rollSelectedWeaponAttackWithTechnique({
       actionId: selection.action.id,
       skipDialog: false,
       ev: event,
+      token,
       options,
     });
   } finally {
