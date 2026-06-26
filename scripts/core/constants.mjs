@@ -1,5 +1,6 @@
 export const MODULE_ID = "naruto-d20";
 export const TECHNIQUE_ITEM_TYPE = "naruto-d20.technique";
+export const NATIVE_TECHNIQUE_USE_OPTION = Symbol.for("naruto-d20.nativeTechniqueUse");
 export const MAX_MASTERY_STEP = 5;
 
 export const MAIN_DISCIPLINES = ["Chakra Control", "Fuinjutsu", "Genjutsu", "Ninjutsu", "Taijutsu"];
