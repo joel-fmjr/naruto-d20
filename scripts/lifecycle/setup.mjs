@@ -11,6 +11,7 @@ import { registerLearnCardContextMenu } from "../features/techniques/learn.mjs";
 import { registerMasterCardContextMenu } from "../features/techniques/master.mjs";
 import { registerNarutoRollContextMenu } from "../features/chat/rerolls.mjs";
 import { registerTechniqueListListeners } from "../features/techniques/list.mjs";
+import { installTechniqueUseRoutingPatch } from "../features/techniques/use-routing.mjs";
 import {
   registerSummaryStats,
   registerActorSettings,
@@ -41,6 +42,7 @@ export function registerSetupHook() {
     registerLearnCardContextMenu(); // learn chat card → right-click "Add Action Point"
     registerMasterCardContextMenu(); // mastery chat card → right-click "Add Action Point"
     registerNarutoRollContextMenu(); // Naruto d20 cards → AP / reroll context menu
+    installTechniqueUseRoutingPatch(); // PF1e quickbar/token HUD/hotbar technique use -> performTechnique
     registerTechniqueListListeners(); // chakra tab: filter, drop zone, CRUD
     registerSummaryStats(); // Hero Statistics block on the Summary tab
     registerActorSettings(); // Has Chakra toggle in the Settings tab
