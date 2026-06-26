@@ -46,6 +46,22 @@
     "performMiscBonus": 0,
     "active": false,
     "changes": [],
+    "automation": {
+      "enabled": false,
+      "targetMode": "auto",
+      "empower": {
+        "enabled": true,
+        "mode": "damageBonus",
+        "costPerStep": 1,
+        "formulaPerStep": "4",
+        "damageTypes": [
+          "wind"
+        ],
+        "maxStepsFormula": "5",
+        "performIncreaseEvery": 0,
+        "performIncreaseAmount": 0
+      }
+    },
     "actions": [
       {
         "_id": "sZ6QMevYvJ4jKZN1",

@@ -415,6 +415,8 @@ describe("technique empower helpers", () => {
     assert.equal(buildEmpowerDamageFormula({ steps: 3, formulaPerStep: "1d6" }), "3d6[Empower]");
     assert.equal(buildEmpowerDamageFormula({ steps: 2, formulaPerStep: "1d8" }), "2d8[Empower]");
     assert.equal(buildEmpowerDamageFormula({ steps: 2, formulaPerStep: "1d6+1" }), "2 * (1d6+1)[Empower]");
+    assert.equal(buildEmpowerDamageFormula({ steps: 5, formulaPerStep: "1" }), "5 * (1)[Empower]");
+    assert.equal(buildEmpowerDamageFormula({ steps: 3, formulaPerStep: "4" }), "3 * (4)[Empower]");
   });
 
   it("computes perform DC increases by complete groups", () => {
@@ -463,6 +465,30 @@ describe("technique empower helpers", () => {
         damageFormula: "3d8[Empower]",
         damageTypes: ["untyped"],
         performIncrease: 1,
+      },
+    );
+
+    assert.deepEqual(
+      resolveEmpowerUse({
+        config: {
+          enabled: true,
+          mode: "damageBonus",
+          costPerStep: 1,
+          formulaPerStep: "1",
+          damageTypes: ["fire"],
+          performIncreaseEvery: 0,
+          performIncreaseAmount: 0,
+        },
+        steps: 5,
+        baseCost: 1,
+      }),
+      {
+        steps: 5,
+        extraCost: 5,
+        totalCost: 6,
+        damageFormula: "5 * (1)[Empower]",
+        damageTypes: ["fire"],
+        performIncrease: 0,
       },
     );
   });
