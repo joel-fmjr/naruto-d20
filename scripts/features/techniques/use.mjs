@@ -1,4 +1,4 @@
-import { MODULE_ID } from "../../core/constants.mjs";
+import { MODULE_ID, NATIVE_TECHNIQUE_USE_OPTION } from "../../core/constants.mjs";
 import { DISCIPLINE_SKILL_MAP } from "../actor-stats/skills.mjs";
 import {
   applyChakraSpend,
@@ -116,12 +116,12 @@ function installTechniqueActionUseHook(item, actor, action, cleanup, empower = n
   return hook;
 }
 
-export async function performTechnique(item, actionId, event = null) {
-  const context = validateTechniqueUse(item, actionId);
-  if (!context) return;
+export async function performTechnique(item, actionId, event = null, context = {}) {
+  const validated = validateTechniqueUse(item, actionId);
+  if (!validated) return;
 
-  const { actor, actionIndex } = context;
-  let { cost } = context;
+  const { actor, actionIndex } = validated;
+  let { cost } = validated;
   let currentItem = item;
 
   const freeUseChoice = await resolveRankMasteryFreeUseChoice(item, actor, cost);
@@ -217,6 +217,7 @@ export async function performTechnique(item, actionId, event = null) {
 
     const useResult = await useTechniqueAction(current.item, current.action, actor, event, {
       empower,
+      token: context.token ?? null,
     });
     if (!useResult || useResult.err) return;
 
@@ -473,6 +474,7 @@ async function useTechniqueAction(item, action, actor, event, options = {}) {
       config: weaponAttackConfig,
       event,
       empower: options.empower,
+      token: options.token ?? null,
     });
   }
 
@@ -480,9 +482,11 @@ async function useTechniqueAction(item, action, actor, event, options = {}) {
   installTechniqueActionUseHook(item, actor, action, cleanup, options.empower);
   try {
     const useResult = await item.use({
+      [NATIVE_TECHNIQUE_USE_OPTION]: true,
       actionId: action.id,
       skipDialog: !(action.hasAttack || action.hasDamage),
       ev: event,
+      token: options.token ?? null,
     });
 
     // Charge defense penalty is applied by the global pf1PostActionUse hook
