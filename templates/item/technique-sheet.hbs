@@ -278,6 +278,11 @@
               <div class="item-name">
                 <div class="item-image no-hover" style='background-image: url("{{img}}")'></div>
                 <h4>{{name}}</h4>
+                {{#if @root.weaponAttackSummary.enabled}}
+                <span class="tag weapon-attack-summary" data-tooltip="{{@root.weaponAttackSummary.label}}">
+                  {{@root.weaponAttackSummary.label}}
+                </span>
+                {{/if}}
               </div>
               <div class="item-detail item-uses flexrow"></div>
               <div class="action-controls item-controls">
@@ -532,6 +537,11 @@
                 <div class="item-name">
                   <div class="item-image no-hover" style='background-image: url("{{img}}")'></div>
                   <h4>{{name}}</h4>
+                  {{#if @root.weaponAttackSummary.enabled}}
+                  <span class="tag weapon-attack-summary" data-tooltip="{{@root.weaponAttackSummary.label}}">
+                    {{@root.weaponAttackSummary.label}}
+                  </span>
+                  {{/if}}
                 </div>
 
                 {{#if @root.isGM}}
@@ -583,6 +593,106 @@
           <input type="checkbox" name="system.automation.enabled" {{checked system.automation.enabled}}>
           {{localize "NarutoD20.Automation.Enabled.Label"}}
         </label>
+      </div>
+
+      <h3 class="form-header">{{localize "NarutoD20.WeaponAttack.Header"}}</h3>
+
+      <div class="weapon-attack-config">
+        <label class="checkbox">
+          <input type="checkbox" name="system.weaponAttack.enabled" {{checked weaponAttack.enabled}}>
+          {{localize "NarutoD20.WeaponAttack.Enabled.Label"}}
+        </label>
+        <p class="hint">{{localize "NarutoD20.WeaponAttack.Enabled.Hint"}}</p>
+
+        {{#if weaponAttack.enabled}}
+        <div class="form-group">
+          <label>{{localize "NarutoD20.WeaponAttack.Preset.Label"}}</label>
+          <select name="system.weaponAttack.preset">
+            {{selectOptions weaponAttackPresetChoices selected=weaponAttack.preset}}
+          </select>
+          <p class="hint">{{localize "NarutoD20.WeaponAttack.Preset.Hint"}}</p>
+        </div>
+
+        <div class="weapon-attack-grid">
+          <section>
+            <h4>{{localize "NarutoD20.WeaponAttack.Basic.Header"}}</h4>
+            <div class="form-group">
+              <label>{{localize "NarutoD20.WeaponAttack.Filter.Label"}}</label>
+              <select name="system.weaponAttack.filter">
+                {{selectOptions weaponAttackFilterChoices selected=weaponAttack.filter}}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>{{localize "NarutoD20.WeaponAttack.DamageMode.Label"}}</label>
+              <select name="system.weaponAttack.damageMode">
+                {{selectOptions weaponAttackDamageModeChoices selected=weaponAttack.damageMode}}
+              </select>
+            </div>
+            <div class="form-group">
+              <label>{{localize "NarutoD20.WeaponAttack.Held.Label"}}</label>
+              <select name="system.weaponAttack.held">
+                {{selectOptions weaponAttackHeldChoices selected=weaponAttack.held}}
+              </select>
+            </div>
+            <label class="checkbox">
+              <input type="checkbox" name="system.weaponAttack.charge" {{checked weaponAttack.charge}}>
+              {{localize "NarutoD20.WeaponAttack.Charge.Label"}}
+            </label>
+          </section>
+
+          <section>
+            <h4>{{localize "NarutoD20.WeaponAttack.Modifiers.Header"}}</h4>
+            <div class="form-group">
+              <label>{{localize "NarutoD20.WeaponAttack.AttackBonus.Label"}}</label>
+              <input type="text" name="system.weaponAttack.attackBonus" value="{{weaponAttack.attackBonus}}">
+            </div>
+            <div class="form-group">
+              <label>{{localize "NarutoD20.WeaponAttack.DamageBonus.Label"}}</label>
+              <input type="text" name="system.weaponAttack.damageBonus" value="{{weaponAttack.damageBonus}}">
+            </div>
+            <div class="form-group">
+              <label>{{localize "NarutoD20.WeaponAttack.NonCritDamageBonus.Label"}}</label>
+              <input type="text" name="system.weaponAttack.nonCritDamageBonus" value="{{weaponAttack.nonCritDamageBonus}}">
+            </div>
+          </section>
+        </div>
+
+        <section class="weapon-attack-subsection">
+          <h4>{{localize "NarutoD20.WeaponAttack.Combo.Header"}}</h4>
+          <div class="form-group stacked">
+            <label>{{localize "NarutoD20.WeaponAttack.ExtraAttacks.Label"}}</label>
+            <textarea name="system.weaponAttack.extraAttacksText" rows="3">{{weaponAttack.extraAttacksText}}</textarea>
+            <p class="hint">{{localize "NarutoD20.WeaponAttack.ExtraAttacks.Hint"}}</p>
+          </div>
+          <label class="checkbox">
+            <input type="checkbox" name="system.weaponAttack.iteratives" {{checked weaponAttack.iteratives}}>
+            {{localize "NarutoD20.WeaponAttack.Iteratives.Label"}}
+          </label>
+        </section>
+
+        <section class="weapon-attack-subsection">
+          <h4>{{localize "NarutoD20.WeaponAttack.Suppression.Header"}}</h4>
+          <label class="checkbox">
+            <input type="checkbox" name="system.weaponAttack.suppressNaturalAttack" {{checked weaponAttack.suppressNaturalAttack}}>
+            {{localize "NarutoD20.WeaponAttack.SuppressNaturalAttack.Label"}}
+          </label>
+          <label class="checkbox">
+            <input type="checkbox" name="system.weaponAttack.suppressAbilityDamage" {{checked weaponAttack.suppressAbilityDamage}}>
+            {{localize "NarutoD20.WeaponAttack.SuppressAbilityDamage.Label"}}
+          </label>
+        </section>
+
+        {{#if weaponAttack.warnings.length}}
+        <div class="weapon-attack-warnings">
+          <strong>{{localize "NarutoD20.WeaponAttack.Warnings.Label"}}</strong>
+          <ul>
+            {{#each weaponAttack.warnings}}
+            <li>{{this}}</li>
+            {{/each}}
+          </ul>
+        </div>
+        {{/if}}
+        {{/if}}
       </div>
 
       <h3 class="form-header">{{localize "NarutoD20.Empower.Header"}}</h3>

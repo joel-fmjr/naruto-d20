@@ -116,3 +116,50 @@
   padding: 2px 4px;
   vertical-align: middle;
 }
+
+.pf1.sheet.item .weapon-attack-config {
+  border: 1px solid rgba(120, 96, 54, 0.35);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
+.pf1.sheet.item .weapon-attack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.pf1.sheet.item .weapon-attack-grid h4,
+.pf1.sheet.item .weapon-attack-subsection h4 {
+  border-bottom: 1px solid rgba(120, 96, 54, 0.25);
+  margin: 4px 0 6px;
+  padding-bottom: 2px;
+}
+
+.pf1.sheet.item .weapon-attack-subsection {
+  margin-top: 8px;
+}
+
+.pf1.sheet.item .weapon-attack-summary {
+  display: inline-block;
+  margin-left: 6px;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.pf1.sheet.item .weapon-attack-warnings {
+  background: rgba(155, 70, 40, 0.12);
+  border: 1px solid rgba(155, 70, 40, 0.35);
+  border-radius: 4px;
+  margin-top: 8px;
+  padding: 6px 8px;
+}
+
+.pf1.sheet.item .weapon-attack-warnings ul {
+  margin: 4px 0 0 18px;
+  padding: 0;
+}
