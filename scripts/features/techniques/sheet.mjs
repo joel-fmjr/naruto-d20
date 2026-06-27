@@ -16,9 +16,9 @@ import { canAffordTechnique, performTechnique } from "./use.mjs";
 import { renderTechniqueHeader } from "./header.mjs";
 import {
   applyWeaponAttackPreset,
-  buildWeaponAttackDictionaryUpdates,
   buildWeaponAttackFormData,
   buildWeaponAttackSummary,
+  normalizeExtraAttacksText,
   removeSyntheticWeaponAttackFormFields,
   WEAPON_ATTACK_DAMAGE_MODE_CHOICES,
   WEAPON_ATTACK_FILTER_CHOICES,
@@ -361,25 +361,51 @@ export function createTechniqueItemSheet() {
         key.startsWith("system.weaponAttack."),
       );
       if (hasWeaponAttackFormData) {
-        const weaponAttackEnabled = formData["system.weaponAttack.enabled"] === true;
-        const hasCompleteEnabledPayload = WEAPON_ATTACK_REQUIRED_FORM_KEYS.every((key) =>
-          Object.hasOwn(formData, key),
-        );
-        const shouldNormalizeWeaponAttack = !weaponAttackEnabled || hasCompleteEnabledPayload;
-        if (shouldNormalizeWeaponAttack) {
-          const weaponAttackForm = weaponAttackFormDataFromForm(formData);
-          const preset = weaponAttackForm.preset;
-          const normalizedWeaponAttack =
-            preset && preset !== "custom"
-              ? applyWeaponAttackPreset(preset, weaponAttackForm)
-              : weaponAttackForm;
-          const weaponAttackUpdates = buildWeaponAttackDictionaryUpdates(
-            normalizedWeaponAttack,
-            this.item.system.flags?.dictionary ?? {},
-          );
-          removeSyntheticWeaponAttackFormFields(formData);
-          Object.assign(formData, weaponAttackUpdates);
+        const weaponAttackForm = weaponAttackFormDataFromForm(formData);
+        const preset = weaponAttackForm.preset;
+        const normalizedWeaponAttack =
+          preset && preset !== "custom"
+            ? applyWeaponAttackPreset(preset, weaponAttackForm)
+            : weaponAttackForm;
+
+        // Build the new dictionary wholesale to avoid expandObject dot-splitting.
+        // Dotted keys like "weaponAttack.mode" are literal flat keys in the ObjectField —
+        // writing them as dotted update paths causes expandObject to split on dots and
+        // produce a nested structure instead of flat entries.
+        const newDict = { ...(this.item.system.flags?.dictionary ?? {}) };
+        for (const k of Object.keys(newDict)) {
+          if (k === "weaponAttack" || k.startsWith("weaponAttack.")) delete newDict[k];
         }
+
+        if (normalizedWeaponAttack.enabled === true) {
+          newDict["weaponAttack.mode"] = "selected";
+          newDict["weaponAttack.filter"] = normalizedWeaponAttack.filter || "meleeWeapon";
+          newDict["weaponAttack.damageMode"] = normalizedWeaponAttack.damageMode || "add";
+          if (normalizedWeaponAttack.attackBonus?.trim())
+            newDict["weaponAttack.attackBonus"] = normalizedWeaponAttack.attackBonus.trim();
+          if (normalizedWeaponAttack.damageBonus?.trim())
+            newDict["weaponAttack.damageBonus"] = normalizedWeaponAttack.damageBonus.trim();
+          if (normalizedWeaponAttack.nonCritDamageBonus?.trim())
+            newDict["weaponAttack.nonCritDamageBonus"] =
+              normalizedWeaponAttack.nonCritDamageBonus.trim();
+          if (normalizedWeaponAttack.held?.trim())
+            newDict["weaponAttack.held"] = normalizedWeaponAttack.held.trim();
+          if (normalizedWeaponAttack.charge === true) newDict["weaponAttack.charge"] = "true";
+          if (normalizedWeaponAttack.iteratives === false)
+            newDict["weaponAttack.iteratives"] = "false";
+          const extraAttacks = normalizeExtraAttacksText(normalizedWeaponAttack.extraAttacksText);
+          if (extraAttacks) newDict["weaponAttack.extraAttacks"] = extraAttacks;
+          const suppressions = [];
+          if (normalizedWeaponAttack.suppressNaturalAttack === true)
+            suppressions.push("naturalAttack");
+          if (normalizedWeaponAttack.suppressAbilityDamage === true)
+            suppressions.push("abilityDamage");
+          if (suppressions.length)
+            newDict["weaponAttack.suppressedBonuses"] = suppressions.join(",");
+        }
+
+        formData["system.flags.dictionary"] = newDict;
+        removeSyntheticWeaponAttackFormFields(formData);
       }
 
       return super._updateObject(event, formData);
