@@ -606,7 +606,7 @@
 
         <div class="form-group">
           <label>{{localize "NarutoD20.WeaponAttack.Preset.Label"}}</label>
-          <select name="system.weaponAttack.preset">
+          <select name="weaponAttack-preset">
             {{selectOptions weaponAttackPresetChoices selected=weaponAttack.preset}}
           </select>
           <p class="hint">{{localize "NarutoD20.WeaponAttack.Preset.Hint"}}</p>
@@ -660,7 +660,7 @@
           <h4>{{localize "NarutoD20.WeaponAttack.Combo.Header"}}</h4>
           <div class="form-group stacked">
             <label>{{localize "NarutoD20.WeaponAttack.ExtraAttacks.Label"}}</label>
-            <textarea name="system.weaponAttack.extraAttacksText" rows="3">{{weaponAttack.extraAttacksText}}</textarea>
+            <textarea name="weaponAttack-extraAttacksText" rows="3">{{weaponAttack.extraAttacksText}}</textarea>
             <p class="hint">{{localize "NarutoD20.WeaponAttack.ExtraAttacks.Hint"}}</p>
           </div>
           <label class="checkbox">
@@ -681,16 +681,6 @@
           </label>
         </section>
 
-        {{#if weaponAttack.warnings.length}}
-        <div class="weapon-attack-warnings">
-          <strong>{{localize "NarutoD20.WeaponAttack.Warnings.Label"}}</strong>
-          <ul>
-            {{#each weaponAttack.warnings}}
-            <li>{{this}}</li>
-            {{/each}}
-          </ul>
-        </div>
-        {{/if}}
       </div>
 
       <h3 class="form-header">{{localize "NarutoD20.Empower.Header"}}</h3>

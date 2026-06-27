@@ -18,13 +18,11 @@ import {
   applyWeaponAttackPreset,
   buildWeaponAttackFormData,
   buildWeaponAttackSummary,
-  normalizeExtraAttacksText,
-  removeSyntheticWeaponAttackFormFields,
+  extraAttacksArrayFromText,
   WEAPON_ATTACK_DAMAGE_MODE_CHOICES,
   WEAPON_ATTACK_FILTER_CHOICES,
   WEAPON_ATTACK_HELD_CHOICES,
   WEAPON_ATTACK_PRESET_CHOICES,
-  weaponAttackFormDataFromForm,
 } from "./weapon-attack-sheet.mjs";
 import { resolveDroppedItem } from "../../utils/drag-drop.mjs";
 
@@ -34,20 +32,7 @@ const SPECIAL_DESCRIPTOR_FLAGS = {
   Kinjutsu: "system.isKinjutsu",
 };
 
-const WEAPON_ATTACK_REQUIRED_FORM_KEYS = [
-  "system.weaponAttack.enabled",
-  "system.weaponAttack.filter",
-  "system.weaponAttack.damageMode",
-  "system.weaponAttack.held",
-  "system.weaponAttack.charge",
-  "system.weaponAttack.iteratives",
-  "system.weaponAttack.attackBonus",
-  "system.weaponAttack.damageBonus",
-  "system.weaponAttack.nonCritDamageBonus",
-  "system.weaponAttack.extraAttacksText",
-  "system.weaponAttack.suppressNaturalAttack",
-  "system.weaponAttack.suppressAbilityDamage",
-];
+
 
 function localizeChoices(choices) {
   return Object.fromEntries(
@@ -322,7 +307,7 @@ export function createTechniqueItemSheet() {
       html.on("change", ".descriptor-checkbox", this._onDescriptorToggle.bind(this));
       html.on(
         "change",
-        "select[name='system.weaponAttack.preset']",
+        "select[name='weaponAttack-preset']",
         this._onWeaponAttackPreset.bind(this),
       );
 
@@ -357,56 +342,13 @@ export function createTechniqueItemSheet() {
           .filter(Boolean);
       }
 
-      const hasWeaponAttackFormData = Object.keys(formData).some((key) =>
-        key.startsWith("system.weaponAttack."),
-      );
-      if (hasWeaponAttackFormData) {
-        const normalizedWeaponAttack = weaponAttackFormDataFromForm(formData);
-
-        // Build a partial dictionary update object with deletion markers for existing
-        // weaponAttack.* entries (both the flat dotted-key format used by old compendium
-        // data and the nested-object format used after the first UI save).
-        // We use "-=key" markers *inside* the value object so mergeObject at the
-        // dictionary level handles them as literal key deletions (delete original[kk]),
-        // not as expandObject path splits. New config is written as a nested object
-        // ("weaponAttack": {...}) which avoids all dot-splitting issues on the write side.
-        const existingDict = this.item.system.flags?.dictionary ?? {};
-        const dictUpdate = {};
-        for (const k of Object.keys(existingDict)) {
-          if (k === "weaponAttack" || k.startsWith("weaponAttack.")) {
-            dictUpdate[`-=${k}`] = null;
-          }
-        }
-
-        if (normalizedWeaponAttack.enabled === true) {
-          const cfg = { mode: "selected" };
-          cfg.filter = normalizedWeaponAttack.filter || "meleeWeapon";
-          cfg.damageMode = normalizedWeaponAttack.damageMode || "add";
-          if (normalizedWeaponAttack.attackBonus?.trim())
-            cfg.attackBonus = normalizedWeaponAttack.attackBonus.trim();
-          if (normalizedWeaponAttack.damageBonus?.trim())
-            cfg.damageBonus = normalizedWeaponAttack.damageBonus.trim();
-          if (normalizedWeaponAttack.nonCritDamageBonus?.trim())
-            cfg.nonCritDamageBonus = normalizedWeaponAttack.nonCritDamageBonus.trim();
-          if (normalizedWeaponAttack.held?.trim()) cfg.held = normalizedWeaponAttack.held.trim();
-          if (normalizedWeaponAttack.charge === true) cfg.charge = "true";
-          if (normalizedWeaponAttack.iteratives === false) cfg.iteratives = "false";
-          const extraAttacks = normalizeExtraAttacksText(normalizedWeaponAttack.extraAttacksText);
-          if (extraAttacks) cfg.extraAttacks = extraAttacks;
-          const suppressions = [];
-          if (normalizedWeaponAttack.suppressNaturalAttack === true)
-            suppressions.push("naturalAttack");
-          if (normalizedWeaponAttack.suppressAbilityDamage === true)
-            suppressions.push("abilityDamage");
-          if (suppressions.length) cfg.suppressedBonuses = suppressions.join(",");
-          // Insertion order: deletions first, then the new nested object.
-          // mergeObject processes in this order → delete old entries, then insert new.
-          dictUpdate.weaponAttack = cfg;
-        }
-
-        formData["system.flags.dictionary"] = dictUpdate;
-        removeSyntheticWeaponAttackFormFields(formData);
+      if (typeof formData["weaponAttack-extraAttacksText"] === "string") {
+        formData["system.weaponAttack.extraAttacks"] = extraAttacksArrayFromText(
+          formData["weaponAttack-extraAttacksText"],
+        );
+        delete formData["weaponAttack-extraAttacksText"];
       }
+      delete formData["weaponAttack-preset"];
 
       return super._updateObject(event, formData);
     }
@@ -559,22 +501,29 @@ export function createTechniqueItemSheet() {
 
       const form = event.currentTarget.form;
       const get = (name) => form.elements.namedItem(name);
-      if (WEAPON_ATTACK_REQUIRED_FORM_KEYS.some((name) => !get(name))) return;
+      const fields = [
+        "system.weaponAttack.enabled", "system.weaponAttack.filter", "system.weaponAttack.damageMode",
+        "system.weaponAttack.held", "system.weaponAttack.charge", "system.weaponAttack.iteratives",
+        "system.weaponAttack.attackBonus", "system.weaponAttack.damageBonus",
+        "system.weaponAttack.nonCritDamageBonus", "system.weaponAttack.suppressNaturalAttack",
+        "system.weaponAttack.suppressAbilityDamage", "weaponAttack-extraAttacksText",
+      ];
+      if (fields.some((name) => !get(name))) return;
 
       const current = {
-        enabled: get("system.weaponAttack.enabled")?.checked === true,
+        enabled: get("system.weaponAttack.enabled").checked === true,
         preset,
-        filter: get("system.weaponAttack.filter")?.value ?? "meleeWeapon",
-        damageMode: get("system.weaponAttack.damageMode")?.value ?? "add",
-        attackBonus: get("system.weaponAttack.attackBonus")?.value ?? "",
-        damageBonus: get("system.weaponAttack.damageBonus")?.value ?? "",
-        nonCritDamageBonus: get("system.weaponAttack.nonCritDamageBonus")?.value ?? "",
-        extraAttacksText: get("system.weaponAttack.extraAttacksText")?.value ?? "",
-        held: get("system.weaponAttack.held")?.value ?? "",
-        charge: get("system.weaponAttack.charge")?.checked === true,
-        iteratives: get("system.weaponAttack.iteratives")?.checked === true,
-        suppressNaturalAttack: get("system.weaponAttack.suppressNaturalAttack")?.checked === true,
-        suppressAbilityDamage: get("system.weaponAttack.suppressAbilityDamage")?.checked === true,
+        filter: get("system.weaponAttack.filter").value,
+        damageMode: get("system.weaponAttack.damageMode").value,
+        attackBonus: get("system.weaponAttack.attackBonus").value,
+        damageBonus: get("system.weaponAttack.damageBonus").value,
+        nonCritDamageBonus: get("system.weaponAttack.nonCritDamageBonus").value,
+        extraAttacksText: get("weaponAttack-extraAttacksText").value,
+        held: get("system.weaponAttack.held").value,
+        charge: get("system.weaponAttack.charge").checked === true,
+        iteratives: get("system.weaponAttack.iteratives").checked === true,
+        suppressNaturalAttack: get("system.weaponAttack.suppressNaturalAttack").checked === true,
+        suppressAbilityDamage: get("system.weaponAttack.suppressAbilityDamage").checked === true,
       };
 
       const next = applyWeaponAttackPreset(preset, current);
@@ -587,14 +536,9 @@ export function createTechniqueItemSheet() {
       get("system.weaponAttack.attackBonus").value = next.attackBonus ?? "";
       get("system.weaponAttack.damageBonus").value = next.damageBonus ?? "";
       get("system.weaponAttack.nonCritDamageBonus").value = next.nonCritDamageBonus ?? "";
-      get("system.weaponAttack.extraAttacksText").value = next.extraAttacksText ?? "";
-      get("system.weaponAttack.suppressNaturalAttack").checked =
-        next.suppressNaturalAttack === true;
-      get("system.weaponAttack.suppressAbilityDamage").checked =
-        next.suppressAbilityDamage === true;
-      // Don't reset to "custom" — the user sees the preset they picked while editing.
-      // The preset is never persisted (not in the dictionary), so the select returns to
-      // "custom" naturally on the next render after save.
+      get("weaponAttack-extraAttacksText").value = next.extraAttacksText ?? "";
+      get("system.weaponAttack.suppressNaturalAttack").checked = next.suppressNaturalAttack === true;
+      get("system.weaponAttack.suppressAbilityDamage").checked = next.suppressAbilityDamage === true;
     }
 
     // ─────────────────────────────────────────────────────────────
