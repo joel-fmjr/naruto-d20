@@ -74,21 +74,6 @@ const DAMAGE_TYPES = new Set([
   "water",
   "wind",
 ]);
-const WEAPON_ATTACK_PREFIX = "weaponAttack";
-const WEAPON_ATTACK_KEYS = new Set([
-  "mode",
-  "filter",
-  "damageMode",
-  "attackBonus",
-  "damageBonus",
-  "nonCritDamageBonus",
-  "extraAttacks",
-  "held",
-  "charge",
-  "suppressedBonuses",
-  "iteratives",
-]);
-const WEAPON_ATTACK_MODES = new Set(["selected"]);
 const WEAPON_ATTACK_DAMAGE_MODES = new Set(["add", "replace"]);
 const WEAPON_ATTACK_FILTERS = new Set([
   "meleeWeapon",
@@ -96,7 +81,6 @@ const WEAPON_ATTACK_FILTERS = new Set([
   "unarmedOnly",
   "meleeOrUnarmed",
 ]);
-const WEAPON_ATTACK_SUPPRESSED_BONUSES = new Set(["naturalAttack", "abilityDamage"]);
 const TRAINING_WEIGHT_TABLE = Object.freeze({
   1: Object.freeze({ weight: 25, rankPenalty: 1, learnBonus: 1 }),
   2: Object.freeze({ weight: 37.5, rankPenalty: 2, learnBonus: 2 }),
@@ -208,7 +192,7 @@ function validateCommon({ doc, filename, packName, expectedType }) {
   validateActions(packName, filename, doc.system?.actions, {
     technique: doc.type === "naruto-d20.technique",
     range: doc.system?.range,
-    suppressedBonuses: weaponAttackSuppressedBonuses(doc.system?.flags?.dictionary),
+    suppressedAbilityDamage: doc.system?.weaponAttack?.suppressAbilityDamage ?? false,
   });
   validateChanges(packName, filename, doc.system?.changes);
   validateLinks(packName, filename, doc.system?.links);
@@ -231,7 +215,7 @@ function validateActions(
   packName,
   filename,
   actions,
-  { technique = false, range, suppressedBonuses = new Set() } = {},
+  { technique = false, range, suppressedAbilityDamage = false } = {},
 ) {
   if (actions === undefined) return;
   if (!Array.isArray(actions)) {
@@ -256,7 +240,7 @@ function validateActions(
     else seen.add(action._id);
 
     if (technique)
-      validateTechniqueAction(packName, filename, prefix, action, range, suppressedBonuses);
+      validateTechniqueAction(packName, filename, prefix, action, range, suppressedAbilityDamage);
   });
 }
 
@@ -270,7 +254,7 @@ function isMeleeTouchRange(range) {
   );
 }
 
-function validateTechniqueAction(packName, filename, prefix, action, range, suppressedBonuses) {
+function validateTechniqueAction(packName, filename, prefix, action, range, suppressedAbilityDamage) {
   const type = action.actionType;
   if (type === "msak" || type === "rsak") {
     error(
@@ -298,27 +282,11 @@ function validateTechniqueAction(packName, filename, prefix, action, range, supp
     } else if (
       hasActionDamage(action) &&
       damage !== "str" &&
-      !suppressedBonuses.has("abilityDamage")
+      !suppressedAbilityDamage
     ) {
       error(packName, filename, `${prefix} ${type} with damage should use ability.damage="str"`);
     }
   }
-}
-
-function weaponAttackSuppressedBonuses(dict) {
-  if (!isPlainObject(dict)) return new Set();
-
-  const nested =
-    dict[WEAPON_ATTACK_PREFIX] &&
-    typeof dict[WEAPON_ATTACK_PREFIX] === "object" &&
-    !Array.isArray(dict[WEAPON_ATTACK_PREFIX])
-      ? dict[WEAPON_ATTACK_PREFIX]
-      : null;
-  const raw = nested?.suppressedBonuses ?? dict[`${WEAPON_ATTACK_PREFIX}.suppressedBonuses`];
-  if (raw === undefined) return new Set();
-
-  const values = Array.isArray(raw) ? raw : String(raw).split(",");
-  return new Set(values.map((value) => String(value).trim()).filter(Boolean));
 }
 
 function hasActionDamage(action) {
@@ -439,74 +407,34 @@ function validateDamageTransform(packName, filename, damageTransform) {
 }
 
 function validateWeaponAttack(doc, filename, packName) {
-  const dict = doc.system?.flags?.dictionary ?? {};
-  if (!isPlainObject(dict)) {
-    error(packName, filename, "system.flags.dictionary must be an object");
+  const wa = doc.system?.weaponAttack;
+  if (!wa) return;
+
+  if (!isPlainObject(wa)) {
+    error(packName, filename, "system.weaponAttack must be an object");
     return;
   }
 
-  const rawNested = dict[WEAPON_ATTACK_PREFIX];
-  const nested =
-    rawNested && typeof rawNested === "object" && !Array.isArray(rawNested) ? rawNested : null;
-  const malformed = rawNested !== undefined && nested === null;
-  const dottedKeys = Object.keys(dict).filter((k) => k.startsWith(`${WEAPON_ATTACK_PREFIX}.`));
-  const present = malformed || nested !== null || dottedKeys.length > 0;
-  if (!present) return;
+  if (typeof wa.enabled !== "boolean")
+    error(packName, filename, `weaponAttack.enabled must be a boolean`);
 
-  if (malformed)
-    error(
-      packName,
-      filename,
-      `"${WEAPON_ATTACK_PREFIX}" must be an object or use dotted "${WEAPON_ATTACK_PREFIX}.*" keys`,
-    );
+  if (wa.filter !== undefined && !WEAPON_ATTACK_FILTERS.has(wa.filter))
+    error(packName, filename, `unsupported weaponAttack.filter "${wa.filter}"`);
 
-  const values = {};
-  const keys = new Set();
-  if (nested) {
-    for (const [key, value] of Object.entries(nested)) {
-      keys.add(key);
-      values[key] = value;
-    }
-  }
-  for (const dotted of dottedKeys) {
-    const key = dotted.slice(WEAPON_ATTACK_PREFIX.length + 1);
-    keys.add(key);
-    values[key] ??= dict[dotted];
-  }
+  if (wa.damageMode !== undefined && !WEAPON_ATTACK_DAMAGE_MODES.has(wa.damageMode))
+    error(packName, filename, `unsupported weaponAttack.damageMode "${wa.damageMode}"`);
 
-  for (const key of keys) {
-    if (!WEAPON_ATTACK_KEYS.has(key))
-      error(packName, filename, `unknown weaponAttack field "${WEAPON_ATTACK_PREFIX}.${key}"`);
-  }
+  if (wa.charge !== undefined && typeof wa.charge !== "boolean")
+    error(packName, filename, `weaponAttack.charge must be a boolean`);
 
-  const str = (key) => String(values[key] ?? "").trim();
-  const mode = str("mode");
-  if (!mode)
-    error(packName, filename, `weaponAttack.mode is required when weaponAttack config is present`);
-  else if (!WEAPON_ATTACK_MODES.has(mode))
-    error(packName, filename, `unsupported weaponAttack.mode "${mode}"`);
+  if (wa.iteratives !== undefined && typeof wa.iteratives !== "boolean")
+    error(packName, filename, `weaponAttack.iteratives must be a boolean`);
 
-  const filter = str("filter") || "meleeWeapon";
-  if (!WEAPON_ATTACK_FILTERS.has(filter))
-    error(packName, filename, `unsupported weaponAttack.filter "${filter}"`);
+  if (wa.suppressNaturalAttack !== undefined && typeof wa.suppressNaturalAttack !== "boolean")
+    error(packName, filename, `weaponAttack.suppressNaturalAttack must be a boolean`);
 
-  const damageMode = str("damageMode") || "add";
-  if (!WEAPON_ATTACK_DAMAGE_MODES.has(damageMode))
-    error(packName, filename, `unsupported weaponAttack.damageMode "${damageMode}"`);
-
-  const charge = str("charge").toLowerCase();
-  if (charge && charge !== "true" && charge !== "false")
-    error(packName, filename, `weaponAttack.charge must be "true" or "false"`);
-
-  const suppressedBonuses = str("suppressedBonuses");
-  if (suppressedBonuses) {
-    for (const token of suppressedBonuses.split(",")) {
-      const value = token.trim();
-      if (value && !WEAPON_ATTACK_SUPPRESSED_BONUSES.has(value)) {
-        error(packName, filename, `unsupported weaponAttack.suppressedBonuses token "${value}"`);
-      }
-    }
-  }
+  if (wa.suppressAbilityDamage !== undefined && typeof wa.suppressAbilityDamage !== "boolean")
+    error(packName, filename, `weaponAttack.suppressAbilityDamage must be a boolean`);
 }
 
 function validateEmpower(packName, filename, empower, hasComponent) {

@@ -170,13 +170,14 @@ describe("Amatsu no Karada source data", () => {
         "utf8",
       ),
     );
-    const dict = amatsu.system.flags.dictionary;
+    const wa = amatsu.system.weaponAttack;
     const action = amatsu.system.actions[0];
 
-    assert.equal(dict["weaponAttack.mode"], "selected");
-    assert.equal(dict["weaponAttack.filter"], "unarmedOnly");
-    assert.equal(dict["weaponAttack.damageMode"], "replace");
-    assert.equal(dict["weaponAttack.suppressedBonuses"], "naturalAttack,abilityDamage");
+    assert.equal(wa.enabled, true);
+    assert.equal(wa.filter, "unarmedOnly");
+    assert.equal(wa.damageMode, "replace");
+    assert.equal(wa.suppressNaturalAttack, true);
+    assert.equal(wa.suppressAbilityDamage, true);
     assert.equal(action.ability.attack, "dex");
     assert.equal(action.ability.damage, "");
   });

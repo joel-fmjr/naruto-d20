@@ -1927,11 +1927,7 @@ describe("source JSON validation", () => {
           system: {
             rank: 99,
             descriptors: { not: "array" },
-            flags: {
-              dictionary: {
-                weaponAttack: { mode: "wrong", filter: "bad", charge: "maybe", extra: "x" },
-              },
-            },
+            weaponAttack: { enabled: "wrong", filter: "bad", charge: "maybe" },
           },
         }),
       },
@@ -1943,10 +1939,9 @@ describe("source JSON validation", () => {
     assert.equal(result.failed, true);
     assert.ok(messages.some((m) => m.includes("rank must be")));
     assert.ok(messages.some((m) => m.includes("system.descriptors must be an array")));
-    assert.ok(messages.some((m) => m.includes("unknown weaponAttack field")));
-    assert.ok(messages.some((m) => m.includes("unsupported weaponAttack.mode")));
+    assert.ok(messages.some((m) => m.includes("weaponAttack.enabled must be a boolean")));
     assert.ok(messages.some((m) => m.includes("unsupported weaponAttack.filter")));
-    assert.ok(messages.some((m) => m.includes("weaponAttack.charge")));
+    assert.ok(messages.some((m) => m.includes("weaponAttack.charge must be a boolean")));
   });
 
   it("reports Training Weight source mistakes", () => {

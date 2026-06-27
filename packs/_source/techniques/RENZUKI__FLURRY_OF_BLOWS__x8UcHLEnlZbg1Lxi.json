@@ -83,11 +83,7 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {
-        "weaponAttack.mode": "selected",
-        "weaponAttack.filter": "unarmedOnly",
-        "weaponAttack.attackBonus": "-3[Renzuki]"
-      }
+      "dictionary": {}
     },
     "showInQuickbar": false,
     "showInCombat": false,
@@ -96,7 +92,21 @@
         "title": "NarutoD20 Redux v1.3",
         "pages": "225"
       }
-    ]
+    ],
+    "weaponAttack": {
+      "enabled": true,
+      "filter": "unarmedOnly",
+      "damageMode": "add",
+      "held": "",
+      "charge": false,
+      "iteratives": true,
+      "attackBonus": "-3[Renzuki]",
+      "damageBonus": "",
+      "nonCritDamageBonus": "",
+      "extraAttacks": [],
+      "suppressNaturalAttack": false,
+      "suppressAbilityDamage": false
+    }
   },
   "effects": [],
   "folder": "iEw44g26KYEWeYcE",
