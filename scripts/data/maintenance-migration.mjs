@@ -1,9 +1,13 @@
 import { MODULE_ID, TECHNIQUE_ITEM_TYPE } from "../core/constants.mjs";
 import { maintenanceBuffFlagData } from "../features/automation/maintenance/buffs.mjs";
 import { resolveRankTechnique } from "../features/automation/ranks/buffs.mjs";
+import {
+  hasLegacyWeaponAttack,
+  migrateLegacyWeaponAttack,
+} from "../features/techniques/weapon-attack-migrate.mjs";
 
 export const MAINTENANCE_MIGRATION_SETTING = "maintenanceMigrationVersion";
-export const MAINTENANCE_MIGRATION_VERSION = 2;
+export const MAINTENANCE_MIGRATION_VERSION = 3;
 
 const LEGACY_AUTOMATION_KEYS = [
   "stanceMode",
@@ -108,6 +112,23 @@ async function migrateVersion2(actors) {
   }
 }
 
+async function migrateTechniqueWeaponAttack(item) {
+  if (item.type !== TECHNIQUE_ITEM_TYPE) return;
+  if (!hasLegacyWeaponAttack(item.system)) return;
+  const data = item.toObject();
+  migrateLegacyWeaponAttack(data.system);
+  // Full system replace ({recursive:false}) drops the legacy dictionary keys
+  // wholesale — avoids the dotted-key "-=" deletion landmine.
+  await item.update({ system: data.system }, { diff: false, recursive: false });
+}
+
+async function migrateVersion3(actors) {
+  for (const actor of actors.values()) {
+    for (const item of actor.items) await migrateTechniqueWeaponAttack(item);
+  }
+  for (const item of game.items) await migrateTechniqueWeaponAttack(item);
+}
+
 export async function runMaintenanceMigrations() {
   if (!game.user.isGM) return;
   let completed = Number(game.settings.get(MODULE_ID, MAINTENANCE_MIGRATION_SETTING)) || 0;
@@ -122,6 +143,11 @@ export async function runMaintenanceMigrations() {
   if (completed < 2) {
     await migrateVersion2(actors);
     completed = 2;
+    await game.settings.set(MODULE_ID, MAINTENANCE_MIGRATION_SETTING, completed);
+  }
+  if (completed < 3) {
+    await migrateVersion3(actors);
+    completed = 3;
     await game.settings.set(MODULE_ID, MAINTENANCE_MIGRATION_SETTING, completed);
   }
 }
