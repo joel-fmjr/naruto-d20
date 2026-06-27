@@ -701,10 +701,12 @@ function categoriesFromFilter(filter) {
 }
 
 async function selectTechniqueWeaponAttack(actor, technique, config) {
-  let categories = deriveAttackCategories(technique.system?.descriptors);
-  if (!categories.allowUnarmed && !categories.allowArmed) {
-    categories = categoriesFromFilter(config.filter);
-  }
+  // The filter is the explicit UI configuration; use it as the authoritative source.
+  // Before the weapon-attack UI existed, descriptors were the primary signal and the
+  // filter was a fallback. Now that the filter is user-configured, descriptors would
+  // override an intentional filter change (e.g. switching from "unarmedOnly" to
+  // "meleeOrUnarmed" on a "Punch" technique had no effect).
+  const categories = categoriesFromFilter(config.filter);
   const choices = collectTechniqueWeaponAttackChoices(actor, {
     allowUnarmed: categories.allowUnarmed,
     allowArmed: categories.allowArmed,

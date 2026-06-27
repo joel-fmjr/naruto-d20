@@ -361,50 +361,50 @@ export function createTechniqueItemSheet() {
         key.startsWith("system.weaponAttack."),
       );
       if (hasWeaponAttackFormData) {
-        const weaponAttackForm = weaponAttackFormDataFromForm(formData);
-        const preset = weaponAttackForm.preset;
-        const normalizedWeaponAttack =
-          preset && preset !== "custom"
-            ? applyWeaponAttackPreset(preset, weaponAttackForm)
-            : weaponAttackForm;
+        const normalizedWeaponAttack = weaponAttackFormDataFromForm(formData);
 
-        // Build the new dictionary wholesale to avoid expandObject dot-splitting.
-        // Dotted keys like "weaponAttack.mode" are literal flat keys in the ObjectField —
-        // writing them as dotted update paths causes expandObject to split on dots and
-        // produce a nested structure instead of flat entries.
-        const newDict = { ...(this.item.system.flags?.dictionary ?? {}) };
-        for (const k of Object.keys(newDict)) {
-          if (k === "weaponAttack" || k.startsWith("weaponAttack.")) delete newDict[k];
+        // Build a partial dictionary update object with deletion markers for existing
+        // weaponAttack.* entries (both the flat dotted-key format used by old compendium
+        // data and the nested-object format used after the first UI save).
+        // We use "-=key" markers *inside* the value object so mergeObject at the
+        // dictionary level handles them as literal key deletions (delete original[kk]),
+        // not as expandObject path splits. New config is written as a nested object
+        // ("weaponAttack": {...}) which avoids all dot-splitting issues on the write side.
+        const existingDict = this.item.system.flags?.dictionary ?? {};
+        const dictUpdate = {};
+        for (const k of Object.keys(existingDict)) {
+          if (k === "weaponAttack" || k.startsWith("weaponAttack.")) {
+            dictUpdate[`-=${k}`] = null;
+          }
         }
 
         if (normalizedWeaponAttack.enabled === true) {
-          newDict["weaponAttack.mode"] = "selected";
-          newDict["weaponAttack.filter"] = normalizedWeaponAttack.filter || "meleeWeapon";
-          newDict["weaponAttack.damageMode"] = normalizedWeaponAttack.damageMode || "add";
+          const cfg = { mode: "selected" };
+          cfg.filter = normalizedWeaponAttack.filter || "meleeWeapon";
+          cfg.damageMode = normalizedWeaponAttack.damageMode || "add";
           if (normalizedWeaponAttack.attackBonus?.trim())
-            newDict["weaponAttack.attackBonus"] = normalizedWeaponAttack.attackBonus.trim();
+            cfg.attackBonus = normalizedWeaponAttack.attackBonus.trim();
           if (normalizedWeaponAttack.damageBonus?.trim())
-            newDict["weaponAttack.damageBonus"] = normalizedWeaponAttack.damageBonus.trim();
+            cfg.damageBonus = normalizedWeaponAttack.damageBonus.trim();
           if (normalizedWeaponAttack.nonCritDamageBonus?.trim())
-            newDict["weaponAttack.nonCritDamageBonus"] =
-              normalizedWeaponAttack.nonCritDamageBonus.trim();
-          if (normalizedWeaponAttack.held?.trim())
-            newDict["weaponAttack.held"] = normalizedWeaponAttack.held.trim();
-          if (normalizedWeaponAttack.charge === true) newDict["weaponAttack.charge"] = "true";
-          if (normalizedWeaponAttack.iteratives === false)
-            newDict["weaponAttack.iteratives"] = "false";
+            cfg.nonCritDamageBonus = normalizedWeaponAttack.nonCritDamageBonus.trim();
+          if (normalizedWeaponAttack.held?.trim()) cfg.held = normalizedWeaponAttack.held.trim();
+          if (normalizedWeaponAttack.charge === true) cfg.charge = "true";
+          if (normalizedWeaponAttack.iteratives === false) cfg.iteratives = "false";
           const extraAttacks = normalizeExtraAttacksText(normalizedWeaponAttack.extraAttacksText);
-          if (extraAttacks) newDict["weaponAttack.extraAttacks"] = extraAttacks;
+          if (extraAttacks) cfg.extraAttacks = extraAttacks;
           const suppressions = [];
           if (normalizedWeaponAttack.suppressNaturalAttack === true)
             suppressions.push("naturalAttack");
           if (normalizedWeaponAttack.suppressAbilityDamage === true)
             suppressions.push("abilityDamage");
-          if (suppressions.length)
-            newDict["weaponAttack.suppressedBonuses"] = suppressions.join(",");
+          if (suppressions.length) cfg.suppressedBonuses = suppressions.join(",");
+          // Insertion order: deletions first, then the new nested object.
+          // mergeObject processes in this order → delete old entries, then insert new.
+          dictUpdate.weaponAttack = cfg;
         }
 
-        formData["system.flags.dictionary"] = newDict;
+        formData["system.flags.dictionary"] = dictUpdate;
         removeSyntheticWeaponAttackFormFields(formData);
       }
 
@@ -592,7 +592,9 @@ export function createTechniqueItemSheet() {
         next.suppressNaturalAttack === true;
       get("system.weaponAttack.suppressAbilityDamage").checked =
         next.suppressAbilityDamage === true;
-      event.currentTarget.value = "custom";
+      // Don't reset to "custom" — the user sees the preset they picked while editing.
+      // The preset is never persisted (not in the dictionary), so the select returns to
+      // "custom" naturally on the next render after save.
     }
 
     // ─────────────────────────────────────────────────────────────
