@@ -361,14 +361,22 @@ export function createTechniqueDataModel() {
           {
             enabled: new fields.BooleanField({ ...opt, initial: false }),
             filter: new fields.StringField({
-              ...opt, blank: false, initial: "meleeWeapon",
+              ...opt,
+              blank: false,
+              initial: "meleeWeapon",
               choices: ["meleeWeapon", "rangedWeapon", "unarmedOnly", "meleeOrUnarmed"],
             }),
             damageMode: new fields.StringField({
-              ...opt, blank: false, initial: "add", choices: ["add", "replace"],
+              ...opt,
+              blank: false,
+              initial: "add",
+              choices: ["add", "replace"],
             }),
             held: new fields.StringField({
-              ...opt, blank: true, initial: "", choices: ["", "onehanded", "twohanded"],
+              ...opt,
+              blank: true,
+              initial: "",
+              choices: ["", "onehanded", "twohanded"],
             }),
             charge: new fields.BooleanField({ ...opt, initial: false }),
             iteratives: new fields.BooleanField({ ...opt, initial: true }),

@@ -111,15 +111,6 @@
       "ConTimesLevel": "Con × Level",
       "TwoTimesLevel": "2 × Level"
     },
-    "WeaponAttackIssues": {
-      "Malformed": "\"{prefix}\" must be an object or use dotted \"{prefix}.*\" keys",
-      "UnknownField": "unknown field \"{field}\"",
-      "MissingMode": "missing \"{field}\" (expected \"{expected}\")",
-      "UnsupportedMode": "unsupported \"{field}\" = \"{value}\" (expected \"{expected}\")",
-      "UnsupportedFilter": "unsupported \"{field}\" = \"{value}\"; using \"{fallback}\"",
-      "UnsupportedDamageMode": "unsupported \"{field}\" = \"{value}\"; using \"{fallback}\"",
-      "InvalidBoolean": "\"{field}\" should be \"true\" or \"false\" (got \"{value}\")"
-    },
     "Technique": {
       "Type": {
         "Label": "Discipline"
@@ -472,9 +463,6 @@
       "SuppressAbilityDamage": {
         "Label": "Suppress selected attack ability damage"
       },
-      "Warnings": {
-        "Label": "Configuration warnings"
-      },
       "Summary": {
         "SelectedUnarmed": "Selected Unarmed",
         "SelectedRanged": "Selected Ranged",
@@ -573,7 +561,6 @@
       "TapMinimum": "Amount to tap must be at least 1.",
       "TapNotEnoughReserve": "Not enough Chakra Reserve (have {have}, requested {requested}).",
       "NoWeaponAttack": "{actor}: no valid weapon or attack found for {name}.",
-      "WeaponAttackConfig": "{name}: weaponAttack config issue — {issues}",
       "ChargeDefenseFailed": "Charge defense penalty automation failed. See console.",
       "RankBuffMaintenanceNotEnoughChakra": "{actor}: not enough chakra to maintain {name} (need {cost}, have {available}).",
       "RankMasteryFreeUseUnavailable": "{name}: the mastery free use is no longer available.",

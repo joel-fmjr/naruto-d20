@@ -254,7 +254,14 @@ function isMeleeTouchRange(range) {
   );
 }
 
-function validateTechniqueAction(packName, filename, prefix, action, range, suppressedAbilityDamage) {
+function validateTechniqueAction(
+  packName,
+  filename,
+  prefix,
+  action,
+  range,
+  suppressedAbilityDamage,
+) {
   const type = action.actionType;
   if (type === "msak" || type === "rsak") {
     error(
@@ -279,11 +286,7 @@ function validateTechniqueAction(packName, filename, prefix, action, range, supp
       if (hasActionDamage(action) && damage) {
         error(packName, filename, `${prefix} melee touch with damage should use ability.damage=""`);
       }
-    } else if (
-      hasActionDamage(action) &&
-      damage !== "str" &&
-      !suppressedAbilityDamage
-    ) {
+    } else if (hasActionDamage(action) && damage !== "str" && !suppressedAbilityDamage) {
       error(packName, filename, `${prefix} ${type} with damage should use ability.damage="str"`);
     }
   }

@@ -25,7 +25,8 @@ function readLegacyValues(dict) {
   for (const key of Object.keys(dict)) {
     if (key.startsWith("weaponAttack.")) values[key.slice("weaponAttack.".length)] = dict[key];
   }
-  const nested = dict.weaponAttack && typeof dict.weaponAttack === "object" ? dict.weaponAttack : null;
+  const nested =
+    dict.weaponAttack && typeof dict.weaponAttack === "object" ? dict.weaponAttack : null;
   if (nested) for (const k of Object.keys(nested)) values[k] = nested[k]; // nested wins
   return values;
 }
@@ -51,7 +52,8 @@ export function migrateLegacyWeaponAttack(source) {
 
   const dict = source.flags.dictionary;
   const alreadyTyped =
-    source.weaponAttack && typeof source.weaponAttack === "object" &&
+    source.weaponAttack &&
+    typeof source.weaponAttack === "object" &&
     source.weaponAttack.enabled !== undefined;
 
   if (!alreadyTyped) {

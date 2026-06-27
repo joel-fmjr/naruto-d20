@@ -32,8 +32,6 @@ const SPECIAL_DESCRIPTOR_FLAGS = {
   Kinjutsu: "system.isKinjutsu",
 };
 
-
-
 function localizeChoices(choices) {
   return Object.fromEntries(
     Object.entries(choices).map(([key, label]) => [key, game.i18n.localize(label)]),
@@ -502,11 +500,18 @@ export function createTechniqueItemSheet() {
       const form = event.currentTarget.form;
       const get = (name) => form.elements.namedItem(name);
       const fields = [
-        "system.weaponAttack.enabled", "system.weaponAttack.filter", "system.weaponAttack.damageMode",
-        "system.weaponAttack.held", "system.weaponAttack.charge", "system.weaponAttack.iteratives",
-        "system.weaponAttack.attackBonus", "system.weaponAttack.damageBonus",
-        "system.weaponAttack.nonCritDamageBonus", "system.weaponAttack.suppressNaturalAttack",
-        "system.weaponAttack.suppressAbilityDamage", "weaponAttack-extraAttacksText",
+        "system.weaponAttack.enabled",
+        "system.weaponAttack.filter",
+        "system.weaponAttack.damageMode",
+        "system.weaponAttack.held",
+        "system.weaponAttack.charge",
+        "system.weaponAttack.iteratives",
+        "system.weaponAttack.attackBonus",
+        "system.weaponAttack.damageBonus",
+        "system.weaponAttack.nonCritDamageBonus",
+        "system.weaponAttack.suppressNaturalAttack",
+        "system.weaponAttack.suppressAbilityDamage",
+        "weaponAttack-extraAttacksText",
       ];
       if (fields.some((name) => !get(name))) return;
 
@@ -537,8 +542,10 @@ export function createTechniqueItemSheet() {
       get("system.weaponAttack.damageBonus").value = next.damageBonus ?? "";
       get("system.weaponAttack.nonCritDamageBonus").value = next.nonCritDamageBonus ?? "";
       get("weaponAttack-extraAttacksText").value = next.extraAttacksText ?? "";
-      get("system.weaponAttack.suppressNaturalAttack").checked = next.suppressNaturalAttack === true;
-      get("system.weaponAttack.suppressAbilityDamage").checked = next.suppressAbilityDamage === true;
+      get("system.weaponAttack.suppressNaturalAttack").checked =
+        next.suppressNaturalAttack === true;
+      get("system.weaponAttack.suppressAbilityDamage").checked =
+        next.suppressAbilityDamage === true;
     }
 
     // ─────────────────────────────────────────────────────────────

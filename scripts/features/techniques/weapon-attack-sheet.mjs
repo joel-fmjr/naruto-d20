@@ -114,7 +114,9 @@ export function normalizeExtraAttacksText(value) {
 
 export function extraAttacksTextFromArray(extraAttacks) {
   return (extraAttacks ?? [])
-    .map(({ formula, name }) => [String(formula ?? "").trim(), String(name ?? "").trim()].filter(Boolean).join("|"))
+    .map(({ formula, name }) =>
+      [String(formula ?? "").trim(), String(name ?? "").trim()].filter(Boolean).join("|"),
+    )
     .filter(Boolean)
     .join("\n");
 }
