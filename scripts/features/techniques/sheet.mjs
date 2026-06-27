@@ -14,6 +14,18 @@ import { attemptLearnTechnique, buildLearningView } from "./learn.mjs";
 import { attemptMasterTechnique, buildMasteryView } from "./master.mjs";
 import { canAffordTechnique, performTechnique } from "./use.mjs";
 import { renderTechniqueHeader } from "./header.mjs";
+import {
+  applyWeaponAttackPreset,
+  buildWeaponAttackDictionaryUpdates,
+  buildWeaponAttackFormData,
+  buildWeaponAttackSummary,
+  removeSyntheticWeaponAttackFormFields,
+  WEAPON_ATTACK_DAMAGE_MODE_CHOICES,
+  WEAPON_ATTACK_FILTER_CHOICES,
+  WEAPON_ATTACK_HELD_CHOICES,
+  WEAPON_ATTACK_PRESET_CHOICES,
+  weaponAttackFormDataFromForm,
+} from "./weapon-attack-sheet.mjs";
 import { resolveDroppedItem } from "../../utils/drag-drop.mjs";
 
 const SPECIAL_DESCRIPTOR_FLAGS = {
@@ -21,6 +33,12 @@ const SPECIAL_DESCRIPTOR_FLAGS = {
   Hijutsu: "system.isHijutsu",
   Kinjutsu: "system.isKinjutsu",
 };
+
+function localizeChoices(choices) {
+  return Object.fromEntries(
+    Object.entries(choices).map(([key, label]) => [key, game.i18n.localize(label)]),
+  );
+}
 
 export function createTechniqueItemSheet() {
   class TechniqueItemSheet extends ItemSheet {
@@ -191,6 +209,17 @@ export function createTechniqueItemSheet() {
         show: empower.enabled === true,
         hasPerformIncrease: Number(empower.performIncreaseEvery ?? 0) > 0,
       };
+      const localizeOrFormat = (key, data = {}) =>
+        Object.keys(data).length ? game.i18n.format(key, data) : game.i18n.localize(key);
+      context.weaponAttack = buildWeaponAttackFormData(item);
+      context.weaponAttackSummary = buildWeaponAttackSummary(
+        context.weaponAttack,
+        localizeOrFormat,
+      );
+      context.weaponAttackFilterChoices = localizeChoices(WEAPON_ATTACK_FILTER_CHOICES);
+      context.weaponAttackDamageModeChoices = localizeChoices(WEAPON_ATTACK_DAMAGE_MODE_CHOICES);
+      context.weaponAttackHeldChoices = localizeChoices(WEAPON_ATTACK_HELD_CHOICES);
+      context.weaponAttackPresetChoices = localizeChoices(WEAPON_ATTACK_PRESET_CHOICES);
 
       // ── Links tab — structured for PF1e's table/sub-nav layout ──
       const linkCat = (id, labelKey, helpKey) => ({
@@ -276,6 +305,11 @@ export function createTechniqueItemSheet() {
       html.on("click", ".delete-action", this._onDeleteAction.bind(this));
       html.on("click", ".duplicate-action", this._onDuplicateAction.bind(this));
       html.on("change", ".descriptor-checkbox", this._onDescriptorToggle.bind(this));
+      html.on(
+        "change",
+        "select[name='system.weaponAttack.preset']",
+        this._onWeaponAttackPreset.bind(this),
+      );
 
       // Content source editor
       html.on("click", ".content-source .control a.edit", () =>
@@ -307,6 +341,19 @@ export function createTechniqueItemSheet() {
           .map((t) => t.trim())
           .filter(Boolean);
       }
+
+      const weaponAttackForm = weaponAttackFormDataFromForm(formData);
+      const preset = weaponAttackForm.preset;
+      const normalizedWeaponAttack =
+        preset && preset !== "custom"
+          ? applyWeaponAttackPreset(preset, weaponAttackForm)
+          : weaponAttackForm;
+      const weaponAttackUpdates = buildWeaponAttackDictionaryUpdates(
+        normalizedWeaponAttack,
+        this.item.system.flags?.dictionary ?? {},
+      );
+      removeSyntheticWeaponAttackFormFields(formData);
+      Object.assign(formData, weaponAttackUpdates);
 
       return super._updateObject(event, formData);
     }
@@ -451,6 +498,47 @@ export function createTechniqueItemSheet() {
         updates[path] = descriptors.has(special);
       }
       await this.item.update(updates);
+    }
+
+    _onWeaponAttackPreset(event) {
+      const preset = event.currentTarget.value;
+      if (!preset || preset === "custom") return;
+
+      const form = event.currentTarget.form;
+      const get = (name) => form.elements.namedItem(name);
+      const current = {
+        enabled: get("system.weaponAttack.enabled")?.checked === true,
+        preset,
+        filter: get("system.weaponAttack.filter")?.value ?? "meleeWeapon",
+        damageMode: get("system.weaponAttack.damageMode")?.value ?? "add",
+        attackBonus: get("system.weaponAttack.attackBonus")?.value ?? "",
+        damageBonus: get("system.weaponAttack.damageBonus")?.value ?? "",
+        nonCritDamageBonus: get("system.weaponAttack.nonCritDamageBonus")?.value ?? "",
+        extraAttacksText: get("system.weaponAttack.extraAttacksText")?.value ?? "",
+        held: get("system.weaponAttack.held")?.value ?? "",
+        charge: get("system.weaponAttack.charge")?.checked === true,
+        iteratives: get("system.weaponAttack.iteratives")?.checked === true,
+        suppressNaturalAttack:
+          get("system.weaponAttack.suppressNaturalAttack")?.checked === true,
+        suppressAbilityDamage:
+          get("system.weaponAttack.suppressAbilityDamage")?.checked === true,
+      };
+
+      const next = applyWeaponAttackPreset(preset, current);
+      get("system.weaponAttack.enabled").checked = next.enabled === true;
+      get("system.weaponAttack.filter").value = next.filter;
+      get("system.weaponAttack.damageMode").value = next.damageMode;
+      get("system.weaponAttack.held").value = next.held ?? "";
+      get("system.weaponAttack.charge").checked = next.charge === true;
+      get("system.weaponAttack.iteratives").checked = next.iteratives !== false;
+      get("system.weaponAttack.attackBonus").value = next.attackBonus ?? "";
+      get("system.weaponAttack.damageBonus").value = next.damageBonus ?? "";
+      get("system.weaponAttack.nonCritDamageBonus").value = next.nonCritDamageBonus ?? "";
+      get("system.weaponAttack.extraAttacksText").value = next.extraAttacksText ?? "";
+      get("system.weaponAttack.suppressNaturalAttack").checked =
+        next.suppressNaturalAttack === true;
+      get("system.weaponAttack.suppressAbilityDamage").checked =
+        next.suppressAbilityDamage === true;
     }
 
     // ─────────────────────────────────────────────────────────────
