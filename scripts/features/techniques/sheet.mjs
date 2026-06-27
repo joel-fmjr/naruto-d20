@@ -362,8 +362,8 @@ export function createTechniqueItemSheet() {
       );
       if (hasWeaponAttackFormData) {
         const weaponAttackEnabled = formData["system.weaponAttack.enabled"] === true;
-        const hasCompleteEnabledPayload = WEAPON_ATTACK_REQUIRED_FORM_KEYS.every(
-          (key) => Object.hasOwn(formData, key),
+        const hasCompleteEnabledPayload = WEAPON_ATTACK_REQUIRED_FORM_KEYS.every((key) =>
+          Object.hasOwn(formData, key),
         );
         const shouldNormalizeWeaponAttack = !weaponAttackEnabled || hasCompleteEnabledPayload;
         if (shouldNormalizeWeaponAttack) {
@@ -547,10 +547,8 @@ export function createTechniqueItemSheet() {
         held: get("system.weaponAttack.held")?.value ?? "",
         charge: get("system.weaponAttack.charge")?.checked === true,
         iteratives: get("system.weaponAttack.iteratives")?.checked === true,
-        suppressNaturalAttack:
-          get("system.weaponAttack.suppressNaturalAttack")?.checked === true,
-        suppressAbilityDamage:
-          get("system.weaponAttack.suppressAbilityDamage")?.checked === true,
+        suppressNaturalAttack: get("system.weaponAttack.suppressNaturalAttack")?.checked === true,
+        suppressAbilityDamage: get("system.weaponAttack.suppressAbilityDamage")?.checked === true,
       };
 
       const next = applyWeaponAttackPreset(preset, current);
