@@ -381,9 +381,37 @@ describe("technique defaults", () => {
         "(see scripts/features/techniques/defaults.mjs) or synckit will flag unedited techniques out-of-date",
     );
   });
+
+  it("declares the weaponAttack schema field with all sub-fields", () => {
+    const leaf = class {};
+    const prevData = globalThis.foundry.data;
+    const prevAbstract = globalThis.foundry.abstract;
+    globalThis.foundry.abstract = { TypeDataModel: class {} };
+    globalThis.foundry.data = {
+      fields: {
+        SchemaField: class { constructor(schema) { this.fields = schema; } },
+        ArrayField: class { constructor(element) { this.element = element; } },
+        SetField: class { constructor(element) { this.element = element; } },
+        StringField: leaf, NumberField: leaf, BooleanField: leaf, HTMLField: leaf, ObjectField: leaf,
+      },
+    };
+    let keys;
+    try {
+      const schema = createTechniqueDataModel().defineSchema();
+      keys = Object.keys(schema.weaponAttack.fields).sort();
+    } finally {
+      globalThis.foundry.data = prevData;
+      globalThis.foundry.abstract = prevAbstract;
+    }
+    assert.deepEqual(keys, [
+      "attackBonus", "charge", "damageBonus", "damageMode", "enabled", "extraAttacks",
+      "filter", "held", "iteratives", "nonCritDamageBonus", "suppressAbilityDamage", "suppressNaturalAttack",
+    ]);
+  });
 });
 
 describe("technique empower helpers", () => {
+
   it("normalizes disabled and enabled config", () => {
     assert.equal(normalizeEmpowerConfig({})?.enabled, false);
     assert.deepEqual(
