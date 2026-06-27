@@ -183,12 +183,12 @@ describe("Gatotsu Isshiki source data", () => {
         "utf8",
       ),
     );
-    const dict = gatotsu.system.flags.dictionary;
+    const wa = gatotsu.system.weaponAttack;
     const transform = gatotsu.system.automation.damageTransform;
 
-    assert.equal(dict["weaponAttack.mode"], "selected");
-    assert.equal(dict["weaponAttack.filter"], "meleeWeapon");
-    assert.equal(dict["weaponAttack.charge"], "true");
+    assert.equal(wa.enabled, true);
+    assert.equal(wa.filter, "meleeWeapon");
+    assert.equal(wa.charge, true);
     assert.deepEqual(transform, {
       enabled: true,
       multiplier: 2,

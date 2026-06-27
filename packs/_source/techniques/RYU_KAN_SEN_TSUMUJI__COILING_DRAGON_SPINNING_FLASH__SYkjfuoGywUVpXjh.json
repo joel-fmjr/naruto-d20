@@ -85,12 +85,7 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {
-        "weaponAttack.mode": "selected",
-        "weaponAttack.filter": "meleeWeapon",
-        "weaponAttack.attackBonus": "2[Iaido]",
-        "weaponAttack.damageBonus": "2[Iaido]"
-      }
+      "dictionary": {}
     },
     "showInQuickbar": false,
     "showInCombat": false,
@@ -99,7 +94,21 @@
         "title": "NarutoD20 Redux v1.3",
         "pages": "243"
       }
-    ]
+    ],
+    "weaponAttack": {
+      "enabled": true,
+      "filter": "meleeWeapon",
+      "damageMode": "add",
+      "held": "",
+      "charge": false,
+      "iteratives": true,
+      "attackBonus": "2[Iaido]",
+      "damageBonus": "2[Iaido]",
+      "nonCritDamageBonus": "",
+      "extraAttacks": [],
+      "suppressNaturalAttack": false,
+      "suppressAbilityDamage": false
+    }
   },
   "effects": [],
   "folder": "4iI06mcCswMk060w",

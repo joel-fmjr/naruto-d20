@@ -71,7 +71,9 @@
           "parts": [
             {
               "formula": "2d6",
-              "types": ["bludgeoning"]
+              "types": [
+                "bludgeoning"
+              ]
             }
           ]
         },
@@ -97,14 +99,7 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {
-        "weaponAttack.mode": "selected",
-        "weaponAttack.filter": "unarmedOnly",
-        "weaponAttack.damageMode": "replace",
-        "weaponAttack.attackBonus": "-5",
-        "weaponAttack.extraAttacks": "0|Second Attack;0|Third Attack",
-        "weaponAttack.iteratives": "false"
-      }
+      "dictionary": {}
     },
     "showInQuickbar": false,
     "showInCombat": false,
@@ -113,7 +108,30 @@
         "title": "NarutoD20 Redux v1.3",
         "pages": "229"
       }
-    ]
+    ],
+    "weaponAttack": {
+      "enabled": true,
+      "filter": "unarmedOnly",
+      "damageMode": "replace",
+      "held": "",
+      "charge": false,
+      "iteratives": false,
+      "attackBonus": "-5",
+      "damageBonus": "",
+      "nonCritDamageBonus": "",
+      "extraAttacks": [
+        {
+          "formula": "0",
+          "name": "Second Attack"
+        },
+        {
+          "formula": "0",
+          "name": "Third Attack"
+        }
+      ],
+      "suppressNaturalAttack": false,
+      "suppressAbilityDamage": false
+    }
   },
   "effects": [],
   "folder": "Y6G2KygqCgmo0wgw",

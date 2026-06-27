@@ -82,11 +82,7 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {
-        "weaponAttack.mode": "selected",
-        "weaponAttack.filter": "meleeWeapon",
-        "weaponAttack.damageBonus": "12d6[Hametsu Kata]"
-      }
+      "dictionary": {}
     },
     "showInQuickbar": false,
     "showInCombat": false,
@@ -95,7 +91,21 @@
         "title": "NarutoD20 Redux v1.3",
         "pages": "323"
       }
-    ]
+    ],
+    "weaponAttack": {
+      "enabled": true,
+      "filter": "meleeWeapon",
+      "damageMode": "add",
+      "held": "",
+      "charge": false,
+      "iteratives": true,
+      "attackBonus": "",
+      "damageBonus": "12d6[Hametsu Kata]",
+      "nonCritDamageBonus": "",
+      "extraAttacks": [],
+      "suppressNaturalAttack": false,
+      "suppressAbilityDamage": false
+    }
   },
   "effects": [],
   "folder": "a2sUkKESAyk2K6mG",

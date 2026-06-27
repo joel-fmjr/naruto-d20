@@ -89,11 +89,7 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {
-        "weaponAttack.mode": "selected",
-        "weaponAttack.filter": "unarmedOnly",
-        "weaponAttack.damageBonus": "4d4[Shou Ryu Ken]"
-      }
+      "dictionary": {}
     },
     "showInQuickbar": false,
     "showInCombat": false,
@@ -102,7 +98,21 @@
         "title": "NarutoD20 Redux v1.3",
         "pages": "230"
       }
-    ]
+    ],
+    "weaponAttack": {
+      "enabled": true,
+      "filter": "unarmedOnly",
+      "damageMode": "add",
+      "held": "",
+      "charge": false,
+      "iteratives": true,
+      "attackBonus": "",
+      "damageBonus": "4d4[Shou Ryu Ken]",
+      "nonCritDamageBonus": "",
+      "extraAttacks": [],
+      "suppressNaturalAttack": false,
+      "suppressAbilityDamage": false
+    }
   },
   "effects": [],
   "folder": "Eqy2qUyS0soSeisE",

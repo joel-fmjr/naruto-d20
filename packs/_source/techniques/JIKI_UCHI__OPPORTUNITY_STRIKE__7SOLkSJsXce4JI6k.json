@@ -83,12 +83,7 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {
-        "weaponAttack.mode": "selected",
-        "weaponAttack.filter": "meleeOrUnarmed",
-        "weaponAttack.attackBonus": "2[Jiki-Uchi]",
-        "weaponAttack.damageBonus": "2[Jiki-Uchi]"
-      }
+      "dictionary": {}
     },
     "showInQuickbar": false,
     "showInCombat": false,
@@ -97,7 +92,21 @@
         "title": "NarutoD20 Redux v1.3",
         "pages": "215"
       }
-    ]
+    ],
+    "weaponAttack": {
+      "enabled": true,
+      "filter": "meleeOrUnarmed",
+      "damageMode": "add",
+      "held": "",
+      "charge": false,
+      "iteratives": true,
+      "attackBonus": "2[Jiki-Uchi]",
+      "damageBonus": "2[Jiki-Uchi]",
+      "nonCritDamageBonus": "",
+      "extraAttacks": [],
+      "suppressNaturalAttack": false,
+      "suppressAbilityDamage": false
+    }
   },
   "effects": [],
   "folder": "8cyAIs6keIieeOIE",

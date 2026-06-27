@@ -84,12 +84,7 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {
-        "weaponAttack.mode": "selected",
-        "weaponAttack.filter": "meleeWeapon",
-        "weaponAttack.attackBonus": "3[Kaiten Kenbu Rokuren]",
-        "weaponAttack.damageBonus": "3[Kaiten Kenbu Rokuren]"
-      }
+      "dictionary": {}
     },
     "showInQuickbar": false,
     "showInCombat": false,
@@ -98,7 +93,21 @@
         "title": "NarutoD20 Redux v1.3",
         "pages": "269"
       }
-    ]
+    ],
+    "weaponAttack": {
+      "enabled": true,
+      "filter": "meleeWeapon",
+      "damageMode": "add",
+      "held": "",
+      "charge": false,
+      "iteratives": true,
+      "attackBonus": "3[Kaiten Kenbu Rokuren]",
+      "damageBonus": "3[Kaiten Kenbu Rokuren]",
+      "nonCritDamageBonus": "",
+      "extraAttacks": [],
+      "suppressNaturalAttack": false,
+      "suppressAbilityDamage": false
+    }
   },
   "effects": [],
   "folder": "Eqy2qUyS0soSeisE",

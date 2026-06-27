@@ -85,12 +85,7 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {
-        "weaponAttack.mode": "selected",
-        "weaponAttack.filter": "rangedWeapon",
-        "weaponAttack.attackBonus": "1[Kisshi]",
-        "weaponAttack.damageBonus": "1[Kisshi]"
-      }
+      "dictionary": {}
     },
     "showInQuickbar": false,
     "showInCombat": false,
@@ -99,7 +94,21 @@
         "title": "NarutoD20 Redux v1.3",
         "pages": "223"
       }
-    ]
+    ],
+    "weaponAttack": {
+      "enabled": true,
+      "filter": "rangedWeapon",
+      "damageMode": "add",
+      "held": "",
+      "charge": false,
+      "iteratives": true,
+      "attackBonus": "1[Kisshi]",
+      "damageBonus": "1[Kisshi]",
+      "nonCritDamageBonus": "",
+      "extraAttacks": [],
+      "suppressNaturalAttack": false,
+      "suppressAbilityDamage": false
+    }
   },
   "effects": [],
   "folder": "yUI8Y6kUaMCw0mQw",

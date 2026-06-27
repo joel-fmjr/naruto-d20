@@ -90,11 +90,7 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {
-        "weaponAttack.mode": "selected",
-        "weaponAttack.filter": "meleeOrUnarmed",
-        "weaponAttack.nonCritDamageBonus": "1d4[Igeki]"
-      }
+      "dictionary": {}
     },
     "showInQuickbar": false,
     "showInCombat": false,
@@ -103,7 +99,21 @@
         "title": "NarutoD20 Redux v1.3",
         "pages": "226"
       }
-    ]
+    ],
+    "weaponAttack": {
+      "enabled": true,
+      "filter": "meleeOrUnarmed",
+      "damageMode": "add",
+      "held": "",
+      "charge": false,
+      "iteratives": true,
+      "attackBonus": "",
+      "damageBonus": "",
+      "nonCritDamageBonus": "1d4[Igeki]",
+      "extraAttacks": [],
+      "suppressNaturalAttack": false,
+      "suppressAbilityDamage": false
+    }
   },
   "effects": [],
   "folder": "yUI8Y6kUaMCw0mQw",

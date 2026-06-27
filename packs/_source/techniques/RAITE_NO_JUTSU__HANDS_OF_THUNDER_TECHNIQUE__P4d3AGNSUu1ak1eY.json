@@ -96,11 +96,7 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {
-        "weaponAttack.mode": "selected",
-        "weaponAttack.filter": "unarmedOnly",
-        "weaponAttack.damageMode": "replace"
-      }
+      "dictionary": {}
     },
     "showInQuickbar": false,
     "showInCombat": false,
@@ -110,7 +106,21 @@
         "title": "NarutoD20 Redux v1.3",
         "pages": "190"
       }
-    ]
+    ],
+    "weaponAttack": {
+      "enabled": true,
+      "filter": "unarmedOnly",
+      "damageMode": "replace",
+      "held": "",
+      "charge": false,
+      "iteratives": true,
+      "attackBonus": "",
+      "damageBonus": "",
+      "nonCritDamageBonus": "",
+      "extraAttacks": [],
+      "suppressNaturalAttack": false,
+      "suppressAbilityDamage": false
+    }
   },
   "effects": [],
   "folder": "E08U6c8maO8i0ec4",

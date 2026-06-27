@@ -64,8 +64,7 @@ import {
 } from "../scripts/features/techniques/learn.mjs";
 import {
   deriveAttackCategories,
-  parseWeaponAttackConfig,
-  readWeaponAttackRaw,
+  getTechniqueWeaponAttackConfig,
 } from "../scripts/features/techniques/weapon-attack.mjs";
 import {
   getHighestLearnedStrengthRank,
@@ -381,9 +380,67 @@ describe("technique defaults", () => {
         "(see scripts/features/techniques/defaults.mjs) or synckit will flag unedited techniques out-of-date",
     );
   });
+
+  it("declares the weaponAttack schema field with all sub-fields", () => {
+    const leaf = class {};
+    const prevData = globalThis.foundry.data;
+    const prevAbstract = globalThis.foundry.abstract;
+    globalThis.foundry.abstract = { TypeDataModel: class {} };
+    globalThis.foundry.data = {
+      fields: {
+        SchemaField: class { constructor(schema) { this.fields = schema; } },
+        ArrayField: class { constructor(element) { this.element = element; } },
+        SetField: class { constructor(element) { this.element = element; } },
+        StringField: leaf, NumberField: leaf, BooleanField: leaf, HTMLField: leaf, ObjectField: leaf,
+      },
+    };
+    let keys;
+    try {
+      const schema = createTechniqueDataModel().defineSchema();
+      keys = Object.keys(schema.weaponAttack.fields).sort();
+    } finally {
+      globalThis.foundry.data = prevData;
+      globalThis.foundry.abstract = prevAbstract;
+    }
+    assert.deepEqual(keys, [
+      "attackBonus", "charge", "damageBonus", "damageMode", "enabled", "extraAttacks",
+      "filter", "held", "iteratives", "nonCritDamageBonus", "suppressAbilityDamage", "suppressNaturalAttack",
+    ]);
+  });
+
+  it("backfills every weaponAttack field declared in the schema", () => {
+    const leaf = class {};
+    const prevData = globalThis.foundry.data;
+    const prevAbstract = globalThis.foundry.abstract;
+    globalThis.foundry.abstract = { TypeDataModel: class {} };
+    globalThis.foundry.data = {
+      fields: {
+        SchemaField: class { constructor(schema) { this.fields = schema; } },
+        ArrayField: class { constructor(element) { this.element = element; } },
+        SetField: class { constructor(element) { this.element = element; } },
+        StringField: leaf, NumberField: leaf, BooleanField: leaf, HTMLField: leaf, ObjectField: leaf,
+      },
+    };
+    let schemaKeys;
+    try {
+      const schema = createTechniqueDataModel().defineSchema();
+      schemaKeys = Object.keys(schema.weaponAttack.fields).sort();
+    } finally {
+      globalThis.foundry.data = prevData;
+      globalThis.foundry.abstract = prevAbstract;
+    }
+    const normalizerKeys = Object.keys(applyTechniqueSystemDefaults({}).weaponAttack).sort();
+    assert.deepEqual(
+      normalizerKeys,
+      schemaKeys,
+      "applyTechniqueSystemDefaults must default every weaponAttack schema field " +
+        "(see scripts/features/techniques/defaults.mjs) or synckit will flag unedited techniques out-of-date",
+    );
+  });
 });
 
 describe("technique empower helpers", () => {
+
   it("normalizes disabled and enabled config", () => {
     assert.equal(normalizeEmpowerConfig({})?.enabled, false);
     assert.deepEqual(
@@ -754,57 +811,40 @@ describe("technique derived calculations", () => {
   });
 });
 
-describe("weaponAttack parsing", () => {
-  it("reads nested and dotted forms with nested values taking precedence", () => {
-    const raw = readWeaponAttackRaw({
+describe("getTechniqueWeaponAttackConfig", () => {
+  it("returns null when weaponAttack is absent or disabled", () => {
+    assert.equal(getTechniqueWeaponAttackConfig({ system: {} }), null);
+    assert.equal(getTechniqueWeaponAttackConfig({ system: { weaponAttack: { enabled: false } } }), null);
+  });
+
+  it("maps the typed field to the runtime config", () => {
+    const config = getTechniqueWeaponAttackConfig({
       system: {
-        flags: {
-          dictionary: {
-            weaponAttack: { mode: "selected", filter: "rangedWeapon", charge: "true" },
-            "weaponAttack.filter": "unarmedOnly",
-            "weaponAttack.attackBonus": "@cl",
-          },
+        weaponAttack: {
+          enabled: true,
+          filter: "rangedWeapon",
+          damageMode: "replace",
+          attackBonus: "@cl",
+          charge: true,
+          iteratives: false,
+          extraAttacks: [{ formula: "-5", name: "Second" }, { formula: "", name: "skip" }],
+          suppressNaturalAttack: true,
+          suppressAbilityDamage: false,
         },
       },
     });
-
-    assert.equal(raw.present, true);
-    assert.deepEqual(raw.values, {
-      mode: "selected",
-      filter: "rangedWeapon",
-      charge: "true",
-      attackBonus: "@cl",
-    });
-
-    const { config, warnings } = parseWeaponAttackConfig(raw);
-    assert.deepEqual(warnings, []);
     assert.deepEqual(config, {
-      mode: "selected",
       filter: "rangedWeapon",
+      damageMode: "replace",
       attackBonus: "@cl",
       damageBonus: "",
       nonCritDamageBonus: "",
-      damageMode: "add",
-      extraAttacks: [],
+      extraAttacks: [{ formula: "-5", name: "Second" }],
       held: "",
       charge: true,
-      iteratives: true,
-      suppressedBonuses: [],
+      iteratives: false,
+      suppressedBonuses: ["naturalAttack"],
     });
-  });
-
-  it("reports invalid fields while returning a usable fallback config", () => {
-    const { config, warnings } = parseWeaponAttackConfig({
-      values: { mode: "selected", filter: "badFilter", charge: "sometimes" },
-      keys: new Set(["mode", "filter", "charge", "extra"]),
-      malformed: false,
-    });
-
-    assert.equal(config.filter, "meleeWeapon");
-    assert.equal(config.charge, false);
-    assert.ok(warnings.some((w) => w.includes("unknown field")));
-    assert.ok(warnings.some((w) => w.includes("unsupported")));
-    assert.ok(warnings.some((w) => w.includes("should be")));
   });
 });
 
@@ -1635,6 +1675,21 @@ describe("synckit normalization", () => {
     assert.equal(diffTechnique(embedded, source), true);
   });
 
+  it("treats a legacy-dictionary technique as up-to-date against its migrated source", () => {
+    const legacyEmbedded = {
+      flags: { dictionary: { "weaponAttack.mode": "selected", "weaponAttack.filter": "unarmedOnly" } },
+    };
+    const migratedSource = {
+      weaponAttack: {
+        enabled: true, filter: "unarmedOnly", damageMode: "add", held: "", charge: false,
+        iteratives: true, attackBonus: "", damageBonus: "", nonCritDamageBonus: "",
+        extraAttacks: [], suppressNaturalAttack: false, suppressAbilityDamage: false,
+      },
+    };
+    assert.equal(diffTechnique(legacyEmbedded, migratedSource), true);
+  });
+
+
   it("treats a no-op sheet open/close as up-to-date for techniques without maintenance automation", () => {
     // Opening a technique sheet submits the whole form on close: the DataModel
     // cleans `system.automation` and persists every schema field. A technique's
@@ -1872,11 +1927,7 @@ describe("source JSON validation", () => {
           system: {
             rank: 99,
             descriptors: { not: "array" },
-            flags: {
-              dictionary: {
-                weaponAttack: { mode: "wrong", filter: "bad", charge: "maybe", extra: "x" },
-              },
-            },
+            weaponAttack: { enabled: "wrong", filter: "bad", charge: "maybe" },
           },
         }),
       },
@@ -1888,10 +1939,9 @@ describe("source JSON validation", () => {
     assert.equal(result.failed, true);
     assert.ok(messages.some((m) => m.includes("rank must be")));
     assert.ok(messages.some((m) => m.includes("system.descriptors must be an array")));
-    assert.ok(messages.some((m) => m.includes("unknown weaponAttack field")));
-    assert.ok(messages.some((m) => m.includes("unsupported weaponAttack.mode")));
+    assert.ok(messages.some((m) => m.includes("weaponAttack.enabled must be a boolean")));
     assert.ok(messages.some((m) => m.includes("unsupported weaponAttack.filter")));
-    assert.ok(messages.some((m) => m.includes("weaponAttack.charge")));
+    assert.ok(messages.some((m) => m.includes("weaponAttack.charge must be a boolean")));
   });
 
   it("reports Training Weight source mistakes", () => {

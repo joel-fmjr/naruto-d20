@@ -12,6 +12,7 @@
 
 import { createActionId, isValidActionId } from "./action-ids.mjs";
 import { applyTechniqueSystemDefaults, legacyAutomationToMaintenance } from "./defaults.mjs";
+import { migrateLegacyWeaponAttack } from "./weapon-attack-migrate.mjs";
 
 /** Complexity lookup — Appendix B, Table B-1. */
 export const COMPLEXITY_TABLE = {
@@ -356,6 +357,45 @@ export function createTechniqueDataModel() {
           opt,
         ),
 
+        weaponAttack: new fields.SchemaField(
+          {
+            enabled: new fields.BooleanField({ ...opt, initial: false }),
+            filter: new fields.StringField({
+              ...opt,
+              blank: false,
+              initial: "meleeWeapon",
+              choices: ["meleeWeapon", "rangedWeapon", "unarmedOnly", "meleeOrUnarmed"],
+            }),
+            damageMode: new fields.StringField({
+              ...opt,
+              blank: false,
+              initial: "add",
+              choices: ["add", "replace"],
+            }),
+            held: new fields.StringField({
+              ...opt,
+              blank: true,
+              initial: "",
+              choices: ["", "onehanded", "twohanded"],
+            }),
+            charge: new fields.BooleanField({ ...opt, initial: false }),
+            iteratives: new fields.BooleanField({ ...opt, initial: true }),
+            attackBonus: new fields.StringField({ ...opt, blank: true, initial: "" }),
+            damageBonus: new fields.StringField({ ...opt, blank: true, initial: "" }),
+            nonCritDamageBonus: new fields.StringField({ ...opt, blank: true, initial: "" }),
+            extraAttacks: new fields.ArrayField(
+              new fields.SchemaField({
+                formula: new fields.StringField({ ...opt, blank: true, initial: "" }),
+                name: new fields.StringField({ ...opt, blank: true, initial: "" }),
+              }),
+              { ...opt, initial: [] },
+            ),
+            suppressNaturalAttack: new fields.BooleanField({ ...opt, initial: false }),
+            suppressAbilityDamage: new fields.BooleanField({ ...opt, initial: false }),
+          },
+          opt,
+        ),
+
         // ObjectField rows let PF1e's ItemAction sheet persist arbitrary
         // fields (damage, attack, save, etc.) without schema stripping.
         actions: new fields.ArrayField(new fields.ObjectField(), { ...opt, initial: [] }),
@@ -492,6 +532,8 @@ export function createTechniqueDataModel() {
     }
 
     static migrateData(source) {
+      migrateLegacyWeaponAttack(source);
+
       const automation = source.automation ?? {};
       const maintenance = legacyAutomationToMaintenance(automation);
       if (maintenance && !automation.maintenance) automation.maintenance = maintenance;

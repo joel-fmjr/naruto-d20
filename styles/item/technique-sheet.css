@@ -116,3 +116,94 @@
   padding: 2px 4px;
   vertical-align: middle;
 }
+
+.pf1.sheet.item .weapon-attack-config {
+  border: 1px solid rgba(120, 96, 54, 0.35);
+  border-radius: 4px;
+  margin-bottom: 10px;
+  padding: 8px;
+}
+
+.pf1.sheet.item .weapon-attack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.pf1.sheet.item .weapon-attack-grid h4,
+.pf1.sheet.item .weapon-attack-subsection h4 {
+  border-bottom: 1px solid rgba(120, 96, 54, 0.25);
+  margin: 4px 0 6px;
+  padding-bottom: 2px;
+}
+
+/* The sheet framework lays the active tab out as a fixed-height flex column
+   (height:100% + overflow-y:scroll). That hands `.weapon-attack-config` a
+   *definite* height, which lets its nested `.weapon-attack-subsection`s resolve
+   their own height against it and stretch to ~100% of the config box; two
+   stretched subsections (~562px each from ~46px of real content) then overflow
+   the 580px config and paint over the Empower/maintenance fields below it.
+   Putting the active automation tab into normal block flow removes the
+   definite-height context: config and its subsections fall back to natural
+   content height and the tab scrolls normally. Scoped to `.active` so inactive
+   tabs stay hidden by the framework's display:none. */
+.pf1.sheet.item .tab.automation.active {
+  display: block;
+}
+
+/* In the narrow 2-column grid, stack each label over its control so long
+   labels (e.g. "Non-critical damage bonus") don't squeeze the input to a
+   sliver — every field gets the full column width. */
+.pf1.sheet.item .weapon-attack-grid .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.pf1.sheet.item .weapon-attack-grid .form-group > label {
+  flex: 0 0 auto;
+  margin-bottom: 2px;
+}
+
+/* Foundry gives form-group controls `flex: 1 1 0%`, so a <select>'s size is
+   driven by its (small) content and Blink (Chrome/Brave) ignores `height` on it
+   — leaving the BASIC selects (~16px) shorter than the MODIFIERS inputs (~20px)
+   and the two columns drifting out of alignment. WebKit (Safari) honors the
+   height, hence the engine split. `min-height` IS honored by both engines on
+   native selects and flex items, so pin both controls to the same floor; with
+   no extra grow space they both settle at exactly that height. */
+.pf1.sheet.item .weapon-attack-grid .form-group > input,
+.pf1.sheet.item .weapon-attack-grid .form-group > select {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  min-height: 20px;
+  font-size: 13px;
+}
+
+.pf1.sheet.item .weapon-attack-subsection {
+  margin-top: 8px;
+}
+
+.pf1.sheet.item .weapon-attack-summary {
+  display: inline-block;
+  margin-left: 6px;
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.pf1.sheet.item .weapon-attack-warnings {
+  background: rgba(155, 70, 40, 0.12);
+  border: 1px solid rgba(155, 70, 40, 0.35);
+  border-radius: 4px;
+  margin-top: 8px;
+  padding: 6px 8px;
+}
+
+.pf1.sheet.item .weapon-attack-warnings ul {
+  margin: 4px 0 0 18px;
+  padding: 0;
+}

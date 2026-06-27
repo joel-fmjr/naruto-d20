@@ -83,12 +83,7 @@
     "tags": [],
     "flags": {
       "boolean": {},
-      "dictionary": {
-        "weaponAttack.mode": "selected",
-        "weaponAttack.filter": "meleeOrUnarmed",
-        "weaponAttack.attackBonus": "1[Ryuutsuki]",
-        "weaponAttack.charge": "true"
-      }
+      "dictionary": {}
     },
     "showInQuickbar": false,
     "showInCombat": false,
@@ -100,7 +95,21 @@
         "title": "NarutoD20 Redux v1.3",
         "pages": "226"
       }
-    ]
+    ],
+    "weaponAttack": {
+      "enabled": true,
+      "filter": "meleeOrUnarmed",
+      "damageMode": "add",
+      "held": "",
+      "charge": true,
+      "iteratives": true,
+      "attackBonus": "1[Ryuutsuki]",
+      "damageBonus": "",
+      "nonCritDamageBonus": "",
+      "extraAttacks": [],
+      "suppressNaturalAttack": false,
+      "suppressAbilityDamage": false
+    }
   },
   "effects": [],
   "folder": "yUI8Y6kUaMCw0mQw",
