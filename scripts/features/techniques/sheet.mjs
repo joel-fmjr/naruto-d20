@@ -34,6 +34,21 @@ const SPECIAL_DESCRIPTOR_FLAGS = {
   Kinjutsu: "system.isKinjutsu",
 };
 
+const WEAPON_ATTACK_REQUIRED_FORM_KEYS = [
+  "system.weaponAttack.enabled",
+  "system.weaponAttack.filter",
+  "system.weaponAttack.damageMode",
+  "system.weaponAttack.held",
+  "system.weaponAttack.charge",
+  "system.weaponAttack.iteratives",
+  "system.weaponAttack.attackBonus",
+  "system.weaponAttack.damageBonus",
+  "system.weaponAttack.nonCritDamageBonus",
+  "system.weaponAttack.extraAttacksText",
+  "system.weaponAttack.suppressNaturalAttack",
+  "system.weaponAttack.suppressAbilityDamage",
+];
+
 function localizeChoices(choices) {
   return Object.fromEntries(
     Object.entries(choices).map(([key, label]) => [key, game.i18n.localize(label)]),
@@ -346,18 +361,25 @@ export function createTechniqueItemSheet() {
         key.startsWith("system.weaponAttack."),
       );
       if (hasWeaponAttackFormData) {
-        const weaponAttackForm = weaponAttackFormDataFromForm(formData);
-        const preset = weaponAttackForm.preset;
-        const normalizedWeaponAttack =
-          preset && preset !== "custom"
-            ? applyWeaponAttackPreset(preset, weaponAttackForm)
-            : weaponAttackForm;
-        const weaponAttackUpdates = buildWeaponAttackDictionaryUpdates(
-          normalizedWeaponAttack,
-          this.item.system.flags?.dictionary ?? {},
+        const weaponAttackEnabled = formData["system.weaponAttack.enabled"] === true;
+        const hasCompleteEnabledPayload = WEAPON_ATTACK_REQUIRED_FORM_KEYS.every(
+          (key) => Object.hasOwn(formData, key),
         );
-        removeSyntheticWeaponAttackFormFields(formData);
-        Object.assign(formData, weaponAttackUpdates);
+        const shouldNormalizeWeaponAttack = !weaponAttackEnabled || hasCompleteEnabledPayload;
+        if (shouldNormalizeWeaponAttack) {
+          const weaponAttackForm = weaponAttackFormDataFromForm(formData);
+          const preset = weaponAttackForm.preset;
+          const normalizedWeaponAttack =
+            preset && preset !== "custom"
+              ? applyWeaponAttackPreset(preset, weaponAttackForm)
+              : weaponAttackForm;
+          const weaponAttackUpdates = buildWeaponAttackDictionaryUpdates(
+            normalizedWeaponAttack,
+            this.item.system.flags?.dictionary ?? {},
+          );
+          removeSyntheticWeaponAttackFormFields(formData);
+          Object.assign(formData, weaponAttackUpdates);
+        }
       }
 
       return super._updateObject(event, formData);
@@ -511,21 +533,7 @@ export function createTechniqueItemSheet() {
 
       const form = event.currentTarget.form;
       const get = (name) => form.elements.namedItem(name);
-      const requiredControls = [
-        "system.weaponAttack.enabled",
-        "system.weaponAttack.filter",
-        "system.weaponAttack.damageMode",
-        "system.weaponAttack.held",
-        "system.weaponAttack.charge",
-        "system.weaponAttack.iteratives",
-        "system.weaponAttack.attackBonus",
-        "system.weaponAttack.damageBonus",
-        "system.weaponAttack.nonCritDamageBonus",
-        "system.weaponAttack.extraAttacksText",
-        "system.weaponAttack.suppressNaturalAttack",
-        "system.weaponAttack.suppressAbilityDamage",
-      ];
-      if (requiredControls.some((name) => !get(name))) return;
+      if (WEAPON_ATTACK_REQUIRED_FORM_KEYS.some((name) => !get(name))) return;
 
       const current = {
         enabled: get("system.weaponAttack.enabled")?.checked === true,
