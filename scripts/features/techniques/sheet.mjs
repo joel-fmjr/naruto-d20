@@ -577,20 +577,20 @@ export function createTechniqueItemSheet() {
       }
       const index = maxIndex + 1;
 
-      const row = document.createElement("div");
-      row.className = "weapon-attack-damage-row";
+      const row = document.createElement("li");
+      row.className = "damage-part flexrow weapon-attack-damage-row";
       row.dataset.damagePart = String(index);
       row.innerHTML = `
-        <input type="text" name="${prefix}.${index}.formula" value="" placeholder="${game.i18n.localize("NarutoD20.WeaponAttack.DamageParts.FormulaPlaceholder")}">
+        <input class="damage-formula formula" type="text" name="${prefix}.${index}.formula" value="" placeholder="${game.i18n.localize("NarutoD20.WeaponAttack.DamageParts.FormulaPlaceholder")}">
         <input type="hidden" name="${prefix}.${index}.types" value="">
         <div class="damage-type-visual empty" data-name="${prefix}.${index}.types">
           <span>${game.i18n.localize("PF1.Undefined")}</span>
         </div>
-        <button type="button" class="weapon-attack-damage-delete" data-tooltip="${game.i18n.localize("PF1.DeleteItem")}">
+        <a class="damage-control delete-damage weapon-attack-damage-delete" data-tooltip="${game.i18n.localize("PF1.DeleteItem")}">
           <i class="fa-solid fa-trash" inert></i>
-        </button>
+        </a>
       `;
-      rowsContainer.append(row);
+      rowsContainer.insertBefore(row, rowsContainer.lastElementChild);
     }
 
     _onWeaponAttackDamageDelete(event) {
