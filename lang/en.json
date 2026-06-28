@@ -438,12 +438,6 @@
       "AttackBonus": {
         "Label": "Attack bonus"
       },
-      "DamageBonus": {
-        "Label": "Damage bonus"
-      },
-      "NonCritDamageBonus": {
-        "Label": "Non-critical damage bonus"
-      },
       "DamageParts": {
         "Label": "Damage bonus instances",
         "Add": "Add damage instance",
