@@ -147,10 +147,10 @@ export function createTechniqueDataModel() {
       const damagePartRow = () =>
         new fields.SchemaField({
           formula: new fields.StringField({ ...opt, blank: true, initial: "" }),
-          types: new fields.ArrayField(
-            new fields.StringField({ blank: false, required: true }),
-            { ...opt, initial: [] },
-          ),
+          types: new fields.ArrayField(new fields.StringField({ blank: false, required: true }), {
+            ...opt,
+            initial: [],
+          }),
         });
 
       return {

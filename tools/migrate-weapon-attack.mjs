@@ -13,7 +13,9 @@ for (const file of readdirSync(dir)) {
   const path = join(dir, file);
   const doc = JSON.parse(readFileSync(path, "utf8"));
   const wa = doc.system?.weaponAttack;
-  const hasLegacyStrings = Boolean(wa && typeof wa === "object" && ("damageBonus" in wa || "nonCritDamageBonus" in wa));
+  const hasLegacyStrings = Boolean(
+    wa && typeof wa === "object" && ("damageBonus" in wa || "nonCritDamageBonus" in wa),
+  );
   if (!doc.system || (!hasLegacyWeaponAttack(doc.system) && !hasLegacyStrings)) continue;
   migrateLegacyWeaponAttack(doc.system);
   writeFileSync(path, JSON.stringify(doc, null, 2) + "\n", "utf8");

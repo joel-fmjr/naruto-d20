@@ -59,9 +59,7 @@ export function migrateLegacyWeaponAttack(source) {
   const hasLegacyDict = hasLegacyWeaponAttack(source);
   const wa0 = source.weaponAttack;
   const hasLegacyDamageStrings =
-    wa0 &&
-    typeof wa0 === "object" &&
-    ("damageBonus" in wa0 || "nonCritDamageBonus" in wa0);
+    wa0 && typeof wa0 === "object" && ("damageBonus" in wa0 || "nonCritDamageBonus" in wa0);
 
   if (!hasLegacyDict && !hasLegacyDamageStrings) return source;
 
