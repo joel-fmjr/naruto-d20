@@ -207,3 +207,29 @@
   margin: 4px 0 0 18px;
   padding: 0;
 }
+
+.naruto-d20.sheet.item.technique .weapon-attack-damage-parts {
+  margin-top: 0.5rem;
+}
+
+.naruto-d20.sheet.item.technique .weapon-attack-damage-parts h5 {
+  margin: 0 0 0.25rem;
+  font-size: var(--font-size-13);
+}
+
+.naruto-d20.sheet.item.technique .weapon-attack-damage-row {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) minmax(6rem, 0.8fr) auto;
+  gap: 0.25rem;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.naruto-d20.sheet.item.technique .weapon-attack-damage-row input {
+  width: 100%;
+}
+
+.naruto-d20.sheet.item.technique .weapon-attack-damage-add,
+.naruto-d20.sheet.item.technique .weapon-attack-damage-delete {
+  line-height: 1;
+}
