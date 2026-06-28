@@ -181,8 +181,18 @@ export function applyTechniqueWeaponAttackDamageParts(actionUse, config, cleanup
   const normalOriginalLength = normalParts.length;
   const nonCritOriginalLength = nonCritParts.length;
 
-  const damageParts = normalizeDamagePartRows(config?.damageParts);
-  const nonCritDamageParts = normalizeDamagePartRows(config?.nonCritDamageParts);
+  const fallbackTypes = getPrimaryWeaponDamageTypes(action);
+  const inheritTypes = config?.damageMode === "add";
+  const damageParts = inheritUntypedDamagePartTypes(
+    normalizeDamagePartRows(config?.damageParts),
+    fallbackTypes,
+    { enabled: inheritTypes },
+  );
+  const nonCritDamageParts = inheritUntypedDamagePartTypes(
+    normalizeDamagePartRows(config?.nonCritDamageParts),
+    fallbackTypes,
+    { enabled: inheritTypes },
+  );
   if (!damageParts.length && !nonCritDamageParts.length) return;
 
   normalParts.push(...damageParts);
@@ -191,6 +201,19 @@ export function applyTechniqueWeaponAttackDamageParts(actionUse, config, cleanup
     normalParts.splice(normalOriginalLength);
     nonCritParts.splice(nonCritOriginalLength);
   });
+}
+
+function getPrimaryWeaponDamageTypes(action) {
+  const firstTypes = action?.damage?.parts?.[0]?.types;
+  return Array.isArray(firstTypes) ? firstTypes.filter(Boolean) : [];
+}
+
+function inheritUntypedDamagePartTypes(rows, fallbackTypes, { enabled }) {
+  if (!enabled || !fallbackTypes.length) return rows.map((row) => ({ ...row }));
+  return rows.map((row) => ({
+    ...row,
+    types: row.types?.length ? [...row.types] : [...fallbackTypes],
+  }));
 }
 
 export function applyTechniqueBonusSuppressions(actionUse, suppressions = [], cleanup = []) {

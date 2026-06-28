@@ -162,6 +162,38 @@ describe("technique weapon attack typed damage parts", () => {
     assert.deepEqual(action.damage.parts, [{ formula: "1d6", types: ["bludgeoning"] }]);
     assert.deepEqual(action.damage.nonCritParts, []);
   });
+
+  it("inherits the selected weapon damage type for untyped additive parts", () => {
+    const action = {
+      damage: {
+        parts: [{ formula: "1d8", types: ["slashing"] }],
+        nonCritParts: [],
+      },
+    };
+    const actionUse = { shared: { action, rollData: { action }, damageBonus: [] } };
+    const cleanup = [];
+
+    applyTechniqueWeaponAttackDamageParts(
+      actionUse,
+      {
+        damageMode: "add",
+        damageParts: [{ formula: "2d6", types: [] }],
+        nonCritDamageParts: [{ formula: "1", types: [] }],
+      },
+      cleanup,
+    );
+
+    assert.deepEqual(action.damage.parts, [
+      { formula: "1d8", types: ["slashing"] },
+      { formula: "2d6", types: ["slashing"] },
+    ]);
+    assert.deepEqual(action.damage.nonCritParts, [{ formula: "1", types: ["slashing"] }]);
+
+    for (const restore of cleanup.reverse()) restore();
+
+    assert.deepEqual(action.damage.parts, [{ formula: "1d8", types: ["slashing"] }]);
+    assert.deepEqual(action.damage.nonCritParts, []);
+  });
 });
 
 describe("delegated technique element damage", () => {
