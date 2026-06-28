@@ -205,7 +205,9 @@ export function applyTechniqueWeaponAttackDamageParts(actionUse, config, cleanup
 
 function getPrimaryWeaponDamageTypes(action) {
   const firstTypes = action?.damage?.parts?.[0]?.types;
-  return Array.isArray(firstTypes) ? firstTypes.filter(Boolean) : [];
+  if (Array.isArray(firstTypes)) return firstTypes.filter(Boolean);
+  if (firstTypes instanceof Set) return [...firstTypes].filter(Boolean);
+  return [];
 }
 
 function inheritUntypedDamagePartTypes(rows, fallbackTypes, { enabled }) {

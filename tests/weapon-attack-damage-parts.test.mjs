@@ -37,6 +37,13 @@ describe("weapon attack damage part helpers", () => {
     assert.equal(typeArrayToCsv(["cold", "electricity"]), "cold, electric");
   });
 
+  it("treats PF1e's undefined damage label as no damage type", () => {
+    assert.deepEqual(typeCsvToArray("Undefined"), []);
+    assert.deepEqual(normalizeDamagePartRows([{ formula: "2[Jiki-Uchi]", types: "Undefined" }]), [
+      { formula: "2[Jiki-Uchi]", types: [] },
+    ]);
+  });
+
   it("converts rows to and from form state", () => {
     const formRows = damagePartRowsToForm([{ formula: "2", types: ["cold"] }]);
     assert.deepEqual(formRows, [{ formula: "2", typesText: "cold" }]);

@@ -166,7 +166,7 @@ describe("technique weapon attack typed damage parts", () => {
   it("inherits the selected weapon damage type for untyped additive parts", () => {
     const action = {
       damage: {
-        parts: [{ formula: "1d8", types: ["slashing"] }],
+        parts: [{ formula: "1d8", types: new Set(["slashing"]) }],
         nonCritParts: [],
       },
     };
@@ -177,21 +177,21 @@ describe("technique weapon attack typed damage parts", () => {
       actionUse,
       {
         damageMode: "add",
-        damageParts: [{ formula: "2d6", types: [] }],
-        nonCritDamageParts: [{ formula: "1", types: [] }],
+        damageParts: [{ formula: "2d6", types: "Undefined" }],
+        nonCritDamageParts: [{ formula: "1", types: "Undefined" }],
       },
       cleanup,
     );
 
     assert.deepEqual(action.damage.parts, [
-      { formula: "1d8", types: ["slashing"] },
+      { formula: "1d8", types: new Set(["slashing"]) },
       { formula: "2d6", types: ["slashing"] },
     ]);
     assert.deepEqual(action.damage.nonCritParts, [{ formula: "1", types: ["slashing"] }]);
 
     for (const restore of cleanup.reverse()) restore();
 
-    assert.deepEqual(action.damage.parts, [{ formula: "1d8", types: ["slashing"] }]);
+    assert.deepEqual(action.damage.parts, [{ formula: "1d8", types: new Set(["slashing"]) }]);
     assert.deepEqual(action.damage.nonCritParts, []);
   });
 });

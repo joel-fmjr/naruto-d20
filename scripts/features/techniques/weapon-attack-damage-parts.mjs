@@ -6,8 +6,11 @@ const DAMAGE_TYPE_ALIASES = Object.freeze({
   electricity: "electric",
 });
 
+const EMPTY_DAMAGE_TYPE_LABELS = new Set(["undefined"]);
+
 function canonicalDamageType(value) {
   const type = trimString(value);
+  if (EMPTY_DAMAGE_TYPE_LABELS.has(type.toLowerCase())) return "";
   return DAMAGE_TYPE_ALIASES[type] ?? type;
 }
 
