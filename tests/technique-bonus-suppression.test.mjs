@@ -154,7 +154,7 @@ describe("technique weapon attack typed damage parts", () => {
       { formula: "1d6", types: ["bludgeoning"] },
       { formula: "2", types: ["cold"] },
     ]);
-    assert.deepEqual(action.damage.nonCritParts, [{ formula: "1d4", types: ["electricity"] }]);
+    assert.deepEqual(action.damage.nonCritParts, [{ formula: "1d4", types: ["electric"] }]);
     assert.deepEqual(actionUse.shared.damageBonus, []);
 
     for (const restore of cleanup.reverse()) restore();

@@ -650,15 +650,15 @@
               <h5>{{localize "NarutoD20.WeaponAttack.DamageParts.Label"}}</h5>
               <div class="weapon-attack-damage-rows">
               {{#each weaponAttack.damageParts as |part i|}}
-              <div class="weapon-attack-damage-row">
+              <div class="weapon-attack-damage-row" data-damage-part="{{i}}">
                 <input type="text"
                        name="system.weaponAttack.damageParts.{{i}}.formula"
                        value="{{part.formula}}"
                        placeholder="{{localize 'NarutoD20.WeaponAttack.DamageParts.FormulaPlaceholder'}}">
-                <input type="text"
-                       name="system.weaponAttack.damageParts.{{i}}.typesText"
-                       value="{{part.typesText}}"
-                       placeholder="{{localize 'NarutoD20.WeaponAttack.DamageParts.TypesPlaceholder'}}">
+                <input type="hidden"
+                       name="system.weaponAttack.damageParts.{{i}}.types"
+                       value="{{part.typesText}}">
+                {{> "systems/pf1/templates/internal/damage-type-visual.hbs" damage=part.damage name=(concat "system.weaponAttack.damageParts." i ".types")}}
                 <button type="button" class="weapon-attack-damage-delete" data-tooltip="{{localize 'PF1.DeleteItem'}}">
                   <i class="fa-solid fa-trash" inert></i>
                 </button>
@@ -676,15 +676,15 @@
               <h5>{{localize "NarutoD20.WeaponAttack.NonCritDamageParts.Label"}}</h5>
               <div class="weapon-attack-damage-rows">
               {{#each weaponAttack.nonCritDamageParts as |part i|}}
-              <div class="weapon-attack-damage-row">
+              <div class="weapon-attack-damage-row" data-damage-part="{{i}}">
                 <input type="text"
                        name="system.weaponAttack.nonCritDamageParts.{{i}}.formula"
                        value="{{part.formula}}"
                        placeholder="{{localize 'NarutoD20.WeaponAttack.DamageParts.FormulaPlaceholder'}}">
-                <input type="text"
-                       name="system.weaponAttack.nonCritDamageParts.{{i}}.typesText"
-                       value="{{part.typesText}}"
-                       placeholder="{{localize 'NarutoD20.WeaponAttack.DamageParts.TypesPlaceholder'}}">
+                <input type="hidden"
+                       name="system.weaponAttack.nonCritDamageParts.{{i}}.types"
+                       value="{{part.typesText}}">
+                {{> "systems/pf1/templates/internal/damage-type-visual.hbs" damage=part.damage name=(concat "system.weaponAttack.nonCritDamageParts." i ".types")}}
                 <button type="button" class="weapon-attack-damage-delete" data-tooltip="{{localize 'PF1.DeleteItem'}}">
                   <i class="fa-solid fa-trash" inert></i>
                 </button>

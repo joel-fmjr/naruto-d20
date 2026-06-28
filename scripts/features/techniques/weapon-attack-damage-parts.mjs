@@ -2,11 +2,20 @@ function trimString(value) {
   return String(value ?? "").trim();
 }
 
+const DAMAGE_TYPE_ALIASES = Object.freeze({
+  electricity: "electric",
+});
+
+function canonicalDamageType(value) {
+  const type = trimString(value);
+  return DAMAGE_TYPE_ALIASES[type] ?? type;
+}
+
 export function typeCsvToArray(value) {
-  if (Array.isArray(value)) return value.map(trimString).filter(Boolean);
+  if (Array.isArray(value)) return value.map(canonicalDamageType).filter(Boolean);
   return String(value ?? "")
     .split(/[,;]/)
-    .map(trimString)
+    .map(canonicalDamageType)
     .filter(Boolean);
 }
 
@@ -41,7 +50,7 @@ export function damagePartRowsFromForm(rows) {
   return normalizeDamagePartRows(
     rows.map((row) => ({
       formula: row?.formula,
-      types: row?.typesText,
+      types: row?.types ?? row?.typesText,
     })),
   );
 }

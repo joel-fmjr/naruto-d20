@@ -19,7 +19,7 @@ describe("weapon attack damage part helpers", () => {
         { formula: "1d4", types: "acid, sonic" },
       ]),
       [
-        { formula: "2[cold]", types: ["cold", "electricity"] },
+        { formula: "2[cold]", types: ["cold", "electric"] },
         { formula: "1d4", types: ["acid", "sonic"] },
       ],
     );
@@ -33,8 +33,8 @@ describe("weapon attack damage part helpers", () => {
   });
 
   it("round-trips type CSV values", () => {
-    assert.deepEqual(typeCsvToArray("cold, electricity; acid"), ["cold", "electricity", "acid"]);
-    assert.equal(typeArrayToCsv(["cold", "electricity"]), "cold, electricity");
+    assert.deepEqual(typeCsvToArray("cold, electricity; acid"), ["cold", "electric", "acid"]);
+    assert.equal(typeArrayToCsv(["cold", "electricity"]), "cold, electric");
   });
 
   it("converts rows to and from form state", () => {

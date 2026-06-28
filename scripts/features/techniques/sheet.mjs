@@ -212,7 +212,9 @@ export function createTechniqueItemSheet() {
       };
       const localizeOrFormat = (key, data = {}) =>
         Object.keys(data).length ? game.i18n.format(key, data) : game.i18n.localize(key);
-      context.weaponAttack = buildWeaponAttackFormData(item);
+      context.weaponAttack = buildWeaponAttackFormData(item, {
+        damageTypeRegistry: pf1.registry?.damageTypes,
+      });
       context.weaponAttackSummary = buildWeaponAttackSummary(
         context.weaponAttack,
         localizeOrFormat,
@@ -313,6 +315,11 @@ export function createTechniqueItemSheet() {
       );
       html.on("click", ".weapon-attack-damage-add", this._onWeaponAttackDamageAdd.bind(this));
       html.on("click", ".weapon-attack-damage-delete", this._onWeaponAttackDamageDelete.bind(this));
+      html.on(
+        "click",
+        ".weapon-attack-damage-row .damage-type-visual",
+        this._onWeaponAttackDamageType.bind(this),
+      );
 
       // Content source editor
       html.on("click", ".content-source .control a.edit", () =>
@@ -571,9 +578,13 @@ export function createTechniqueItemSheet() {
 
       const row = document.createElement("div");
       row.className = "weapon-attack-damage-row";
+      row.dataset.damagePart = String(index);
       row.innerHTML = `
         <input type="text" name="${prefix}.${index}.formula" value="" placeholder="${game.i18n.localize("NarutoD20.WeaponAttack.DamageParts.FormulaPlaceholder")}">
-        <input type="text" name="${prefix}.${index}.typesText" value="" placeholder="${game.i18n.localize("NarutoD20.WeaponAttack.DamageParts.TypesPlaceholder")}">
+        <input type="hidden" name="${prefix}.${index}.types" value="">
+        <div class="damage-type-visual empty" data-name="${prefix}.${index}.types">
+          <span>${game.i18n.localize("PF1.Undefined")}</span>
+        </div>
         <button type="button" class="weapon-attack-damage-delete" data-tooltip="${game.i18n.localize("PF1.DeleteItem")}">
           <i class="fa-solid fa-trash" inert></i>
         </button>
@@ -584,6 +595,28 @@ export function createTechniqueItemSheet() {
     _onWeaponAttackDamageDelete(event) {
       event.preventDefault();
       event.currentTarget.closest(".weapon-attack-damage-row")?.remove();
+    }
+
+    async _onWeaponAttackDamageType(event) {
+      event.preventDefault();
+      const elem = event.currentTarget;
+      const row = elem.closest(".weapon-attack-damage-row");
+      const list = elem.closest("[data-weapon-attack-damage-list]");
+      const prefix = list?.dataset.weaponAttackDamageList;
+      const index = Number(row?.dataset.damagePart);
+      if (!prefix || index < 0) return;
+
+      await this._onSubmit(event, { preventRender: true });
+
+      const path = `${prefix}.${index}.types`;
+      const current = foundry.utils.getProperty(this.item, path) ?? [];
+      const app = new pf1.applications.DamageTypeSelector(this.item, path, new Set(current), {
+        updateCallback: async (update) => {
+          await this.item.update({ [path]: update });
+          this.render(false);
+        },
+      });
+      return app.render(true);
     }
 
     // ─────────────────────────────────────────────────────────────

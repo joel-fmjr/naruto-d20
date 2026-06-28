@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 
 import {
   applyWeaponAttackPreset,
+  buildDamageTypeVisualData,
   buildWeaponAttackFormData,
   buildWeaponAttackSummary,
   damagePartRowsFromForm,
@@ -16,6 +17,14 @@ import {
 function itemWithWeaponAttack(weaponAttack) {
   return { system: { weaponAttack } };
 }
+
+const fakeDamageTypes = new Map([
+  ["cold", { id: "cold", name: "Cold", icon: "icon-cold", color: "#00ffff" }],
+  [
+    "electric",
+    { id: "electric", name: "Electricity", icon: "icon-electricity", color: "#ffff00" },
+  ],
+]);
 
 describe("weapon attack sheet form data (typed field)", () => {
   it("reads an enabled typed config into editable form state", () => {
@@ -35,6 +44,7 @@ describe("weapon attack sheet form data (typed field)", () => {
         damageParts: [{ formula: "2", types: ["cold"] }],
         nonCritDamageParts: [{ formula: "1d4", types: ["electricity"] }],
       }),
+      { damageTypeRegistry: fakeDamageTypes },
     );
 
     assert.equal(data.enabled, true);
@@ -45,8 +55,15 @@ describe("weapon attack sheet form data (typed field)", () => {
     assert.equal(data.iteratives, false);
     assert.equal(data.suppressNaturalAttack, true);
     assert.equal(data.suppressAbilityDamage, true);
-    assert.deepEqual(data.damageParts, [{ formula: "2", typesText: "cold" }]);
-    assert.deepEqual(data.nonCritDamageParts, [{ formula: "1d4", typesText: "electricity" }]);
+    assert.equal(data.damageParts[0].formula, "2");
+    assert.equal(data.damageParts[0].typesText, "cold");
+    assert.deepEqual([...data.damageParts[0].damage.types], ["cold"]);
+    assert.deepEqual(data.damageParts[0].damage.standard, [
+      { id: "cold", name: "Cold", icon: "icon-cold", color: "#00ffff" },
+    ]);
+    assert.equal(data.nonCritDamageParts[0].formula, "1d4");
+    assert.equal(data.nonCritDamageParts[0].typesText, "electric");
+    assert.deepEqual([...data.nonCritDamageParts[0].damage.types], ["electric"]);
   });
 
   it("returns disabled defaults when weaponAttack is absent or disabled", () => {
@@ -120,15 +137,25 @@ describe("normalizeExtraAttacksText", () => {
 });
 
 describe("weapon attack damage part form rows", () => {
+  it("builds PF1e damage-type visual data from row types", () => {
+    const visual = buildDamageTypeVisualData(["cold", "custom"], fakeDamageTypes);
+    assert.deepEqual([...visual.types], ["cold", "custom"]);
+    assert.deepEqual(visual.standard, [
+      { id: "cold", name: "Cold", icon: "icon-cold", color: "#00ffff" },
+    ]);
+    assert.deepEqual([...visual.custom], ["custom"]);
+  });
+
   it("round-trips formula and damage type CSV rows", () => {
     const rows = damagePartRowsFromForm([
-      { formula: " 2 ", typesText: "cold, electricity" },
-      { formula: "", typesText: "fire" },
+      { formula: " 2 ", types: "cold, electricity" },
+      { formula: "", types: "fire" },
     ]);
-    assert.deepEqual(rows, [{ formula: "2", types: ["cold", "electricity"] }]);
-    assert.deepEqual(damagePartRowsToForm(rows), [
-      { formula: "2", typesText: "cold, electricity" },
-    ]);
+    assert.deepEqual(rows, [{ formula: "2", types: ["cold", "electric"] }]);
+    const formRows = damagePartRowsToForm(rows, fakeDamageTypes);
+    assert.equal(formRows[0].formula, "2");
+    assert.equal(formRows[0].typesText, "cold, electric");
+    assert.deepEqual([...formRows[0].damage.types], ["cold", "electric"]);
   });
 });
 
@@ -136,15 +163,15 @@ describe("extractIndexedRows", () => {
   it("collects sparse indexed form keys into rows", () => {
     const formData = {
       "system.weaponAttack.damageParts.0.formula": "1d6",
-      "system.weaponAttack.damageParts.0.typesText": "cold",
+      "system.weaponAttack.damageParts.0.types": "cold",
       "system.weaponAttack.damageParts.2.formula": "2d4",
-      "system.weaponAttack.damageParts.2.typesText": "fire",
+      "system.weaponAttack.damageParts.2.types": "fire",
       "system.weaponAttack.attackBonus": "+2",
     };
     const rows = extractIndexedRows(formData, "system.weaponAttack.damageParts");
     assert.deepEqual(rows, [
-      { formula: "1d6", typesText: "cold" },
-      { formula: "2d4", typesText: "fire" },
+      { formula: "1d6", types: "cold" },
+      { formula: "2d4", types: "fire" },
     ]);
     // consumed keys must be removed from formData
     assert.equal(formData["system.weaponAttack.damageParts.0.formula"], undefined);

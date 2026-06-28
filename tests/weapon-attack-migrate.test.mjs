@@ -121,7 +121,7 @@ describe("migrateLegacyWeaponAttack", () => {
 
     assert.deepEqual(typed.weaponAttack.damageParts, [{ formula: "2", types: ["cold"] }]);
     assert.deepEqual(typed.weaponAttack.nonCritDamageParts, [
-      { formula: "1d4", types: ["electricity"] },
+      { formula: "1d4", types: ["electric"] },
     ]);
     assert.equal(typed.weaponAttack.damageBonus, undefined);
     assert.equal(typed.weaponAttack.nonCritDamageBonus, undefined);

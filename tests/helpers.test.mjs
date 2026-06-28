@@ -840,7 +840,7 @@ describe("getTechniqueWeaponAttackConfig", () => {
       damageMode: "replace",
       attackBonus: "@cl",
       damageParts: [{ formula: "2", types: ["cold"] }],
-      nonCritDamageParts: [{ formula: "1d4", types: ["electricity"] }],
+      nonCritDamageParts: [{ formula: "1d4", types: ["electric"] }],
       extraAttacks: [{ formula: "-5", name: "Second" }],
       held: "",
       charge: true,
