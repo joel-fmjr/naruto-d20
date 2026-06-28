@@ -21,6 +21,7 @@ import {
   damagePartRowsFromForm,
   extractIndexedRows,
   extraAttacksArrayFromText,
+  replaceDamagePartTypes,
   WEAPON_ATTACK_DAMAGE_MODE_CHOICES,
   WEAPON_ATTACK_FILTER_CHOICES,
   WEAPON_ATTACK_HELD_CHOICES,
@@ -608,14 +609,19 @@ export function createTechniqueItemSheet() {
 
       await this._onSubmit(event, { preventRender: true });
 
-      const path = `${prefix}.${index}.types`;
-      const current = foundry.utils.getProperty(this.item, path) ?? [];
-      const app = new pf1.applications.DamageTypeSelector(this.item, path, new Set(current), {
-        updateCallback: async (update) => {
-          await this.item.update({ [path]: update });
-          this.render(false);
+      const currentRows = foundry.utils.getProperty(this.item, prefix) ?? [];
+      const currentTypes = currentRows[index]?.types ?? [];
+      const app = new pf1.applications.DamageTypeSelector(
+        this.item,
+        `${prefix}.${index}.types`,
+        new Set(currentTypes),
+        {
+          updateCallback: async (update) => {
+            await this.item.update({ [prefix]: replaceDamagePartTypes(currentRows, index, update) });
+            this.render(false);
+          },
         },
-      });
+      );
       return app.render(true);
     }
 

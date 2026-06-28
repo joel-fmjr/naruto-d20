@@ -12,6 +12,7 @@ import {
   extraAttacksArrayFromText,
   extraAttacksTextFromArray,
   normalizeExtraAttacksText,
+  replaceDamagePartTypes,
 } from "../scripts/features/techniques/weapon-attack-sheet.mjs";
 
 function itemWithWeaponAttack(weaponAttack) {
@@ -156,6 +157,18 @@ describe("weapon attack damage part form rows", () => {
     assert.equal(formRows[0].formula, "2");
     assert.equal(formRows[0].typesText, "cold, electric");
     assert.deepEqual([...formRows[0].damage.types], ["cold", "electric"]);
+  });
+
+  it("replaces one row's types without dropping its formula or sibling rows", () => {
+    const rows = [
+      { formula: "(min(floor(@cl / 2), 5))d6[Denjiba Totsugeki]", types: [] },
+      { formula: "1d4", types: ["electricity"] },
+    ];
+
+    assert.deepEqual(replaceDamagePartTypes(rows, 0, ["cold"]), [
+      { formula: "(min(floor(@cl / 2), 5))d6[Denjiba Totsugeki]", types: ["cold"] },
+      { formula: "1d4", types: ["electric"] },
+    ]);
   });
 });
 

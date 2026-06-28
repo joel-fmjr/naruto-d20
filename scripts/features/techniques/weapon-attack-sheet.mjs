@@ -74,6 +74,14 @@ export function damagePartRowsToForm(rows, damageTypeRegistry = null) {
   }));
 }
 
+export function replaceDamagePartTypes(rows, index, types) {
+  const normalized = normalizeDamagePartRows(rows);
+  if (index < 0 || index >= normalized.length) return normalized;
+  return normalized.map((row, i) =>
+    i === index ? normalizeDamagePartRows([{ ...row, types }])[0] : row,
+  );
+}
+
 export function buildWeaponAttackFormData(item, options = {}) {
   const wa = item.system?.weaponAttack;
   if (!wa?.enabled) return { ...DEFAULT_FORM_DATA };

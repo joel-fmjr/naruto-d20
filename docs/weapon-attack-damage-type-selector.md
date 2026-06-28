@@ -46,13 +46,18 @@ The visible type control in `templates/item/technique-sheet.hbs` now renders
 PF1e's `damage-type-visual.hbs` partial instead of a text input. Clicking the
 visual control opens `pf1.applications.DamageTypeSelector`. Before opening the
 selector, the sheet submits pending edits with `preventRender: true`, so formula
-changes in the same row are not lost. The selector update callback writes the
-selected IDs back to the exact row path, such as:
+changes in the same row are not lost. The selector is opened with the row path
+for PF1e's own window identity, such as:
 
 ```js
 system.weaponAttack.damageParts.0.types
 system.weaponAttack.nonCritDamageParts.0.types
 ```
+
+The callback writes the full `damageParts` or `nonCritDamageParts` array back to
+the technique item after replacing only the selected row's `types`. This avoids
+partial numeric array-path updates dropping sibling row fields such as
+`formula`.
 
 Newly added rows use the same hidden-field plus visual-control structure and
 start with the PF1e undefined damage label.
