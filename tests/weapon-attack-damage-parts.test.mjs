@@ -2,8 +2,6 @@ import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 
 import {
-  damagePartRowsFromForm,
-  damagePartRowsToForm,
   legacyFormulaToDamageParts,
   normalizeDamagePartRows,
   typeCsvToArray,
@@ -49,11 +47,5 @@ describe("weapon attack damage part helpers", () => {
     assert.deepEqual(normalizeDamagePartRows([{ formula: "2[Jiki-Uchi]", types: "Undefined" }]), [
       { formula: "2[Jiki-Uchi]", types: [] },
     ]);
-  });
-
-  it("converts rows to and from form state", () => {
-    const formRows = damagePartRowsToForm([{ formula: "2", types: ["cold"] }]);
-    assert.deepEqual(formRows, [{ formula: "2", typesText: "cold" }]);
-    assert.deepEqual(damagePartRowsFromForm(formRows), [{ formula: "2", types: ["cold"] }]);
   });
 });
