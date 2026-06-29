@@ -51,20 +51,3 @@ export function legacyFormulaToDamageParts(formula) {
   const text = trimString(formula);
   return text ? [{ formula: text, types: [] }] : [];
 }
-
-export function damagePartRowsToForm(rows) {
-  return normalizeDamagePartRows(rows).map((row) => ({
-    formula: row.formula,
-    typesText: typeArrayToCsv(row.types),
-  }));
-}
-
-export function damagePartRowsFromForm(rows) {
-  if (!Array.isArray(rows)) return [];
-  return normalizeDamagePartRows(
-    rows.map((row) => ({
-      formula: row?.formula,
-      types: row?.types ?? row?.typesText,
-    })),
-  );
-}
