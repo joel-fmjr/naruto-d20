@@ -46,7 +46,7 @@ export function createTechniqueItemSheet() {
   class TechniqueItemSheet extends ItemSheet {
     static get defaultOptions() {
       return foundry.utils.mergeObject(super.defaultOptions, {
-        classes: ["pf1", "sheet", "item"],
+        classes: ["pf1", "sheet", "item", "naruto-d20-technique-sheet"],
         width: 620,
         height: 600,
         tabs: [
