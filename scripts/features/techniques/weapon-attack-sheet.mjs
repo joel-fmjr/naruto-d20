@@ -1,10 +1,8 @@
 import {
-  damagePartRowsFromForm,
   normalizeDamagePartRows,
+  typeCsvToArray,
   typeArrayToCsv,
 } from "./weapon-attack-damage-parts.mjs";
-
-export { damagePartRowsFromForm };
 
 export const WEAPON_ATTACK_FILTER_CHOICES = {
   meleeWeapon: "NarutoD20.WeaponAttack.Filter.MeleeWeapon",
@@ -67,19 +65,44 @@ export function buildDamageTypeVisualData(types, damageTypeRegistry = null) {
 }
 
 export function damagePartRowsToForm(rows, damageTypeRegistry = null) {
-  return normalizeDamagePartRows(rows).map((row) => ({
+  return normalizeDamagePartFormRows(rows).map((row) => ({
     formula: row.formula,
     typesText: typeArrayToCsv(row.types),
     damage: buildDamageTypeVisualData(row.types, damageTypeRegistry),
   }));
 }
 
-export function replaceDamagePartTypes(rows, index, types) {
-  const normalized = normalizeDamagePartRows(rows);
-  if (index < 0 || index >= normalized.length) return normalized;
-  return normalized.map((row, i) =>
-    i === index ? normalizeDamagePartRows([{ ...row, types }])[0] : row,
+export function damagePartRowsFromForm(rows) {
+  return normalizeDamagePartFormRows(
+    Array.isArray(rows)
+      ? rows.map((row) => ({
+          formula: row?.formula,
+          types: row?.types ?? row?.typesText,
+        }))
+      : [],
   );
+}
+
+export function replaceDamagePartTypes(rows, index, types) {
+  const normalized = normalizeDamagePartFormRows(rows);
+  const nextTypes = typeCsvToArray(types);
+  if (index < 0 || index > normalized.length) return normalized;
+  if (index === normalized.length) {
+    return nextTypes.length ? [...normalized, { formula: "", types: nextTypes }] : normalized;
+  }
+  return normalized.map((row, i) =>
+    i === index ? normalizeDamagePartFormRows([{ ...row, types }])[0] : row,
+  );
+}
+
+function normalizeDamagePartFormRows(rows) {
+  if (!Array.isArray(rows)) return [];
+  return rows
+    .map((row) => ({
+      formula: String(row?.formula ?? "").trim(),
+      types: typeCsvToArray(row?.types ?? row?.typesText),
+    }))
+    .filter((row) => row.formula || row.types.length);
 }
 
 export function buildWeaponAttackFormData(item, options = {}) {

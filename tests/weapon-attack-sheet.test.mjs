@@ -147,16 +147,41 @@ describe("weapon attack damage part form rows", () => {
     assert.deepEqual([...visual.custom], ["custom"]);
   });
 
-  it("round-trips formula and damage type CSV rows", () => {
+  it("round-trips formula and damage type CSV rows, preserving typed draft rows", () => {
     const rows = damagePartRowsFromForm([
       { formula: " 2 ", types: "cold, electricity" },
       { formula: "", types: "fire" },
+      { formula: "", types: "" },
     ]);
-    assert.deepEqual(rows, [{ formula: "2", types: ["cold", "electric"] }]);
+    assert.deepEqual(rows, [
+      { formula: "2", types: ["cold", "electric"] },
+      { formula: "", types: ["fire"] },
+    ]);
     const formRows = damagePartRowsToForm(rows, fakeDamageTypes);
     assert.equal(formRows[0].formula, "2");
     assert.equal(formRows[0].typesText, "cold, electric");
     assert.deepEqual([...formRows[0].damage.types], ["cold", "electric"]);
+    assert.equal(formRows[1].formula, "");
+    assert.equal(formRows[1].typesText, "fire");
+    assert.deepEqual([...formRows[1].damage.types], ["fire"]);
+  });
+
+  it("adds types to a newly inserted draft row without dropping existing rows", () => {
+    const rows = [{ formula: "2", types: ["cold"] }, { formula: "", types: [] }];
+
+    assert.deepEqual(replaceDamagePartTypes(rows, 1, ["slashing"]), [
+      { formula: "2", types: ["cold"] },
+      { formula: "", types: ["slashing"] },
+    ]);
+  });
+
+  it("restores a newly inserted row when submit filtered the blank draft before type selection", () => {
+    const rowsAfterPreSelectorSubmit = [{ formula: "2", types: ["cold"] }];
+
+    assert.deepEqual(replaceDamagePartTypes(rowsAfterPreSelectorSubmit, 1, ["slashing"]), [
+      { formula: "2", types: ["cold"] },
+      { formula: "", types: ["slashing"] },
+    ]);
   });
 
   it("replaces one row's types without dropping its formula or sibling rows", () => {
