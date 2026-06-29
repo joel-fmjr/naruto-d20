@@ -84,16 +84,29 @@ export function damagePartRowsFromForm(rows) {
   );
 }
 
-export function replaceDamagePartTypes(rows, index, types) {
-  const normalized = normalizeDamagePartFormRows(rows);
-  const nextTypes = typeCsvToArray(types);
-  if (index < 0 || index > normalized.length) return normalized;
-  if (index === normalized.length) {
-    return nextTypes.length ? [...normalized, { formula: "", types: nextTypes }] : normalized;
-  }
-  return normalized.map((row, i) =>
-    i === index ? normalizeDamagePartFormRows([{ ...row, types }])[0] : row,
-  );
+/**
+ * Set the damage types on a single row, capturing every other row's formula verbatim.
+ *
+ * `rows` are raw, DOM-captured rows (dense by index, formula + types as typed) — they are
+ * NOT pre-normalized, so a still-blank target row survives and keeps its position. The
+ * array is padded up to `index` when needed (the row the user is editing may not have been
+ * persisted yet) and the input is never mutated. Drop empty rows by passing the result
+ * through `damagePartRowsFromForm` at persist time.
+ *
+ * @param {{ formula?: string, types?: string|string[] }[]} rows
+ * @param {number} index
+ * @param {string|string[]} types
+ * @returns {{ formula: string, types: string[] }[]}
+ */
+export function setDamagePartTypesAt(rows, index, types) {
+  const next = (Array.isArray(rows) ? rows : []).map((row) => ({
+    formula: String(row?.formula ?? ""),
+    types: row?.types ?? row?.typesText ?? [],
+  }));
+  if (index < 0) return next;
+  while (next.length <= index) next.push({ formula: "", types: [] });
+  next[index] = { formula: next[index].formula, types: typeCsvToArray(types) };
+  return next;
 }
 
 function normalizeDamagePartFormRows(rows) {
@@ -268,7 +281,9 @@ function defaultLocalize(key, data = {}) {
  */
 export function extractIndexedRows(formData, prefix) {
   const rows = [];
-  const match = new RegExp(`^${prefix.replaceAll(".", "\\.")}\\.(\\d+)\\.(formula|types|typesText)$`);
+  const match = new RegExp(
+    `^${prefix.replaceAll(".", "\\.")}\\.(\\d+)\\.(formula|types|typesText)$`,
+  );
   for (const key of Object.keys(formData)) {
     const found = key.match(match);
     if (!found) continue;

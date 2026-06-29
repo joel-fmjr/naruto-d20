@@ -12,7 +12,7 @@ import {
   extraAttacksArrayFromText,
   extraAttacksTextFromArray,
   normalizeExtraAttacksText,
-  replaceDamagePartTypes,
+  setDamagePartTypesAt,
 } from "../scripts/features/techniques/weapon-attack-sheet.mjs";
 
 function itemWithWeaponAttack(weaponAttack) {
@@ -21,10 +21,7 @@ function itemWithWeaponAttack(weaponAttack) {
 
 const fakeDamageTypes = new Map([
   ["cold", { id: "cold", name: "Cold", icon: "icon-cold", color: "#00ffff" }],
-  [
-    "electric",
-    { id: "electric", name: "Electricity", icon: "icon-electricity", color: "#ffff00" },
-  ],
+  ["electric", { id: "electric", name: "Electricity", icon: "icon-electricity", color: "#ffff00" }],
 ]);
 
 describe("weapon attack sheet form data (typed field)", () => {
@@ -94,14 +91,23 @@ describe("weapon attack extra-attacks text<->array", () => {
 
 describe("weapon attack sheet presets", () => {
   it("applies a Raite-like preset", () => {
-    const next = applyWeaponAttackPreset("raite", { enabled: false, filter: "meleeWeapon", damageMode: "add" });
+    const next = applyWeaponAttackPreset("raite", {
+      enabled: false,
+      filter: "meleeWeapon",
+      damageMode: "add",
+    });
     assert.equal(next.enabled, true);
     assert.equal(next.filter, "unarmedOnly");
     assert.equal(next.damageMode, "replace");
   });
 
   it("keeps current fields for custom preset", () => {
-    const current = { enabled: true, filter: "rangedWeapon", damageMode: "add", attackBonus: "1[Test]" };
+    const current = {
+      enabled: true,
+      filter: "rangedWeapon",
+      damageMode: "add",
+      attackBonus: "1[Test]",
+    };
     assert.deepEqual(applyWeaponAttackPreset("custom", current), current);
   });
 });
@@ -124,7 +130,11 @@ describe("weapon attack sheet summary", () => {
   });
 
   it("returns a disabled summary for normal techniques", () => {
-    assert.deepEqual(buildWeaponAttackSummary({ enabled: false }), { enabled: false, parts: [], label: "" });
+    assert.deepEqual(buildWeaponAttackSummary({ enabled: false }), {
+      enabled: false,
+      parts: [],
+      label: "",
+    });
   });
 });
 
@@ -166,34 +176,47 @@ describe("weapon attack damage part form rows", () => {
     assert.deepEqual([...formRows[1].damage.types], ["fire"]);
   });
 
-  it("adds types to a newly inserted draft row without dropping existing rows", () => {
-    const rows = [{ formula: "2", types: ["cold"] }, { formula: "", types: [] }];
+  it("sets a row's types while preserving its DOM-captured formula", () => {
+    const rows = [{ formula: "2[Jiki-Uchi]", types: "slashing" }];
 
-    assert.deepEqual(replaceDamagePartTypes(rows, 1, ["slashing"]), [
-      { formula: "2", types: ["cold"] },
-      { formula: "", types: ["slashing"] },
+    assert.deepEqual(damagePartRowsFromForm(setDamagePartTypesAt(rows, 0, ["fire"])), [
+      { formula: "2[Jiki-Uchi]", types: ["fire"] },
     ]);
   });
 
-  it("restores a newly inserted row when submit filtered the blank draft before type selection", () => {
-    const rowsAfterPreSelectorSubmit = [{ formula: "2", types: ["cold"] }];
-
-    assert.deepEqual(replaceDamagePartTypes(rowsAfterPreSelectorSubmit, 1, ["slashing"]), [
-      { formula: "2", types: ["cold"] },
-      { formula: "", types: ["slashing"] },
-    ]);
-  });
-
-  it("replaces one row's types without dropping its formula or sibling rows", () => {
+  it("sets one row's types without dropping its formula or sibling rows", () => {
     const rows = [
-      { formula: "(min(floor(@cl / 2), 5))d6[Denjiba Totsugeki]", types: [] },
-      { formula: "1d4", types: ["electricity"] },
+      { formula: "(min(floor(@cl / 2), 5))d6[Denjiba Totsugeki]", types: "" },
+      { formula: "1d4", types: "electricity" },
     ];
 
-    assert.deepEqual(replaceDamagePartTypes(rows, 0, ["cold"]), [
+    assert.deepEqual(damagePartRowsFromForm(setDamagePartTypesAt(rows, 0, ["cold"])), [
       { formula: "(min(floor(@cl / 2), 5))d6[Denjiba Totsugeki]", types: ["cold"] },
       { formula: "1d4", types: ["electric"] },
     ]);
+  });
+
+  it("pads to the target index without clobbering an existing row", () => {
+    const rows = [{ formula: "2", types: "cold" }];
+
+    assert.deepEqual(damagePartRowsFromForm(setDamagePartTypesAt(rows, 1, ["slashing"])), [
+      { formula: "2", types: ["cold"] },
+      { formula: "", types: ["slashing"] },
+    ]);
+  });
+
+  it("sets types on an empty-formula row without discarding the row", () => {
+    const rows = [{ formula: "", types: "" }];
+
+    assert.deepEqual(damagePartRowsFromForm(setDamagePartTypesAt(rows, 0, ["slashing"])), [
+      { formula: "", types: ["slashing"] },
+    ]);
+  });
+
+  it("does not mutate the input rows array", () => {
+    const rows = [{ formula: "2", types: "cold" }];
+    setDamagePartTypesAt(rows, 0, ["fire"]);
+    assert.deepEqual(rows, [{ formula: "2", types: "cold" }]);
   });
 });
 

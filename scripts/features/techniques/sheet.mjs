@@ -21,12 +21,13 @@ import {
   damagePartRowsFromForm,
   extractIndexedRows,
   extraAttacksArrayFromText,
-  replaceDamagePartTypes,
+  setDamagePartTypesAt,
   WEAPON_ATTACK_DAMAGE_MODE_CHOICES,
   WEAPON_ATTACK_FILTER_CHOICES,
   WEAPON_ATTACK_HELD_CHOICES,
   WEAPON_ATTACK_PRESET_CHOICES,
 } from "./weapon-attack-sheet.mjs";
+import { typeCsvToArray } from "./weapon-attack-damage-parts.mjs";
 import { resolveDroppedItem } from "../../utils/drag-drop.mjs";
 
 const SPECIAL_DESCRIPTOR_FLAGS = {
@@ -40,7 +41,6 @@ function localizeChoices(choices) {
     Object.entries(choices).map(([key, label]) => [key, game.i18n.localize(label)]),
   );
 }
-
 
 export function createTechniqueItemSheet() {
   class TechniqueItemSheet extends ItemSheet {
@@ -605,24 +605,50 @@ export function createTechniqueItemSheet() {
       const list = elem.closest("[data-weapon-attack-damage-list]");
       const prefix = list?.dataset.weaponAttackDamageList;
       const index = Number(row?.dataset.damagePart);
-      if (!prefix || index < 0) return;
+      if (!prefix || !(index >= 0)) return;
 
+      // Capture the rows (formula + types) straight from the live form, keeping the
+      // freshly-typed formula and each row's DOM index. We never re-read rows by index
+      // from persisted data, so dropped/re-indexed draft rows can't wipe a formula.
+      const domRows = this._readWeaponAttackDamageRows(prefix);
+
+      // Flush sibling fields (attackBonus, extra attacks, …). The damageParts value in
+      // our own update below is rebuilt from domRows, so it wins over whatever submit wrote.
       await this._onSubmit(event, { preventRender: true });
 
-      const currentRows = foundry.utils.getProperty(this.item, prefix) ?? [];
-      const currentTypes = currentRows[index]?.types ?? [];
+      const currentTypes = typeCsvToArray(domRows[index]?.types ?? []);
       const app = new pf1.applications.DamageTypeSelector(
         this.item,
         `${prefix}.${index}.types`,
         new Set(currentTypes),
         {
           updateCallback: async (update) => {
-            await this.item.update({ [prefix]: replaceDamagePartTypes(currentRows, index, update) });
+            const rows = damagePartRowsFromForm(setDamagePartTypesAt(domRows, index, update));
+            await this.item.update({ [prefix]: rows });
             this.render(false);
           },
         },
       );
       return app.render(true);
+    }
+
+    /**
+     * Read weapon-attack damage rows directly from the live form, dense by DOM index.
+     * Empty rows are kept so indices stay aligned with the rendered list; formula and
+     * types are returned exactly as typed (normalization happens at persist time).
+     */
+    _readWeaponAttackDamageRows(prefix) {
+      const rows = [];
+      const escaped = prefix.replaceAll(".", "\\.");
+      const pattern = new RegExp(`^${escaped}\\.(\\d+)\\.(formula|types)$`);
+      for (const el of this.form?.querySelectorAll(`[name^="${prefix}."]`) ?? []) {
+        const match = el.name.match(pattern);
+        if (!match) continue;
+        const i = Number(match[1]);
+        rows[i] ??= { formula: "", types: "" };
+        rows[i][match[2]] = el.value;
+      }
+      return Array.from(rows, (r) => r ?? { formula: "", types: "" });
     }
 
     // ─────────────────────────────────────────────────────────────
