@@ -231,6 +231,9 @@ export function findConflictingStanceBuffs(actor, technique) {
   return actorItems(actor).filter((item) => {
     const sourceTechnique = getTrackedStanceSourceTechnique(actor, item);
     if (!sourceTechnique) return false;
+    // Maintenance buffs (rank/mode/upkeep) are tracked by sourceTechniqueId too, so guard
+    // against sweeping up buffs whose source technique is not itself a stance.
+    if (!isStanceTechnique(sourceTechnique)) return false;
     if (itemId(sourceTechnique) === activatingTechniqueId) return false;
     return !allowsStanceStacking(sourceTechnique);
   });

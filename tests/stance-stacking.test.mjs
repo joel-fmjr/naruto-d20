@@ -85,6 +85,27 @@ describe("stance stacking automation", () => {
     assert.deepEqual(result, ["buff-a"]);
   });
 
+  it("does not remove non-stance maintenance buffs (e.g. rank buffs)", () => {
+    // Rank buffs (KOUSOKU speed, JOURYOKU strength) are maintenance buffs carrying
+    // maintenanceBuff.sourceTechniqueId, but their source technique is not a stance.
+    // Activating an exclusive stance must never sweep them up.
+    const rankTechnique = technique({ id: "rank-a", name: "GODAN KOUSOKU", subtype: "" });
+    const activating = technique({ id: "stance-c", name: "Stance C" });
+    const actor = {
+      items: [
+        rankTechnique,
+        activating,
+        buff({
+          id: "buff-rank",
+          name: "KOUSOKU (SPEED RANK)",
+          maintenanceSourceTechniqueId: "rank-a",
+        }),
+      ],
+    };
+
+    assert.deepEqual(findConflictingStanceBuffs(actor, activating), []);
+  });
+
   it("does not remove other stances when the activating stance is stackable", () => {
     const exclusive = technique({ id: "stance-a", name: "Stance A" });
     const stackable = technique({
