@@ -35,6 +35,11 @@ export const chakraPoolValuePath = `${moduleFlagsPath}.chakra.pool.value`;
 export const chakraPoolTempPath = `${moduleFlagsPath}.chakra.pool.temp`;
 export const chakraReserveValuePath = `${moduleFlagsPath}.chakra.reserve.value`;
 
+// ── Item flag paths ───────────────────────────────────────────────────────
+// Wealth DC (d20 Modern-style Purchase DC, rolled/compared against the
+// actor's Wealth hero stat) — stored per physical item, not per actor.
+export const wealthDcPath = `${moduleFlagsPath}.wealthDc`;
+
 // ── Chakra condition tracking paths ──────────────────────────────────────
 export const conditionAppliedFatiguedPath = `${moduleFlagsPath}.conditions.appliedFatigued`;
 export const conditionAppliedExhaustedPath = `${moduleFlagsPath}.conditions.appliedExhausted`;

@@ -48,6 +48,10 @@
       "Reputation": "Reputation",
       "Wealth": "Wealth"
     },
+    "WealthDC": {
+      "Header": "Wealth DC",
+      "Label": "Wealth DC"
+    },
     "ChakraTab": {
       "ChakraPool": "Chakra Pool",
       "ChakraReserve": "Chakra Reserve",
