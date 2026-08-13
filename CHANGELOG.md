@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.2.0 - 2026-08-13
+
+- Added **Wealth DC field on item sheets** (#186): weapon, equipment, loot, consumable, container, and implant items now have a Wealth DC field in the sheet sidebar next to Quantity/Weight/Price, reflecting narutod20's modern-d20-style economy where items carry a DC to roll/compare against the actor's Wealth hero stat instead of a gp price.
+- Fixed **stance activation deleting rank maintenance buffs** (#185): activating an exclusive stance (e.g. Champuru First Stance) no longer strips KOUSOKU/JOURYOKU rank maintenance buffs — the exclusive-stance conflict filter now verifies a conflicting buff's source technique is actually a stance before treating it as a conflict.
+
 ## v2.1.0 - 2026-06-30
 
 - Added **Denjiba Totsugeki** (#179): new technique with a charge-attack setup, encounter-use text, and mastery-based extra uses.
