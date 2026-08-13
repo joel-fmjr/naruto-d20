@@ -30,6 +30,7 @@ export function registerInitHook() {
       `modules/${MODULE_ID}/templates/item/technique-sheet.hbs`,
       `modules/${MODULE_ID}/templates/item/technique-header.hbs`,
       `modules/${MODULE_ID}/templates/item/rank-grant-config.hbs`,
+      `modules/${MODULE_ID}/templates/item/wealth-dc-config.hbs`,
       `modules/${MODULE_ID}/templates/actor/technique-synckit.hbs`,
       `modules/${MODULE_ID}/templates/apps/technique-browser.hbs`,
       `modules/${MODULE_ID}/templates/apps/feat-browser.hbs`,

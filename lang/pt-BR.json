@@ -48,6 +48,9 @@
       "Reputation": "Reputação",
       "Wealth": "Riqueza"
     },
+    "WealthDC": {
+      "Label": "CD de Riqueza"
+    },
     "ChakraTab": {
       "ChakraPool": "Chakra",
       "ChakraReserve": "Reserva de Chakra",

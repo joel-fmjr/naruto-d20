@@ -28,6 +28,7 @@ import { registerTurnMaintenance } from "../features/automation/maintenance/turn
 import { registerElementDamage } from "../features/automation/maintenance/element-damage.mjs";
 import { registerRankRollData } from "../features/automation/ranks/rolldata.mjs";
 import { registerRankGrantConfig } from "../ui/rank-grant-config.mjs";
+import { registerWealthDcConfig } from "../ui/wealth-dc-config.mjs";
 import { registerTapReservesListener } from "../features/chakra/tap-reserves.mjs";
 import { registerChakraConditionCombatHooks } from "../features/chakra/conditions.mjs";
 
@@ -56,6 +57,7 @@ export function registerSetupHook() {
     registerElementDamage(); // type configured maintenance-element attack damage at roll time
     registerRankRollData(); // KOUSOKU/JOURYOKU effective rank (paid/temp/bonus + armor/condition penalties)
     registerRankGrantConfig(); // "Naruto Rank" grant section on PF1e buff sheets
+    registerWealthDcConfig(); // "Wealth DC" field on PF1e weapon/equipment/loot/consumable/container/implant sheets
     registerTapReservesListener(); // Chakra Reserve header → Tap Reserves dialog
   });
 
