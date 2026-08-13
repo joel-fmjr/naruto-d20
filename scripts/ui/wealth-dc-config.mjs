@@ -19,7 +19,9 @@ async function onRenderItemSheet(app, html) {
   if (!WEALTH_DC_ITEM_TYPES.includes(item?.type)) return;
   if (html.find(".naruto-wealth-dc").length) return;
 
-  const anchor = html.find('.tab.details[data-group="primary"][data-tab="details"]');
+  // Direct child, not `.find` — container.hbs has a second, unrelated <header>
+  // inside its Contents tab.
+  const anchor = html.find("section.sidebar > header").first();
   if (!anchor.length) return;
 
   const rendered = await foundry.applications.handlebars.renderTemplate(TEMPLATE, {
@@ -28,5 +30,5 @@ async function onRenderItemSheet(app, html) {
     editable: app.isEditable,
   });
 
-  anchor.append(rendered);
+  anchor.after(rendered);
 }
