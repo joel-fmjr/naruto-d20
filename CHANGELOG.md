@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.2.1 - 2026-08-13
+
+- Added **editable action point bonus field on technique sheets** (#188): the GM · Learning and GM · Mastery grids on the technique sheet now have an editable "⚡ AP" input alongside Successes/Required/Attempts/Insight, matching the existing `actionPointBonus` schema field that was previously read-only.
+
 ## v2.2.0 - 2026-08-13
 
 - Added **Wealth DC field on item sheets** (#186): weapon, equipment, loot, consumable, container, and implant items now have a Wealth DC field in the sheet sidebar next to Quantity/Weight/Price, reflecting narutod20's modern-d20-style economy where items carry a DC to roll/compare against the actor's Wealth hero stat instead of a gp price.
