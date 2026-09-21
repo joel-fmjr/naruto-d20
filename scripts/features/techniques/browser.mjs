@@ -161,7 +161,7 @@ export class TechniqueCompendiumBrowser extends Application {
     if (this.empathyMode) {
       filtered = filtered.map((e) => ({
         ...e,
-        threshold: computeTechniqueDerived(e.system).skillThreshold,
+        threshold: computeTechniqueDerived(e.system).empathyCost,
       }));
     }
 
