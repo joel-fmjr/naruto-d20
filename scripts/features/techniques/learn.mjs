@@ -426,7 +426,7 @@ export async function learnTechniqueViaEmpathy(actor, srcItem) {
     return;
   }
 
-  const threshold = Math.max(0, Number(srcItem.system?.derived?.skillThreshold ?? 0) || 0);
+  const threshold = Math.max(0, Number(srcItem.system?.derived?.empathyCost ?? 0) || 0);
   const currentEps = Number(foundry.utils.getProperty(actor, epsPath) ?? 0) || 0;
   if (currentEps < threshold) {
     ui.notifications.warn(

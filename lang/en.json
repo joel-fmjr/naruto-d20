@@ -534,7 +534,7 @@
       "TapReserves": "Tap Reserves",
       "BrowseTechniques": "Browse Techniques",
       "LearnWithEmpathy": "Learn with Empathy Points",
-      "LearnWithEmpathyTooltip": "Learn this technique — spends Empathy Points equal to its Skill Threshold (shown)",
+      "LearnWithEmpathyTooltip": "Learn this technique — spends Empathy Points equal to its Empathy Cost (shown)",
       "BrowseFeats": "Browse Naruto Feats",
       "RemoveTechnique": "Remove Technique",
       "RemoveTechniqueConfirm": "Remove <strong>{name}</strong> from this actor?",

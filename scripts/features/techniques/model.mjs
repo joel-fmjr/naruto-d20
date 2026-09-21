@@ -120,6 +120,10 @@ export function computeTechniqueDerived(system = {}) {
     successes,
     successModifier,
     skillThreshold: Math.max(1, rank + skillMod - 3),
+    // EP cost to learn instantly via Empathy — same rank/complexity inputs as
+    // skillThreshold, but without the -3 offset (that offset only applies to
+    // the Perform-check skill-rank bypass, not the Empathy purchase cost).
+    empathyCost: Math.max(1, rank + skillMod),
     masteryPerform: MASTERY_PERFORM[mastery],
     masteryLevel: MASTERY_LEVEL[mastery],
     masterySaves: MASTERY_SAVES[mastery],

@@ -538,7 +538,7 @@
       "TapReserves": "Drenar Reservas",
       "BrowseTechniques": "Procurar Técnicas",
       "LearnWithEmpathy": "Aprender com Pontos de Empatia",
-      "LearnWithEmpathyTooltip": "Aprende esta técnica — gasta Pontos de Empatia iguais ao seu Limiar de Perícia (exibido)",
+      "LearnWithEmpathyTooltip": "Aprende esta técnica — gasta Pontos de Empatia iguais ao seu Custo de Empatia (exibido)",
       "BrowseFeats": "Procurar Talentos Naruto",
       "RemoveTechnique": "Remover Técnica",
       "RemoveTechniqueConfirm": "Remover <strong>{name}</strong> deste personagem?",
