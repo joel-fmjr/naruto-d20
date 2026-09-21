@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.2.2 - 2026-09-21
+
+- Fixed **Doryuu Jikyuu missing the Hijutsu descriptor** (#190): the technique now correctly counts toward Hijutsu-related bonuses (success modifier, learn/perform DC).
+- Fixed **Learn with Empathy Points using the wrong cost** (#190): the flow reused `skillThreshold` (the Perform-check skill-rank bypass value, which subtracts 3) as the EP cost. A dedicated `empathyCost` value (without that offset) is now used for the browser, tooltip, and the actual EP deduction.
+
 ## v2.2.1 - 2026-08-13
 
 - Added **editable action point bonus field on technique sheets** (#188): the GM · Learning and GM · Mastery grids on the technique sheet now have an editable "⚡ AP" input alongside Successes/Required/Attempts/Insight, matching the existing `actionPointBonus` schema field that was previously read-only.
