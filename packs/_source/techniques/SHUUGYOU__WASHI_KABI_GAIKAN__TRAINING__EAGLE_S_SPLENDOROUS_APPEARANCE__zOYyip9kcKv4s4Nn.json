@@ -84,7 +84,8 @@
       }
     ],
     "automation": {
-      "enabled": false
+      "enabled": true,
+      "targetMode": "self"
     }
   },
   "effects": [],
