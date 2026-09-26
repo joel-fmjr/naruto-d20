@@ -50,7 +50,7 @@
     "level": 1,
     "duration": { "value": "", "units": "perm", "end": "turnStart", "start": 0 },
     "conditions": [],
-    "hideFromToken": false,
+    "hideFromToken": true,
     "showInQuickbar": false
   },
   "effects": [],
