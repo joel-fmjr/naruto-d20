@@ -45,7 +45,7 @@
     "tag": "",
     "flags": { "boolean": {}, "dictionary": {} },
     "scriptCalls": [],
-    "subType": "temp",
+    "subType": "perm",
     "active": false,
     "level": 1,
     "duration": { "value": "", "units": "perm", "end": "turnStart", "start": 0 },
