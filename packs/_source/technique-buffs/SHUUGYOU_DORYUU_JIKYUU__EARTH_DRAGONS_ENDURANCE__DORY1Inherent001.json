@@ -1,0 +1,63 @@
+{
+  "type": "buff",
+  "name": "SHUUGYOU: DORYUU JIKYUU (TRAINING: EARTH DRAGON'S ENDURANCE)",
+  "img": "systems/pf1/icons/feats/improved-lighting-reflexes.jpg",
+  "system": {
+    "description": {
+      "value": "<p>This permanent buff represents the +1 increase to Constitution from SHUUGYOU: DORYUU JIKYUU.</p>",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "_id": "DORY0001",
+        "formula": "1",
+        "operator": "add",
+        "target": "con",
+        "type": "inherent",
+        "priority": 0,
+        "flavor": "DORYUU JIKYUU"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": { "children": [] },
+    "tag": "",
+    "flags": { "boolean": {}, "dictionary": {} },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 1,
+    "duration": { "value": "", "units": "perm", "end": "turnStart", "start": 0 },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "_id": "DORY1Inherent001",
+  "sort": 0,
+  "_key": "!items!DORY1Inherent001"
+}

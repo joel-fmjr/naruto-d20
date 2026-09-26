@@ -1,0 +1,63 @@
+{
+  "type": "buff",
+  "name": "SHUUGYOU: WASHI KABI GAIKAN (TRAINING: EAGLE'S SPLENDOROUS APPEARANCE)",
+  "img": "systems/pf1/icons/feats/improved-lighting-reflexes.jpg",
+  "system": {
+    "description": {
+      "value": "<p>This permanent buff represents the +1 inherent bonus to Charisma from SHUUGYOU: WASHI KABI GAIKAN.</p>",
+      "instructions": ""
+    },
+    "tags": [],
+    "changes": [
+      {
+        "_id": "WASH0001",
+        "formula": "1",
+        "operator": "add",
+        "target": "cha",
+        "type": "inherent",
+        "priority": 0,
+        "flavor": "WASHI KABI GAIKAN"
+      }
+    ],
+    "changeFlags": {
+      "immuneToMorale": false,
+      "loseDexToAC": false,
+      "noMediumEncumbrance": false,
+      "noHeavyEncumbrance": false,
+      "mediumArmorFullSpeed": false,
+      "heavyArmorFullSpeed": false,
+      "lowLightVision": false,
+      "seeInvisibility": false,
+      "seeInDarkness": false
+    },
+    "contextNotes": [],
+    "actions": [],
+    "attackNotes": [],
+    "effectNotes": [],
+    "uses": {
+      "value": null,
+      "per": "",
+      "autoDeductChargesCost": "",
+      "maxFormula": "",
+      "rechargeFormula": ""
+    },
+    "links": { "children": [] },
+    "tag": "",
+    "flags": { "boolean": {}, "dictionary": {} },
+    "scriptCalls": [],
+    "subType": "temp",
+    "active": false,
+    "level": 1,
+    "duration": { "value": "", "units": "perm", "end": "turnStart", "start": 0 },
+    "conditions": [],
+    "hideFromToken": false,
+    "showInQuickbar": false
+  },
+  "effects": [],
+  "folder": null,
+  "ownership": { "default": 0 },
+  "flags": {},
+  "_id": "WASH1Inherent001",
+  "sort": 0,
+  "_key": "!items!WASH1Inherent001"
+}
