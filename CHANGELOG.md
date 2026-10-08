@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.3.0 - 2026-10-07
+
+- Fixed **Champuru Niban Sutansu - Honnou damage bonus** (#192): the stance's +2 damage bonus now targets melee damage (`mdamage`) instead of all damage rolls.
+- Fixed **cone area on bullet and fang techniques** (#193): Denpo no Jutsu, Doroga no Jutsu, Enga no Jutsu, Gufuuken no Jutsu, Hyourento and Mizuteppo no longer carry a `Cone` area or cone measure template.
+
 ## v2.2.2 - 2026-09-21
 
 - Fixed **Doryuu Jikyuu missing the Hijutsu descriptor** (#190): the technique now correctly counts toward Hijutsu-related bonuses (success modifier, learn/perform DC).
