@@ -28,7 +28,7 @@
     "activation": "attack",
     "range": "Medium (20 ft. + 10 ft./2 levels)",
     "target": "",
-    "area": "Cone",
+    "area": "",
     "duration": "Instant",
     "save": "Reflex halves",
     "compHandSeals": true,
@@ -77,11 +77,6 @@
         },
         "range": {
           "units": "medium"
-        },
-        "area": "Cone",
-        "measureTemplate": {
-          "type": "cone",
-          "size": "floor(@cl / 2) * 5 + 20"
         },
         "damage": {
           "parts": [
