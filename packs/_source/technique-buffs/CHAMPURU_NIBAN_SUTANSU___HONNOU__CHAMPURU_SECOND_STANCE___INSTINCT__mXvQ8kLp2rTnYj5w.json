@@ -30,7 +30,7 @@
         "_id": "nibandmg",
         "operator": "add",
         "priority": 0,
-        "target": "damage",
+        "target": "mdamage",
         "formula": "2",
         "flavor": "CHAMPURU NIBAN SUTANSU - HONNOU"
       },
