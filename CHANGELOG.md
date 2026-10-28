@@ -1,5 +1,10 @@
 # Changelog
 
+## v2.3.1 - 2026-10-28
+
+- Added **Athletics skill** (#195): new `ath` skill (Str) registered as a PF1e skill. Speed Rank jump bonus and Strength Rank action bonus now apply to Athletics instead of Acrobatics; the separate Strength Rank Climb and Swim bonuses are merged into it. Actors that already carry copies of the rank buffs keep the old changes until the buffs are re-applied.
+- Fixed **Champuru Niban Sutansu - Honnou CMB bonus** (#196): the second stance no longer grants +2 CMB.
+
 ## v2.3.0 - 2026-10-07
 
 - Fixed **Champuru Niban Sutansu - Honnou damage bonus** (#192): the stance's +2 damage bonus now targets melee damage (`mdamage`) instead of all damage rolls.
