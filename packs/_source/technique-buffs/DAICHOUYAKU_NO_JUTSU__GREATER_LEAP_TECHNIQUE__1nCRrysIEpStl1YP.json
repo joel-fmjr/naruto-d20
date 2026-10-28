@@ -13,7 +13,7 @@
         "operator": "add",
         "priority": 0,
         "formula": "20",
-        "target": "skill.acr",
+        "target": "skill.ath",
         "flavor": "DAICHOUYAKU NO JUTSU"
       }
     ],

@@ -58,16 +58,7 @@
         "operator": "add",
         "priority": 0,
         "formula": "4",
-        "target": "skill.clm",
-        "flavor": "TO-MON KAI"
-      },
-      {
-        "type": "untyped",
-        "_id": "0eb27395",
-        "operator": "add",
-        "priority": 0,
-        "formula": "4",
-        "target": "skill.swm",
+        "target": "skill.ath",
         "flavor": "TO-MON KAI"
       }
     ],

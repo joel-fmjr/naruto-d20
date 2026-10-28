@@ -58,16 +58,7 @@
         "operator": "add",
         "priority": 0,
         "formula": "4",
-        "target": "skill.clm",
-        "flavor": "SHOU-MON KAI"
-      },
-      {
-        "type": "untyped",
-        "_id": "0974b5d1",
-        "operator": "add",
-        "priority": 0,
-        "formula": "4",
-        "target": "skill.swm",
+        "target": "skill.ath",
         "flavor": "SHOU-MON KAI"
       }
     ],
