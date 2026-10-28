@@ -40,6 +40,14 @@ export const NARUTO_SKILLS = Object.freeze({
   nin: { label: "NarutoD20.Skills.nin", ability: "int", discipline: "Ninjutsu" },
 });
 
+/**
+ * Extra PF1e-native skills that are not learn disciplines. Registered and seeded
+ * like NARUTO_SKILLS but excluded from LEARN_KEYS (no learn checks / chakra flags).
+ */
+export const EXTRA_SKILLS = Object.freeze({
+  ath: { label: "NarutoD20.Skills.ath", ability: "str" },
+});
+
 /** Stable order matches NARUTO_SKILLS insertion order. Used by all reset/iter loops. */
 export const LEARN_KEYS = Object.freeze(Object.keys(NARUTO_SKILLS));
 
@@ -67,7 +75,7 @@ export function resolveSkillAbility(actor, skillKey) {
  * Call during pf1PostInit — pf1.config and game.i18n are both ready.
  */
 export function registerNarutoSkills() {
-  for (const [key, data] of Object.entries(NARUTO_SKILLS)) {
+  for (const [key, data] of Object.entries({ ...NARUTO_SKILLS, ...EXTRA_SKILLS })) {
     // Deployed PF1e stores skills as plain localized strings.
     // The governing ability comes from actor.system.skills[key].ability (seeded below).
     pf1.config.skills[key] = game.i18n.localize(data.label);
@@ -81,7 +89,7 @@ export function registerNarutoSkills() {
  */
 export function ensureActorSkillEntries(actor) {
   if (!["character", "npc"].includes(actor.type)) return;
-  for (const [key, data] of Object.entries(NARUTO_SKILLS)) {
+  for (const [key, data] of Object.entries({ ...NARUTO_SKILLS, ...EXTRA_SKILLS })) {
     if (key in actor.system.skills) {
       actor.system.skills[key].ability ??= data.ability;
     } else {

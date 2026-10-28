@@ -49,25 +49,7 @@
         "_id": "GpOlyjHo",
         "operator": "add",
         "priority": 0,
-        "target": "skill.acr",
-        "formula": "@item.strRank.actions",
-        "flavor": "JOURYOKU"
-      },
-      {
-        "type": "untyped",
-        "_id": "2TLF7mVN",
-        "operator": "add",
-        "priority": 0,
-        "formula": "@item.strRank.actions",
-        "target": "skill.clm",
-        "flavor": "JOURYOKU"
-      },
-      {
-        "type": "untyped",
-        "_id": "ypV9AbpK",
-        "operator": "add",
-        "priority": 0,
-        "target": "skill.swm",
+        "target": "skill.ath",
         "formula": "@item.strRank.actions",
         "flavor": "JOURYOKU"
       }
