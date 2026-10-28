@@ -33,7 +33,7 @@ The compendium change formulas reference these fields:
 
 | Change `_id` | Target | Formula |
 |---|---|---|
-| `B5YddrZI` | `skill.acr` | `@item.speedRank.jump` |
+| `B5YddrZI` | `skill.ath` | `@item.speedRank.jump` |
 | `JfNd3IDk` | `ac` | `@item.speedRank.dodge` |
 | `vkK43M8p` | `attack` | `@item.speedRank.attack` |
 | `PDR8lbWh` | `allSpeeds` | `@item.speedRank.speed` |
