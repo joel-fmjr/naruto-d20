@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.3.1.1 - 2026-10-28
+
+- Fixed **Jump, Climb and Swim bonuses after the Athletics change** (#198): Hanten Chouyaku, Sorapo no Jutsu, Chouyaku no Jutsu and Daichouyaku no Jutsu now apply their Jump bonus to Athletics. Kyo-Mon, Shou-Mon and To-Mon Kai keep their bonus on Acrobatics (Balance/Tumble) and apply a single Athletics bonus in place of the separate Climb and Swim bonuses. Actors that already carry copies of these buffs keep the old changes until the buffs are re-applied.
+
 ## v2.3.1 - 2026-10-28
 
 - Added **Athletics skill** (#195): new `ath` skill (Str) registered as a PF1e skill. Speed Rank jump bonus and Strength Rank action bonus now apply to Athletics instead of Acrobatics; the separate Strength Rank Climb and Swim bonuses are merged into it. Actors that already carry copies of the rank buffs keep the old changes until the buffs are re-applied.
