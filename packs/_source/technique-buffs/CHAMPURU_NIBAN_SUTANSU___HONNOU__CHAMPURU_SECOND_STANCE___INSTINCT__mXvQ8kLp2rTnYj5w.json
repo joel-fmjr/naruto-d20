@@ -33,15 +33,6 @@
         "target": "mdamage",
         "formula": "2",
         "flavor": "CHAMPURU NIBAN SUTANSU - HONNOU"
-      },
-      {
-        "type": "untyped",
-        "_id": "nibancmb",
-        "operator": "add",
-        "priority": 0,
-        "target": "cmb",
-        "formula": "2",
-        "flavor": "CHAMPURU NIBAN SUTANSU - HONNOU"
       }
     ],
     "changeFlags": {
