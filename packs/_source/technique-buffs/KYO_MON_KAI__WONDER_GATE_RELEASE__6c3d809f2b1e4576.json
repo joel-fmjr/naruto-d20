@@ -58,16 +58,7 @@
         "operator": "add",
         "priority": 0,
         "formula": "8",
-        "target": "skill.clm",
-        "flavor": "KYO-MON KAI"
-      },
-      {
-        "type": "untyped",
-        "_id": "0a3d5f67",
-        "operator": "add",
-        "priority": 0,
-        "formula": "8",
-        "target": "skill.swm",
+        "target": "skill.ath",
         "flavor": "KYO-MON KAI"
       }
     ],
